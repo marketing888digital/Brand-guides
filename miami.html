@@ -3,535 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Readability Rules - Miamilots</title>
+    <title>Miamilots Creative Guidelines for B2B Resellers</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: #111111;
-            background: #FFFFFF;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 3px solid #0D8082;
-        }
-        
-        .logo-display {
-            background: linear-gradient(45deg, #E83E8C, #8C3EEE);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 16px;
-        }
-        
-        .header p {
-            font-size: 18px;
-            color: #666666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .section {
-            margin-bottom: 60px;
-        }
-        
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 24px;
-            border-left: 4px solid #0D8082;
-            padding-left: 20px;
-        }
-        
-        .section-subtitle {
-            font-size: 20px;
-            font-weight: 500;
-            color: #111111;
-            margin: 32px 0 16px 0;
-        }
-        
-        .text-block {
-            font-size: 16px;
-            color: #333333;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .hierarchy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin: 32px 0;
-        }
-        
-        .hierarchy-card {
-            background: #f8f9fa;
-            padding: 24px;
-            border-radius: 8px;
-            border-left: 4px solid #0D8082;
-        }
-        
-        .hierarchy-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 12px;
-        }
-        
-        .hierarchy-card .priority {
-            background: #0D8082;
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-        
-        .hierarchy-card .size {
-            font-weight: 700;
-            color: #0D8082;
-            margin-bottom: 8px;
-        }
-        
-        .hierarchy-card .usage {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 12px;
-        }
-        
-        .example {
-            padding: 12px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-top: 8px;
-        }
-        
-        .critical {
-            background: #fff3cd;
-            border-left-color: #ffc107;
-        }
-        
-        .important {
-            background: #e1f5fe;
-            border-left-color: #0288d1;
-        }
-        
-        .flexible {
-            background: #e8f5e8;
-            border-left-color: #4caf50;
-        }
-        
-        .do-dont {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin: 32px 0;
-        }
-        
-        .do-dont-item {
-            padding: 24px;
-            border-radius: 8px;
-            border: 2px solid;
-        }
-        
-        .do {
-            border-color: #28a745;
-            background: #f8fff9;
-        }
-        
-        .dont {
-            border-color: #D9534F;
-            background: #fff8f8;
-        }
-        
-        .do h4 {
-            color: #28a745;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        
-        .dont h4 {
-            color: #D9534F;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        
-        .demo-section {
-            background: #f8f9fa;
-            padding: 32px;
-            border-radius: 12px;
-            margin: 32px 0;
-            border: 2px solid #e9ecef;
-        }
-        
-        .demo-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 24px;
-        }
-        
-        /* Demo Examples */
-        .demo-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .price-huge {
-            font-size: 32px;
-            font-weight: 900;
-            color: #0D8082;
-            line-height: 1;
-        }
-        
-        .discount-badge {
-            background: #D9534F;
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .brand-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #111111;
-        }
-        
-        .quantity {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0D8082;
-        }
-        
-        .date-critical {
-            font-size: 18px;
-            font-weight: 700;
-            color: #D9534F;
-            background: #fff3cd;
-            padding: 6px 10px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .campaign-name {
-            font-size: 14px;
-            font-weight: 400;
-            color: #666666;
-        }
-        
-        .checklist {
-            background: #f0f8ff;
-            padding: 24px;
-            border-radius: 8px;
-            border-left: 4px solid #337AB7;
-            margin: 32px 0;
-        }
-        
-        .checklist h4 {
-            color: #337AB7;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        
-        .checklist ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .checklist li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 24px;
-        }
-        
-        .checklist li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #0D8082;
-            font-weight: bold;
-        }
-
-        .prompt-box {
-            background: #f0f2f5;
-            border-left: 6px solid #1A202C;
-            padding: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 14px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .do-dont {
-                grid-template-columns: 1fr;
-            }
-            
-            .hierarchy-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo-display {
-                font-size: 36px;
-            }
-            
-            .header h1 {
-                font-size: 24px;
-            }
-        }
+        /* [Your existing CSS styles are applied here] */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: #111111; background: #FFFFFF; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 60px; padding-bottom: 40px; border-bottom: 3px solid #0D8082; }
+        .logo-display { font-size: 48px; font-weight: 700; margin-bottom: 20px; color: #1A202C; }
+        .header h1 { font-size: 32px; font-weight: 700; color: #111111; margin-bottom: 16px; }
+        .header p { font-size: 18px; color: #666666; max-width: 600px; margin: 0 auto; }
+        .section { margin-bottom: 60px; }
+        .section-title { font-size: 28px; font-weight: 700; color: #111111; margin-bottom: 24px; border-left: 4px solid #0D8082; padding-left: 20px; }
+        .section-subtitle { font-size: 20px; font-weight: 500; color: #111111; margin: 32px 0 16px 0; }
+        .text-block { font-size: 16px; color: #333333; margin-bottom: 20px; line-height: 1.6; }
+        .hierarchy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+        .hierarchy-card { background: #f8f9fa; padding: 24px; border-radius: 8px; border-left: 4px solid; }
+        .hierarchy-card h3 { font-size: 18px; font-weight: 700; color: #111111; margin-bottom: 12px; }
+        .hierarchy-card .priority { color: white; font-size: 12px; font-weight: 700; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+        .hierarchy-card .size { font-weight: 700; margin-bottom: 8px; }
+        .hierarchy-card .usage { font-size: 14px; color: #666666; margin-bottom: 12px; }
+        .example { padding: 12px; background: white; border: 1px solid #ddd; border-radius: 4px; margin-top: 8px; }
+        .critical { border-left-color: #D9534F; } .critical .priority { background: #D9534F; } .critical .size { color: #D9534F; }
+        .important { border-left-color: #f0ad4e; } .important .priority { background: #f0ad4e; } .important .size { color: #f0ad4e; }
+        .flexible { border-left-color: #5cb85c; } .flexible .priority { background: #5cb85c; } .flexible .size { color: #5cb85c; }
+        .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0; }
+        .do-dont-item { padding: 24px; border-radius: 8px; border: 2px solid; }
+        .do { border-color: #28a745; background: #f8fff9; }
+        .dont { border-color: #D9534F; background: #fff8f8; }
+        .do h4 { color: #28a745; font-weight: 700; margin-bottom: 12px; }
+        .dont h4 { color: #D9534F; font-weight: 700; margin-bottom: 12px; }
+        .demo-section { background: #f8f9fa; padding: 32px; border-radius: 12px; margin: 32px 0; border: 2px solid #e9ecef; }
+        .demo-title { font-size: 20px; font-weight: 700; color: #111111; margin-bottom: 24px; }
+        .demo-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .price-huge { font-size: 32px; font-weight: 900; color: #0D8082; line-height: 1; }
+        .discount-badge { background: #D9534F; color: white; font-size: 18px; font-weight: 700; padding: 8px 12px; border-radius: 4px; display: inline-block; }
+        .brand-name { font-size: 24px; font-weight: 700; color: #111111; }
+        .quantity { font-size: 20px; font-weight: 700; color: #0D8082; }
+        .date-critical { font-size: 18px; font-weight: 700; color: #D9534F; background: #fff3cd; padding: 6px 10px; border-radius: 4px; display: inline-block; }
+        .campaign-name { font-size: 14px; font-weight: 400; color: #666666; }
+        .checklist { background: #f0f8ff; padding: 24px; border-radius: 8px; border-left: 4px solid #337AB7; margin: 32px 0; }
+        .checklist h4 { color: #337AB7; font-weight: 700; margin-bottom: 16px; }
+        .checklist ul { list-style: none; padding-left: 0; }
+        .checklist li { margin-bottom: 8px; position: relative; padding-left: 24px; }
+        .checklist li::before { content: "✓"; position: absolute; left: 0; color: #0D8082; font-weight: bold; }
+        .prompt-box { background: #f0f2f5; border-left: 6px solid #1A202C; padding: 20px; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; word-wrap: break-word; font-size: 14px; border-radius: 8px; margin-top: 20px; }
+        .color-palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+        .color-swatch { text-align: center; }
+        .color-circle { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 10px; border: 1px solid #ddd; }
+        .color-name { font-weight: bold; }
+        .color-hex { font-family: 'Courier New', Courier, monospace; font-size: 14px; color: #666; }
+        @media (max-width: 768px) { .do-dont, .hierarchy-grid { grid-template-columns: 1fr; } .logo-display { font-size: 36px; } .header h1 { font-size: 24px; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div class="logo-display">MIAMILOTS</div>
-            <h1>Enhanced Readability & Message Hierarchy Rules</h1>
-            <p>Smart priorities for B2B resellers who think in numbers, dates, and profits</p>
+            <h1>Enhanced Readability & Data-Driven Design Rules</h1>
+            <p>A unified guide for creating high-performing, data-centric marketing assets for B2B resellers who think in numbers, dates, and profits.</p>
         </div>
 
-        <!-- Core Philosophy -->
         <div class="section">
             <h2 class="section-title">The B2B Reseller Mindset</h2>
-            
             <div class="text-block">
-                <strong>Key Insight:</strong> Your customers don't read marketing copy - they scan for financial opportunities. They think: "Can I make money? How much? How fast? What's the risk?"
+                <strong>Key Insight:</strong> Your customers don't read marketing copy—they scan for financial opportunities. They think: "Can I make money? How much? How fast? What's the risk?"
             </div>
-            
             <div class="text-block" style="background: #e8f5e8; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
-                <strong>The 3-Second Rule:</strong> A busy reseller should be able to spot profit potential, key dates, and brand names within 3 seconds. Everything else is secondary.
+                <strong>The 3-Second Rule:</strong> A busy reseller must be able to spot profit potential, key dates, and brand names within 3 seconds. Everything else is secondary. Our creative must be ruthlessly optimized for this behavior.
             </div>
         </div>
 
-        <!-- Information Hierarchy -->
+        <!-- NEW: Quick Reference Color Palette -->
         <div class="section">
-            <h2 class="section-title">Information Hierarchy: What MUST Be Readable</h2>
-            
-            <div class="hierarchy-grid">
-                <div class="hierarchy-card critical">
-                    <div class="priority">CRITICAL</div>
-                    <h3>Financial Data</h3>
-                    <div class="size">Minimum 18px, Bold, High Contrast</div>
-                    <div class="usage">Prices, discounts (%), profit margins, cost per unit, total value</div>
-                    <div class="example">
-                        <div class="price-huge">$299</div>
-                        <div class="discount-badge">65% OFF</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card critical">
-                    <div class="priority">CRITICAL</div>
-                    <h3>Brand Names</h3>
-                    <div class="size">Minimum 16px, Bold, Never Abbreviated</div>
-                    <div class="usage">Full brand names - Apple not "Apl", Nike not "Nke"</div>
-                    <div class="example">
-                        <div class="brand-name">Samsung Galaxy</div>
-                        <div class="brand-name">Microsoft Surface</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card critical">
-                    <div class="priority">CRITICAL</div>
-                    <h3>Quantities & Units</h3>
-                    <div class="size">Minimum 16px, Bold, Clear Units</div>
-                    <div class="usage">50 pcs, 100 units, 25 pallets, per piece pricing</div>
-                    <div class="example">
-                        <div class="quantity">250 Units Available</div>
-                        <div class="quantity">$12.50 per piece</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card important">
-                    <div class="priority">IMPORTANT</div>
-                    <h3>Critical Dates</h3>
-                    <div class="size">Minimum 16px, Bold When Time-Sensitive</div>
-                    <div class="usage">Sale ends, payment due, shipping dates, availability windows</div>
-                    <div class="example">
-                        <div class="date-critical">Ends Monday 23/09</div>
-                        <div style="font-size: 16px; color: #333;">Ships within 48 hours</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card important">
-                    <div class="priority">IMPORTANT</div>
-                    <h3>Product Categories</h3>
-                    <div class="size">Minimum 14px, Medium Weight</div>
-                    <div class="usage">Electronics, Fashion, Home & Garden - helps quick filtering</div>
-                    <div class="example">
-                        <div style="font-size: 16px; font-weight: 500; color: #0D8082;">Electronics & Appliances</div>
-                        <div style="font-size: 16px; font-weight: 500; color: #0D8082;">Clothing & Fashion</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card flexible">
-                    <div class="priority">FLEXIBLE</div>
-                    <h3>Campaign Names</h3>
-                    <div class="size">12px+, Regular Weight, Decorative OK</div>
-                    <div class="usage">Summer Promo, NJ Clearance, Flash Sale - nice to have but not critical</div>
-                    <div class="example">
-                        <div class="campaign-name">🌟 Summer Electronics Clearance</div>
-                        <div class="campaign-name">New Jersey Warehouse Liquidation</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Readability Standards -->
-        <div class="section">
-            <h2 class="section-title">Non-Negotiable Readability Standards</h2>
-            
-            <div class="do-dont">
-                <div class="do-dont-item do">
-                    <h4>✓ ALWAYS READABLE</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• <strong>Prices:</strong> 18px+ bold, high contrast color</li>
-                        <li>• <strong>Discount %:</strong> 16px+ bold, bright color</li>
-                        <li>• <strong>Brand names:</strong> 16px+ bold, never truncated</li>
-                        <li>• <strong>Quantities:</strong> 16px+ bold with clear units</li>
-                        <li>• <strong>Critical dates:</strong> 16px+ bold when urgent</li>
-                        <li>• <strong>Categories:</strong> 14px+ medium for filtering</li>
-                        <li>• <strong>Mobile:</strong> All above sizes apply to mobile</li>
-                    </ul>
-                </div>
-                
-                <div class="do-dont-item dont">
-                    <h4>✗ READABILITY KILLERS</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• Small financial data (under 16px)</li>
-                        <li>• Abbreviated brand names (Samsung → Sam)</li>
-                        <li>• Unclear quantities ("bulk available")</li>
-                        <li>• Hidden discount percentages</li>
-                        <li>• Buried pricing information</li>
-                        <li>• Low contrast text on backgrounds</li>
-                        <li>• Critical info that requires zooming on mobile</li>
-                    </ul>
-                </div>
+            <h2 class="section-title">Quick Reference Color Palette</h2>
+            <div class="color-palette">
+                <div class="color-swatch"><div class="color-circle" style="background-color: #0D8082;"></div><div class="color-name">Primary Teal</div><div class="color-hex">#0D8082</div></div>
+                <div class="color-swatch"><div class="color-circle" style="background-color: #ff2065;"></div><div class="color-name">Accent Pink</div><div class="color-hex">#ff2065</div></div>
+                <div class="color-swatch"><div class="color-circle" style="background-color: #E0F7FA;"></div><div class="color-name">Light Teal</div><div class="color-hex">#E0F7FA</div></div>
+                <div class="color-swatch"><div class="color-circle" style="background-color: #1A202C;"></div><div class="color-name">Dark Charcoal</div><div class="color-hex">#1A202C</div></div>
+                <div class="color-swatch"><div class="color-circle" style="background-color: #4A5568;"></div><div class="color-name">Medium Gray</div><div class="color-hex">#4A5568</div></div>
+                <div class="color-swatch"><div class="color-circle" style="background-color: #F8FAFC;"></div><div class="color-name">Light Gray BG</div><div class="color-hex">#F8FAFC</div></div>
             </div>
         </div>
         
-        <!-- NEW SECTION: Practical Application -->
+        <!-- REVISED: Data Checklist -->
         <div class="section">
-            <h2 class="section-title">Practical Application: Banners & Emails</h2>
-
-            <h3 class="section-subtitle">Single-Column Email Mandate</h3>
-            <div class="text-block">
-                <strong>Based on GA4 data showing high mobile user engagement, all marketing emails MUST use a single-column layout.</strong> This is non-negotiable.
-            </div>
-            <div class="checklist">
-                <h4>Email Design Checklist</h4>
+            <h2 class="section-title">Data Checklist for Smarter Creatives</h2>
+            <div class="text-block">Before starting any design, a junior designer needs the answers to these questions. This is the key information required to create effective, data-informed banners and emails.</div>
+            <div class="checklist" style="border-left-color: #f0ad4e;">
+                <h4 style="color: #f0ad4e;">Pre-Design Briefing Questions:</h4>
                 <ul>
-                    <li>Single-column for perfect mobile rendering</li>
-                    <li>Critical financial data & brand name "above the fold"</li>
-                    <li>Clear, benefit-focused subject line (e.g., "70% Off Apple MacBook Lots")</li>
-                    <li>Large, obvious Call-to-Action (CTA) button</li>
-                    <li>Follows all readability font size rules</li>
-                    <li>Unsubscribe link is clearly visible in the footer</li>
+                    <li><strong>What is the #1 Goal?</strong> (e.g., "Sell out the new 500-unit Lattafa perfume lot," "Drive 1000 clicks to the new Nike Footwear category," "Liquidate all remaining Samsung inventory.")</li>
+                    <li><strong>Who is the Primary Audience?</strong> (e.g., "Amazon FBA sellers," "Small retail store owners," "Exporters specializing in electronics.")</li>
+                    <li><strong>What are the Top 3 Selling Points for a RESELLER?</strong>
+                        <ul>
+                            <li><em>Example data points:</em> "75% below MSRP," "Top-searched brand on Google this month," "High sell-through rate on Amazon," "New release with limited wholesale availability."</li>
+                        </ul>
+                    </li>
+                    <li><strong>What Keywords are Customers Using to find these products?</strong>
+                        <ul>
+                            <li><em>Example from GSC/Google Ads:</em> "wholesale Apple lots," "liquidation pallets electronics," "bulk Nike shoes." This informs the headline and text.</li>
+                        </ul>
+                    </li>
+                    <li><strong>What is the ONE specific Call to Action (CTA)?</strong> (e.g., "Shop Now," "Make an Offer," "View Lots," "Download Manifest.")</li>
                 </ul>
-            </div>
-
-            <h3 class="section-subtitle">Standard Banner Dimensions</h3>
-            <div class="text-block">
-                To ensure consistency and high performance, use the following standard dimensions for all campaign assets. These sizes are optimized for the best performance across web, mobile, and social platforms.
-            </div>
-            <div class="do-dont">
-                <div class="do-dont-item do" style="background: #f8f9fa; border-color: #ddd;">
-                    <h4 style="color: #111;">✓ Top Web & Desktop Banners</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• <strong>Medium Rectangle:</strong> 300 x 250 px</li>
-                        <li>• <strong>Leaderboard:</strong> 728 x 90 px</li>
-                        <li>• <strong>Half Page:</strong> 300 x 600 px</li>
-                        <li>• <strong>Large Rectangle:</strong> 336 x 280 px</li>
-                    </ul>
-                </div>
-                <div class="do-dont-item do" style="background: #f8f9fa; border-color: #ddd;">
-                    <h4 style="color: #111;">✓ Top Mobile & Social Banners</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• <strong>Mobile Leaderboard:</strong> 320 x 50 px</li>
-                        <li>• <strong>Large Mobile Banner:</strong> 320 x 100 px</li>
-                        <li>• <strong>Social Square:</strong> 1080 x 1080 px</li>
-                        <li>• <strong>Stories & Reels:</strong> 1080 x 1920 px</li>
-                    </ul>
-                </div>
             </div>
         </div>
 
-        <!-- Real-World Examples -->
+        <div class="section">
+            <h2 class="section-title">Information Hierarchy: What MUST Be Scannable</h2>
+            <div class="hierarchy-grid">
+                <div class="hierarchy-card critical"><div class="priority">CRITICAL</div><h3>Financial Data</h3><div class="size">Minimum 18px, Bold, High Contrast</div><div class="usage">Prices, discounts (%), profit margins, cost per unit, total value.</div><div class="example"><div class="price-huge">$299</div><div class="discount-badge">65% OFF</div></div></div>
+                <div class="hierarchy-card critical"><div class="priority">CRITICAL</div><h3>Brand Names</h3><div class="size">Minimum 16px, Bold, Never Abbreviated</div><div class="usage">Full brand names - Apple not "Apl", Nike not "Nke"</div><div class="example"><div class="brand-name">Samsung Galaxy</div><div class="brand-name">Microsoft Surface</div></div></div>
+                <div class="hierarchy-card critical"><div class="priority">CRITICAL</div><h3>Quantities & Units</h3><div class="size">Minimum 16px, Bold, Clear Units</div><div class="usage">50 pcs, 100 units, 25 pallets, per piece pricing</div><div class="example"><div class="quantity">250 Units Available</div><div class="quantity">$12.50 per piece</div></div></div>
+                <div class="hierarchy-card important"><div class="priority">IMPORTANT</div><h3>Critical Dates</h3><div class="size">Minimum 16px, Bold When Time-Sensitive</div><div class="usage">Sale ends, payment due, shipping dates, availability windows</div><div class="example"><div class="date-critical">Ends Monday 23/09</div><div style="font-size: 16px; color: #333;">Ships within 48 hours</div></div></div>
+                <div class="hierarchy-card important"><div class="priority">IMPORTANT</div><h3>Product Categories</h3><div class="size">Minimum 14px, Medium Weight</div><div class="usage">Electronics, Fashion, Home & Garden - helps quick filtering</div><div class="example"><div style="font-size: 16px; font-weight: 500; color: #0D8082;">Electronics & Appliances</div><div style="font-size: 16px; font-weight: 500; color: #0D8082;">Clothing & Fashion</div></div></div>
+                <div class="hierarchy-card flexible"><div class="priority">FLEXIBLE</div><h3>Campaign Names</h3><div class="size">12px+, Regular Weight, Decorative OK</div><div class="usage">Summer Promo, NJ Clearance, Flash Sale - nice to have but not critical</div><div class="example"><div class="campaign-name">🌟 Summer Electronics Clearance</div><div class="campaign-name">New Jersey Warehouse Liquidation</div></div></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Practical Application: Banners & Emails</h2>
+            <h3 class="section-subtitle">Single-Column Email Mandate (Mobile First)</h3>
+            <div class="text-block"><strong>All marketing emails MUST use a single-column layout.</strong> This ensures perfect readability on mobile devices, where a majority of our users open emails. It is non-negotiable.</div>
+            <div class="checklist">
+                <h4>Email Design Checklist</h4>
+                <ul>
+                    <li>Single-column for perfect mobile rendering.</li>
+                    <li>Critical financial data & brand name visible without scrolling.</li>
+                    <li>Clear, benefit-focused subject line (e.g., "70% Off Apple MacBook Lots - 50 Units").</li>
+                    <li>Large, obvious Call-to-Action (CTA) button in Primary Teal (#0D8082).</li>
+                    <li>Follows all readability font size rules from the hierarchy.</li>
+                </ul>
+            </div>
+
+            <h3 class="section-subtitle">Campaign Asset Dimensions</h3>
+            <div class="text-block">Use these standard dimensions for consistency. Always confirm specific requirements if running ads on external platforms.</div>
+            <div class="do-dont">
+                <div class="do-dont-item do" style="background: #f8f9fa; border-color: #ddd;"><h4 style="color: #111;">✓ Internal Website & App Banners</h4><ul style="list-style: none; padding: 0;"><li>• <strong>Desktop Skyline:</strong> 1300 x 275 px</li><li>• <strong>Mobile & WhatsApp Square:</strong> 500 x 500 px</li><li>• <strong>Feature Boxes (Set of 3):</strong> 500 x 500 px</li></ul></div>
+                <div class="do-dont-item do" style="background: #f8f9fa; border-color: #ddd;"><h4 style="color: #111;">✓ Common External Ad Sizes</h4><ul style="list-style: none; padding: 0;"><li>• <strong>Medium Rectangle:</strong> 300 x 250 px</li><li>• <strong>Leaderboard:</strong> 728 x 90 px</li><li>• <strong>Mobile Leaderboard:</strong> 320 x 50 px</li><li>• <strong>Social Square:</strong> 1080 x 1080 px</li></ul></div>
+            </div>
+        </div>
+
         <div class="section">
             <h2 class="section-title">Real-World Application Examples</h2>
-            
             <div class="demo-section">
                 <div class="demo-title">Example: Premium Electronics Lot</div>
-                
                 <div class="demo-card">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
-                        <div>
-                            <div class="brand-name">Apple MacBook Pro</div>
-                            <div style="font-size: 14px; color: #666; margin-top: 4px;">Electronics & Computers</div>
-                        </div>
+                        <div><div class="brand-name">Apple MacBook Pro</div><div style="font-size: 14px; color: #666; margin-top: 4px;">Electronics & Computers</div></div>
                         <div class="discount-badge">70% OFF</div>
                     </div>
-                    
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                        <div class="price-huge">$899</div>
-                        <div class="quantity">25 Units</div>
+                        <div class="price-huge">$899</div><div class="quantity">25 Units</div>
                     </div>
-                    
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                        <div style="font-size: 16px; color: #666;">Retail: $2,999</div>
-                        <div class="date-critical">Ends Friday 22/09</div>
+                        <div style="font-size: 16px; color: #666;">Retail: $2,999</div><div class="date-critical">Ends Friday 22/09</div>
                     </div>
-                    
                     <div class="campaign-name">🍂 Back-to-School Professional Liquidation Event</div>
                 </div>
-                
                 <div style="margin-top: 16px; padding: 16px; background: #f8fff9; border-left: 4px solid #28a745; border-radius: 4px;">
                     <strong>✓ What Works Here:</strong> Price, discount, brand, quantity, and deadline are all immediately scannable. Campaign name is decorative but doesn't interfere with business data.
                 </div>
             </div>
         </div>
         
-        <!-- NEW SECTION: LLM Self-Assessment -->
         <div class="section">
             <h2 class="section-title">LLM-Powered Self-Assessment</h2>
-            <div class="text-block">
-                To ensure your work meets these data-driven standards, copy the prompt below and paste it into an AI tool. Then, add your design description or ad copy at the end for an instant check.
-            </div>
+            <div class="text-block">To ensure your work meets these data-driven standards, copy the prompt below and paste it into an AI tool. Then, add your design description or ad copy at the end for an instant check.</div>
             <div class="prompt-box">
 You are a Brand Guardian for "Miamilots," a B2B marketplace for professional resellers. Your task is to evaluate the provided creative content against the Miamilots **Enhanced Readability & Message Hierarchy Rules**.
 
