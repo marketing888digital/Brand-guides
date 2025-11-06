@@ -1,575 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Readability Rules - Miamilots</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: #111111;
-            background: #FFFFFF;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 3px solid #0D8082;
-        }
-        
-        .logo-display {
-            background: linear-gradient(45deg, #E83E8C, #8C3EEE);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 16px;
-        }
-        
-        .header p {
-            font-size: 18px;
-            color: #666666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .section {
-            margin-bottom: 60px;
-        }
-        
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 24px;
-            border-left: 4px solid #0D8082;
-            padding-left: 20px;
-        }
-        
-        .section-subtitle {
-            font-size: 20px;
-            font-weight: 500;
-            color: #111111;
-            margin: 32px 0 16px 0;
-        }
-        
-        .text-block {
-            font-size: 16px;
-            color: #333333;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .hierarchy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin: 32px 0;
-        }
-        
-        .hierarchy-card {
-            background: #f8f9fa;
-            padding: 24px;
-            border-radius: 8px;
-            border-left: 4px solid #0D8082;
-        }
-        
-        .hierarchy-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 12px;
-        }
-        
-        .hierarchy-card .priority {
-            background: #0D8082;
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-        
-        .hierarchy-card .size {
-            font-weight: 700;
-            color: #0D8082;
-            margin-bottom: 8px;
-        }
-        
-        .hierarchy-card .usage {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 12px;
-        }
-        
-        .example {
-            padding: 12px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-top: 8px;
-        }
-        
-        .critical {
-            background: #fff3cd;
-            border-left-color: #ffc107;
-        }
-        
-        .important {
-            background: #e1f5fe;
-            border-left-color: #0288d1;
-        }
-        
-        .flexible {
-            background: #e8f5e8;
-            border-left-color: #4caf50;
-        }
-        
-        .do-dont {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin: 32px 0;
-        }
-        
-        .do-dont-item {
-            padding: 24px;
-            border-radius: 8px;
-            border: 2px solid;
-        }
-        
-        .do {
-            border-color: #28a745;
-            background: #f8fff9;
-        }
-        
-        .dont {
-            border-color: #D9534F;
-            background: #fff8f8;
-        }
-        
-        .do h4 {
-            color: #28a745;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        
-        .dont h4 {
-            color: #D9534F;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        
-        .demo-section {
-            background: #f8f9fa;
-            padding: 32px;
-            border-radius: 12px;
-            margin: 32px 0;
-            border: 2px solid #e9ecef;
-        }
-        
-        .demo-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 24px;
-        }
-        
-        /* Demo Examples */
-        .demo-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .price-huge {
-            font-size: 32px;
-            font-weight: 900;
-            color: #0D8082;
-            line-height: 1;
-        }
-        
-        .discount-badge {
-            background: #D9534F;
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .brand-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #111111;
-        }
-        
-        .quantity {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0D8082;
-        }
-        
-        .date-critical {
-            font-size: 18px;
-            font-weight: 700;
-            color: #D9534F;
-            background: #fff3cd;
-            padding: 6px 10px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .campaign-name {
-            font-size: 14px;
-            font-weight: 400;
-            color: #666666;
-        }
-        
-        .checklist {
-            background: #f0f8ff;
-            padding: 24px;
-            border-radius: 8px;
-            border-left: 4px solid #337AB7;
-            margin: 32px 0;
-        }
-        
-        .checklist h4 {
-            color: #337AB7;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        
-        .checklist ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .checklist li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 24px;
-        }
-        
-        .checklist li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #0D8082;
-            font-weight: bold;
-        }
-
-        .prompt-box {
-            background: #f0f2f5;
-            border-left: 6px solid #1A202C;
-            padding: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 14px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .do-dont {
-                grid-template-columns: 1fr;
-            }
-            
-            .hierarchy-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo-display {
-                font-size: 36px;
-            }
-            
-            .header h1 {
-                font-size: 24px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Executive Summary: Data-Driven SEO Plan to Focus on Revenue-Driving Pages</title>
+  <meta name="description" content="Data-driven SEO strategy to focus indexing on high-revenue pages and languages. Wholesale and liquidation SEO plan prioritizing list pages and main pages in BG, EN, FR while deindexing low-value product pages." />
+  <style>
+    :root{
+      --bg:#0f172a; /* slate-900 */
+      --panel:#ffffff;
+      --ink:#0b1220;
+      --muted:#475569;
+      --brand:#2563eb;
+      --ok:#16a34a;
+      --warn:#f97316;
+      --bad:#e11d48;
+      --accent:#06b6d4;
+      --table-head:#1f2937;
+    }
+    html,body{margin:0;padding:0;background:#f6f8fb;color:var(--ink);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";line-height:1.5}
+    .wrap{max-width:1100px;margin:40px auto;padding:0 20px}
+    .hero{background:linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0ea5e9 100%);border-radius:18px;color:white;padding:28px 28px 24px;box-shadow:0 8px 30px rgba(2,8,23,.25)}
+    .hero h1{margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+    .hero p{margin:6px 0 0;color:#e2e8f0}
+    .grid{display:grid;gap:18px;margin-top:22px}
+    @media (min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
+    .card{background:var(--panel);border-radius:16px;padding:20px;box-shadow:0 8px 24px rgba(15,23,42,.08)}
+    h2{font-size:22px;margin:0 0 10px}
+    h3{font-size:18px;margin:22px 0 8px}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+    .kpi{background:#0ea5e911;border:1px solid #0ea5e944;padding:12px;border-radius:12px}
+    .kpi b{display:block;font-size:22px}
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.2px}
+    .good{background:#16a34a14;color:#166534;border:1px solid #16a34a44}
+    .bad{background:#e11d4812;color:#9f1239;border:1px solid #e11d4844}
+    .neutral{background:#33415514;color:#334155;border:1px solid #64748b55}
+    .table-wrap{overflow:auto;border:1px solid #e5e7eb;border-radius:14px}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    thead th{position:sticky;top:0;background:#0f172a;color:white;text-align:center;padding:12px;border-bottom:0}
+    tbody td{border-top:1px solid #eef2f7;padding:10px;text-align:center}
+    tbody tr:nth-child(odd){background:#fafbfc}
+    tbody td:first-child{font-weight:600;text-align:left}
+    .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .legend .chip{display:flex;align-items:center;gap:8px}
+    .pill{padding:4px 8px;border-radius:999px;font-size:12px;font-weight:600}
+    .pill-green{background:#16a34a14;border:1px solid #16a34a44;color:#166534}
+    .pill-red{background:#e11d4812;border:1px solid #e11d4844;color:#9f1239}
+    .note{font-size:12px;color:var(--muted)}
+    .callout{border-left:4px solid var(--brand);background:#eaf3ff;padding:12px 14px;border-radius:10px;margin:14px 0;color:#0b2a5f}
+    .matrix{margin-top:12px}
+    .matrix .tier{font-weight:700}
+    .matrix .keep{background:#16a34a14;border:1px solid #16a34a44;color:#166534}
+    .matrix .noindex{background:#e11d4812;border:1px solid #e11d4844;color:#9f1239}
+    .actions{display:grid;gap:10px}
+    .actions li{margin:6px 0}
+    footer{margin:28px 0 20px;color:#475569;font-size:12px}
+    .muted{color:#64748b}
+    .tight p{margin:6px 0}
+    @media print{body{background:white}.hero{box-shadow:none}.card{box-shadow:none}}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo-display">MIAMILOTS</div>
-            <h1>Enhanced Readability & Message Hierarchy Rules</h1>
-            <p>Smart priorities for B2B resellers who think in numbers, dates, and profits</p>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Executive Summary: A Data‑Driven SEO Plan to Focus on Revenue‑Driving Pages</h1>
+      <p>We align indexing and crawl budget with proven buyer intent to grow organic revenue for wholesale and liquidation traffic.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>The Problem</h2>
+        <p>Our site generates millions of URLs, yet search traffic is highly concentrated. Google spends significant crawl budget on pages that receive zero clicks, especially untranslated product pages in non‑English languages. This dilutes SEO performance and slows ranking on our most valuable pages.</p>
+
+        <h2>The Analysis</h2>
+        <div class="tight">
+          <p>We segmented Google Search Console clicks by language and page type:</p>
+          <ul>
+            <li><strong>Main Pages</strong> Homepage and company information</li>
+            <li><strong>List Pages</strong> Categories, Brands, Newest, Lots</li>
+            <li><strong>Product Pages</strong> Individual item pages</li>
+          </ul>
         </div>
 
-        <!-- Core Philosophy -->
-        <div class="section">
-            <h2 class="section-title">The B2B Reseller Mindset</h2>
-            
-            <div class="text-block">
-                <strong>Key Insight:</strong> Your customers don't read marketing copy - they scan for financial opportunities. They think: "Can I make money? How much? How fast? What's the risk?"
-            </div>
-            
-            <div class="text-block" style="background: #e8f5e8; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
-                <strong>The 3-Second Rule:</strong> A busy reseller should be able to spot profit potential, key dates, and brand names within 3 seconds. Everything else is secondary.
-            </div>
+        <h2>Key Findings</h2>
+        <ul>
+          <li><span class="badge good">Traffic concentration</span> Bulgarian, English, and French deliver <strong>92% of clicks</strong>.</li>
+          <li><span class="badge bad">Product page gap</span> Outside English, product pages across other languages deliver negligible traffic despite massive index footprint.</li>
+          <li><span class="badge neutral">Bulgarian strength</span> BG leads on Main and List pages, signaling strong local engagement.</li>
+        </ul>
+
+        <div class="callout">
+          <strong>Business impact</strong> Concentrate indexing on revenue‑driving languages and page types to accelerate discovery and rankings for buyers searching for clothing wholesale, electronics wholesale, and appliances wholesale.
         </div>
+      </article>
 
-        <!-- Information Hierarchy -->
-        <div class="section">
-            <h2 class="section-title">Information Hierarchy: What MUST Be Readable</h2>
-            
-            <div class="hierarchy-grid">
-                <div class="hierarchy-card critical">
-                    <div class="priority">CRITICAL</div>
-                    <h3>Financial Data</h3>
-                    <div class="size">Minimum 18px, Bold, High Contrast</div>
-                    <div class="usage">Prices, discounts (%), profit margins, cost per unit, total value</div>
-                    <div class="example">
-                        <div class="price-huge">$299</div>
-                        <div class="discount-badge">65% OFF</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card critical">
-                    <div class="priority">CRITICAL</div>
-                    <h3>Brand Names</h3>
-                    <div class="size">Minimum 16px, Bold, Never Abbreviated</div>
-                    <div class="usage">Full brand names - Apple not "Apl", Nike not "Nke"</div>
-                    <div class="example">
-                        <div class="brand-name">Samsung Galaxy</div>
-                        <div class="brand-name">Microsoft Surface</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card critical">
-                    <div class="priority">CRITICAL</div>
-                    <h3>Quantities & Units</h3>
-                    <div class="size">Minimum 16px, Bold, Clear Units</div>
-                    <div class="usage">50 pcs, 100 units, 25 pallets, per piece pricing</div>
-                    <div class="example">
-                        <div class="quantity">250 Units Available</div>
-                        <div class="quantity">$12.50 per piece</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card important">
-                    <div class="priority">IMPORTANT</div>
-                    <h3>Critical Dates</h3>
-                    <div class="size">Minimum 16px, Bold When Time-Sensitive</div>
-                    <div class="usage">Sale ends, payment due, shipping dates, availability windows</div>
-                    <div class="example">
-                        <div class="date-critical">Ends Monday 23/09</div>
-                        <div style="font-size: 16px; color: #333;">Ships within 48 hours</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card important">
-                    <div class="priority">IMPORTANT</div>
-                    <h3>Product Categories</h3>
-                    <div class="size">Minimum 14px, Medium Weight</div>
-                    <div class="usage">Electronics, Fashion, Home & Garden - helps quick filtering</div>
-                    <div class="example">
-                        <div style="font-size: 16px; font-weight: 500; color: #0D8082;">Electronics & Appliances</div>
-                        <div style="font-size: 16px; font-weight: 500; color: #0D8082;">Clothing & Fashion</div>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-card flexible">
-                    <div class="priority">FLEXIBLE</div>
-                    <h3>Campaign Names</h3>
-                    <div class="size">12px+, Regular Weight, Decorative OK</div>
-                    <div class="usage">Summer Promo, NJ Clearance, Flash Sale - nice to have but not critical</div>
-                    <div class="example">
-                        <div class="campaign-name">🌟 Summer Electronics Clearance</div>
-                        <div class="campaign-name">New Jersey Warehouse Liquidation</div>
-                    </div>
-                </div>
-            </div>
+      <aside class="card">
+        <h2>Topline KPIs</h2>
+        <div class="kpis">
+          <div class="kpi"><b>2,977</b>Total Clicks</div>
+          <div class="kpi"><b>92%</b>Clicks from BG, EN, FR</div>
+          <div class="kpi"><b>~0</b>Non‑EN Product Clicks</div>
         </div>
+        <h3>SEO Focus Keywords</h3>
+        <p class="muted">Wholesale, Liquidation, clothing wholesale, electronics wholesale, appliances wholesale</p>
+      </aside>
+    </section>
 
-        <!-- Readability Standards -->
-        <div class="section">
-            <h2 class="section-title">Non-Negotiable Readability Standards</h2>
-            
-            <div class="do-dont">
-                <div class="do-dont-item do">
-                    <h4>✓ ALWAYS READABLE</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• <strong>Prices:</strong> 18px+ bold, high contrast color</li>
-                        <li>• <strong>Discount %:</strong> 16px+ bold, bright color</li>
-                        <li>• <strong>Brand names:</strong> 16px+ bold, never truncated</li>
-                        <li>• <strong>Quantities:</strong> 16px+ bold with clear units</li>
-                        <li>• <strong>Critical dates:</strong> 16px+ bold when urgent</li>
-                        <li>• <strong>Categories:</strong> 14px+ medium for filtering</li>
-                        <li>• <strong>Mobile:</strong> All above sizes apply to mobile</li>
-                    </ul>
-                </div>
-                
-                <div class="do-dont-item dont">
-                    <h4>✗ READABILITY KILLERS</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• Small financial data (under 16px)</li>
-                        <li>• Abbreviated brand names (Samsung → Sam)</li>
-                        <li>• Unclear quantities ("bulk available")</li>
-                        <li>• Hidden discount percentages</li>
-                        <li>• Buried pricing information</li>
-                        <li>• Low contrast text on backgrounds</li>
-                        <li>• Critical info that requires zooming on mobile</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- NEW SECTION: Practical Application -->
-        <div class="section">
-            <h2 class="section-title">Practical Application: Banners & Emails</h2>
+    <section class="card">
+      <h2>Website Traffic Analysis by Language and Page Group</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Language</th>
+              <th>Main Pages Clicks</th>
+              <th>List Pages Clicks</th>
+              <th>Product Pages Clicks</th>
+              <th>Total Clicks</th>
+              <th>% of Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Bulgarian (BG)</td><td>785</td><td>586</td><td>13</td><td>1,384</td><td>46.5%</td></tr>
+            <tr><td>English (EN)</td><td>400</td><td>79</td><td>100</td><td>579</td><td>19.4%</td></tr>
+            <tr><td>French (FR)</td><td>415</td><td>23</td><td>20</td><td>458</td><td>15.4%</td></tr>
+            <tr><td>German (DE)</td><td>71</td><td>6</td><td>32</td><td>109</td><td>3.7%</td></tr>
+            <tr><td>Romanian (RO)</td><td>134</td><td>5</td><td>8</td><td>147</td><td>4.9%</td></tr>
+            <tr><td>Spanish (ES)</td><td>58</td><td>2</td><td>14</td><td>74</td><td>2.5%</td></tr>
+            <tr><td>Polish (PL)</td><td>37</td><td>0</td><td>3</td><td>40</td><td>1.3%</td></tr>
+            <tr><td>Italian (IT)</td><td>25</td><td>0</td><td>9</td><td>34</td><td>1.1%</td></tr>
+            <tr><td>Russian (RU)</td><td>13</td><td>1</td><td>6</td><td>20</td><td>0.7%</td></tr>
+            <tr><td>Hungarian (HU)</td><td>12</td><td>0</td><td>3</td><td>15</td><td>0.5%</td></tr>
+            <tr><td>Greek (EL)</td><td>12</td><td>0</td><td>2</td><td>14</td><td>0.5%</td></tr>
+            <tr><td>Croatian (HR)</td><td>4</td><td>8</td><td>2</td><td>14</td><td>0.5%</td></tr>
+            <tr><td>Czech (CS)</td><td>4</td><td>0</td><td>6</td><td>10</td><td>0.3%</td></tr>
+            <tr><td>Ukrainian (UK)</td><td>4</td><td>1</td><td>0</td><td>5</td><td>0.2%</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>1,974</strong></td><td><strong>714</strong></td><td><strong>218</strong></td><td><strong>2,977</strong></td><td><strong>100%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Note: Based on the provided GSC click log. Represents a substantial sample of user search activity.</p>
+    </section>
 
-            <h3 class="section-subtitle">Single-Column Email Mandate</h3>
-            <div class="text-block">
-                <strong>Based on GA4 data showing high mobile user engagement, all marketing emails MUST use a single-column layout.</strong> This is non-negotiable.
-            </div>
-            <div class="checklist">
-                <h4>Email Design Checklist</h4>
-                <ul>
-                    <li>Single-column for perfect mobile rendering</li>
-                    <li>Critical financial data & brand name "above the fold"</li>
-                    <li>Clear, benefit-focused subject line (e.g., "70% Off Apple MacBook Lots")</li>
-                    <li>Large, obvious Call-to-Action (CTA) button</li>
-                    <li>Follows all readability font size rules</li>
-                    <li>Unsubscribe link is clearly visible in the footer</li>
-                </ul>
-            </div>
+    <section class="card">
+      <h2>The Strategic Indexing Matrix</h2>
+      <p class="note">Tier 1 BG, EN, FR (>400 clicks). Tier 2 DE, RO, ES (70–150 clicks). Tier 3 PL, IT, RU, HU, EL, HR, CS, UK (<50 clicks).</p>
+      <div class="table-wrap matrix">
+        <table>
+          <thead>
+            <tr>
+              <th>Page Type</th>
+              <th>Tier 1: BG, EN, FR<br><small>(92% of Traffic)</small></th>
+              <th>Tier 2: DE, RO, ES<br><small>(11% of Traffic)</small></th>
+              <th>Tier 3: All Others<br><small>(<2% of Traffic)</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:left"><span class="tier">Main Pages</span><br><small>Homepage, About, etc.</small></td>
+              <td><span class="pill pill-green">KEEP INDEX</span><br><small>Traffic: <strong>1,600+ clicks</strong></small></td>
+              <td><span class="pill pill-green">KEEP INDEX</span><br><small>Traffic: <strong>260+ clicks</strong></small></td>
+              <td><span class="pill pill-green">KEEP INDEX</span><br><small>Traffic: <strong>~80 clicks</strong></small></td>
+            </tr>
+            <tr>
+              <td style="text-align:left"><span class="tier">List Pages</span><br><small>Categories, Brands</small></td>
+              <td><span class="pill pill-green">KEEP INDEX</span><br><small>Traffic: <strong>688 clicks</strong></small></td>
+              <td><span class="pill pill-red">APPLY NOINDEX</span><br><small>Traffic: <strong>13 clicks</strong></small></td>
+              <td><span class="pill pill-red">APPLY NOINDEX</span><br><small>Traffic: <strong>10 clicks</strong></small></td>
+            </tr>
+            <tr>
+              <td style="text-align:left"><span class="tier">Product Pages</span><br><small>Individual items</small></td>
+              <td><span class="pill pill-green">KEEP INDEX (English only)</span><br><small>Traffic: <strong>100 clicks (EN)</strong></small></td>
+              <td><span class="pill pill-red">APPLY NOINDEX</span><br><small>Traffic: <strong>54 clicks</strong></small></td>
+              <td><span class="pill pill-red">APPLY NOINDEX</span><br><small>Traffic: <strong>22 clicks</strong></small></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-            <h3 class="section-subtitle">Standard Banner Dimensions</h3>
-            <div class="text-block">
-                To ensure consistency and high performance, use the following standard dimensions for all campaign assets. These sizes are optimized for the best performance across web, mobile, and social platforms.
-            </div>
-            <div class="do-dont">
-                <div class="do-dont-item do" style="background: #f8f9fa; border-color: #ddd;">
-                    <h4 style="color: #111;">✓ Top Web & Desktop Banners</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• <strong>Medium Rectangle:</strong> 300 x 250 px</li>
-                        <li>• <strong>Leaderboard:</strong> 728 x 90 px</li>
-                        <li>• <strong>Half Page:</strong> 300 x 600 px</li>
-                        <li>• <strong>Large Rectangle:</strong> 336 x 280 px</li>
-                    </ul>
-                </div>
-                <div class="do-dont-item do" style="background: #f8f9fa; border-color: #ddd;">
-                    <h4 style="color: #111;">✓ Top Mobile & Social Banners</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>• <strong>Mobile Leaderboard:</strong> 320 x 50 px</li>
-                        <li>• <strong>Large Mobile Banner:</strong> 320 x 100 px</li>
-                        <li>• <strong>Social Square:</strong> 1080 x 1080 px</li>
-                        <li>• <strong>Stories & Reels:</strong> 1080 x 1920 px</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <section class="card">
+      <h2>The Business Case</h2>
+      <p>We are not losing valuable traffic. We are cleaning up our index footprint to match real buyer behavior. This improves crawl efficiency, Core Web Vitals, and ranking velocity on pages that drive revenue from wholesale and liquidation buyers.</p>
+      <div class="legend">
+        <div class="chip"><span class="pill-green pill">KEEP INDEX</span><span class="muted">Retain visibility for proven demand</span></div>
+        <div class="chip"><span class="pill-red pill">APPLY NOINDEX</span><span class="muted">Remove low‑value URLs from the index</span></div>
+      </div>
+    </section>
 
-        <!-- Real-World Examples -->
-        <div class="section">
-            <h2 class="section-title">Real-World Application Examples</h2>
-            
-            <div class="demo-section">
-                <div class="demo-title">Example: Premium Electronics Lot</div>
-                
-                <div class="demo-card">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
-                        <div>
-                            <div class="brand-name">Apple MacBook Pro</div>
-                            <div style="font-size: 14px; color: #666; margin-top: 4px;">Electronics & Computers</div>
-                        </div>
-                        <div class="discount-badge">70% OFF</div>
-                    </div>
-                    
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                        <div class="price-huge">$899</div>
-                        <div class="quantity">25 Units</div>
-                    </div>
-                    
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                        <div style="font-size: 16px; color: #666;">Retail: $2,999</div>
-                        <div class="date-critical">Ends Friday 22/09</div>
-                    </div>
-                    
-                    <div class="campaign-name">🍂 Back-to-School Professional Liquidation Event</div>
-                </div>
-                
-                <div style="margin-top: 16px; padding: 16px; background: #f8fff9; border-left: 4px solid #28a745; border-radius: 4px;">
-                    <strong>✓ What Works Here:</strong> Price, discount, brand, quantity, and deadline are all immediately scannable. Campaign name is decorative but doesn't interfere with business data.
-                </div>
-            </div>
-        </div>
-        
-        <!-- NEW SECTION: LLM Self-Assessment -->
-        <div class="section">
-            <h2 class="section-title">LLM-Powered Self-Assessment</h2>
-            <div class="text-block">
-                To ensure your work meets these data-driven standards, copy the prompt below and paste it into an AI tool. Then, add your design description or ad copy at the end for an instant check.
-            </div>
-            <div class="prompt-box">
-You are a Brand Guardian for "Miamilots," a B2B marketplace for professional resellers. Your task is to evaluate the provided creative content against the Miamilots **Enhanced Readability & Message Hierarchy Rules**.
+    <section class="card">
+      <h2>Implementation Plan</h2>
+      <ol class="actions">
+        <li><strong>Robots Meta Rules</strong> Roll out conditional <code>noindex, follow</code> on Tier 2 and Tier 3 List pages and on all non‑EN product pages. Preserve internal linking equity with <code>follow</code>.</li>
+        <li><strong>XML Sitemaps</strong> Publish language tier sitemaps. Include only Tier 1 Main and List pages plus EN product pages.</li>
+        <li><strong>Canonical Hygiene</strong> Standardize canonicals and URL normalization to avoid duplicates in multilingual contexts.</li>
+        <li><strong>Translations</strong> Prioritize high‑intent List pages for BG, EN, FR. Defer mass product translations until they show traction.</li>
+        <li><strong>Monitoring</strong> Track impressions, clicks, indexed pages, and crawl stats weekly. Guardrail with custom alerts.</li>
+      </ol>
 
-**Core Principle:** A busy reseller must spot the profit opportunity in 3 seconds. Your analysis must be ruthless in enforcing this rule.
+      <h3>Success Metrics (60–90 days)</h3>
+      <ul>
+        <li>↓ Indexed pages for low‑value segments</li>
+        <li>↑ Crawl rate and average position for Tier 1 List pages</li>
+        <li>↑ Click share on BG, EN, FR List and Main pages</li>
+        <li>Stable or ↑ conversions from organic sessions</li>
+      </ul>
+    </section>
 
-**Hierarchy Rules to Enforce (from most to least important):**
-
-1.  **CRITICAL (Must be largest & highest contrast):**
-    *   **Financial Data:** Prices, discounts (e.g., "70% OFF").
-    *   **Brand Names:** Full, never abbreviated.
-    *   **Quantities:** Clear units (e.g., "50 pcs," "$12/unit").
-
-2.  **IMPORTANT (Must be very clear & easy to find):**
-    *   **Critical Dates:** "Ends Monday," "Ships in 48 hours."
-    *   **Product Categories:** "Electronics," "Fashion."
-
-3.  **FLEXIBLE (Can be smaller or more decorative):**
-    *   **Campaign Names:** "Summer Sale," "Warehouse Clearance."
-    *   **General Descriptions.**
-
-**Evaluation Checklist:**
-
-1.  **Hierarchy Violation:** Does a "Flexible" element (like a campaign name) visually overpower a "Critical" element (like the price or brand name)?
-2.  **B2B Focus:** Is the language focused on profit, numbers, and efficiency, or does it sound like retail copy (e.g., "discover the magic of..." vs. "source high-margin inventory...")?
-3.  **Readability Score:** Are all CRITICAL and IMPORTANT text elements above their minimum required font sizes (18px for price, 16px for brands/quantities/dates)?
-4.  **3-Second Scan Test:** Based on the description, could a reseller understand the Brand, the Price/Discount, and the Quantity in under 3 seconds?
-
-**Your Response Format:**
-Provide a "Hierarchy Compliance Score" out of 100. Then, give a bulleted list of "Violations" and "Recommendations for Improvement." Be direct and actionable.
-
----
-
-**Now, please evaluate the following content:**
-
-[**PASTE YOUR CONTENT HERE - e.g., "Banner design: 'Summer Clearance' in huge letters at top. Below, a small image of a laptop. Text at bottom says 'Apple MacBooks, 25 units, $899 each.'**]
-            </div>
-        </div>
-
-    </div>
+    <footer class="wrap">
+      <p class="muted">SEO for Wholesale and Liquidation buyers. Focus on revenue pages that match real search demand for clothing wholesale, electronics wholesale, and appliances wholesale.</p>
+    </footer>
+  </main>
 </body>
 </html>
