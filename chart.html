@@ -1,0 +1,188 @@
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+
+const UserFlowChart = () => {
+  // Data for the comparison
+  const flowData = [
+    {
+      flow: 'Items → Watchlist',
+      recent: 3.86,
+      previous: 3.01,
+      change: 49.76,
+      recentUsers: 6964,
+      previousUsers: 4650
+    },
+    {
+      flow: 'Items → Cart',
+      recent: 8.41,
+      previous: 7.81,
+      change: 25.86,
+      recentUsers: 15164,
+      previousUsers: 12048
+    },
+    {
+      flow: 'Search → Watchlist',
+      recent: 7.8,
+      previous: 8.94,
+      change: 41.95,
+      recentUsers: 5367,
+      previousUsers: 3781
+    },
+    {
+      flow: 'Search → Cart',
+      recent: 17.05,
+      previous: 20.92,
+      change: 32.66,
+      recentUsers: 11735,
+      previousUsers: 8846
+    }
+  ];
+
+  const conversionData = flowData.map(item => ({
+    name: item.flow.replace(' → ', '\n→\n'),
+    'Mar 16 - Oct 13, 2025': item.recent,
+    'Aug 18, 2024 - Mar 17, 2025': item.previous
+  }));
+
+  const userCountData = flowData.map(item => ({
+    name: item.flow.replace(' → ', '\n→\n'),
+    'Mar 16 - Oct 13, 2025': item.recentUsers,
+    'Aug 18, 2024 - Mar 17, 2025': item.previousUsers
+  }));
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      const flowItem = flowData.find(f => f.flow.replace(' → ', '\n→\n') === label);
+      return (
+        <div className="bg-white p-4 border border-gray-300 rounded shadow-lg">
+          <p className="font-semibold mb-2">{label.replace(/\n/g, ' ')}</p>
+          {payload.map((entry, index) => (
+            <p key={index} style={{ color: entry.color }}>
+              {entry.name}: {entry.value.toFixed(2)}%
+            </p>
+          ))}
+          {flowItem && (
+            <p className="mt-2 text-sm font-semibold text-green-600">
+              Growth: +{flowItem.change}%
+            </p>
+          )}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const CustomTooltipUsers = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      const flowItem = flowData.find(f => f.flow.replace(' → ', '\n→\n') === label);
+      return (
+        <div className="bg-white p-4 border border-gray-300 rounded shadow-lg">
+          <p className="font-semibold mb-2">{label.replace(/\n/g, ' ')}</p>
+          {payload.map((entry, index) => (
+            <p key={index} style={{ color: entry.color }}>
+              {entry.name}: {entry.value.toLocaleString()} users
+            </p>
+          ))}
+          {flowItem && (
+            <p className="mt-2 text-sm font-semibold text-green-600">
+              Growth: +{flowItem.change}%
+            </p>
+          )}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-slate-50 to-slate-100 p-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">User Flow Conversion Analysis</h1>
+        <p className="text-gray-600 mb-8">Comparing conversion rates and user engagement across different journeys</p>
+        
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          {flowData.map((flow, idx) => (
+            <div key={idx} className="bg-white rounded-lg shadow-md p-5 border-l-4" style={{borderLeftColor: idx % 2 === 0 ? '#3b82f6' : '#8b5cf6'}}>
+              <div className="text-sm text-gray-600 mb-1">{flow.flow}</div>
+              <div className="text-2xl font-bold text-gray-800">{flow.recent}%</div>
+              <div className="text-xs text-green-600 font-semibold mt-1">↑ {flow.change}% growth</div>
+              <div className="text-xs text-gray-500 mt-2">{flow.recentUsers.toLocaleString()} users</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Conversion Rate Chart */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Conversion Rates by Flow (%)</h2>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={conversionData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis 
+                dataKey="name" 
+                angle={0} 
+                textAnchor="middle"
+                height={100}
+                interval={0}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis label={{ value: 'Conversion Rate (%)', angle: -90, position: 'insideLeft' }} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{ paddingTop: '20px' }} />
+              <Bar dataKey="Mar 16 - Oct 13, 2025" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="Aug 18, 2024 - Mar 17, 2025" fill="#93c5fd" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* User Count Chart */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Absolute User Counts by Flow</h2>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={userCountData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis 
+                dataKey="name" 
+                angle={0} 
+                textAnchor="middle"
+                height={100}
+                interval={0}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis label={{ value: 'Number of Users', angle: -90, position: 'insideLeft' }} />
+              <Tooltip content={<CustomTooltipUsers />} />
+              <Legend wrapperStyle={{ paddingTop: '20px' }} />
+              <Bar dataKey="Mar 16 - Oct 13, 2025" fill="#8b5cf6" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="Aug 18, 2024 - Mar 17, 2025" fill="#c4b5fd" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Key Insights */}
+        <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Key Insights</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="border-l-4 border-blue-500 pl-4">
+              <h3 className="font-semibold text-gray-700 mb-2">Highest Conversion</h3>
+              <p className="text-sm text-gray-600">Search → Cart leads with 17.05% conversion rate, though it decreased from the previous period</p>
+            </div>
+            <div className="border-l-4 border-green-500 pl-4">
+              <h3 className="font-semibold text-gray-700 mb-2">Strongest Growth</h3>
+              <p className="text-sm text-gray-600">Search → Watchlist shows 41.95% growth despite lower conversion rate</p>
+            </div>
+            <div className="border-l-4 border-purple-500 pl-4">
+              <h3 className="font-semibold text-gray-700 mb-2">Cart Performance</h3>
+              <p className="text-sm text-gray-600">Both cart flows show positive growth (25.86% and 32.66%)</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4">
+              <h3 className="font-semibold text-gray-700 mb-2">User Engagement</h3>
+              <p className="text-sm text-gray-600">Search-based flows have higher absolute user counts than item-based flows</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserFlowChart;
