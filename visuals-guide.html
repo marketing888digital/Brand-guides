@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Guides</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1A202C; background: #f8fafc; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* --- Header & Static Elements (Miamilots Theme) --- */
+        .header { background: linear-gradient(135deg, #0D8082 0%, #0a6365 100%); color: white; padding: 60px 40px; border-radius: 16px; margin-bottom: 40px; box-shadow: 0 20px 60px rgba(13, 128, 130, 0.3); text-align: center; }
+        .logo { font-size: 56px; font-weight: 900; margin-bottom: 16px; letter-spacing: -1px; }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; opacity: 0.95; }
+        .header p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: auto; }
+        .mission { background: white; padding: 32px; border-radius: 12px; margin-bottom: 40px; border-left: 6px solid #ff2065; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .mission h2 { color: #ff2065; font-size: 24px; margin-bottom: 16px; font-weight: 700; }
+        .mission p { font-size: 17px; line-height: 1.7; color: #4A5568; }
+        .mission strong { color: #1A202C; }
+        .mission p[style*="border-left"] { border-left-color: #ff2065 !important; }
+
+        /* --- Generic Section Styling --- */
+        .section { background: white; padding: 40px; margin-bottom: 32px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .section-title { font-size: 32px; font-weight: 900; color: #1A202C; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .section-number { background: #0D8082; color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; flex-shrink: 0; }
+        
+        /* --- Grid & Card Styles --- */
+        .stats-grid, .template-grid, .hierarchy-grid, .dimension-grid, .color-grid, .dont-grid { display: grid; gap: 24px; margin-top: 32px; }
+        .stats-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .template-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .hierarchy-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .dimension-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .color-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        .dont-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .stat-card { background: #f8fafc; padding: 24px; border-radius: 12px; border: 2px solid #e2e8f0; }
+        .stat-value { font-size: 48px; font-weight: 900; color: #0D8082; margin-bottom: 8px; }
+        .stat-label { font-size: 16px; color: #4A5568; line-height: 1.5; }
+        .template-card { background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); border: 3px solid #e2e8f0; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; }
+        .template-card h3 { font-size: 22px; font-weight: 700; color: #0D8082; margin-bottom: 12px; }
+        .template-card .use-when { background: #e0f7fa; padding: 12px; border-radius: 8px; font-size: 14px; color: #0D8082; margin-bottom: 12px; font-weight: 600; }
+        .template-card .hierarchy { margin-top: auto; font-size: 14px; color: #4A5568; line-height: 1.8; }
+        .template-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+        .hierarchy-card { border-radius: 12px; padding: 24px; border: 3px solid; }
+        .critical { border-color: #ff2065; background: #fff5f7; }
+        .important { border-color: #f59e0b; background: #fffbeb; }
+        .priority-badge { display: inline-block; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .critical .priority-badge { background: #ff2065; color: white; }
+        .important .priority-badge { background: #f59e0b; color: white; }
+        .hierarchy-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #1A202C; }
+        .font-spec { background: white; border-radius: 8px; padding: 12px; margin-top: 12px; font-weight: 700; font-size: 16px; text-align: center; color: #1A202C; border: 2px solid #e2e8f0;}
+        .dimension-card { background: linear-gradient(135deg, #1A202C 0%, #2d3748 100%); color: white; padding: 28px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+        .dimension-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #0D8082; }
+        .dimension-card .detail::before { color: #0D8082; content: '→'; position: absolute; left: 0; font-weight: bold; }
+        .dimension-size, .color-hex { font-family: 'Courier New', monospace; }
+        .dimension-size { font-size: 32px; font-weight: 900; color: white; margin-bottom: 12px; }
+        .dimension-card .detail { font-size: 14px; opacity: 0.9; margin: 8px 0; padding-left: 20px; position: relative; }
+        .color-card { text-align: center; }
+        .color-swatch { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 16px; border: 4px solid white; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .color-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; color: #1A202C; }
+        .color-hex { font-size: 14px; color: #4A5568; font-weight: 600; }
+        .color-use { margin-top: 12px; font-size: 13px; color: #0D8082; font-weight: 600; line-height: 1.6; }
+        .checklist { background: #f0f9ff; padding: 32px; border-radius: 12px; border-left: 6px solid #0D8082; }
+        .checklist h3 { color: #0D8082; font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+        .checklist ul { list-style: none; padding: 0; }
+        .checklist li { padding: 12px 0 12px 32px; position: relative; font-size: 16px; line-height: 1.6; color: #1A202C; }
+        .checklist li::before { content: '✓'; position: absolute; left: 0; color: #0D8082; font-weight: 900; font-size: 20px; }
+        .checklist li strong { color: #0D8082; }
+        .prompt-box-container { margin-top: 24px; position: relative; }
+        .prompt-box { background: #0a0f1a; color: #e2e8f0; padding: 24px; border-radius: 12px; border: 2px solid #0D8082; font-family: 'Courier New', Courier, monospace; font-size: 14px; line-height: 1.8; white-space: pre-wrap; word-wrap: break-word; }
+        .prompt-box strong { color: #f59e0b; font-weight: bold; }
+        .copy-btn { position: absolute; top: 16px; right: 16px; background: #0D8082; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: 'Inter', sans-serif; transition: background-color 0.2s ease; }
+        .copy-btn:hover { background: #0a6365; }
+        .dont-card { background: #FFF5F7; border: 2px solid #ff2065; padding: 24px; border-radius: 12px; }
+        .dont-card h3 { font-size: 20px; font-weight: 700; color: #ff2065; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .dont-card .why { font-size: 16px; color: #4A5568; line-height: 1.7; }
+        .dont-card .why strong { color: #1A202C; }
+        .do-dont-grid { display: grid; gap: 24px; margin-top: 24px; grid-template-columns: 1fr; }
+        .do, .dont { padding: 20px; border-radius: 8px; }
+        .do { background: #f0fff4; border: 2px solid #28a745; } .do h4 { color: #28a745; }
+        .dont { background: #fff5f5; border: 2px solid #d9534f; } .dont h4 { color: #d9534f; }
+        .do h4, .dont h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .do ul, .dont ul { list-style: none; padding-left: 0; font-size: 15px; color: #4A5568; }
+        .do li, .dont li { margin-bottom: 8px; }
+        .do li code, .dont li code { background: rgba(0,0,0,0.05); padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-weight: 600; }
+        .do li code { color: #28a745; }
+        .dont li code { color: #d9534f; }
+        
+        /* --- TABS for Color Section --- */
+        .brand-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; padding-bottom: 16px; border-bottom: 2px solid #e2e8f0; }
+        .tab-button { padding: 10px 20px; border-radius: 8px 8px 0 0; border: 2px solid transparent; background: #f8fafc; color: #4A5568; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; border-bottom: none; }
+        .tab-button:hover { color: #0D8082; background: #e0f7fa; }
+        .tab-button.active { background: white; color: #0D8082; border-color: #e2e8f0; border-bottom-color: white; transform: translateY(2px); }
+        .brand-specific-content { display: none; }
+        .brand-specific-content.active { display: grid; } /* Using grid from original .color-grid */
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Brand Guides</h1>
+        <p>Practical rules and templates for designing clear, conversion-focused visuals across all platforms</p>
+    </div>
+
+    <div class="mission">
+        <h2>🎯 The 3-Second Deal Rule</h2>
+        <p>Our data proves our best customers are scanners, not readers. You have 3 seconds to communicate the core opportunity. Your design must instantly answer:</p>
+        <p style="margin-top: 16px; padding-left: 20px; border-left: 4px solid #ff2065; font-weight: 600;">
+            1. What is the <strong>DEAL TYPE?</strong> - Fixed Price, Promo, or Negotiation?<br>
+            2. What is the <strong>MAIN TARGET?</strong> - A specific Brand or a Category?<br>
+            3. What is the <strong>PRODUCT?</strong> - Individual Products, a Lot, or a Feature?
+        </p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">1</span> The Data Behind Our Rules: Why This Works</h2>
+        <p style="font-size: 17px; color: #4A5568;">These are not just opinions. Our design principles are a direct reflection of how our  customers behave on our site. Google Analytics 4 data shows that email subscribers are our most active audience, and their data tells a clear story:</p>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-value">485</div><div class="stat-label">Actions per user from our email list-nearly <strong>5x higher engagement</strong> than organic visitors. They are power users.</div></div>
+            <div class="stat-card"><div class="stat-value">87</div><div class="stat-label">Pages viewed on average by an email visitor-almost <strong>7x more research</strong>. They dig deep for deals and data.</div></div>
+            <div class="stat-card"><div class="stat-value">+45%</div><div class="stat-label">Higher CTR when a promo includes a specific <strong>Reason/Qualifier</strong> like "1s & 2s" or "First Order Discount."</div></div>
+            <div class="stat-card"><div class="stat-value">+40%</div><div class="stat-label">Engagement on unique lots when using a <strong>"Make an Offer" CTA</strong> vs. a standard "View Product" button.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">2</span> Campaign Blueprints</h2>
+        <p style="font-size: 17px; color: #4A5568;">Every campaign you create will be for one of these three scenarios. Start with the correct blueprint.</p>
+        <div class="template-grid">
+            <div class="template-card"><span class="template-icon">🔥</span><h3>A: Promotion</h3><div class="use-when">"70% OFF 1s & 2s," "$5 Blowout," "First Order Discount." The offer is king.</div><div class="hierarchy"><strong>Hierarchy:</strong><br>1. The Offer: "70% OFF"<br>2. The Category: "All Shoes"<br>3. The Reason: "1s & 2s"<br>4. CTA: "Shop the Sale"</div></div>
+            <div class="template-card"><span class="template-icon">🤝</span><h3>B: Negotiation</h3><div class="use-when">Price is flexible. The invitation is king.</div><div class="hierarchy"><strong>Hierarchy:</strong><br>1. The Invitation: "NEGOTIATION"<br>2. The Brand: "Nike"<br>3. The Target: "Brand New Lots"<br>4. CTA: "Negotiate Now"</div></div>
+            <div class="template-card"><span class="template-icon">📢</span><h3>C: Announcement</h3><div class="use-when">New features, services, or important updates. The news is king.</div><div class="hierarchy"><strong>Hierarchy:</strong><br>1. The News: "Filter Now Live"<br>2. The Benefit: "Find Your Best Seller"<br>3. CTA: "Try It Now"</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">3</span> Platform Colors</h2>
+        <p style="font-size: 17px; color: #4A5568;">Each system is built on primary action colors and versatile neutrals. The colors here are for reference and the usage  is not mandatory.</p>
+        
+        <div class="brand-tabs">
+            <button class="tab-button" data-brand="miamilots">miamilots.com</button>
+            <button class="tab-button" data-brand="888lots">888lots.com</button>
+            <button class="tab-button" data-brand="eurolots">eurolots.com</button>
+            <button class="tab-button" data-brand="888lots-ca">888lots.ca</button>
+            <button class="tab-button" data-brand="britdeals">britdeals.co.uk</button>
+        </div>
+
+<!-- Miamilots Color Grid -->
+        <div class="brand-specific-content color-grid" data-brand="miamilots">
+            <div class="color-card"><div class="color-swatch" style="background: #0D8082;"></div><div class="color-name">Dark Cyan</div><div class="color-hex">#0D8082</div><div class="color-use"><strong>JOB: Get Clicks</strong><br>Use for CTAs, Links & Active states.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #ff2065;"></div><div class="color-name">Vivid Pink</div><div class="color-hex">#ff2065</div><div class="color-use"><strong>JOB: Create Urgency</strong><br>Use for Discounts & Sales.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #1A202C;"></div><div class="color-name">Very Dark Blue</div><div class="color-hex">#1A202C</div><div class="color-use"><strong>JOB: Be Readable</strong><br>Use for all main text and headlines.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #4A5568;"></div><div class="color-name">Dark Gray</div><div class="color-hex">#4A5568</div><div class="color-use"><strong>JOB: Be Quiet</strong><br>Use for secondary info like dates or details.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #E0F7FA;"></div><div class="color-name">Light Gray Cyan</div><div class="color-hex">#E0F7FA</div><div class="color-use"><strong>JOB: Add Highlight</strong><br>Use for background sections and info boxes.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #F8FAFC; border: 2px solid #e2e8f0;"></div><div class="color-name">Light Grayish Blue</div><div class="color-hex">#F8FAFC</div><div class="color-use"><strong>JOB: Create Space</strong><br>Use for all main page and card backgrounds.</div></div>
+        </div>
+
+        <!-- 888lots Color Grid -->
+        <div class="brand-specific-content color-grid" data-brand="888lots">
+             <div class="color-card"><div class="color-swatch" style="background: #3B82F6;"></div><div class="color-name">Bright Blue</div><div class="color-hex">#3B82F6</div><div class="color-use"><strong>JOB: Get Clicks</strong><br>Use for CTAs, Links & Active states.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #dc2626;"></div><div class="color-name">Bright Red</div><div class="color-hex">#dc2626</div><div class="color-use"><strong>JOB: Create Urgency</strong><br>Use for Discounts & Sales.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #334155;"></div><div class="color-name">Dark Desaturated Blue</div><div class="color-hex">#334155</div><div class="color-use"><strong>JOB: Be Readable</strong><br>Use for all main text and headlines.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #4A5568;"></div><div class="color-name">Dark Grayish Blue</div><div class="color-hex">#4A5568</div><div class="color-use"><strong>JOB: Be Quiet</strong><br>Use for secondary info like dates or details.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #f1f5f9;"></div><div class="color-name">Light Grayish Blue</div><div class="color-hex">#f1f5f9</div><div class="color-use"><strong>JOB: Add Highlight</strong><br>Use for background sections and info boxes.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #f8fafc; border: 2px solid #e2e8f0;"></div><div class="color-name">Light Grayish Blue</div><div class="color-hex">#f8fafc</div><div class="color-use"><strong>JOB: Create Space</strong><br>Use for all main page and card backgrounds.</div></div>
+        </div>
+
+        <!-- Eurolots Color Grid -->
+        <div class="brand-specific-content color-grid" data-brand="eurolots">
+             <div class="color-card"><div class="color-swatch" style="background: #3182CE;"></div><div class="color-name">Strong Blue</div><div class="color-hex">#3182CE</div><div class="color-use"><strong>JOB: Get Clicks</strong><br>Use for CTAs, Links & Active states.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #E53E3E;"></div><div class="color-name">Bright Red</div><div class="color-hex">#E53E3E</div><div class="color-use"><strong>JOB: Create Urgency</strong><br>Use for Discounts & Sales.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #2D3748;"></div><div class="color-name">Dark Desaturated Blue</div><div class="color-hex">#2D3748</div><div class="color-use"><strong>JOB: Be Readable</strong><br>Use for all main text and headlines.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #4A5568;"></div><div class="color-name">Dark Grayish Blue</div><div class="color-hex">#4A5568</div><div class="color-use"><strong>JOB: Be Quiet</strong><br>Use for secondary info like dates or details.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #F1F5F9;"></div><div class="color-name">Light Grayish Blue</div><div class="color-hex">#F1F5F9</div><div class="color-use"><strong>JOB: Add Highlight</strong><br>Use for background sections and info boxes.</div></div>
+            <div class="color-card"><div class="color-swatch" style="background: #f8fafc; border: 2px solid #e2e8f0;"></div><div class="color-name">Light Grayish Blue</div><div class="color-hex">#f8fafc</div><div class="color-use"><strong>JOB: Create Space</strong><br>Use for all main page and card backgrounds.</div></div>
+        </div>
+        
+        <!-- ADD MORE BRAND COLOR GRIDS HERE following the same structure -->
+    </div>
+    
+    <!-- ... Rest of the sections remain unchanged ... -->
+
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">4</span> Banners Specs</h2>
+        <p style="font-size: 17px; color: #4A5568;">Use these exact specifications for consistency and performance.</p>
+        <div class="dimension-grid">
+            <div class="dimension-card"><h3>🖥️ Desktop Skyline</h3><div class="dimension-size">1300 × 275px</div><div class="detail">Homepage hero banner</div><div class="detail">Export: WEBP, max 100KB</div></div>
+            <div class="dimension-card"><h3>📱 Versatile Square</h3><div class="dimension-size">500 × 500px</div><div class="detail">Use for Mobile, WhatsApp & 3Box banners</div><div class="detail">Export WhatsApp: PNG/WEBP, max 100KB</div><div class="detail">Export Web/Mobile: WEBP, max 100KB</div></div>
+            <div class="dimension-card"><h3>📧 Email Banner</h3><div class="dimension-size">600px width</div><div class="detail">The banner is inserted into a single-column, mobile-first email template. No separate mobile version is needed.</div><div class="detail">Export: PNG, max 150KB</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">5</span> Deal Hierarchy</h2>
+        <p style="font-size: 17px; color: #4A5568;">The visual importance must match the deal structure. Use these font sizes as your starting point for all desktop banners to ensure the hierarchy is clear and consistent. Be flexible and analyze the campaign. Ff discount is 15%, but brand is Apple, adapt.</p>
+        <div class="hierarchy-grid">
+            <div class="hierarchy-card critical"><span class="priority-badge">#1: THE HERO</span><h3>📢 Deal Type & Value</h3><div class="usage">The main event. Must be the largest element on the banner.</div><div class="font-spec">48px - 72px</div></div>
+            <div class="hierarchy-card critical"><span class="priority-badge">#2: THE SUBJECT</span><h3>🏷️ Brand & Category</h3><div class="usage">What is it? Must be instantly identifiable.</div><div class="font-spec">28px - 36px</div></div>
+            <div class="hierarchy-card critical"><span class="priority-badge">#3: THE SCALE</span><h3>📊 Size</h3><div class="usage">Defines the investment size qty, lots - scope of the deal.</div><div class="font-spec">22px - 28px</div></div>
+            <div class="hierarchy-card important"><span class="priority-badge">SUPPORTING INFO</span><h3>🎯 Reason / Qualifier</h3><div class="usage">Adds context and urgency "FBA", "NJ Overload", "Local Pickup", "Black Friday".</div><div class="font-spec">18px - 22px</div></div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">6</span> Design Don'ts: The Readability Killers</h2>
+        <p style="font-size: 17px; color: #4A5568;">Any design choice that slows down a reseller's ability to scan for data is a conversion killer. The following practices are strictly forbidden because they violate the "3-Second Deal Rule."</p>
+        <div class="dont-grid">
+            <div class="dont-card"><h3>🚫 Text on Busy Backgrounds</h3><p class="why"><strong>Why it fails:</strong> If the price or brand name doesn't have a clear, high-contrast background, it gets lost. A pattern or busy photo behind critical data makes it unreadable.</p></div>
+            <div class="dont-card"><h3>🚫 Text in Shapes or on a Path</h3><p class="why"><strong>Why it fails:</strong> Text in circles, on a diagonal, or following a curve forces the user to work to read it. This adds seconds to the scan time and should be avoided for all critical information.</p></div>
+            <div class="dont-card"><h3>🚫 Vague Headlines & CTAs</h3><p class="why"><strong>Why it fails:</strong> "Amazing Summer Deals!" tells a reseller nothing. "70% Off All Electronics Lots" tells them everything. Always prioritize the specific deal over a catchy but empty slogan.</p></div>
+            <div class="dont-card"><h3>🚫 Cursive & Overly-Styled Fonts</h3><p class="why"><strong>Why it fails:</strong> Resellers' brains are optimized to scan block text for numbers and keywords, not to decipher calligraphy. It instantly fails the 3-second test.</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">7</span> High-Conversion Subject Lines</h2>
+        <p style="font-size: 17px; color: #4A5568;">A great banner is useless if the email is never opened. The subject line is the most important part of the email campaign. We compiled this data from an analysis of all currently available email campaigns in Mailgun.</p>
+        <div class="do-dont-grid">
+            <div class="do">
+                <h4>✓ Formula: [Value] + [Product] + [Urgency/Qualifier]</h4>
+                <ul>
+                    <li>Lead with the DEAL. Use numbers, percentages %, and currency symbols $ first.</li>
+                    <li>Be SPECIFIC about the Brand or Category.</li>
+                    <li>Add a REASON to act now or name of the event e.g., "48-Hour Clearance", "NJ Overload", "Weekend Clearance", "Labor Day Promo".</li>
+                    <li>FRONT-LOAD the most important info. Assume it will be cut off on mobile.</li>
+                    <li><code>50% OFF - Electronics & Apparel Lots - 48-Hour Clearance</code></li>
+                    <li><code>NEGOTIATION SALE - All FBA Inventory - Labor Day Promo</code></li>
+                    <li><code>$5.00 MEGA Blowout - The North Face • Tory Burch • Nike...</code></li>
+                </ul>
+            </div>
+            <div class="dont">
+                <h4>✗ Don't Use Vague, Retail-Style Language</h4>
+                <ul>
+                    <li>Avoid generic, "fluffy" phrases that hide the value.</li>
+                    <li>Never bury the main offer at the end of the subject line.</li>
+                    <li>Don't be clever if it sacrifices clarity.</li>
+                    <li style="margin-top: 20px;"><code>Don't Miss Out on Our Amazing September Savings!</code></li>
+                    <li><code>Celebrate Fall With Miamilots Deals</code></li>
+                    <li><code>Find the Best Prices in our Labor Day Sale: 50% OFF</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title"><span class="section-number">8</span> Quality Control</h2>
+        <p style="font-size: 17px; color: #4A5568;">Follow these two steps before submitting any creative for review.</p>
+        <h3 class="section-subtitle" style="margin-top: 24px;">Step 1: The 5-Point Pre-Flight Check</h3>
+        <div class="checklist" style="margin:0;">
+            <ul>
+                <li>Is the Deal Type Promo, Negotiation, etc. instantly clear?</li>
+                <li>Does the design obey the Deal Hierarchy & Font System?</li>
+                <li>Is the Reason/Qualifier e.g., "1s & 2s" clear and effective?</li>
+                <li>Is the Call-to-Action correct for the deal type? "Buy Now" vs. "Make Offer"</li>
+                <li>Is every word, number, and brand name 100% accurate and spell-checked?</li>
+            </ul>
+        </div>
+        <h3 class="section-subtitle">Step 2: LLM-Powered Self-Assessment</h3>
+        <p style="font-size: 17px; color: #4A5568;">Use this to verify the final result and polish the visuals before sharing.</p>
+        <div class="prompt-box-container">
+            <button class="copy-btn" id="copy-button-main">Copy</button>
+            <pre class="prompt-box" id="prompt-text-main">
+You are a professional reseller scanning Miamilots visuals. You have 3 seconds to decide if this is worth your time. Can you instantly answer: Can I read this? • Is the text clear and easy to scan? • Is anything hard to read due to fonts, colors, or busy backgrounds? What's the opportunity? • What's the deal? (Discount, Price, Negotiation, New Feature) • What am I buying? (Specific brands, categories, or lot types) • Why should I act now? (Limited time, special condition, exclusive access) What do I do next? • Is there a clear button or action? • Does it make sense for this type of deal? OUTPUT: ✓ YES or ✗ NO for each question Brief list of what's confusing or missing.
+
+<strong>[PASTE YOUR CONTENT HERE]</strong></pre>
+        </div>
+    </div>
+
+</div>
+<script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const colorSections = document.querySelectorAll('.brand-specific-content');
+
+    function switchBrand(brandKey) {
+        // Update active tab style
+        tabButtons.forEach(button => {
+            button.classList.toggle('active', button.dataset.brand === brandKey);
+        });
+
+        // Show the correct color section
+        colorSections.forEach(section => {
+            section.classList.toggle('active', section.dataset.brand === brandKey);
+        });
+    }
+
+    // Add click event listeners to all tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            switchBrand(button.dataset.brand);
+        });
+    });
+
+    // Initialize the page with the first brand
+    switchBrand('miamilots');
+
+    // --- Copy button functionality ---
+    const mainCopyButton = document.getElementById('copy-button-main');
+    const mainPromptText = document.getElementById('prompt-text-main');
+    mainCopyButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(mainPromptText.innerText).then(() => {
+            mainCopyButton.textContent = 'Copied!';
+            setTimeout(() => { mainCopyButton.textContent = 'Copy'; }, 2000);
+        });
+    });
+</script>
+</body>
+</html>
