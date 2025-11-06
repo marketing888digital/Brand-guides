@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>888Lots Mobile Menu - Reworked</title>
+    <title>888Lots Mobile Menu - Adapted</title>
     <!-- Font Awesome Integration -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -13,20 +13,9 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             background: #f5f5f5;
-            height: 100%;
-            overflow: hidden; /* Prevent body scroll when menu is open */
-        }
-        
-        /* Main content area */
-        .content {
-            padding: 16px;
-            margin-top: 64px; /* Header height */
-            margin-bottom: 72px; /* Footer height */
-            height: calc(100% - 136px);
-            overflow-y: auto;
         }
 
         /* Header (sticky) */
@@ -39,8 +28,8 @@
             padding: 12px 16px;
             display: flex;
             align-items: center;
-            gap: 16px;
-            z-index: 1000; /* High z-index */
+            gap: 12px;
+            z-index: 100;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
@@ -83,55 +72,53 @@
             color: #3498db;
         }
 
-        /* Menu Overlay */
+        /* Mobile Menu Overlay */
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
+            bottom: 56px; /* Account for footer */
             background: rgba(0,0,0,0.5);
-            z-index: 998; /* Below menu and footer */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 200;
+            display: none;
         }
 
         .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+            display: block;
         }
 
         /* Mobile Menu */
         .mobile-menu {
             position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 56px; /* Positioned above the footer */
-            top: 64px; /* Positioned below the header */
+            top: 0;
+            left: -100%;
+            bottom: 56px;
+            width: 85%;
+            max-width: 400px;
             background: #fff;
-            z-index: 999; /* Above overlay, below footer */
-            transition: transform 0.3s ease-in-out;
-            transform: translateY(100%); /* Start off-screen at the bottom */
-            display: flex;
-            flex-direction: column;
+            z-index: 300;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .mobile-menu.active {
-            transform: translateY(0); /* Slide into view */
+            left: 0;
         }
 
         .menu-header {
-            background: #fff;
-            color: #2c3e50;
+            position: sticky;
+            top: 0;
+            background: #2c3e50;
+            color: #fff;
             padding: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e0e0e0;
-            flex-shrink: 0;
+            z-index: 10;
         }
-        
+
         .menu-logo {
             font-weight: bold;
             font-size: 20px;
@@ -144,18 +131,31 @@
         .close-btn {
             background: none;
             border: none;
-            color: #7f8c8d;
+            color: #fff;
             font-size: 28px;
             cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .menu-content {
-            padding: 16px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            padding-bottom: 24px;
         }
 
-        .menu-section-header {
+        .menu-section {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 16px;
+        }
+
+        .menu-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -177,7 +177,11 @@
             font-size: 16px;
             transition: color 0.2s;
         }
-        
+
+        .menu-item:hover {
+            color: #3498db;
+        }
+
         .menu-item-left {
             display: flex;
             align-items: center;
@@ -190,7 +194,16 @@
             text-align: center;
             color: #3498db;
         }
-        
+
+        .menu-item-badge {
+            background: #e74c3c;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
         .menu-item-count {
             color: #95a5a6;
             font-size: 14px;
@@ -202,7 +215,7 @@
         }
 
         .campaign-item {
-            background: #3498db;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: #fff;
             border-radius: 12px;
             padding: 14px;
@@ -210,8 +223,17 @@
             font-weight: 500;
         }
         
-        .campaign-item .menu-item-icon, .campaign-item:hover {
+        .campaign-item .menu-item-icon {
             color: #fff;
+        }
+
+        .campaign-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .campaign-item:hover {
+            color: #fff;
+            opacity: 0.9;
         }
 
         .highlight-item {
@@ -220,7 +242,15 @@
             padding: 12px;
             margin-bottom: 8px;
         }
+
+        .highlight-item:last-child {
+            margin-bottom: 0;
+        }
         
+        .highlight-item .menu-item-icon {
+            color: #2980b9;
+        }
+
         /* Footer (sticky) */
         .footer {
             position: fixed;
@@ -231,8 +261,8 @@
             border-top: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-around;
-            padding: 4px 0;
-            z-index: 1000; /* High z-index */
+            padding: 8px 0;
+            z-index: 100;
         }
 
         .footer-item {
@@ -245,9 +275,6 @@
             font-size: 11px;
             flex: 1;
             padding: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
         }
 
         .footer-item.active {
@@ -274,11 +301,33 @@
             justify-content: center;
             font-weight: 600;
         }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Content area */
+        .content {
+            margin-top: 64px;
+            margin-bottom: 72px;
+            padding: 16px;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <div class="header">
+        <button class="hamburger" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </button>
         <a href="/" class="logo">
             <span class="logo-888">888</span>
             <span class="logo-lots">LOTS</span>
@@ -300,68 +349,71 @@
             </div>
             <button class="close-btn" onclick="toggleMenu()">&times;</button>
         </div>
+
         <div class="menu-content">
             <!-- Active Campaigns -->
             <div class="menu-section">
-                <div class="menu-section-header"><i class="fas fa-bullhorn"></i> ACTIVE CAMPAIGNS</div>
-                <a href="#" class="menu-item campaign-item">
+                <div class="section-header"><i class="fas fa-bullhorn"></i> ACTIVE CAMPAIGNS</div>
+                <a href="/promo/negotiate-promo" class="menu-item campaign-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-fire"></i></span>
                         <span>Negotiate</span>
                     </div>
                     <span class="menu-item-count">500 items</span>
                 </a>
-                <a href="#" class="menu-item campaign-item">
+                <a href="/promo/best-deals" class="menu-item campaign-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-star"></i></span>
                         <span>Best Deals</span>
                     </div>
                 </a>
             </div>
-             <!-- Browse Items -->
+
+            <!-- Browse Items -->
             <div class="menu-section">
-                <div class="menu-section-header"><i class="fas fa-search"></i> BROWSE ITEMS</div>
-                <a href="#" class="menu-item highlight-item">
+                <div class="section-header"><i class="fas fa-search"></i> BROWSE ITEMS</div>
+                <a href="/newest" class="menu-item highlight-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-sparkles"></i></span>
                         <span>Newest Items</span>
                     </div>
                 </a>
-                <a href="#" class="menu-item highlight-item">
+                <a href="/items/recent-price-drop" class="menu-item highlight-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-tags"></i></span>
                         <span>Recent Price Drops</span>
                     </div>
                 </a>
-                 <a href="#" class="menu-item highlight-item">
+                <a href="/items?condition[]=BRAND_NEW_US" class="menu-item highlight-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fab fa-amazon"></i></span>
                         <span>Fulfilled by Amazon</span>
                     </div>
                 </a>
-                <a href="#" class="menu-item">
+                <a href="/items/trending" class="menu-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-chart-line"></i></span>
                         <span>Trending</span>
                     </div>
                 </a>
-                <a href="#" class="menu-item">
+                <a href="/items/staff-picks" class="menu-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-star"></i></span>
                         <span>Staff Picks</span>
                     </div>
                 </a>
-                <a href="#" class="menu-item">
+                <a href="/items" class="menu-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-th-large"></i></span>
                         <span>All Items</span>
                     </div>
                 </a>
             </div>
+
             <!-- Categories -->
             <div class="menu-section">
-                <div class="menu-section-header"><i class="fas fa-folder-open"></i> SHOP BY CATEGORY</div>
-                <a href="#" class="menu-item">
+                <div class="section-header"><i class="fas fa-folder-open"></i> SHOP BY CATEGORY</div>
+                <a href="/categories/clothing" class="menu-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-tshirt"></i></span>
                         <span>Clothing & Fashion</span>
@@ -371,7 +423,7 @@
                         <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
                     </div>
                 </a>
-                <a href="#" class="menu-item">
+                <a href="/categories/shoes" class="menu-item">
                     <div class="menu-item-left">
                         <span class="menu-item-icon"><i class="fas fa-shoe-prints"></i></span>
                         <span>Shoes</span>
@@ -381,43 +433,175 @@
                         <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
                     </div>
                 </a>
+                <a href="/categories/home-garden" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-home"></i></span>
+                        <span>Home & Garden</span>
+                    </div>
+                    <div>
+                        <span class="menu-item-count">2,963</span>
+                        <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                </a>
+                <a href="/categories/personal-care" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-spa"></i></span>
+                        <span>Personal Care</span>
+                    </div>
+                    <div>
+                        <span class="menu-item-count">1,601</span>
+                        <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                </a>
+                <a href="/categories/electronics" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-tv"></i></span>
+                        <span>Electronics</span>
+                    </div>
+                    <div>
+                        <span class="menu-item-count">736</span>
+                        <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                </a>
+                <a href="/categories/automotive" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-car"></i></span>
+                        <span>Automotive</span>
+                    </div>
+                    <div>
+                        <span class="menu-item-count">447</span>
+                        <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                </a>
+                <a href="/categories" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-list-ul"></i></span>
+                        <span><strong>View All Categories</strong></span>
+                    </div>
+                    <span class="menu-item-arrow"><i class="fas fa-chevron-right"></i></span>
+                </a>
+            </div>
+
+            <!-- Shop by Price -->
+            <div class="menu-section">
+                <div class="section-header"><i class="fas fa-dollar-sign"></i> SHOP BY PRICE</div>
+                <a href="/five-dollars-store" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-money-bill-wave"></i></span>
+                        <span>$5 Store</span>
+                    </div>
+                    <span class="menu-item-count">526 items</span>
+                </a>
+                <a href="/dollar-store" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-dollar-sign"></i></span>
+                        <span>$1 Store</span>
+                    </div>
+                    <span class="menu-item-count">24 items</span>
+                </a>
+                <a href="/cent-store" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-coins"></i></span>
+                        <span>$0.08 Store</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Lots & Bulk -->
+            <div class="menu-section">
+                <div class="section-header"><i class="fas fa-box-open"></i> LOTS & BULK</div>
+                <a href="/lots" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-boxes"></i></span>
+                        <span>All Lots</span>
+                    </div>
+                </a>
+                <a href="/fixed-price-lots" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-star"></i></span>
+                        <span>Fixed Price Lots</span>
+                    </div>
+                    <span class="menu-item-count">24</span>
+                </a>
+                <a href="/closeouts" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-store-slash"></i></span>
+                        <span>Closeouts</span>
+                    </div>
+                </a>
+                <a href="/truckloads" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-truck"></i></span>
+                        <span>Truckloads</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Tools -->
+            <div class="menu-section">
+                <div class="section-header"><i class="fas fa-tools"></i> TOOLS</div>
+                <a href="/stock-radar" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-satellite-dish"></i></span>
+                        <span>Stock Radar</span>
+                    </div>
+                </a>
+                <a href="/sell-us" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-handshake"></i></span>
+                        <span>Sell to Us</span>
+                    </div>
+                </a>
+                <a href="/local-pickup" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <span>Local Pickup</span>
+                    </div>
+                </a>
+                <a href="/photo-roll" class="menu-item">
+                    <div class="menu-item-left">
+                        <span class="menu-item-icon"><i class="fas fa-camera"></i></span>
+                        <span>Photo Roll</span>
+                    </div>
+                </a>
             </div>
         </div>
     </nav>
-    
+
     <!-- Main Content -->
     <div class="content">
-        <h1>Welcome to 888Lots</h1>
+        <h1 style="margin-bottom: 16px;">Welcome to 888Lots</h1>
         <p style="color: #7f8c8d; line-height: 1.6;">
-            Click the hamburger menu (<i class="fa fa-bars"></i>) in the bottom navigation to open the mobile menu. This demo shows the full menu structure with a sticky header and footer.
+            Click the hamburger menu (<i class="fa fa-bars"></i>) in the top left to open the mobile navigation.
+            This demo shows the full menu structure with sticky header and footer.
         </p>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <button class="footer-item" onclick="toggleMenu()">
-            <div class="footer-icon"><i class="fas fa-bars"></i></div>
-            <div>Menu</div>
-        </button>
-        <a href="#" class="footer-item">
+        <a href="/" class="footer-item">
+            <div class="footer-icon"><i class="fas fa-home"></i></div>
+            <div>Home</div>
+        </a>
+        <a href="/account" class="footer-item">
             <div class="footer-icon"><i class="fas fa-user"></i></div>
             <div>Account</div>
         </a>
-        <a href="#" class="footer-item">
+        <a href="/watchlist" class="footer-item">
             <div class="footer-icon">
                 <i class="fas fa-heart"></i>
                 <span class="footer-badge">3</span>
             </div>
             <div>Watchlist</div>
         </a>
-        <a href="#" class="footer-item">
+        <a href="/offers" class="footer-item">
             <div class="footer-icon">
                 <i class="fas fa-comments"></i>
                 <span class="footer-badge">2</span>
             </div>
             <div>Offers</div>
         </a>
-        <a href="#" class="footer-item active">
+        <a href="/cart" class="footer-item active">
             <div class="footer-icon">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="footer-badge">5</span>
@@ -432,7 +616,14 @@
             const overlay = document.getElementById('menuOverlay');
             menu.classList.toggle('active');
             overlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
     </script>
 </body>
-</html>```
+</html>
