@@ -120,3 +120,331 @@
             border-bottom: 1px solid var(--bg-page);
             font-size: 15px;
         }
+        .data-row:last-child { border-bottom: none; }
+        
+        .copy-icon {
+            color: var(--action-blue);
+            cursor: pointer;
+            margin-left: 8px;
+            opacity: 0.8;
+        }
+        .copy-icon:hover { opacity: 1; }
+
+        /* Buy Box */
+        .buy-box {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 90px;
+        }
+
+        .price-display {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1;
+        }
+        
+        .badge-discount {
+            background: var(--urgency-red);
+            color: white;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+
+        .profit-text {
+            color: var(--success-green);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        /* Tier Selectors */
+        .tier-option {
+            background: var(--bg-page);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tier-option:hover { border-color: #cbd5e1; }
+        .tier-option.active {
+            background: #eff6ff; /* Very light blue */
+            border-color: var(--action-blue);
+        }
+        
+        /* Buttons */
+        .btn-888-primary {
+            background-color: var(--action-blue);
+            color: white;
+            font-weight: 600;
+            padding: 16px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+        .btn-888-primary:hover { 
+            background-color: #2563eb; /* Slightly darker blue */
+            transform: translateY(-1px);
+        }
+
+        .btn-888-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        .btn-888-secondary:hover { background-color: var(--bg-highlight); }
+
+        /* Market Graph */
+        .graph-track {
+            background: var(--bg-highlight);
+            height: 10px;
+            border-radius: 5px;
+            position: relative;
+            margin: 25px 0 10px 0;
+        }
+        .graph-fill {
+            background: var(--success-green);
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+        }
+        .graph-marker {
+            position: absolute;
+            top: -28px;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- BIN WIDGET / HEADER -->
+    <div class="bin-widget">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-4">
+                    <!-- Logo Placeholder -->
+                    <div class="fw-bold fs-5 text-dark">888<span style="color:var(--action-blue)">LOTS</span></div>
+                    
+                    <div class="d-none d-md-block border-start ps-4">
+                        <span class="text-quiet fs-6"><i class="fa-solid fa-box me-2"></i>Bin Status: </span>
+                        <span class="fw-bold text-main">Building Box 1</span>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-end lh-1">
+                        <div class="progress mb-1" style="height: 6px; width: 140px;">
+                            <div class="progress-bar" role="progressbar" style="width: 40%; background-color: var(--action-blue);"></div>
+                        </div>
+                        <small class="text-quiet" style="font-size: 11px;">40% Full • Add $60 to ship</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-dark fw-bold px-3">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container my-5">
+        
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb small">
+                <li class="breadcrumb-item"><a href="#" class="text-decoration-none" style="color: var(--action-blue)">Toys & Games</a></li>
+                <li class="breadcrumb-item"><a href="#" class="text-decoration-none" style="color: var(--action-blue)">Electronic Toys</a></li>
+                <li class="breadcrumb-item active text-quiet">Lot #888-B07P197PDQ</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4">
+            
+            <!-- ZONE A: VISUALS (Left) -->
+            <div class="col-lg-4">
+                <div class="img-wrapper mb-3">
+                    <!-- Reason/Qualifier Badge -->
+                    <div class="badge-qualifier">BRAND NEW</div>
+                    
+                    <img src="https://m.media-amazon.com/images/I/71tDNuFSpQL._AC_SL1500_.jpg" class="img-fluid d-block mx-auto" alt="Toy" style="max-height: 350px;">
+                    
+                    <!-- Real Photo Overlay -->
+                    <div class="position-absolute bottom-0 end-0 p-3">
+                        <span class="badge bg-dark opacity-75"><i class="fa-solid fa-camera me-1"></i> Stock Photo</span>
+                    </div>
+                </div>
+
+                <div class="thumb-strip d-flex gap-2 justify-content-center">
+                    <img src="https://m.media-amazon.com/images/I/71tDNuFSpQL._AC_SL1500_.jpg" class="active" alt="Stock">
+                    <img src="https://m.media-amazon.com/images/I/71tDNuFSpQL._AC_SL1500_.jpg" style="filter: contrast(1.1);" alt="Real">
+                    <img src="https://m.media-amazon.com/images/I/611opVJDMoL._AC_SL1500_.jpg" alt="Box">
+                </div>
+            </div>
+
+            <!-- ZONE B: ARBITRAGE DASHBOARD (Center) -->
+            <div class="col-lg-4">
+                <h1 class="hero-title mb-2">Musical Electronic Dinosaur Claw Toy Grabber Machine</h1>
+                <p class="text-quiet mb-4">Green/White • Original Packaging • Grade A</p>
+
+                <!-- Data Block -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-end mb-2">
+                        <span class="section-label">Scanner Data</span>
+                        <span class="badge bg-white text-success border border-success fw-normal" style="font-size:12px">Ungated</span>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-row">
+                            <span class="text-quiet">ASIN</span>
+                            <span class="data-value">B07P197PDQ <i class="fa-regular fa-copy copy-icon"></i></span>
+                        </div>
+                        <div class="data-row">
+                            <span class="text-quiet">UPC</span>
+                            <span class="data-value">084358051501 <i class="fa-regular fa-copy copy-icon"></i></span>
+                        </div>
+                        <div class="data-row">
+                            <span class="text-quiet">Amazon Rank</span>
+                            <span class="data-value text-success">#14,205</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="text-quiet">Retail MSRP</span>
+                            <span class="data-value text-decoration-line-through text-quiet">$44.99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Condition Report -->
+                <div class="mb-4">
+                    <span class="section-label d-block mb-2">Condition Report</span>
+                    <div class="data-card p-3">
+                        <div class="row g-2" style="font-size: 14px;">
+                            <div class="col-6 text-main"><i class="fa-solid fa-check text-success me-2"></i>New In Box</div>
+                            <div class="col-6 text-main"><i class="fa-solid fa-check text-success me-2"></i>Sealed</div>
+                            <div class="col-6 text-main"><i class="fa-solid fa-check text-success me-2"></i>Retail Ready</div>
+                            <div class="col-6 text-quiet opacity-50"><i class="fa-solid fa-xmark me-2"></i>Damaged</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Graph -->
+                <div class="mt-4">
+                    <div class="graph-track">
+                        <div class="graph-fill" style="width: 35%;"></div>
+                        
+                        <!-- Markers -->
+                        <div class="graph-marker text-main" style="left: 35%;">
+                            $17.50 <span class="text-quiet fw-normal">(You)</span>
+                        </div>
+                        <div class="graph-marker text-quiet opacity-50" style="left: 100%;">
+                            $50.99 (Az)
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-uppercase fw-bold text-quiet" style="font-size: 10px; letter-spacing: 0.5px;">
+                        <span>Buy Price</span>
+                        <span>Market Value</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ZONE C: BUY BOX (Right) -->
+            <div class="col-lg-4">
+                <div class="buy-box">
+                    <div class="mb-1">
+                        <span class="section-label">Liquidation Price</span>
+                    </div>
+                    
+                    <!-- Price & Discount -->
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="price-display">$17.50</span>
+                        <span class="badge-discount">30% OFF</span>
+                    </div>
+                    
+                    <!-- Profit Calculation -->
+                    <div class="mb-4 p-2 rounded" style="background: var(--bg-highlight);">
+                        <span class="profit-text"><i class="fa-solid fa-arrow-trend-up me-1"></i> Est. Profit: $33.49</span>
+                        <span class="text-quiet" style="font-size: 13px;">(Gross Margin)</span>
+                    </div>
+
+                    <hr class="my-4" style="border-color: var(--border-color);">
+
+                    <!-- Quantity Selection -->
+                    <div class="mb-4">
+                        <label class="section-label mb-2 d-block">Select Quantity</label>
+                        <div class="d-flex flex-column gap-2">
+                            
+                            <!-- Active Option -->
+                            <div class="tier-option active d-flex justify-content-between align-items-center">
+                                <div>
+                                    <input type="radio" name="qty" id="qty1" checked class="form-check-input me-2">
+                                    <label for="qty1" class="fw-bold text-main cursor-pointer">1 Unit</label>
+                                </div>
+                                <span class="fw-bold text-main">$17.50/ea</span>
+                            </div>
+                            
+                            <!-- Disabled Option -->
+                            <div class="tier-option d-flex justify-content-between align-items-center opacity-50 bg-light">
+                                <div>
+                                    <input type="radio" name="qty" id="qty2" disabled class="form-check-input me-2">
+                                    <label for="qty2" class="fw-bold text-quiet">Case (4 Units)</label>
+                                </div>
+                                <div class="text-end lh-1">
+                                    <span class="fw-bold text-quiet text-decoration-line-through">$17.50</span>
+                                    <span class="d-block text-danger fw-bold mt-1" style="font-size: 10px;">SOLD OUT</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="mb-3">
+                        <button class="btn-888-primary">
+                            <i class="fa-solid fa-dolly me-2"></i> Add to Bin
+                        </button>
+                        
+                        <button class="btn-888-secondary">
+                            Make an Offer
+                        </button>
+                    </div>
+
+                    <!-- Scarcity -->
+                    <div class="text-center">
+                        <span style="color: var(--urgency-red); font-weight: 600; font-size: 14px;">
+                            <i class="fa-solid fa-clock me-1"></i> Only 1 unit left
+                        </span>
+                    </div>
+
+                </div>
+                
+                <!-- Trust Footer -->
+                <div class="text-center mt-3">
+                    <small class="text-quiet"><i class="fa-solid fa-warehouse me-1"></i> Ships from 888Lots (NJ, USA)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
