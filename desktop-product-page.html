@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modular Liquidation Interface</title>
-    <!-- Phosphor Icons (Cleaner than FontAwesome for UI) -->
+    <title>Razer Basilisk V3 - 888 Lots Redesign</title>
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #3B82F6;
-            --primary-dark: #2563eb;
+            --primary: #0071CE; /* Walmart/Standard Blue */
+            --action: #3B82F6;  /* UI Blue */
             --text-main: #1e293b;
             --text-secondary: #64748b;
-            --bg-body: #f8fafc;
+            --bg-body: #f1f5f9;
             --bg-card: #ffffff;
             --border: #e2e8f0;
             --success: #10b981;
-            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
 
         * { box-sizing: border-box; }
@@ -30,26 +33,27 @@
             color: var(--text-main);
             margin: 0;
             padding: 20px;
+            font-size: 14px;
         }
 
         .container {
-            max-width: 1440px;
+            max-width: 1460px;
             margin: 0 auto;
         }
 
-        /* --- 1. BREADCRUMB ROW --- */
+        /* --- 1. BREADCRUMB --- */
         .breadcrumb {
             font-size: 12px;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
-        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
-        .breadcrumb a:hover { color: var(--primary); }
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; transition: 0.2s; }
+        .breadcrumb a:hover { color: var(--action); text-decoration: underline; }
 
-        /* --- 2. TITLE ROW --- */
+        /* --- 2. TITLE --- */
         .product-title {
             font-size: 24px;
             font-weight: 700;
@@ -58,60 +62,51 @@
             margin: 0 0 12px 0;
         }
 
-        /* --- 3. HASHTAGS ROW --- */
+        /* --- 3. HASHTAGS & BADGES --- */
         .hashtag-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 24px;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border);
         }
 
-        .hashtag {
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: white;
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid transparent;
         }
 
-        .hashtag:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: #eff6ff;
-        }
+        /* Specific Badge Styles based on your source */
+        .badge-fba { background: #d1fae5; color: #065f46; border-color: #a7f3d0; } /* Fulfilled by Amz condition */
+        .badge-brand { background: #e0f2fe; color: #075985; border-color: #bae6fd; }
+        .badge-tag { background: #fff; border-color: var(--border); color: var(--text-secondary); }
 
-        .hashtag i { font-size: 14px; }
-        
-        /* Special styles for specific tags */
-        .tag-manifest { background: #e0e7ff; color: #4338ca; border-color: #c7d2fe; }
-        .tag-condition { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
-
-        /* --- MODULAR GRID SYSTEM --- */
+        /* --- MODULAR GRID --- */
         .module-row {
             display: flex;
             gap: 20px;
             margin-bottom: 20px;
             align-items: flex-start;
         }
-        
-        /* Responsive weighting for the top row */
-        .module-row.top-section > div { flex: 1; }
-        /* Give image and buy box specific widths, market data flexible */
-        .module-row.top-section > .mod-image { flex: 0 0 350px; } 
-        .module-row.top-section > .mod-buy { flex: 0 0 320px; }
-        
-        .module-row.bottom-section > div { flex: 1; }
 
-        /* --- MODULE CARD DESIGN --- */
+        /* Top Grid Weights */
+        .top-grid > .mod-image { flex: 0 0 380px; }
+        .top-grid > .mod-market { flex: 1; }
+        .top-grid > .mod-buy { flex: 0 0 340px; }
+
+        /* Bottom Grid Weights */
+        .bottom-grid > .mod-id { flex: 0 0 300px; }
+        .bottom-grid > .mod-desc { flex: 1; }
+        .bottom-grid > .mod-trend { flex: 0 0 280px; }
+
+        /* --- MODULE CARD --- */
         .module-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -119,16 +114,17 @@
             box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
-            overflow: hidden;
+            transition: all 0.2s ease;
             height: fit-content;
+            position: relative;
         }
-
-        /* Header with Controls */
+        
+        /* Drag Handle / Header */
         .module-header {
-            padding: 12px 16px;
-            background: #fdfdfd;
+            padding: 10px 14px;
+            background: #f8fafc;
             border-bottom: 1px solid var(--border);
+            border-radius: 7px 7px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -136,20 +132,20 @@
         }
 
         .module-title {
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 8px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .module-controls {
-            display: flex;
-            gap: 4px;
-        }
-
+        /* Controls */
+        .module-controls { display: flex; gap: 2px; }
         .control-btn {
-            background: none;
+            background: transparent;
             border: 1px solid transparent;
             color: #94a3b8;
             cursor: pointer;
@@ -158,65 +154,152 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: 0.2s;
         }
+        .control-btn:hover { background: #fff; color: var(--action); border-color: var(--border); box-shadow: var(--shadow-sm); }
+        .control-btn i { font-size: 14px; }
 
-        .control-btn:hover { background: #f1f5f9; color: var(--text-main); }
-        .control-btn.collapse-btn:hover { background: #fee2e2; color: #ef4444; }
-
-        /* Content Area & Collapsed State */
+        /* Content & Collapse Logic */
         .module-content {
             padding: 16px;
-            opacity: 1;
-            max-height: 800px; /* Arbitrary large height for animation */
-            transition: all 0.4s ease;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            max-height: 1000px;
         }
 
         .module-card.collapsed .module-content {
             max-height: 0;
             padding: 0 16px;
-            opacity: 0;
-            overflow: hidden;
+            border: none;
         }
-        
-        .module-card.collapsed .module-header { border-bottom: none; }
-        .module-card.collapsed .caret-icon { transform: rotate(-90deg); }
-        .caret-icon { transition: transform 0.3s; }
+        .module-card.collapsed .module-header { border-bottom: none; border-radius: 7px; }
 
-        /* --- CONTENT STYLES --- */
-        
+        /* --- SPECIFIC MODULE STYLES --- */
+
         /* Image Module */
-        .main-img { width: 100%; height: 250px; object-fit: contain; background: #f8fafc; border-radius: 4px; margin-bottom: 10px; }
-        .thumbs { display: flex; gap: 8px; }
-        .thumb { width: 50px; height: 50px; background: #f1f5f9; border-radius: 4px; cursor: pointer; border: 1px solid transparent; }
-        .thumb:hover { border-color: var(--primary); }
+        .main-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .thumb-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+        .thumb { 
+            aspect-ratio: 1/1; 
+            border: 1px solid var(--border); 
+            border-radius: 4px; 
+            cursor: pointer; 
+            padding: 2px;
+            background: #fff;
+        }
+        .thumb:hover { border-color: var(--action); }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
         /* Market Module */
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-        .stat-box { background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid var(--border); }
-        .stat-label { font-size: 10px; text-transform: uppercase; color: var(--text-secondary); font-weight: 700; }
-        .stat-val { font-size: 16px; font-weight: 700; color: var(--text-main); }
-        .chart-placeholder { height: 80px; background: #eff6ff; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 12px; border: 1px dashed #bfdbfe; }
+        .market-comparator {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .comp-card {
+            flex: 1;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+        }
+        .comp-header { font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px; display: flex; justify-content: space-between;}
+        .comp-price { font-size: 18px; font-weight: 700; color: var(--text-main); }
+        .rank-badge { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+        
+        .external-links { display: flex; gap: 8px; flex-wrap: wrap; }
+        .ext-btn {
+            font-size: 11px;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .ext-btn:hover { border-color: var(--action); color: var(--action); }
 
         /* Buy Box */
-        .price-hero { font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
-        .btn-buy { width: 100%; background: var(--primary); color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 12px; }
-        .btn-buy:hover { background: var(--primary-dark); }
+        .price-section { text-align: center; margin-bottom: 16px; }
+        .liquidation-price { font-size: 32px; font-weight: 800; color: var(--danger); line-height: 1; }
+        .price-label { font-size: 11px; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; margin-bottom: 4px; }
         
-        /* Identity */
-        .id-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px dashed var(--border); }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .profit-bar {
+            background: #ecfdf5;
+            border: 1px solid #6ee7b7;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 16px;
+            text-align: center;
+            color: #064e3b;
+            font-size: 13px;
+        }
 
-        /* Trending */
-        .trend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--bg-body); }
-        .trend-img { width: 40px; height: 40px; background: #eee; border-radius: 4px; }
-        .trend-info div { font-size: 12px; font-weight: 600; }
-        .trend-info span { font-size: 11px; color: var(--success); }
+        .btn-buy {
+            width: 100%;
+            background: var(--action);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+        .btn-buy:hover { background: #2563eb; }
 
-        /* Responsive */
+        .btn-negotiate {
+            width: 100%;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            padding: 10px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .btn-negotiate:hover { border-color: var(--text-main); color: var(--text-main); }
+
+        /* Identity Table */
+        .id-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        .id-key { color: var(--text-secondary); }
+        .id-val { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+        .copy-icon { cursor: pointer; color: var(--action); margin-left: 6px; font-size: 12px; }
+
+        /* Mobile Responsive */
         @media (max-width: 1024px) {
             .module-row { flex-direction: column; }
-            .module-row > div { width: 100% !important; flex: none !important; }
+            .module-row > div { width: 100% !important; flex: auto !important; }
         }
     </style>
 </head>
@@ -224,187 +307,244 @@
 
 <div class="container">
 
-    <!-- ROW 1: Breadcrumb -->
+    <!-- ROW 1: BREADCRUMB -->
     <div class="breadcrumb">
-        <a href="#">Marketplace</a> <i class="ph ph-caret-right"></i>
-        <a href="#">Consumer Electronics</a> <i class="ph ph-caret-right"></i>
-        <a href="#">Audio & Headphones</a>
+        <a href="#">Items</a> <i class="ph ph-caret-right"></i>
+        <a href="#">Computers, Laptops & Hardware</a> <i class="ph ph-caret-right"></i>
+        <a href="#">Computer Peripheral</a> <i class="ph ph-caret-right"></i>
+        <span>Mouse</span>
     </div>
 
-    <!-- ROW 2: Title -->
-    <h1 class="product-title">Sony WH-1000XM5 Wireless Noise Cancelling Headphones, Black - Batch of 50</h1>
+    <!-- ROW 2: TITLE -->
+    <h1 class="product-title">Razer Basilisk V3 Customizable Ergonomic Gaming Mouse: Fastest Gaming Mouse Switch - Chroma RGB Lighting</h1>
 
-    <!-- ROW 3: Hashtags -->
+    <!-- ROW 3: HASHTAGS -->
     <div class="hashtag-row">
-        <div class="hashtag tag-manifest"><i class="ph ph-file-text"></i> #Manifest-8821</div>
-        <div class="hashtag tag-condition"><i class="ph ph-check-circle"></i> #Condition:New</div>
-        <div class="hashtag"><i class="ph ph-tag"></i> #Sony</div>
-        <div class="hashtag"><i class="ph ph-airplane-tilt"></i> #Import</div>
-        <div class="hashtag"><i class="ph ph-package"></i> #OriginalPackaging</div>
-        <div class="hashtag"><i class="ph ph-map-pin"></i> #Warehouse:NJ</div>
+        <div class="badge badge-fba">
+            <i class="ph ph-package"></i> Fulfilled by Amazon
+        </div>
+        <div class="badge badge-brand">
+            <i class="ph ph-tag"></i> Razer
+        </div>
+        <div class="badge badge-tag">#Gaming</div>
+        <div class="badge badge-tag">#PC_Peripheral</div>
+        <div class="badge badge-tag">#Liquidation</div>
+        <div class="badge badge-tag">#MOQ:1</div>
     </div>
 
-    <!-- ROW 4: TOP MODULES (Images | Market | Buy) -->
-    <div class="module-row top-section" id="row-top">
+    <!-- ROW 4: MAIN GRID (Image | Market | Buy) -->
+    <div class="module-row top-grid">
         
         <!-- MODULE: IMAGES -->
         <div class="module-card mod-image">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-image"></i> Gallery</div>
+                <span class="module-title"><i class="ph ph-images"></i> Product Gallery</span>
                 <div class="module-controls">
-                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-arrow-left"></i></button>
-                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-arrow-right"></i></button>
-                    <button class="control-btn collapse-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down caret-icon"></i></button>
+                    <button class="control-btn" title="Move Left" onclick="moveModule(this, 'left')"><i class="ph ph-caret-left"></i></button>
+                    <button class="control-btn" title="Move Right" onclick="moveModule(this, 'right')"><i class="ph ph-caret-right"></i></button>
+                    <button class="control-btn" title="Collapse" onclick="toggleModule(this)"><i class="ph ph-caret-down"></i></button>
                 </div>
             </div>
             <div class="module-content">
-                <img src="https://placehold.co/400x300/f1f5f9/334155?text=Sony+Headphones" class="main-img">
-                <div class="thumbs">
-                    <div class="thumb"></div>
-                    <div class="thumb"></div>
-                    <div class="thumb"></div>
-                    <div class="thumb"></div>
+                <div class="main-img-wrapper">
+                    <img src="https://i5.walmartimages.com/seo/Razer-Basilisk-V3-Customizable-Ergonomic-Wired-PC-Gaming-Mouse-Chroma-RGB-26K-Optical-Sensor-HyperScroll-Tilt-Wheel-Black_94fa28a6-cd59-4e1c-97e9-1f636f7954e0.f2ecc609f278d01c52ac6ffd4600baec.png?odnHeight=300&odnWidth=300" class="main-img" id="mainImage">
+                    <div style="position:absolute; top:10px; right:10px; background:#fff; padding:4px 8px; font-size:10px; font-weight:700; border-radius:4px; border:1px solid #eee;">
+                        <i class="ph ph-amazon-logo"></i> Image
+                    </div>
+                </div>
+                <div class="thumb-row">
+                    <div class="thumb"><img src="https://m.media-amazon.com/images/I/61AcT0ZuO3L._UL_1000_.jpg"></div>
+                    <div class="thumb"><img src="https://m.media-amazon.com/images/I/71ogW8jLA+L.jpg"></div>
+                    <div class="thumb"><img src="https://m.media-amazon.com/images/I/81Sr2YceKWL.jpg"></div>
+                    <div class="thumb"><img src="https://m.media-amazon.com/images/I/61Y-Zb0WVtL.jpg"></div>
+                    <div class="thumb"><img src="https://m.media-amazon.com/images/I/61apxCWQUgL.jpg"></div>
                 </div>
             </div>
         </div>
 
         <!-- MODULE: MARKET DATA -->
-        <div class="module-card mod-data">
+        <div class="module-card mod-market">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-chart-line-up"></i> Market Intelligence</div>
+                <span class="module-title"><i class="ph ph-chart-line-up"></i> Market Data</span>
                 <div class="module-controls">
-                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-arrow-left"></i></button>
-                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-arrow-right"></i></button>
-                    <button class="control-btn collapse-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down caret-icon"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-caret-left"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-caret-right"></i></button>
+                    <button class="control-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down"></i></button>
                 </div>
             </div>
             <div class="module-content">
-                <div class="stat-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">Amazon Price</div>
-                        <div class="stat-val">$348.00</div>
+                
+                <div class="market-comparator">
+                    <!-- Amazon Data -->
+                    <div class="comp-card">
+                        <div class="comp-header">
+                            <span><i class="ph ph-amazon-logo"></i> AMAZON</span>
+                            <span class="rank-badge">Rank #2</span>
+                        </div>
+                        <div class="comp-price">$29.44</div>
+                        <div style="font-size:11px; margin-top:4px; color:var(--text-secondary)">11 Offers Available</div>
                     </div>
-                    <div class="stat-box">
-                        <div class="stat-label">Sales Rank</div>
-                        <div class="stat-val text-success">#14 Top 1%</div>
+                    
+                    <!-- Walmart Data -->
+                    <div class="comp-card">
+                        <div class="comp-header">
+                            <span><i class="ph ph-storefront"></i> WALMART</span>
+                            <span class="rank-badge" style="background:#fef3c7; color:#b45309">4.8 <i class="ph ph-star-fill"></i></span>
+                        </div>
+                        <div class="comp-price">$39.99</div>
+                        <div style="font-size:11px; margin-top:4px; color:var(--text-secondary)">Estimated Price</div>
                     </div>
                 </div>
-                <div class="stat-label" style="margin-bottom:4px">Price History (90 Days)</div>
-                <div class="chart-placeholder">
-                    Interactive Graph Area
+
+                <div style="margin-bottom:12px;">
+                    <span style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase;">External Validation</span>
                 </div>
-                <div style="font-size:11px; margin-top:8px; color:var(--text-secondary)">
-                    <i class="ph ph-info"></i> Price is stable. Demand spikes in Q4.
+                
+                <div class="external-links">
+                    <a href="#" class="ext-btn"><i class="ph ph-amazon-logo"></i> View on Az</a>
+                    <a href="#" class="ext-btn"><i class="ph ph-storefront"></i> View on Walmart</a>
+                    <a href="#" class="ext-btn"><i class="ph ph-google-logo"></i> Google Search</a>
+                    <a href="#" class="ext-btn"><i class="ph ph-barcode"></i> UPC Lookup</a>
+                    <a href="#" class="ext-btn"><i class="ph ph-camera"></i> Lens Search</a>
                 </div>
+
             </div>
         </div>
 
         <!-- MODULE: BUY BOX -->
         <div class="module-card mod-buy">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-shopping-cart"></i> Offer Details</div>
+                <span class="module-title"><i class="ph ph-shopping-cart"></i> Offer Details</span>
                 <div class="module-controls">
-                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-arrow-left"></i></button>
-                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-arrow-right"></i></button>
-                    <button class="control-btn collapse-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down caret-icon"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-caret-left"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-caret-right"></i></button>
+                    <button class="control-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down"></i></button>
                 </div>
             </div>
             <div class="module-content">
-                <div class="stat-label">Liquidation Price</div>
-                <div class="price-hero">$195.00 <span style="font-size:14px; color:var(--text-secondary); font-weight:500;">/unit</span></div>
-                <div style="font-size:12px; color:var(--success); font-weight:600; margin-bottom:12px;">Est. Profit: $153.00 /unit</div>
                 
-                <div style="background:#f1f5f9; padding:8px; border-radius:4px; font-size:12px; margin-bottom:12px;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                        <span>MOQ:</span> <strong>50 Units</strong>
-                    </div>
-                    <div style="display:flex; justify-content:space-between;">
-                        <span>Total Lot:</span> <strong>$9,750.00</strong>
+                <div class="price-section">
+                    <div class="price-label">Your Liquidation Price</div>
+                    <div class="liquidation-price">$11.60</div>
+                    <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">
+                        MSRP: <span style="text-decoration:line-through">$69.99</span> (-83%)
                     </div>
                 </div>
 
-                <button class="btn-buy">Add to Cart</button>
+                <div class="profit-bar">
+                    <div style="font-weight:700; margin-bottom:2px;">Potential Profit</div>
+                    <div>Buy @ $11.60 → Sell @ $29.44</div>
+                </div>
+
+                <div style="background:#f8fafc; padding:10px; border-radius:6px; margin-bottom:15px; font-size:12px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                        <span style="color:var(--text-secondary)">Condition:</span>
+                        <span style="font-weight:700; color:#059669">FBA (Returns)</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                        <span style="color:var(--text-secondary)">MOQ:</span>
+                        <span style="font-weight:700">1 Unit</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span style="color:var(--text-secondary)">Shipping:</span>
+                        <span style="font-weight:700">$1.00 /unit</span>
+                    </div>
+                </div>
+
+                <button class="btn-buy">
+                    <i class="ph ph-shopping-cart-simple"></i> Add to Cart
+                </button>
+                <button class="btn-negotiate">
+                    <i class="ph ph-gavel"></i> Negotiate Price
+                </button>
+
             </div>
         </div>
 
     </div>
 
-    <!-- ROW 5: BOTTOM MODULES (Identity | Desc | Trending) -->
-    <div class="module-row bottom-section" id="row-bottom">
-
+    <!-- ROW 5: BOTTOM GRID (Identity | Description | Trending) -->
+    <div class="module-row bottom-grid">
+        
         <!-- MODULE: IDENTITY -->
-        <div class="module-card">
+        <div class="module-card mod-id">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-fingerprint"></i> Identity</div>
+                <span class="module-title"><i class="ph ph-fingerprint"></i> Identity</span>
                 <div class="module-controls">
-                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-arrow-left"></i></button>
-                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-arrow-right"></i></button>
-                    <button class="control-btn collapse-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down caret-icon"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-caret-left"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-caret-right"></i></button>
+                    <button class="control-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down"></i></button>
                 </div>
             </div>
             <div class="module-content">
                 <div class="id-row">
-                    <span>ASIN</span> <span class="font-mono">B09XS7JWHH</span>
+                    <span class="id-key">SKU</span>
+                    <span class="id-val">888 B09C13PZX7 US</span>
                 </div>
                 <div class="id-row">
-                    <span>UPC</span> <span class="font-mono">0272429210</span>
+                    <span class="id-key">ASIN</span>
+                    <span class="id-val">B09C13PZX7 <i class="ph ph-copy copy-icon"></i></span>
                 </div>
                 <div class="id-row">
-                    <span>Model</span> <span class="font-mono">WH1000XM5/B</span>
+                    <span class="id-key">UPC</span>
+                    <span class="id-val">810056143336 <i class="ph ph-copy copy-icon"></i></span>
                 </div>
-                <div class="id-row" style="border:none">
-                    <span>Weight</span> <span>0.55 lbs</span>
+                <div class="id-row">
+                    <span class="id-key">Category</span>
+                    <span class="id-val" style="font-size:11px">Computer Peripheral</span>
                 </div>
             </div>
         </div>
 
         <!-- MODULE: DESCRIPTION -->
-        <div class="module-card" style="flex: 1.5;"> <!-- Slightly wider default -->
+        <div class="module-card mod-desc">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-article"></i> Description</div>
+                <span class="module-title"><i class="ph ph-file-text"></i> Description</span>
                 <div class="module-controls">
-                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-arrow-left"></i></button>
-                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-arrow-right"></i></button>
-                    <button class="control-btn collapse-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down caret-icon"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-caret-left"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-caret-right"></i></button>
+                    <button class="control-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down"></i></button>
                 </div>
             </div>
             <div class="module-content">
-                <p style="font-size:13px; color:var(--text-secondary); margin-top:0;">
-                    Industry-leading noise cancellation optimized for you. 
-                    Magnificent Sound, engineered to perfection. 
-                    Crystal clear hands-free calling.
-                </p>
-                <ul style="font-size:13px; padding-left:20px; color:var(--text-main); margin-bottom:0;">
-                    <li>30-hour battery life</li>
-                    <li>Ultra-comfortable, lightweight design</li>
-                    <li>Multi-point connection</li>
+                <ul style="margin:0; padding-left:20px; line-height:1.6; font-size:13px; color:var(--text-main);">
+                    <li><strong>ICONIC ERGONOMIC DESIGN:</strong> With thumb rest, favored by millions worldwide.</li>
+                    <li><strong>11 PROGRAMMABLE BUTTONS:</strong> Assign macros and secondary functions.</li>
+                    <li><strong>HYPERSCROLL TILT WHEEL:</strong> Free-spin or tactile mode for precision.</li>
+                    <li><strong>RAZER CHROMA RGB:</strong> 11 Lighting Zones, 16.8 million colors.</li>
+                    <li><strong>OPTICAL MOUSE SWITCHES GEN 2:</strong> 0.2ms actuation speed, 70M click lifecycle.</li>
+                    <li><strong>26K DPI OPTICAL SENSOR:</strong> Best-in-class resolution accuracy.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- MODULE: TRENDING -->
-        <div class="module-card">
+        <!-- MODULE: TRENDING / STOCK RADAR -->
+        <div class="module-card mod-trend">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-trend-up"></i> Trending</div>
+                <span class="module-title"><i class="ph ph-radar"></i> Stock Radar</span>
                 <div class="module-controls">
-                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-arrow-left"></i></button>
-                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-arrow-right"></i></button>
-                    <button class="control-btn collapse-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down caret-icon"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'left')"><i class="ph ph-caret-left"></i></button>
+                    <button class="control-btn" onclick="moveModule(this, 'right')"><i class="ph ph-caret-right"></i></button>
+                    <button class="control-btn" onclick="toggleModule(this)"><i class="ph ph-caret-down"></i></button>
                 </div>
             </div>
             <div class="module-content">
-                <div class="trend-item">
-                    <div class="trend-img"></div>
-                    <div class="trend-info">
-                        <div>Bose QC45 (Used)</div>
-                        <span><i class="ph ph-arrow-up"></i> +12% Demand</span>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px; border-bottom:1px solid var(--border); padding-bottom:10px;">
+                    <div style="background:#e0f2fe; color:#0284c7; width:40px; height:40px; border-radius:4px; display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-mouse" style="font-size:20px;"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight:600; font-size:12px;">Logitech G502 Hero</div>
+                        <div style="font-size:10px; color:var(--text-secondary)">Arriving in 2 Days</div>
                     </div>
                 </div>
-                <div class="trend-item" style="border:none; margin:0; padding:0;">
-                    <div class="trend-img"></div>
-                    <div class="trend-info">
-                        <div>Apple AirPods Max</div>
-                        <span style="color:#f59e0b"><i class="ph ph-minus"></i> Stable</span>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="background:#fce7f3; color:#db2777; width:40px; height:40px; border-radius:4px; display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-keyboard" style="font-size:20px;"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight:600; font-size:12px;">Razer BlackWidow V3</div>
+                        <div style="font-size:10px; color:var(--text-secondary)">Arriving in 5 Days</div>
                     </div>
                 </div>
             </div>
@@ -415,16 +555,24 @@
 </div>
 
 <script>
-    // 1. COLLAPSE FUNCTION
+    // Collapse Logic
     function toggleModule(btn) {
         const card = btn.closest('.module-card');
+        const icon = btn.querySelector('i');
         card.classList.toggle('collapsed');
+        
+        // Rotate Icon
+        if(card.classList.contains('collapsed')) {
+            icon.classList.replace('ph-caret-down', 'ph-caret-up');
+        } else {
+            icon.classList.replace('ph-caret-up', 'ph-caret-down');
+        }
     }
 
-    // 2. REORDER FUNCTION (Simple Swapping)
+    // Reorder Logic (Left/Right)
     function moveModule(btn, direction) {
         const card = btn.closest('.module-card');
-        const parent = card.parentNode;
+        const parent = card.parentElement;
         
         if (direction === 'left') {
             const prev = card.previousElementSibling;
