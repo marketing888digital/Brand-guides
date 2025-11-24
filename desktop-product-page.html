@@ -9,23 +9,14 @@
 
     <style>
         :root {
-            /* B2B Palette */
             --primary: #0f172a;
             --action: #2563eb;
-            --action-hover: #1d4ed8;
+            --text-quiet: #64748b;
+            --bg-highlight: #f1f5f9;
             --bg-page: #f8fafc;
             --bg-card: #ffffff;
             --border: #cbd5e1;
-            
-            /* Status Colors */
             --success: #16a34a;
-            --warning: #d97706;
-            --danger: #dc2626;
-            
-            /* Promo Specific */
-            --promo-bg: #fee2e2;
-            --promo-text: #991b1b;
-            --promo-border: #fca5a5;
         }
 
         * { box-sizing: border-box; }
@@ -35,37 +26,10 @@
             font-family: 'Inter', sans-serif;
             color: var(--primary);
             margin: 0;
-            padding: 16px;
-            font-size: 14px;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        .container { 
-            max-width: 1480px; 
-            margin: 0 auto; 
-            width: 100%;
-        }
-
-        /* --- HEADER --- */
-        .breadcrumb {
-            font-size: 12px;
-            color: #64748b;
-            margin-bottom: 12px;
-            display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
-        }
-        .breadcrumb a { text-decoration: none; color: #64748b; }
-        .breadcrumb a:hover { color: var(--action); }
-
-        .product-title {
-            font-size: clamp(20px, 4vw, 26px);
-            font-weight: 800;
-            color: var(--primary);
-            margin: 0 0 16px 0;
-            line-height: 1.2;
-        }
-
-        /* --- DATA BAR (Updated with Copy) --- */
+        /* --- DATA BAR STYLES --- */
         .data-bar {
             display: flex;
             flex-wrap: wrap;
@@ -75,9 +39,10 @@
             border-radius: 6px;
             overflow: hidden;
             width: fit-content;
-            margin-bottom: 16px;
             max-width: 100%;
         }
+        
+        /* The Clickable Cell */
         .data-cell {
             background: #e2e8f0;
             padding: 8px 16px;
@@ -87,526 +52,147 @@
             flex: 1 1 auto;
             min-width: 100px;
             position: relative;
-        }
-        .data-label {
-            font-size: 10px; text-transform: uppercase; font-weight: 700; color: #64748b; margin-bottom: 2px;
-        }
-        
-        .data-value-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .data-value {
-            font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: #334155; white-space: nowrap;
-        }
-        
-        /* Copy Button Styles */
-        .copy-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            color: #94a3b8;
-            padding: 2px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-        .copy-btn:hover {
-            color: var(--action);
-            background: #dbeafe;
-        }
-        .copy-btn.copied {
-            color: var(--success);
+            cursor: pointer; /* Indicates clickable */
+            transition: background 0.2s ease;
+            user-select: none; /* Prevent text highlighting on quick clicks */
         }
 
-        /* --- TAGS --- */
-        .tag-row {
-            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
-        }
-        .badge {
-            display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 40px; font-size: 12px; font-weight: 600; border: 1px solid transparent; cursor: default;
-        }
-        .badge-fba { background: #dcfce7; color: #15803d; border-color: #86efac; }
-        .badge-promo { background: #fff1f2; color: #be123c; border-color: #fda4af; }
-        
-        .hashtag {
-            background: #fff; border: 1px solid #cbd5e1; color: #64748b; border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 500; cursor: pointer;
-        }
-        .hashtag:hover { border-color: var(--action); color: var(--action); }
-
-        /* --- GRID LAYOUT --- */
-        .grid-layout {
-            display: grid;
-            gap: 20px;
-            align-items: start;
-            grid-template-columns: 1fr; /* Mobile Default */
-        }
-        @media (min-width: 768px) {
-            .grid-layout { grid-template-columns: 1fr 360px; } /* Tablet */
-        }
-        @media (min-width: 1200px) {
-            .grid-layout { grid-template-columns: 380px 1fr 380px; } /* Desktop */
+        /* Hover Effect for the whole cell */
+        .data-cell:hover {
+            background: #dbeafe; /* Light blue hover */
         }
 
-        /* MODULE CARD */
-        .module-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            overflow: hidden;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-        }
-        .module-header {
-            background: #f8fafc;
-            border-bottom: 1px solid var(--border);
-            padding: 10px 14px;
-            font-size: 12px; font-weight: 800; text-transform: uppercase; color: #475569;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .module-body { padding: 20px; flex: 1; }
-
-        /* --- GALLERY --- */
-        .gallery-wrapper { display: flex; flex-direction: column; gap: 12px; }
-        .main-image-container {
-            width: 100%; aspect-ratio: 1 / 1; background: #fff; border: 1px solid #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; position: relative;
-        }
-        .main-image { max-width: 90%; max-height: 90%; object-fit: contain; }
-        .thumbs-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-        .thumb {
-            aspect-ratio: 1/1; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; padding: 4px; background: white; display: flex; align-items: center; justify-content: center;
-        }
-        .thumb:hover, .thumb.active { border-color: var(--action); box-shadow: 0 0 0 1px var(--action); }
-        .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        /* --- MARKET DATA --- */
-        .profit-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px;
-        }
-        .stat-box {
-            border: 1px solid var(--border); border-radius: 6px; padding: 16px 12px; background: #fff; text-align: center;
-        }
-        .stat-label { font-size: 10px; color: #64748b; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
-        .stat-value { font-size: 24px; font-weight: 800; color: var(--primary); line-height: 1.1; }
-        .stat-sub { font-size: 11px; color: var(--success); font-weight: 700; margin-top: 4px; display: block;}
-
-        .research-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;}
-        .btn-research {
-            background: #fff; border: 1px solid var(--border); color: #475569;
-            font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 4px;
-            text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1 1 40%;
-        }
-        .btn-research:hover { border-color: var(--action); color: var(--action); background: #eff6ff; }
-
-        /* Collapsible Disclaimer */
-        .disclaimer-section {
-            margin-top: auto; /* Push to bottom */
-            border-top: 1px solid var(--border);
-            background: #f8fafc;
-        }
-        .disclaimer-toggle {
-            width: 100%;
-            padding: 10px 14px;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 11px;
-            font-weight: 600;
-            color: #64748b;
-            cursor: pointer;
+        /* The Label (Top) */
+        .data-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .disclaimer-toggle:hover { color: var(--primary); background: #f1f5f9; }
-        .disclaimer-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 14px;
-            font-size: 10px;
-            color: #94a3b8;
-            line-height: 1.4;
-        }
-        .disclaimer-content.open {
-            max-height: 200px; /* Adjust based on content needs */
-            padding-bottom: 12px;
+            margin-bottom: 2px;
         }
 
-        /* --- BUY BOX --- */
-        .buy-box {
-            border-top: 4px solid var(--action);
-            position: sticky;
-            top: 20px;
-        }
-
-        .promo-strip {
-            background: var(--promo-bg); 
-            color: var(--promo-text);
-            border-bottom: 1px solid var(--promo-border);
-            font-size: 13px; 
-            font-weight: 800; 
-            padding: 12px; 
-            text-align: center;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px;
+        .data-label {
+            font-size: 10px; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            color: #64748b;
             letter-spacing: 0.5px;
         }
 
-        .price-hero { text-align: center; margin: 16px 0; }
-        .price-main { font-size: 48px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -1px; }
-        .price-retail { text-decoration: line-through; color: #94a3b8; font-size: 14px; font-weight: 500; margin-bottom: 4px; display: block;}
-
-        /* Shipping Highlight */
-        .shipping-row {
-            background: #f0fdf4; /* Light green bg */
-            border: 1px solid #bbf7d0;
-            color: #166534;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-bottom: 16px;
+        /* The Value (Bottom) */
+        .data-value {
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 13px; 
+            font-weight: 600; 
+            color: #334155; 
+            white-space: nowrap;
         }
 
-        .stock-info-row {
-            display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 8px; font-weight: 600;
+        /* The Icon Hint */
+        .copy-hint {
+            font-size: 14px;
+            color: #94a3b8;
+            opacity: 0.6;
+            transition: all 0.2s;
         }
 
-        .qty-control { display: flex; margin-bottom: 16px; }
-        .qty-btn {
-            width: 44px; height: 44px; border: 1px solid var(--border); background: #fff; 
-            cursor: pointer; font-weight: bold; font-size: 18px;
+        /* Icon highlights when hovering the parent cell */
+        .data-cell:hover .copy-hint {
+            opacity: 1;
+            color: var(--action);
         }
-        .qty-input {
-            flex: 1; height: 44px; border: 1px solid var(--border); border-left: none; border-right: none; 
-            text-align: center; font-weight: 700; font-size: 16px;
-        }
-        .qty-btn:first-child { border-radius: 6px 0 0 6px; }
-        .qty-btn:last-child { border-radius: 0 6px 6px 0; }
 
-        .btn-add-order {
-            width: 100%; background: var(--action); color: white; border: none;
-            padding: 16px; font-size: 16px; font-weight: 700; border-radius: 6px;
-            cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-            margin-bottom: 12px;
+        /* Success State */
+        .copy-hint.success {
+            color: var(--success);
+            transform: scale(1.2);
         }
-        .btn-add-order:hover { background: var(--action-hover); transform: translateY(-1px); }
 
-        .secondary-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
+        /* Disabled state for N/A fields */
+        .data-cell.disabled {
+            cursor: default;
+            background: #e2e8f0;
         }
-        
-        .btn-sec {
-            background: #fff;
-            border: 1px solid var(--border);
-            color: #334155;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: 0.2s;
+        .data-cell.disabled:hover {
+            background: #e2e8f0;
         }
-        .btn-sec:hover { border-color: var(--primary); color: var(--primary); background: #f8fafc; }
-        .btn-sec i { font-size: 16px; }
+        .data-cell.disabled .copy-hint {
+            display: none;
+        }
 
-        .variations-link {
-            display: block; text-align: center; font-size: 12px;
-            color: #64748b; text-decoration: none; font-weight: 600; padding: 8px;
-            border-radius: 4px; border: 1px solid transparent;
-        }
-        .variations-link:hover { color: var(--action); background: #eff6ff; }
-
-        /* --- BOTTOM GRID --- */
-        .bottom-grid { display: grid; gap: 24px; }
-        @media (min-width: 900px) { .bottom-grid { grid-template-columns: 1fr 1fr; } }
-        
-        .spec-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-        .spec-label { color: #64748b; font-weight: 500; }
-        .spec-val { font-weight: 700; color: #334155; }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <!-- BREADCRUMBS -->
-    <div class="breadcrumb">
-        <a href="#">Home</a> <i class="ph ph-caret-right"></i>
-        <a href="#">Shoes</a> <i class="ph ph-caret-right"></i>
-        <a href="#">Sneakers</a> <i class="ph ph-caret-right"></i>
-        <span>Nike SB Dunk Low</span>
-    </div>
-
-    <h1 class="product-title">Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5</h1>
-
-    <!-- DATA BAR (With Copy Functionality) -->
+    <!-- DATA BAR -->
     <div class="data-bar">
-        <div class="data-cell">
-            <span class="data-label">SKU</span>
-            <div class="data-value-wrapper">
-                <span class="data-value">888 B08P3XNS7H US</span>
-                <button class="copy-btn" onclick="copyText(this, '888 B08P3XNS7H US')" title="Copy SKU"><i class="ph ph-copy"></i></button>
+        
+        <!-- SKU -->
+        <div class="data-cell" onclick="copyCell(this, '888 B08P3XNS7H US')">
+            <div class="data-header">
+                <span class="data-label">SKU</span>
+                <i class="ph ph-copy copy-hint"></i>
             </div>
+            <span class="data-value">888 B08P3XNS7H US</span>
         </div>
-        <div class="data-cell">
-            <span class="data-label">ASIN</span>
-            <div class="data-value-wrapper">
-                <span class="data-value">B08P3XNS7H</span>
-                <button class="copy-btn" onclick="copyText(this, 'B08P3XNS7H')" title="Copy ASIN"><i class="ph ph-copy"></i></button>
+
+        <!-- ASIN -->
+        <div class="data-cell" onclick="copyCell(this, 'B08P3XNS7H')">
+            <div class="data-header">
+                <span class="data-label">ASIN</span>
+                <i class="ph ph-copy copy-hint"></i>
             </div>
+            <span class="data-value">B08P3XNS7H</span>
         </div>
-        <div class="data-cell">
-            <span class="data-label">UPC</span>
-            <div class="data-value-wrapper">
-                <span class="data-value">193658008976</span>
-                <button class="copy-btn" onclick="copyText(this, '193658008976')" title="Copy UPC"><i class="ph ph-copy"></i></button>
+
+        <!-- UPC -->
+        <div class="data-cell" onclick="copyCell(this, '193658008976')">
+            <div class="data-header">
+                <span class="data-label">UPC</span>
+                <i class="ph ph-copy copy-hint"></i>
             </div>
+            <span class="data-value">193658008976</span>
         </div>
-        <div class="data-cell">
-            <span class="data-label">GTIN</span>
+
+        <!-- GTIN (N/A - Not Clickable) -->
+        <div class="data-cell disabled">
+            <div class="data-header">
+                <span class="data-label">GTIN</span>
+            </div>
             <span class="data-value" style="color:#94a3b8">N/A</span>
         </div>
-        <div class="data-cell" style="border-left:1px solid #cbd5e1; background:#f8fafc;">
-            <span class="data-label">ID</span>
-            <div class="data-value-wrapper">
-                <span class="data-value">#358885</span>
-                <button class="copy-btn" onclick="copyText(this, '358885')" title="Copy ID"><i class="ph ph-copy"></i></button>
+
+        <!-- ID -->
+        <div class="data-cell" onclick="copyCell(this, '358885')" style="border-left:1px solid #cbd5e1; background:#f8fafc;">
+            <div class="data-header">
+                <span class="data-label">ID</span>
+                <i class="ph ph-copy copy-hint"></i>
             </div>
-        </div>
-    </div>
-
-    <!-- TAGS -->
-    <div class="tag-row">
-        <span class="badge badge-fba"><i class="ph ph-cube"></i> Fulfilled by Amazon</span>
-        <span class="badge badge-promo"><i class="ph ph-tag"></i> First Order Promo</span>
-        
-        <span class="hashtag">#Shoes</span>
-        <span class="hashtag">#Sneakers</span>
-        <span class="hashtag">#Nike</span>
-        <span class="hashtag">#Size:8.5</span>
-        <span class="hashtag">#SB_Dunk</span>
-        <span class="hashtag">#BlueFury</span>
-    </div>
-
-    <!-- MAIN GRID -->
-    <div class="grid-layout">
-        
-        <!-- 1. GALLERY -->
-        <div class="module-card">
-            <div class="module-header">
-                <div class="module-title"><i class="ph ph-image"></i> Gallery</div>
-            </div>
-            <div class="module-body">
-                <div class="gallery-wrapper">
-                    <div class="main-image-container">
-                        <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg" class="main-image" id="mainImage">
-                    </div>
-                    <div class="thumbs-row">
-                        <div class="thumb active" onclick="swap(this, 'https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg')">
-                            <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg">
-                        </div>
-                        <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg')">
-                            <img src="https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg">
-                        </div>
-                        <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg')">
-                            <img src="https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg">
-                        </div>
-                        <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71B1KEscsdL.jpg')">
-                            <img src="https://m.media-amazon.com/images/I/71B1KEscsdL.jpg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. MARKET DATA -->
-        <div class="module-card">
-            <div class="module-header">
-                <div class="module-title"><i class="ph ph-chart-line-up"></i> Market Data</div>
-            </div>
-            <div class="module-body" style="display: flex; flex-direction: column; height: 100%; padding-bottom:0;">
-                <div class="profit-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">Amazon Buy Box</div>
-                        <div class="stat-value">$387.99</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px;">1 Offer Available</div>
-                    </div>
-                    <div class="stat-box" style="background:#f0fdf4; border-color:#86efac;">
-                        <div class="stat-label" style="color:#166534">Est. Profit</div>
-                        <div class="stat-value" style="color:#15803d">+$267.99</div>
-                        <div class="stat-sub">ROI: 223%</div>
-                    </div>
-                </div>
-
-                <div class="research-toolbar">
-                    <a href="#" class="btn-research"><i class="ph ph-amazon-logo"></i> Amazon</a>
-                    <a href="#" class="btn-research"><i class="ph ph-google-logo"></i> Google</a>
-                    <a href="#" class="btn-research"><i class="ph ph-barcode"></i> UPC</a>
-                    <a href="#" class="btn-research"><i class="ph ph-scan"></i> Lens</a>
-                </div>
-
-                <!-- Collapsible Disclaimer (Footer style) -->
-                <div class="disclaimer-section">
-                    <button class="disclaimer-toggle" onclick="toggleDisclaimer(this)">
-                        <span><i class="ph ph-info"></i> Data Disclaimer & Notes</span>
-                        <i class="ph ph-caret-down"></i>
-                    </button>
-                    <div class="disclaimer-content">
-                        <p style="margin-bottom:8px;">Estimated Buy Box price of Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5. Actual price may vary. Az prices is subject to change without prior notice due to regular price updates from Az and its vendors. We make every effort to update the prices regularly.</p>
-                        <p><strong>Note:</strong> The displayed images and UPC may not be correct for all items in our inventory.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. BUY BOX -->
-        <div class="module-card buy-box">
-            <div class="promo-strip">
-                <i class="ph ph-tag-simple" style="font-size: 16px;"></i> 
-                <span>SAVE 60% WITH FIRST ORDER PROMO</span>
-            </div>
-            <div class="module-body">
-                
-                <div class="price-hero">
-                    <span class="price-retail">MSRP $300.00</span>
-                    <span class="price-main">$120.00</span>
-                </div>
-
-                <!-- Shipping Highlight -->
-                <div class="shipping-row">
-                    <i class="ph ph-truck" style="font-size: 18px;"></i>
-                    <span>Shipping: $1.00 Flat Rate</span>
-                </div>
-
-                <div class="stock-info-row">
-                    <span style="color:#15803d; display:flex; align-items:center; gap:4px;">
-                        <i class="ph ph-check-circle-fill"></i> In Stock
-                    </span>
-                    <span>MOQ: 1 Unit</span>
-                </div>
-
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
-                    <input type="number" class="qty-input" value="1" min="1" max="1" readonly>
-                    <button class="qty-btn" disabled style="cursor:not-allowed; opacity:0.5;">+</button>
-                </div>
-
-                <button class="btn-add-order">
-                    <i class="ph ph-shopping-cart-simple" style="font-size:20px;"></i> Add to Order
-                </button>
-
-                <div class="secondary-actions">
-                    <button class="btn-sec">
-                        <i class="ph ph-handshake"></i> Negotiate
-                    </button>
-                    <button class="btn-sec">
-                        <i class="ph ph-heart"></i> Watch
-                    </button>
-                </div>
-
-                <a href="#" class="variations-link">
-                    <i class="ph ph-squares-four"></i> Select all SKU variations
-                </a>
-            </div>
+            <span class="data-value">#358885</span>
         </div>
 
     </div>
 
-    <!-- BOTTOM ROW -->
-    <div class="bottom-grid">
-        <div class="module-card">
-            <div class="module-header">
-                <div class="module-title"><i class="ph ph-sliders-horizontal"></i> Item Specifications</div>
-            </div>
-            <div class="module-body" style="padding-top:10px;">
-                <div class="spec-row"><span class="spec-label">Brand</span><span class="spec-val">Nike</span></div>
-                <div class="spec-row"><span class="spec-label">Model</span><span class="spec-val">BQ6817-005</span></div>
-                <div class="spec-row"><span class="spec-label">Color</span><span class="spec-val">Blue Fury / Deep Royal</span></div>
-                <div class="spec-row"><span class="spec-label">Category</span><span class="spec-val">Sneakers</span></div>
-                <div class="spec-row"><span class="spec-label">Gender</span><span class="spec-val">Mens</span></div>
-                <div class="spec-row"><span class="spec-label">Size</span><span class="spec-val">8.5 US</span></div>
-            </div>
-        </div>
+    <script>
+        function copyCell(element, textToCopy) {
+            // 1. Copy to clipboard
+            navigator.clipboard.writeText(textToCopy);
 
-        <div class="module-card">
-            <div class="module-header">
-                <div class="module-title"><i class="ph ph-notebook"></i> Notes</div>
-            </div>
-            <div class="module-body">
-                <div style="display:flex; gap:14px;">
-                    <div style="background:#dcfce7; color:#15803d; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                        <i class="ph ph-cube" style="font-size:20px;"></i>
-                    </div>
-                    <div>
-                        <div style="font-weight:700; font-size:13px; margin-bottom:6px;">Condition: Brand New (FBA)</div>
-                        <p style="margin:0; font-size:13px; color:#64748b; line-height:1.6;">
-                            This item is part of a "Single SKU" lot. Items are brand new, Fulfilled by Amazon (FBA) returns or overstock. Pristine condition. Original packaging included.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            // 2. Find the icon inside the clicked cell
+            const icon = element.querySelector('.copy-hint');
+            
+            // 3. Visual Feedback
+            // Save original icon class
+            const originalClass = "ph ph-copy copy-hint";
+            
+            // Switch to checkmark
+            icon.className = "ph ph-check copy-hint success";
 
-</div>
-
-<script>
-    // Image Swap
-    function swap(thumb, src) {
-        document.getElementById('mainImage').src = src;
-        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-    }
-
-    // Disclaimer Toggle
-    function toggleDisclaimer(btn) {
-        const content = btn.nextElementSibling;
-        const icon = btn.querySelector('.ph-caret-down');
-        
-        content.classList.toggle('open');
-        
-        if(content.classList.contains('open')) {
-            icon.classList.replace('ph-caret-down', 'ph-caret-up');
-        } else {
-            icon.classList.replace('ph-caret-up', 'ph-caret-down');
+            // 4. Revert after 1.5 seconds
+            setTimeout(() => {
+                icon.className = originalClass;
+            }, 1500);
         }
-    }
-
-    // Copy Function
-    function copyText(btn, text) {
-        navigator.clipboard.writeText(text);
-        
-        const originalIcon = btn.innerHTML;
-        btn.innerHTML = '<i class="ph ph-check" style="color:var(--success)"></i>';
-        btn.classList.add('copied');
-        
-        setTimeout(() => {
-            btn.innerHTML = originalIcon;
-            btn.classList.remove('copied');
-        }, 2000);
-    }
-</script>
+    </script>
 
 </body>
 </html>
