@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike SB Dunk Low Pro - 888 Lots B2B</title>
+    <title>Nike Inventory - 888 Lots B2B</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
@@ -36,6 +36,17 @@
         }
 
         .container { max-width: 1600px; margin: 0 auto; }
+
+        /* --- PRODUCT WRAPPER (Spacing between products) --- */
+        .product-wrapper {
+            margin-bottom: 60px;
+            padding-bottom: 60px;
+            border-bottom: 2px dashed #cbd5e1;
+        }
+        .product-wrapper:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
 
         /* --- HEADER --- */
         .breadcrumb { font-size: 12px; color: var(--text-quiet); margin-bottom: 8px; display: flex; gap: 6px; }
@@ -73,7 +84,7 @@
         .badge-promo { background: #fef2f2; color: var(--danger); border-color: #fca5a5; }
         .tag { background: #f1f5f9; color: var(--text-main); border: 1px solid var(--border); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
 
-        /* --- MAIN LAYOUT (The Fix) --- */
+        /* --- MAIN LAYOUT --- */
         .main-grid {
             display: grid;
             grid-template-columns: 380px 1fr 340px; /* Image | Data | Buy Box */
@@ -103,7 +114,7 @@
         .thumb:hover { border-color: var(--action); }
         .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* --- COLUMN 2: MARKET INTELLIGENCE (Center Stage) --- */
+        /* --- COLUMN 2: MARKET INTELLIGENCE --- */
         .market-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
         .market-box {
             border: 1px solid var(--border); border-radius: 6px; padding: 16px; text-align: center;
@@ -133,8 +144,9 @@
         .disclaimer-body { padding: 0 12px 12px; display: none; line-height: 1.4; }
         .disclaimer-box.open .disclaimer-body { display: block; }
 
-        /* --- COLUMN 3: BUY BOX (Sticky Right) --- */
-        .buy-box { position: sticky; top: 20px; border-top: 4px solid var(--action); }
+        /* --- COLUMN 3: BUY BOX --- */
+        /* Note: 'sticky' works best when not inside multiple overflows. For this test list, removed sticky to prevent overlap issues in stacking */
+        .buy-box { border-top: 4px solid var(--action); }
         
         .promo-banner {
             background: #fee2e2; color: #991b1b; padding: 12px; font-weight: 700; font-size: 13px; text-align: center; border-bottom: 1px solid #fca5a5;
@@ -184,7 +196,7 @@
             .main-grid { display: flex; flex-direction: column; }
             .card.gallery { grid-column: auto; flex-direction: column; width: 100%; }
             .main-img-container { width: 100%; }
-            .buy-box { order: 2; position: static; } /* Buy box under image on mobile */
+            .buy-box { order: 2; position: static; }
             .card.market { order: 3; }
         }
     </style>
@@ -193,165 +205,279 @@
 
 <div class="container">
 
-    <div class="product-header">
-        <div class="breadcrumb">
-            <a href="#">Home</a> / <a href="#">Shoes</a> / <a href="#">Sneakers</a> / <span>Nike SB</span>
-        </div>
-        
-        <h1 class="product-title">Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5</h1>
+    <!-- ============================================== -->
+    <!-- PRODUCT 1 (Blue Fury)                          -->
+    <!-- ============================================== -->
+    <div class="product-wrapper">
+        <div class="product-header">
+            <div class="breadcrumb">
+                <a href="#">Home</a> / <a href="#">Shoes</a> / <a href="#">Sneakers</a> / <span>Nike SB</span>
+            </div>
+            
+            <h1 class="product-title">Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5</h1>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
-            <!-- Identifiers -->
-            <div class="data-bar">
-                <div class="data-cell" onclick="copy(this)">
-                    <span class="data-label">SKU</span>
-                    <span class="data-value">888 B08P3XNS7H US</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+                <div class="data-bar">
+                    <div class="data-cell" onclick="copy(this)">
+                        <span class="data-label">SKU</span>
+                        <span class="data-value">888 B08P3XNS7H US</span>
+                    </div>
+                    <div class="data-cell" onclick="copy(this)">
+                        <span class="data-label">ASIN</span>
+                        <span class="data-value">B08P3XNS7H</span>
+                    </div>
+                    <div class="data-cell" onclick="copy(this)">
+                        <span class="data-label">UPC</span>
+                        <span class="data-value">193658008976</span>
+                    </div>
+                    <div class="data-cell" onclick="copy(this)" style="background: #eff6ff;">
+                        <span class="data-label">ID</span>
+                        <span class="data-value">#358885</span>
+                    </div>
                 </div>
-                <div class="data-cell" onclick="copy(this)">
-                    <span class="data-label">ASIN</span>
-                    <span class="data-value">B08P3XNS7H</span>
+
+                <div class="tag-row">
+                    <span class="badge badge-fba"><i class="ph ph-package"></i> FBA Ready</span>
+                    <span class="badge badge-promo"><i class="ph ph-tag"></i> First Order Promo</span>
+                    <span class="tag">#Sneakers</span>
+                    <span class="tag">#Nike</span>
                 </div>
-                <div class="data-cell" onclick="copy(this)">
-                    <span class="data-label">UPC</span>
-                    <span class="data-value">193658008976</span>
-                </div>
-                <div class="data-cell" onclick="copy(this)" style="background: #eff6ff;">
-                    <span class="data-label">ID</span>
-                    <span class="data-value">#358885</span>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <!-- 1. IMAGES -->
+            <div class="card gallery">
+                <div class="card-header">Product Images</div>
+                <div class="card-body">
+                    <div class="main-img-container">
+                        <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg" class="main-img">
+                    </div>
+                    <div class="thumb-grid">
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg"></div>
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg"></div>
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg"></div>
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71B1KEscsdL.jpg"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tags -->
-            <div class="tag-row">
-                <span class="badge badge-fba"><i class="ph ph-package"></i> FBA Ready</span>
-                <span class="badge badge-promo"><i class="ph ph-tag"></i> First Order Promo</span>
-                <span class="tag">#Sneakers</span>
-                <span class="tag">#Nike</span>
+            <!-- 2. MARKET DATA -->
+            <div class="card market">
+                <div class="card-header">
+                    <span><i class="ph ph-chart-line-up"></i> Market Intelligence</span>
+                </div>
+                <div class="card-body">
+                    <div class="market-grid">
+                        <div class="market-box">
+                            <div class="m-label">Amazon Buy Box</div>
+                            <div class="m-val">$387.99</div>
+                            <div class="m-sub" style="color:var(--text-quiet)">1 Offer Available</div>
+                        </div>
+                        <div class="market-box profit">
+                            <div class="m-label" style="color:var(--success)">Est. Profit</div>
+                            <div class="m-val" style="color:#15803d">+$267.99</div>
+                            <div class="m-sub" style="color:#15803d">ROI: 223%</div>
+                        </div>
+                    </div>
+
+                    <div class="m-label" style="margin-bottom:8px">Validation Tools</div>
+                    <div class="research-grid">
+                        <a href="#" class="r-btn"><i class="ph ph-amazon-logo"></i> Amazon</a>
+                        <a href="#" class="r-btn"><i class="ph ph-google-logo"></i> Google</a>
+                        <a href="#" class="r-btn"><i class="ph ph-barcode"></i> UPC</a>
+                        <a href="#" class="r-btn"><i class="ph ph-scan"></i> Lens</a>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <div class="m-label" style="margin-bottom:8px">Specifications</div>
+                        <table class="specs-table">
+                            <tr><td class="specs-key">Brand</td><td class="specs-val">Nike</td></tr>
+                            <tr><td class="specs-key">Model</td><td class="specs-val">BQ6817-005</td></tr>
+                            <tr><td class="specs-key">Color</td><td class="specs-val">Blue Fury / Deep Royal</td></tr>
+                            <tr><td class="specs-key">Size</td><td class="specs-val">8.5 US</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. BUY BOX -->
+            <div class="card buy-box">
+                <div class="promo-banner">
+                    <i class="ph ph-tag"></i> SAVE 60% WITH FIRST ORDER PROMO
+                </div>
+                <div class="card-body">
+                    <div class="price-section">
+                        <div class="price-retail">MSRP $300.00</div>
+                        <div class="price-final">$120.00</div>
+                    </div>
+                    <div class="shipping-badge">
+                        <i class="ph ph-truck"></i> Shipping: $1.00 Flat Rate
+                    </div>
+                    <div class="stock-line">
+                        <span style="color:var(--success)"><i class="ph ph-check-circle-fill"></i> In Stock</span>
+                        <span>MOQ: 1 Unit</span>
+                    </div>
+                    <div class="qty-group">
+                        <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
+                        <input type="number" class="qty-input" value="1" min="1" max="1" readonly>
+                        <button class="qty-btn" disabled style="opacity:0.5; cursor:not-allowed">+</button>
+                    </div>
+                    <button class="btn-buy">
+                        <i class="ph ph-shopping-cart-simple"></i> Add to Order
+                    </button>
+                    <div class="secondary-btns">
+                        <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
+                        <button class="btn-sec"><i class="ph ph-heart"></i> Watch</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="main-grid">
-        
-        <!-- 1. IMAGES -->
-        <div class="card gallery">
-            <div class="card-header">Product Images</div>
-            <div class="card-body">
-                <div class="main-img-container">
-                    <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg" class="main-img" id="mainImage">
+
+    <!-- ============================================== -->
+    <!-- PRODUCT 2 (Dunk Panda - Different Product)     -->
+    <!-- ============================================== -->
+    <div class="product-wrapper">
+        <div class="product-header">
+            <div class="breadcrumb">
+                <a href="#">Home</a> / <a href="#">Shoes</a> / <a href="#">Sneakers</a> / <span>Nike Lifestyle</span>
+            </div>
+            
+            <h1 class="product-title">Nike Dunk Low Retro White Black (Panda) - Size 9 US</h1>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+                <div class="data-bar">
+                    <div class="data-cell" onclick="copy(this)">
+                        <span class="data-label">SKU</span>
+                        <span class="data-value">888 A10W2PZ89K US</span>
+                    </div>
+                    <div class="data-cell" onclick="copy(this)">
+                        <span class="data-label">ASIN</span>
+                        <span class="data-value">B08W5GZ9X2</span>
+                    </div>
+                    <div class="data-cell" onclick="copy(this)">
+                        <span class="data-label">UPC</span>
+                        <span class="data-value">194958123456</span>
+                    </div>
+                    <div class="data-cell" onclick="copy(this)" style="background: #eff6ff;">
+                        <span class="data-label">ID</span>
+                        <span class="data-value">#359102</span>
+                    </div>
                 </div>
-                <div class="thumb-grid">
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71B1KEscsdL.jpg"></div>
+
+                <div class="tag-row">
+                    <span class="badge badge-fba"><i class="ph ph-package"></i> FBA Ready</span>
+                    <!-- No Promo Badge here to show difference -->
+                    <span class="tag">#Sneakers</span>
+                    <span class="tag">#BestSeller</span>
                 </div>
             </div>
         </div>
 
-        <!-- 2. CENTER: MARKET INTELLIGENCE (The Logic) -->
-        <div class="card market">
-            <div class="card-header">
-                <span><i class="ph ph-chart-line-up"></i> Market Intelligence</span>
-            </div>
-            <div class="card-body">
-                <div class="market-grid">
-                    <div class="market-box">
-                        <div class="m-label">Amazon Buy Box</div>
-                        <div class="m-val">$387.99</div>
-                        <div class="m-sub" style="color:var(--text-quiet)">1 Offer Available</div>
+        <div class="main-grid">
+            <!-- 1. IMAGES (Using different images for contrast) -->
+            <div class="card gallery">
+                <div class="card-header">Product Images</div>
+                <div class="card-body">
+                    <div class="main-img-container">
+                        <img src="https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg" class="main-img">
                     </div>
-                    <div class="market-box profit">
-                        <div class="m-label" style="color:var(--success)">Est. Profit</div>
-                        <div class="m-val" style="color:#15803d">+$267.99</div>
-                        <div class="m-sub" style="color:#15803d">ROI: 223%</div>
-                    </div>
-                </div>
-
-                <div class="m-label" style="margin-bottom:8px">Validation Tools</div>
-                <div class="research-grid">
-                    <a href="#" class="r-btn"><i class="ph ph-amazon-logo"></i> Amazon</a>
-                    <a href="#" class="r-btn"><i class="ph ph-google-logo"></i> Google</a>
-                    <a href="#" class="r-btn"><i class="ph ph-barcode"></i> UPC</a>
-                    <a href="#" class="r-btn"><i class="ph ph-scan"></i> Lens</a>
-                </div>
-
-                <div style="margin-top:20px;">
-                    <div class="m-label" style="margin-bottom:8px">Specifications</div>
-                    <table class="specs-table">
-                        <tr><td class="specs-key">Brand</td><td class="specs-val">Nike</td></tr>
-                        <tr><td class="specs-key">Model</td><td class="specs-val">BQ6817-005</td></tr>
-                        <tr><td class="specs-key">Color</td><td class="specs-val">Blue Fury / Deep Royal</td></tr>
-                        <tr><td class="specs-key">Size</td><td class="specs-val">8.5 US</td></tr>
-                    </table>
-                </div>
-
-                <!-- Collapsible Disclaimer -->
-                <div class="disclaimer-box" onclick="this.classList.toggle('open')">
-                    <div class="disclaimer-header">
-                        <span><i class="ph ph-warning-circle"></i> Data Disclaimer</span>
-                        <i class="ph ph-caret-down"></i>
-                    </div>
-                    <div class="disclaimer-body">
-                        Estimated Buy Box price of Nike Mens SB Dunk Low Pro. Actual price may vary. Az prices are subject to change without prior notice. Note: The displayed images and UPC may not be correct for all items in our inventory.
+                    <div class="thumb-grid">
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg"></div>
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71+2+3+4.jpg" onerror="this.src='https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg'"></div>
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71+angle.jpg" onerror="this.src='https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg'"></div>
+                        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71+sole.jpg" onerror="this.src='https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg'"></div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 3. RIGHT: BUY BOX (The Action) -->
-        <div class="card buy-box">
-            <div class="promo-banner">
-                <i class="ph ph-tag"></i> SAVE 60% WITH FIRST ORDER PROMO
+            <!-- 2. MARKET DATA (Different stats) -->
+            <div class="card market">
+                <div class="card-header">
+                    <span><i class="ph ph-chart-line-up"></i> Market Intelligence</span>
+                </div>
+                <div class="card-body">
+                    <div class="market-grid">
+                        <div class="market-box">
+                            <div class="m-label">Amazon Buy Box</div>
+                            <div class="m-val">$185.00</div>
+                            <div class="m-sub" style="color:var(--text-quiet)">14 Offers Available</div>
+                        </div>
+                        <div class="market-box profit">
+                            <div class="m-label" style="color:var(--success)">Est. Profit</div>
+                            <div class="m-val" style="color:#15803d">+$86.00</div>
+                            <div class="m-sub" style="color:#15803d">ROI: 86%</div>
+                        </div>
+                    </div>
+
+                    <div class="m-label" style="margin-bottom:8px">Validation Tools</div>
+                    <div class="research-grid">
+                        <a href="#" class="r-btn"><i class="ph ph-amazon-logo"></i> Amazon</a>
+                        <a href="#" class="r-btn"><i class="ph ph-google-logo"></i> Google</a>
+                        <a href="#" class="r-btn"><i class="ph ph-barcode"></i> UPC</a>
+                        <a href="#" class="r-btn"><i class="ph ph-scan"></i> Lens</a>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <div class="m-label" style="margin-bottom:8px">Specifications</div>
+                        <table class="specs-table">
+                            <tr><td class="specs-key">Brand</td><td class="specs-val">Nike</td></tr>
+                            <tr><td class="specs-key">Model</td><td class="specs-val">DD1391-100</td></tr>
+                            <tr><td class="specs-key">Color</td><td class="specs-val">White / Black</td></tr>
+                            <tr><td class="specs-key">Size</td><td class="specs-val">9.0 US</td></tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                
-                <div class="price-section">
-                    <div class="price-retail">MSRP $300.00</div>
-                    <div class="price-final">$120.00</div>
+
+            <!-- 3. BUY BOX (Different Price) -->
+            <div class="card buy-box" style="border-top-color: var(--warning);">
+                <!-- No Promo Banner -->
+                <div class="card-body">
+                    <div class="price-section">
+                        <div class="price-retail">MSRP $110.00</div>
+                        <div class="price-final">$99.00</div>
+                    </div>
+                    <div class="shipping-badge">
+                        <i class="ph ph-truck"></i> Shipping: $1.00 Flat Rate
+                    </div>
+                    <div class="stock-line">
+                        <span style="color:var(--warning)"><i class="ph ph-clock"></i> Low Stock</span>
+                        <span>MOQ: 2 Units</span>
+                    </div>
+                    <div class="qty-group">
+                        <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
+                        <input type="number" class="qty-input" value="2" min="2" max="10" readonly>
+                        <button class="qty-btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                    </div>
+                    <button class="btn-buy" style="background-color: var(--warning);">
+                        <i class="ph ph-shopping-cart-simple"></i> Add to Order
+                    </button>
+                    <div class="secondary-btns">
+                        <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
+                        <button class="btn-sec"><i class="ph ph-heart"></i> Watch</button>
+                    </div>
                 </div>
-
-                <div class="shipping-badge">
-                    <i class="ph ph-truck"></i> Shipping: $1.00 Flat Rate
-                </div>
-
-                <div class="stock-line">
-                    <span style="color:var(--success)"><i class="ph ph-check-circle-fill"></i> In Stock</span>
-                    <span>MOQ: 1 Unit</span>
-                </div>
-
-                <div class="qty-group">
-                    <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
-                    <input type="number" class="qty-input" value="1" min="1" max="1" readonly>
-                    <button class="qty-btn" disabled style="opacity:0.5; cursor:not-allowed">+</button>
-                </div>
-
-                <button class="btn-buy">
-                    <i class="ph ph-shopping-cart-simple"></i> Add to Order
-                </button>
-
-                <div class="secondary-btns">
-                    <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
-                    <button class="btn-sec"><i class="ph ph-heart"></i> Watch</button>
-                </div>
-
-                <a href="#" class="var-link">
-                    <i class="ph ph-squares-four"></i> Select all SKU variations
-                </a>
-
             </div>
         </div>
-
     </div>
 
 </div>
 
 <script>
     function swap(el) {
-        document.getElementById('mainImage').src = el.querySelector('img').src;
+        // Updated Logic: Find the image specific to the clicked card
+        // 1. Go up to the card-body
+        var container = el.closest('.card-body');
+        // 2. Find the main-img inside this specific card
+        var mainImg = container.querySelector('.main-img');
+        // 3. Swap the source
+        mainImg.src = el.querySelector('img').src;
     }
+
     function copy(el) {
-        // Simplified copy logic for demo
         const originalBg = el.style.backgroundColor;
         el.style.backgroundColor = '#bbf7d0';
         setTimeout(() => { el.style.backgroundColor = originalBg; }, 300);
