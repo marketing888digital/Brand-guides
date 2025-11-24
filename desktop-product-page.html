@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike SB Dunk Low Pro - 888 Lots B2B</title>
+    <title>Nike SB Dunk Low Pro - 888 Lots Premium</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #0f172a;
-            --action: #2563eb;
-            --action-hover: #1d4ed8;
-            --bg-page: #f8fafc;
-            --bg-card: #ffffff;
-            --border: #cbd5e1;
-            --success: #16a34a;
-            --promo-bg: #fff1f2;
-            --promo-text: #be123c;
+            /* --- BRAND PALETTE (From Guide) --- */
+            --action: #3B82F6;        /* Bright Blue - CTAs, Links */
+            --urgency: #dc2626;       /* Bright Red - Discounts, Sales */
+            --text-main: #334155;     /* Dark Desaturated Blue - Body */
+            --text-quiet: #64748b;    /* Dark Grayish Blue - Secondary */
+            --bg-highlight: #f1f5f9;  /* Light Grayish Blue - Highlights */
+            --bg-page: #f8fafc;       /* Light Grayish Blue - Page BG */
+            --border: #cbd5e1;        /* Borders */
+            --success: #16a34a;       /* Profit/Stock Status */
+            --white: #ffffff;
         }
 
         * { box-sizing: border-box; }
@@ -25,288 +26,219 @@
         body {
             background-color: var(--bg-page);
             font-family: 'Inter', sans-serif;
-            color: var(--primary);
+            color: var(--text-main);
             margin: 0;
             padding: 16px;
             font-size: 14px;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        .container { 
-            max-width: 1480px; 
-            margin: 0 auto; 
-            width: 100%;
-        }
+        .container { max-width: 1480px; margin: 0 auto; width: 100%; }
 
-        /* --- HEADER --- */
+        /* --- 1. HEADER HIERARCHY --- */
         .breadcrumb {
             font-size: 12px;
-            color: #64748b;
+            color: var(--text-quiet);
             margin-bottom: 12px;
-            display: flex; 
-            gap: 6px; 
-            align-items: center;
-            flex-wrap: wrap;
+            display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
         }
-        .breadcrumb a { text-decoration: none; color: #64748b; }
+        .breadcrumb a { text-decoration: none; color: var(--text-quiet); transition: 0.2s; }
         .breadcrumb a:hover { color: var(--action); }
 
         .product-title {
-            font-size: clamp(20px, 4vw, 26px); /* Responsive font size */
+            font-size: clamp(22px, 4vw, 28px);
             font-weight: 800;
-            color: var(--primary);
+            color: var(--text-main);
             margin: 0 0 16px 0;
             line-height: 1.2;
         }
 
-        /* --- RESPONSIVE DATA BAR --- */
+        /* --- 2. IDENTIFIERS (Data Bar) --- */
         .data-bar {
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping on mobile */
+            flex-wrap: wrap;
             gap: 1px;
-            background: #cbd5e1;
-            border: 1px solid #cbd5e1;
+            background: var(--border);
+            border: 1px solid var(--border);
             border-radius: 6px;
             overflow: hidden;
             width: fit-content;
             margin-bottom: 16px;
-            max-width: 100%;
         }
         
         .data-cell {
-            background: #e2e8f0;
+            background: var(--bg-highlight);
             padding: 8px 16px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            flex: 1 1 auto; /* Flex grow/shrink */
         }
         
         .data-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #64748b;
-            margin-bottom: 2px;
+            font-size: 10px; text-transform: uppercase; font-weight: 700; color: var(--text-quiet); margin-bottom: 2px;
         }
         
         .data-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            font-weight: 600;
-            color: #334155;
-            white-space: nowrap;
+            font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text-main); user-select: all;
         }
 
-        /* --- TAGS --- */
+        /* --- 3. TAGS (The "Scannable" Layer) --- */
         .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
+            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
         }
         
-        .badge, .hashtag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid transparent;
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 40px; font-size: 12px; font-weight: 700; border: 1px solid transparent; cursor: default;
         }
-        .badge { border-radius: 40px; }
-        
         .badge-fba { background: #dcfce7; color: #15803d; border-color: #86efac; }
-        .badge-promo { background: #fff1f2; color: #be123c; border-color: #fda4af; }
+        .badge-promo { background: #fef2f2; color: var(--urgency); border-color: #fca5a5; }
         
         .hashtag {
-            background: #fff;
-            border: 1px solid #cbd5e1;
-            color: #64748b;
-            font-weight: 500;
-            cursor: pointer;
+            background: var(--white); border: 1px solid var(--border); color: var(--text-quiet); border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s;
         }
-        .hashtag:hover { border-color: var(--action); color: var(--action); }
+        .hashtag:hover { border-color: var(--action); color: var(--action); background: #eff6ff; }
 
-        /* --- RESPONSIVE GRID SYSTEM --- */
+        /* --- LAYOUT --- */
         .grid-layout {
             display: grid;
             gap: 20px;
             align-items: start;
+            grid-template-columns: 1fr; /* Mobile */
         }
+        @media (min-width: 768px) { .grid-layout { grid-template-columns: 1fr 360px; } }
+        @media (min-width: 1200px) { .grid-layout { grid-template-columns: 380px 1fr 380px; } }
 
-        /* MOBILE FIRST (Default) - 1 Column */
-        .grid-layout {
-            grid-template-columns: 1fr;
-        }
-
-        /* TABLET / LAPTOP (Medium Screens) - 2 Columns */
-        @media (min-width: 768px) {
-            .grid-layout {
-                grid-template-columns: 1fr 340px; /* Main Content | Sidebar (Buy Box) */
-            }
-            /* Rearrange order if needed, but default usually works */
-        }
-
-        /* DESKTOP (Large Screens) - 3 Columns (Original Design) */
-        @media (min-width: 1200px) {
-            .grid-layout {
-                /* Fixed Image | Flexible Market | Fixed Buy Box */
-                grid-template-columns: 380px 1fr 360px; 
-            }
-        }
-
-        /* --- MODULE CARD --- */
+        /* --- MODULES --- */
         .module-card {
-            background: var(--bg-card);
+            background: var(--white);
             border: 1px solid var(--border);
             border-radius: 8px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             overflow: hidden;
             height: fit-content;
         }
-        
         .module-header {
-            background: #f8fafc;
+            background: var(--bg-highlight);
             border-bottom: 1px solid var(--border);
             padding: 10px 14px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #475569;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-quiet);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
         .module-body { padding: 20px; }
 
         /* --- GALLERY --- */
         .gallery-wrapper { display: flex; flex-direction: column; gap: 12px; }
-        
         .main-image-container {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background: #fff;
-            border: 1px solid #f1f5f9;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            width: 100%; aspect-ratio: 1 / 1; background: var(--white); border: 1px solid var(--bg-highlight); border-radius: 6px; display: flex; align-items: center; justify-content: center;
         }
         .main-image { max-width: 90%; max-height: 90%; object-fit: contain; }
-        
         .thumbs-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
         .thumb {
-            aspect-ratio: 1/1; border: 1px solid var(--border);
-            border-radius: 4px; cursor: pointer; padding: 4px;
-            background: white; display: flex; align-items: center; justify-content: center;
+            aspect-ratio: 1/1; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; padding: 4px; background: var(--white); display: flex; align-items: center; justify-content: center;
         }
         .thumb:hover, .thumb.active { border-color: var(--action); box-shadow: 0 0 0 1px var(--action); }
         .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         /* --- MARKET DATA --- */
         .profit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Auto-responsive grid */
-            gap: 12px;
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px;
         }
-        
         .stat-box {
-            border: 1px solid var(--border); border-radius: 6px;
-            padding: 16px 12px; background: #fff; text-align: center;
+            border: 1px solid var(--border); border-radius: 6px; padding: 16px 12px; background: var(--white); text-align: center;
         }
-        .stat-label { font-size: 10px; color: #64748b; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
-        .stat-value { font-size: 24px; font-weight: 800; color: var(--primary); line-height: 1.1; }
-        .stat-sub { font-size: 11px; color: var(--success); font-weight: 700; margin-top: 4px; display: block;}
-
+        .stat-label { font-size: 10px; color: var(--text-quiet); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+        .stat-value { font-size: 24px; font-weight: 800; color: var(--text-main); line-height: 1.1; }
+        
         .research-toolbar { display: flex; flex-wrap: wrap; gap: 8px; }
         .btn-research {
-            background: #fff; border: 1px solid var(--border); color: #475569;
-            font-size: 12px; font-weight: 600; padding: 8px 12px;
-            border-radius: 4px; text-decoration: none; display: flex;
-            align-items: center; justify-content: center; gap: 6px; flex: 1 1 40%;
+            background: var(--white); border: 1px solid var(--border); color: var(--text-quiet);
+            font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 4px;
+            text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; flex: 1 1 40%;
+            transition: 0.2s;
         }
         .btn-research:hover { border-color: var(--action); color: var(--action); background: #eff6ff; }
 
         .legal-text {
-            font-size: 11px; color: #94a3b8; line-height: 1.5;
-            background: #f8fafc; padding: 12px; border-radius: 6px;
-            border: 1px dashed #cbd5e1; margin-top: 20px;
+            font-size: 11px; color: var(--text-quiet); line-height: 1.5; background: var(--bg-highlight); padding: 12px; border-radius: 6px; border: 1px dashed var(--border); margin-top: 20px;
         }
 
-        /* --- BUY BOX --- */
+        /* --- BUY BOX (Conversion Core) --- */
         .buy-box {
             border-top: 4px solid var(--action);
-        }
-        
-        /* Sticky only on desktop */
-        @media (min-width: 1200px) {
-            .buy-box { position: sticky; top: 20px; }
+            /* Desktop Sticky */
+            position: sticky; top: 20px; 
         }
 
+        /* Promo Banner - Meets "Promotion" Blueprint */
         .promo-strip {
-            background: var(--promo-bg); color: var(--promo-text);
-            font-size: 12px; font-weight: 700; padding: 10px 14px;
-            display: flex; align-items: center; justify-content: center;
-            gap: 6px; border-bottom: 1px solid #fda4af; text-align: center;
+            background: var(--urgency); 
+            color: white;
+            font-size: 13px; font-weight: 700; padding: 12px; 
+            text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
 
         .price-hero { text-align: center; margin: 20px 0; }
-        .price-main { font-size: 48px; font-weight: 800; color: var(--primary); line-height: 1; }
-        .price-retail { text-decoration: line-through; color: #94a3b8; font-size: 14px; display: block; margin-bottom: 4px;}
-        
-        .stock-status {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 16px; font-size: 12px;
+        .price-main { font-size: 48px; font-weight: 800; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
+        .price-retail { text-decoration: line-through; color: var(--text-quiet); font-size: 14px; font-weight: 500; margin-bottom: 4px; display: block;}
+
+        /* Shipping Highlight - Major Value Prop */
+        .shipping-row {
+            background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d;
+            padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-bottom: 16px;
         }
-        
+
+        .stock-row {
+            display: flex; justify-content: space-between; font-size: 12px; color: var(--text-quiet); margin-bottom: 8px; font-weight: 600;
+        }
+
+        /* Quantity Control */
         .qty-control { display: flex; margin-bottom: 16px; }
         .qty-btn {
-            width: 44px; height: 44px; border: 1px solid var(--border); background: #fff; 
-            cursor: pointer; font-weight: bold; font-size: 18px;
+            width: 44px; height: 44px; border: 1px solid var(--border); background: var(--white); 
+            cursor: pointer; font-weight: bold; font-size: 18px; color: var(--text-main);
         }
         .qty-input {
             flex: 1; height: 44px; border: 1px solid var(--border); border-left: none; border-right: none; 
-            text-align: center; font-weight: 700; font-size: 16px;
+            text-align: center; font-weight: 700; font-size: 16px; color: var(--text-main);
         }
         .qty-btn:first-child { border-radius: 6px 0 0 6px; }
         .qty-btn:last-child { border-radius: 0 6px 6px 0; }
 
+        /* Primary Action - Bright Blue #3B82F6 */
         .btn-add-order {
             width: 100%; background: var(--action); color: white; border: none;
             padding: 16px; font-size: 16px; font-weight: 700; border-radius: 6px;
             cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+            margin-bottom: 12px; transition: transform 0.1s;
         }
-        .btn-add-order:hover { background: var(--action-hover); }
+        .btn-add-order:hover { filter: brightness(110%); transform: translateY(-1px); }
+
+        /* Secondary Actions - Negotiation Blueprint */
+        .secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .btn-sec {
+            background: var(--white); border: 1px solid var(--border); color: var(--text-main);
+            padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: 0.2s;
+        }
+        .btn-sec:hover { border-color: var(--action); color: var(--action); background: var(--bg-highlight); }
 
         .variations-link {
-            display: block; text-align: center; margin-top: 16px; font-size: 12px;
-            color: #64748b; text-decoration: none; font-weight: 600; padding: 8px;
-            border-radius: 4px; border: 1px solid transparent;
+            display: block; text-align: center; font-size: 12px;
+            color: var(--text-quiet); text-decoration: none; font-weight: 600; padding: 8px;
+            border-radius: 4px; border: 1px dashed var(--border); transition: 0.2s;
         }
-        .variations-link:hover { color: var(--action); background: #eff6ff; }
+        .variations-link:hover { color: var(--action); border-color: var(--action); background: #eff6ff; }
 
         /* --- BOTTOM GRID --- */
-        .bottom-grid {
-            display: grid;
-            gap: 24px;
-        }
-        @media (min-width: 900px) {
-            .bottom-grid { grid-template-columns: 1fr 1fr; }
-        }
+        .bottom-grid { display: grid; gap: 24px; }
+        @media (min-width: 900px) { .bottom-grid { grid-template-columns: 1fr 1fr; } }
         
-        .spec-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-        .spec-label { color: #64748b; font-weight: 500; }
-        .spec-val { font-weight: 700; color: #334155; }
+        .spec-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--bg-highlight); font-size: 13px; }
+        .spec-label { color: var(--text-quiet); font-weight: 500; }
+        .spec-val { font-weight: 700; color: var(--text-main); }
     </style>
 </head>
 <body>
@@ -323,7 +255,7 @@
 
     <h1 class="product-title">Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5</h1>
 
-    <!-- DATA BAR -->
+    <!-- DATA BAR (The 5-Point Check: Accuracy) -->
     <div class="data-bar">
         <div class="data-cell">
             <span class="data-label">SKU</span>
@@ -339,15 +271,15 @@
         </div>
         <div class="data-cell">
             <span class="data-label">GTIN</span>
-            <span class="data-value" style="color:#94a3b8">N/A</span>
+            <span class="data-value" style="color:var(--text-quiet)">N/A</span>
         </div>
-        <div class="data-cell" style="border-left:1px solid #cbd5e1; background:#f8fafc;">
+        <div class="data-cell" style="border-left:1px solid var(--border); background:var(--bg-highlight);">
             <span class="data-label">ID</span>
             <span class="data-value">#358885</span>
         </div>
     </div>
 
-    <!-- TAGS -->
+    <!-- TAGS (Reason/Qualifier) -->
     <div class="tag-row">
         <span class="badge badge-fba"><i class="ph ph-cube"></i> Fulfilled by Amazon</span>
         <span class="badge badge-promo"><i class="ph ph-tag"></i> First Order Promo</span>
@@ -397,11 +329,13 @@
                 <div class="module-title"><i class="ph ph-chart-line-up"></i> Market Data</div>
             </div>
             <div class="module-body">
+                
+                <!-- Profit / Validation -->
                 <div class="profit-grid">
                     <div class="stat-box">
                         <div class="stat-label">Amazon Buy Box</div>
                         <div class="stat-value">$387.99</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px;">1 Offer Available</div>
+                        <div style="font-size:11px; color:var(--text-quiet); margin-top:4px;">1 Offer Available</div>
                     </div>
                     <div class="stat-box" style="background:#f0fdf4; border-color:#86efac;">
                         <div class="stat-label" style="color:#166534">Est. Profit</div>
@@ -410,51 +344,71 @@
                     </div>
                 </div>
 
-                <div class="research-section">
-                    <div class="stat-label" style="margin-bottom:8px">Research Tools</div>
-                    <div class="research-toolbar">
-                        <a href="#" class="btn-research"><i class="ph ph-amazon-logo"></i> Amazon</a>
-                        <a href="#" class="btn-research"><i class="ph ph-google-logo"></i> Google</a>
-                        <a href="#" class="btn-research"><i class="ph ph-barcode"></i> UPC</a>
-                        <a href="#" class="btn-research"><i class="ph ph-scan"></i> Lens</a>
-                    </div>
+                <!-- Research Tools (Secondary) -->
+                <div class="stat-label" style="margin-bottom:8px">Research Tools</div>
+                <div class="research-toolbar">
+                    <a href="#" class="btn-research"><i class="ph ph-amazon-logo"></i> Amazon</a>
+                    <a href="#" class="btn-research"><i class="ph ph-google-logo"></i> Google</a>
+                    <a href="#" class="btn-research"><i class="ph ph-barcode"></i> UPC</a>
+                    <a href="#" class="btn-research"><i class="ph ph-scan"></i> Lens</a>
                 </div>
 
+                <!-- Disclaimer -->
                 <div class="legal-text">
-                    <strong>Disclaimer:</strong> Estimated Buy Box price of Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5. Actual price may vary. Az prices is subject to change without prior notice.
+                    <strong>Disclaimer:</strong> Estimated Buy Box price of Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5. Actual price may vary. Az prices is subject to change without prior notice due to regular price updates from Az and its vendors. We make every effort to update the prices regularly. However, please note that we cannot confirm the accuracy of this information and the product details.
                     <br><br>
                     <i class="ph ph-warning"></i> Note: The displayed images and UPC may not be correct for all items in our inventory.
                 </div>
             </div>
         </div>
 
-        <!-- 3. BUY BOX -->
+        <!-- 3. BUY BOX (High-Conversion) -->
         <div class="module-card buy-box">
+            <!-- Promo Banner (Brand Guide: Promotion Blueprint) -->
             <div class="promo-strip">
                 <i class="ph ph-tag"></i> SAVE 60% WITH FIRST ORDER PROMO
             </div>
+            
             <div class="module-body">
                 <div class="price-hero">
                     <span class="price-retail">MSRP $300.00</span>
                     <span class="price-main">$120.00</span>
                 </div>
 
-                <div class="stock-status">
+                <!-- Shipping Qualifier -->
+                <div class="shipping-row">
+                    <i class="ph ph-truck" style="font-size: 18px;"></i>
+                    <span>Shipping: $1.00 Flat Rate</span>
+                </div>
+
+                <div class="stock-row">
                     <span style="color:#15803d; font-weight:700; display:flex; align-items:center; gap:4px;">
                         <i class="ph ph-check-circle-fill"></i> In Stock
                     </span>
-                    <span style="color:#64748b; font-weight:600;">MOQ: 1 Unit</span>
+                    <span>MOQ: 1 Unit</span>
                 </div>
 
+                <!-- Quantity Control -->
                 <div class="qty-control">
                     <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
                     <input type="number" class="qty-input" value="1" min="1" max="1" readonly>
                     <button class="qty-btn" disabled style="cursor:not-allowed; opacity:0.5;">+</button>
                 </div>
 
+                <!-- Primary CTA: Bright Blue -->
                 <button class="btn-add-order">
                     <i class="ph ph-shopping-cart-simple" style="font-size:20px;"></i> Add to Order
                 </button>
+
+                <!-- Secondary Actions -->
+                <div class="secondary-actions">
+                    <button class="btn-sec">
+                        <i class="ph ph-handshake"></i> Negotiate
+                    </button>
+                    <button class="btn-sec">
+                        <i class="ph ph-heart"></i> Watch
+                    </button>
+                </div>
 
                 <a href="#" class="variations-link">
                     <i class="ph ph-squares-four"></i> Select all SKU variations
@@ -491,7 +445,7 @@
                     </div>
                     <div>
                         <div style="font-weight:700; font-size:13px; margin-bottom:6px;">Condition: Brand New (FBA)</div>
-                        <p style="margin:0; font-size:13px; color:#64748b; line-height:1.6;">
+                        <p style="margin:0; font-size:13px; color:var(--text-quiet); line-height:1.6;">
                             This item is part of a "Single SKU" lot. Items are brand new, Fulfilled by Amazon (FBA) returns or overstock. Pristine condition. Original packaging included.
                         </p>
                     </div>
