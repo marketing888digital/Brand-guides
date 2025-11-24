@@ -13,7 +13,7 @@
             --primary: #0f172a;       /* Dark Slate for Text */
             --action: #2563eb;        /* Primary Action Blue */
             --action-hover: #1d4ed8;
-            --secondary-btn: #e2e8f0; /* For Research Buttons */
+            --secondary-btn: #f1f5f9; /* For Research Buttons */
             --bg-page: #f8fafc;
             --bg-card: #ffffff;
             --border: #cbd5e1;
@@ -54,15 +54,15 @@
             font-size: 26px;
             font-weight: 800;
             color: var(--primary);
-            margin: 0 0 12px 0;
+            margin: 0 0 16px 0;
             line-height: 1.2;
         }
 
         /* DATA BAR (The Identifiers) */
         .data-bar {
             display: flex;
-            gap: 1px; /* Divider gap */
-            background: #cbd5e1; /* Divider color */
+            gap: 1px;
+            background: #cbd5e1;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             overflow: hidden;
@@ -76,6 +76,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            min-width: 100px;
         }
         
         .data-label {
@@ -92,7 +93,7 @@
             font-size: 13px;
             font-weight: 600;
             color: #334155;
-            user-select: all; /* Makes copying easier */
+            user-select: all;
         }
 
         /* TAGS */
@@ -110,11 +111,10 @@
             align-items: center;
             gap: 6px;
             padding: 6px 12px;
-            border-radius: 40px; /* Pill shape */
+            border-radius: 40px;
             font-size: 12px;
             font-weight: 600;
             border: 1px solid transparent;
-            transition: 0.2s;
             cursor: default;
         }
         
@@ -125,18 +125,19 @@
             background: #fff;
             border: 1px solid #cbd5e1;
             color: #64748b;
-            border-radius: 4px; /* Box shape for tags */
+            border-radius: 4px;
             padding: 4px 10px;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.2s;
         }
         .hashtag:hover { border-color: var(--action); color: var(--action); }
 
         /* --- MAIN GRID LAYOUT --- */
         .grid-layout {
             display: grid;
-            grid-template-columns: 380px 1fr 360px; /* Image | Market | Buy */
+            grid-template-columns: 380px 1fr 360px; /* Fixed widths for sides, flex middle */
             gap: 24px;
             align-items: start;
             margin-bottom: 24px;
@@ -149,6 +150,7 @@
             border-radius: 8px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             overflow: hidden;
+            height: fit-content; /* Important to prevent stretching */
         }
         
         .module-header {
@@ -161,83 +163,120 @@
         }
         
         .module-title {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 800;
             text-transform: uppercase;
             color: #475569;
             display: flex;
             align-items: center;
             gap: 8px;
+            letter-spacing: 0.5px;
         }
 
         .module-body { padding: 20px; }
 
-        /* --- IMAGE MODULE --- */
-        .main-image-box {
+        /* --- GALLERY MODULE (FIXED) --- */
+        /* This creates a rigid square container */
+        .gallery-wrapper {
             width: 100%;
-            height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Forces a square shape */
             background: #fff;
+            border: 1px solid #f1f5f9;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 12px;
-            border: 1px solid #f1f5f9;
-            border-radius: 4px;
+            position: relative;
+            overflow: hidden; /* Prevents image bleed */
         }
-        .main-image-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .main-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain; /* Ensures image fits inside without cropping */
+            transition: transform 0.2s ease;
+        }
         
-        .thumb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .thumbs-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
         .thumb {
             aspect-ratio: 1/1;
             border: 1px solid var(--border);
             border-radius: 4px;
             cursor: pointer;
             padding: 4px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s;
         }
-        .thumb:hover { border-color: var(--action); }
+        .thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .thumb:hover, .thumb.active {
+            border-color: var(--action);
+            box-shadow: 0 0 0 1px var(--action);
+        }
 
-        /* --- MARKET INTELLIGENCE (Middle) --- */
+        /* --- MARKET INTELLIGENCE --- */
         .profit-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 12px;
             margin-bottom: 20px;
         }
         
         .stat-box {
             border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 12px;
+            padding: 16px 12px;
             background: #fff;
+            text-align: center;
         }
         
-        .stat-label { font-size: 11px; color: #64748b; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
-        .stat-value { font-size: 20px; font-weight: 800; color: var(--primary); }
-        .stat-sub { font-size: 11px; color: var(--success); font-weight: 600; }
+        .stat-label { font-size: 10px; color: #64748b; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-value { font-size: 24px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+        .stat-sub { font-size: 11px; color: var(--success); font-weight: 700; margin-top: 4px; display: block;}
 
+        .research-section { margin-bottom: 20px; }
+        .research-header { font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 8px; text-transform: uppercase; }
+        
         .research-toolbar {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
         }
         
-        /* Subtle Research Buttons (Hierarchy fix) */
         .btn-research {
             background: #fff;
             border: 1px solid var(--border);
-            color: #64748b;
-            font-size: 11px;
+            color: #475569;
+            font-size: 12px;
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 4px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: 0.1s;
+            flex: 1;
+            justify-content: center;
+            white-space: nowrap;
         }
         .btn-research:hover {
             border-color: var(--action);
@@ -245,19 +284,21 @@
             background: #eff6ff;
         }
 
-        .legal-disclaimer {
-            font-size: 10px;
+        .legal-text {
+            font-size: 11px;
             color: #94a3b8;
-            line-height: 1.4;
+            line-height: 1.5;
             background: #f8fafc;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px dashed #e2e8f0;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px dashed #cbd5e1;
         }
 
-        /* --- BUY BOX (Action Core) --- */
+        /* --- BUY BOX --- */
         .buy-box {
-            border-top: 4px solid var(--action); /* Visual Pop */
+            border-top: 4px solid var(--action);
+            position: sticky;
+            top: 20px;
         }
 
         .promo-strip {
@@ -265,46 +306,46 @@
             color: var(--promo-text);
             font-size: 12px;
             font-weight: 700;
-            padding: 8px 12px;
+            padding: 10px 14px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             border-bottom: 1px solid #fda4af;
         }
 
         .price-hero {
             text-align: center;
-            margin: 16px 0;
+            margin: 20px 0;
         }
-        .price-main { font-size: 42px; font-weight: 800; color: var(--primary); line-height: 1; }
-        .price-retail { text-decoration: line-through; color: #94a3b8; font-size: 14px; }
+        .price-main { font-size: 48px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -1px; }
+        .price-retail { text-decoration: line-through; color: #94a3b8; font-size: 14px; font-weight: 500; margin-bottom: 4px; display: block;}
         
-        .stock-info {
+        .stock-status {
             display: flex;
             justify-content: space-between;
-            background: #f1f5f9;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
+            align-items: center;
             margin-bottom: 16px;
+            padding: 0 4px;
         }
-
+        
         .qty-control {
             display: flex;
-            gap: 0;
             margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
         .qty-btn {
-            width: 40px; height: 40px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-weight: bold; color: var(--primary);
+            width: 44px; height: 44px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-weight: bold; color: var(--primary); font-size: 18px;
+            transition: background 0.1s;
         }
+        .qty-btn:hover:not(:disabled) { background: #f1f5f9; }
         .qty-input {
-            flex: 1; height: 40px; border: 1px solid var(--border); border-left: none; border-right: none; text-align: center; font-weight: 700; font-size: 16px;
+            flex: 1; height: 44px; border: 1px solid var(--border); border-left: none; border-right: none; text-align: center; font-weight: 700; font-size: 16px; color: var(--primary);
         }
-        .qty-btn:first-child { border-radius: 4px 0 0 4px; }
-        .qty-btn:last-child { border-radius: 0 4px 4px 0; }
+        .qty-btn:first-child { border-radius: 6px 0 0 6px; }
+        .qty-btn:last-child { border-radius: 0 6px 6px 0; }
 
-        /* Dominant Action Button */
+        /* Action Button */
         .btn-add-order {
             width: 100%;
             background: var(--action);
@@ -315,29 +356,29 @@
             font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-            transition: 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+            transition: all 0.2s;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
-        .btn-add-order:hover { background: var(--action-hover); transform: translateY(-1px); }
+        .btn-add-order:hover { background: var(--action-hover); transform: translateY(-1px); box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.4); }
 
         .variations-link {
             display: block;
             text-align: center;
-            margin-top: 12px;
+            margin-top: 16px;
             font-size: 12px;
             color: #64748b;
             text-decoration: none;
-            border-bottom: 1px dashed #cbd5e1;
-            padding-bottom: 2px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            font-weight: 600;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: 0.2s;
         }
-        .variations-link:hover { color: var(--action); border-color: var(--action); }
+        .variations-link:hover { color: var(--action); background: #eff6ff; border-color: #bfdbfe; }
 
         /* --- BOTTOM ROW --- */
         .bottom-grid {
@@ -346,13 +387,19 @@
             gap: 24px;
         }
         
-        .spec-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-        .spec-label { color: #64748b; }
-        .spec-val { font-weight: 600; color: #334155; }
+        .spec-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+        .spec-row:last-child { border-bottom: none; }
+        .spec-label { color: #64748b; font-weight: 500; }
+        .spec-val { font-weight: 700; color: #334155; }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .grid-layout, .bottom-grid { grid-template-columns: 1fr; }
+            .grid-layout { grid-template-columns: 1fr 1fr; } /* 2 cols on tablet */
+            .module-card:nth-child(3) { grid-column: span 2; } /* Buy box full width */
+        }
+        @media (max-width: 768px) {
+            .grid-layout, .bottom-grid { grid-template-columns: 1fr; } /* Stack on mobile */
+            .module-card:nth-child(3) { grid-column: auto; }
         }
     </style>
 </head>
@@ -360,7 +407,7 @@
 
 <div class="container">
 
-    <!-- 1. HEADER & BREADCRUMBS -->
+    <!-- 1. BREADCRUMB -->
     <div class="breadcrumb">
         <a href="#">Home</a> <i class="ph ph-caret-right"></i>
         <a href="#">Shoes</a> <i class="ph ph-caret-right"></i>
@@ -370,7 +417,7 @@
 
     <h1 class="product-title">Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5</h1>
 
-    <!-- 2. DATA BAR (Identifiers) -->
+    <!-- 2. DATA BAR -->
     <div class="data-bar">
         <div class="data-cell">
             <span class="data-label">SKU</span>
@@ -388,110 +435,127 @@
             <span class="data-label">GTIN</span>
             <span class="data-value" style="color:#94a3b8">N/A</span>
         </div>
+        <div class="data-cell" style="border-left:1px solid #cbd5e1; background:#f8fafc;">
+            <span class="data-label">ID</span>
+            <span class="data-value">#358885</span>
+        </div>
     </div>
 
-    <!-- 3. TAGS & FILTERS -->
+    <!-- 3. TAGS -->
     <div class="tag-row">
-        <span class="badge badge-fba"><i class="ph ph-cube"></i> Fulfilled by Amazon</span>
+        <span class="badge badge-fba"><i class="ph ph-package"></i> Fulfilled by Amazon</span>
         <span class="badge badge-promo"><i class="ph ph-tag"></i> First Order Promo</span>
         
         <span class="hashtag">#Shoes</span>
         <span class="hashtag">#Sneakers</span>
         <span class="hashtag">#Nike</span>
         <span class="hashtag">#Size:8.5</span>
+        <span class="hashtag">#SB_Dunk</span>
+        <span class="hashtag">#BlueFury</span>
     </div>
 
     <!-- 4. MAIN GRID -->
     <div class="grid-layout">
         
-        <!-- A. IMAGES -->
+        <!-- A. GALLERY MODULE -->
         <div class="module-card">
             <div class="module-header">
                 <div class="module-title"><i class="ph ph-image"></i> Gallery</div>
             </div>
             <div class="module-body">
-                <div class="main-image-box">
-                    <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg" id="mainImage">
-                </div>
-                <div class="thumb-grid">
-                    <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg" class="thumb" onclick="swap(this)">
-                    <img src="https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg" class="thumb" onclick="swap(this)">
-                    <img src="https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg" class="thumb" onclick="swap(this)">
-                    <img src="https://m.media-amazon.com/images/I/71B1KEscsdL.jpg" class="thumb" onclick="swap(this)">
+                <div class="gallery-wrapper">
+                    <!-- Fixed Square Container -->
+                    <div class="main-image-container">
+                        <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg" class="main-image" id="mainImage">
+                    </div>
+                    <!-- Thumbnails -->
+                    <div class="thumbs-row">
+                        <div class="thumb active" onclick="swap(this, 'https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg')">
+                            <img src="https://m.media-amazon.com/images/I/71JgDStWxaS._UL_1000_.jpg">
+                        </div>
+                        <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg')">
+                            <img src="https://m.media-amazon.com/images/I/71oCzRhwT5L.jpg">
+                        </div>
+                        <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg')">
+                            <img src="https://m.media-amazon.com/images/I/71FtjhdyFFL.jpg">
+                        </div>
+                        <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71B1KEscsdL.jpg')">
+                            <img src="https://m.media-amazon.com/images/I/71B1KEscsdL.jpg">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- B. MARKET INTELLIGENCE (Research) -->
+        <!-- B. MARKET DATA MODULE -->
         <div class="module-card">
             <div class="module-header">
                 <div class="module-title"><i class="ph ph-chart-line-up"></i> Market Data</div>
             </div>
             <div class="module-body">
                 
-                <!-- Profit Logic -->
                 <div class="profit-grid">
                     <div class="stat-box">
                         <div class="stat-label">Amazon Buy Box</div>
                         <div class="stat-value">$387.99</div>
-                        <div class="stat-sub" style="color:#64748b">1 Offer Available</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:4px;">1 Offer Available</div>
                     </div>
                     <div class="stat-box" style="background:#f0fdf4; border-color:#86efac;">
-                        <div class="stat-label" style="color:#166534">Potential Profit</div>
+                        <div class="stat-label" style="color:#166534">Est. Profit</div>
                         <div class="stat-value" style="color:#15803d">+$267.99</div>
                         <div class="stat-sub">ROI: 223%</div>
                     </div>
                 </div>
 
-                <!-- Research Tools (Secondary Hierarchy) -->
-                <div class="stat-label" style="margin-bottom:8px;">Research Tools</div>
-                <div class="research-toolbar">
-                    <a href="#" class="btn-research"><i class="ph ph-amazon-logo"></i> View on Amazon</a>
-                    <a href="#" class="btn-research"><i class="ph ph-google-logo"></i> Google</a>
-                    <a href="#" class="btn-research"><i class="ph ph-barcode"></i> UPC Lookup</a>
-                    <a href="#" class="btn-research"><i class="ph ph-scan"></i> Lens</a>
+                <div class="research-section">
+                    <div class="research-header">Research Tools</div>
+                    <div class="research-toolbar">
+                        <a href="#" class="btn-research"><i class="ph ph-amazon-logo"></i> Amazon</a>
+                        <a href="#" class="btn-research"><i class="ph ph-google-logo"></i> Google</a>
+                        <a href="#" class="btn-research"><i class="ph ph-barcode"></i> UPC</a>
+                        <a href="#" class="btn-research"><i class="ph ph-scan"></i> Lens</a>
+                    </div>
                 </div>
 
-                <!-- Legal Disclaimer -->
-                <div class="legal-disclaimer">
-                    *Estimated Buy Box price of Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5. Actual price may vary. Az prices is subject to change without prior notice due to regular price updates from Az and its vendors. We make every effort to update the prices regularly. However, please note that we cannot confirm the accuracy of this information and the product details.
+                <div class="legal-text">
+                    <strong>Disclaimer:</strong> Estimated Buy Box price of Nike Mens SB Dunk Low Pro BQ6817 400 Blue Fury - Size 8.5. Actual price may vary. Az prices is subject to change without prior notice. We make every effort to update prices regularly.
                     <br><br>
-                    Note: The displayed images and UPC may not be correct for all items in our inventory.
+                    <i class="ph ph-warning"></i> Note: The displayed images and UPC may not be correct for all items in our inventory.
                 </div>
 
             </div>
         </div>
 
-        <!-- C. BUY BOX (Action Core) -->
+        <!-- C. BUY BOX MODULE -->
         <div class="module-card buy-box">
             <div class="promo-strip">
-                <i class="ph ph-sparkle-fill"></i> SAVE 60% WITH FIRST ORDER PROMO
+                <i class="ph ph-tag"></i> SAVE 60% WITH FIRST ORDER PROMO
             </div>
             <div class="module-body">
                 
                 <div class="price-hero">
-                    <div class="price-retail">MSRP $300.00</div>
-                    <div class="price-main">$120.00</div>
+                    <span class="price-retail">MSRP $300.00</span>
+                    <span class="price-main">$120.00</span>
                 </div>
 
-                <div class="stock-info">
-                    <span style="color:#15803d"><i class="ph ph-check-circle"></i> In Stock</span>
-                    <span>MOQ: 1 Unit</span>
+                <div class="stock-status">
+                    <span style="color:#15803d; font-weight:700; font-size:13px; display:flex; align-items:center; gap:4px;">
+                        <i class="ph ph-check-circle-fill"></i> In Stock
+                    </span>
+                    <span style="color:#64748b; font-size:12px; font-weight:600;">MOQ: 1 Unit</span>
                 </div>
 
-                <!-- Quantity Selector -->
+                <!-- Quantity Control -->
                 <div class="qty-control">
-                    <button class="qty-btn" onclick="changeQty(-1)">-</button>
-                    <input type="number" class="qty-input" value="1" min="1" max="1" id="qtyInput" readonly>
-                    <button class="qty-btn" onclick="changeQty(1)" disabled style="opacity:0.5; cursor:not-allowed">+</button>
+                    <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
+                    <input type="number" class="qty-input" value="1" min="1" max="1" readonly>
+                    <button class="qty-btn" disabled style="cursor:not-allowed; opacity:0.5;">+</button>
                 </div>
 
-                <!-- Dominant Action -->
                 <button class="btn-add-order">
-                    <i class="ph ph-shopping-cart-simple"></i> Add to Order
+                    <i class="ph ph-shopping-cart-simple" style="font-size:20px;"></i> Add to Order
                 </button>
 
-                <!-- Subtle Variation Link -->
                 <a href="#" class="variations-link">
                     <i class="ph ph-squares-four"></i> Select all SKU variations
                 </a>
@@ -504,10 +568,10 @@
     <!-- 5. BOTTOM ROW -->
     <div class="bottom-grid">
         
-        <!-- Specs -->
+        <!-- Item Specifications -->
         <div class="module-card">
             <div class="module-header">
-                <div class="module-title"><i class="ph ph-sliders"></i> Item Specifications</div>
+                <div class="module-title"><i class="ph ph-sliders-horizontal"></i> Item Specifications</div>
             </div>
             <div class="module-body" style="padding-top:10px;">
                 <div class="spec-row"><span class="spec-label">Brand</span><span class="spec-val">Nike</span></div>
@@ -515,6 +579,7 @@
                 <div class="spec-row"><span class="spec-label">Color</span><span class="spec-val">Blue Fury / Deep Royal</span></div>
                 <div class="spec-row"><span class="spec-label">Category</span><span class="spec-val">Sneakers</span></div>
                 <div class="spec-row"><span class="spec-label">Gender</span><span class="spec-val">Mens</span></div>
+                <div class="spec-row"><span class="spec-label">Size</span><span class="spec-val">8.5 US</span></div>
             </div>
         </div>
 
@@ -524,13 +589,13 @@
                 <div class="module-title"><i class="ph ph-notebook"></i> Notes</div>
             </div>
             <div class="module-body">
-                <div style="display:flex; gap:12px;">
-                    <div style="background:#dcfce7; color:#15803d; padding:8px; border-radius:4px; height:fit-content;">
-                        <i class="ph ph-package" style="font-size:20px;"></i>
+                <div style="display:flex; gap:14px;">
+                    <div style="background:#dcfce7; color:#15803d; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <i class="ph ph-cube" style="font-size:20px;"></i>
                     </div>
                     <div>
-                        <div style="font-weight:700; font-size:13px; margin-bottom:4px;">Condition: Brand New (FBA)</div>
-                        <p style="margin:0; font-size:13px; color:#64748b; line-height:1.5;">
+                        <div style="font-weight:700; font-size:13px; margin-bottom:6px;">Condition: Brand New (FBA)</div>
+                        <p style="margin:0; font-size:13px; color:#64748b; line-height:1.6;">
                             This item is part of a "Single SKU" lot. Items are brand new, Fulfilled by Amazon (FBA) returns or overstock. Pristine condition. Original packaging included.
                         </p>
                     </div>
@@ -543,12 +608,10 @@
 </div>
 
 <script>
-    function swap(el) {
-        document.getElementById('mainImage').src = el.src;
-    }
-    
-    function changeQty(amount) {
-        // Logic for changing qty (limited to 1 in this example)
+    function swap(thumb, src) {
+        document.getElementById('mainImage').src = src;
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
     }
 </script>
 
