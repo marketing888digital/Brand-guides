@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SOTA Data Pipeline Architecture</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gsc: #ea580c; /* Orange for GSC */
+            --accent-inv: #3b82f6; /* Blue for Inventory */
+            --accent-ai: #10b981;  /* Green for AI */
+            --line-color: #475569;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            overflow-x: hidden;
+        }
+
+        h1 { text-align: center; font-weight: 300; letter-spacing: 1px; margin-bottom: 60px; }
+        h1 strong { font-weight: 800; background: linear-gradient(to right, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .diagram {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Column Headers */
+        .col-header {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--line-color);
+            padding-bottom: 10px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+            z-index: 2;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--text-muted);
+        }
+
+        .card-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+        .card-title { font-weight: 700; font-size: 16px; margin-bottom: 5px; display: block; }
+        .card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        .tag-inv { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .tag-gsc { background: rgba(234, 88, 12, 0.2); color: #fdba74; }
+        .tag-ai { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+
+        /* Connecting Lines (Visual only) */
+        .connector {
+            position: absolute;
+            height: 2px;
+            background: var(--line-color);
+            z-index: 1;
+        }
+
+        /* Specific Card Highlights */
+        .border-gsc { border-left: 4px solid var(--accent-gsc); }
+        .border-inv { border-left: 4px solid var(--accent-inv); }
+        .border-ai { border-left: 4px solid var(--accent-ai); }
+
+        /* Metrics Badge */
+        .metric {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>The <strong>SOTA</strong> Data Engine</h1>
+
+    <div class="diagram">
+        
+        <!-- COLUMN 1: INGESTION -->
+        <div class="col">
+            <div class="col-header">1. Raw Data Ingestion</div>
+            
+            <div class="card border-inv">
+                <span class="card-icon">📂</span>
+                <span class="card-title">Weekly CSV Inventory</span>
+                <div class="card-desc">3 Years of historical order data uploaded to Google Drive.</div>
+                <div class="tag tag-inv">n8n: Drive Trigger</div>
+            </div>
+
+            <div class="card border-gsc">
+                <span class="card-icon">🔍</span>
+                <span class="card-title">GSC API (v3)</span>
+                <div class="card-desc">Fetches Queries, Clicks, CTR, and Position for 5 Domains.</div>
+                <div class="tag tag-gsc">Real-Time Demand</div>
+            </div>
+
+            <div class="card border-gsc">
+                <span class="card-icon">📊</span>
+                <span class="card-title">GA4 Analytics API</span>
+                <div class="card-desc">Validates traffic quality via `itemsClickedInList` metrics.</div>
+            </div>
+        </div>
+
+        <!-- COLUMN 2: PROCESSING & LOGIC -->
+        <div class="col">
+            <div class="col-header">2. Processing Logic</div>
+
+            <div class="card border-inv">
+                <span class="card-icon">⚙️</span>
+                <span class="metric">Apps Script</span>
+                <span class="card-title">Inventory Logic</span>
+                <div class="card-desc">
+                    <code>updateInventoryWeekLoadDetailed</code><br>
+                    Separates "Fresh Arrivals" (7 days) from "Backlog" (3 years).
+                </div>
+            </div>
+
+            <div class="card border-inv">
+                <span class="card-icon">💰</span>
+                <span class="metric">Apps Script</span>
+                <span class="card-title">Profit Calculator</span>
+                <div class="card-desc">
+                    <code>analyzeAllInventories_V11</code><br>
+                    Calculates Net Profit = (Amazon Price - Cost). Flags discrepancies > 3.0 ratio.
+                </div>
+            </div>
+
+            <div class="card border-gsc">
+                <span class="card-icon">📈</span>
+                <span class="metric">n8n Logic</span>
+                <span class="card-title">Momentum Analysis</span>
+                <div class="card-desc">
+                    Compares (Current 30 Days) vs (Previous 30 Days) to identify trending keywords.
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 3: UNIFICATION -->
+        <div class="col">
+            <div class="col-header">3. The "Source of Truth"</div>
+
+            <div class="card border-inv" style="height: 100px; display:flex; flex-direction:column; justify-content:center; border-left: 4px solid #8b5cf6;">
+                <span class="card-icon">🗄️</span>
+                <span class="card-title">Master Supabase / Sheets</span>
+                <div class="card-desc">All Inventory, Financials, and SEO data merged into single rows by SKU/Category.</div>
+            </div>
+
+            <div class="card border-ai">
+                <span class="card-icon">📅</span>
+                <span class="card-title">Market Almanac</span>
+                <div class="card-desc">Injects seasonality (e.g., "Black Friday Blitz") based on Month 11 logic.</div>
+            </div>
+        </div>
+
+        <!-- COLUMN 4: GENERATION -->
+        <div class="col">
+            <div class="col-header">4. AI Content Generation</div>
+
+            <div class="card border-ai">
+                <span class="card-icon">🤖</span>
+                <span class="card-title">Prompt Engineer</span>
+                <div class="card-desc">Assembles the "Strict Prompt" using specific data points (Price, Count, Trend).</div>
+            </div>
+
+            <div class="card border-ai">
+                <span class="card-icon">✨</span>
+                <span class="card-title">Final Output</span>
+                <div class="card-desc">The HTML Article containing "X-Ray" verifiable data points.</div>
+                <div class="tag tag-ai">Approved for Publish</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
