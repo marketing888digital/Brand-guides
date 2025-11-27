@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Generation: Data Provenance Report</title>
+    <style>
+        :root {
+            --inv-color: #3b82f6; /* Blue for Inventory */
+            --fin-color: #10b981; /* Green for Money/Margins */
+            --trend-color: #8b5cf6; /* Purple for Trends/Strategy */
+            --seo-color: #f59e0b; /* Orange for Search Data */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            background: #1e293b;
+            color: white;
+            padding: 30px;
+            border-bottom: 1px solid #334155;
+        }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+        .header p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; }
+
+        /* LEGEND / CONTROL PANEL */
+        .controls {
+            padding: 20px 30px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .legend-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-right: 10px; }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            cursor: help;
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot.inv { background: var(--inv-color); box-shadow: 0 0 8px var(--inv-color); }
+        .dot.fin { background: var(--fin-color); box-shadow: 0 0 8px var(--fin-color); }
+        .dot.trend { background: var(--trend-color); box-shadow: 0 0 8px var(--trend-color); }
+        .dot.seo { background: var(--seo-color); box-shadow: 0 0 8px var(--seo-color); }
+
+        /* ARTICLE CONTENT AREA */
+        .content-area {
+            padding: 40px;
+            font-size: 17px;
+            color: #334155;
+        }
+
+        /* X-RAY HIGHLIGHTS */
+        .x-ray {
+            position: relative;
+            font-weight: 600;
+            padding-bottom: 2px;
+            border-bottom: 2px solid;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        /* 1. Inventory Highlights */
+        .x-ray.inv { border-color: var(--inv-color); color: #1e3a8a; }
+        .x-ray.inv:hover { background: rgba(59, 130, 246, 0.1); }
+
+        /* 2. Financial Highlights */
+        .x-ray.fin { border-color: var(--fin-color); color: #064e3b; }
+        .x-ray.fin:hover { background: rgba(16, 185, 129, 0.1); }
+
+        /* 3. Trend Highlights */
+        .x-ray.trend { border-color: var(--trend-color); color: #4c1d95; }
+        .x-ray.trend:hover { background: rgba(139, 92, 246, 0.1); }
+
+        /* 4. SEO Highlights */
+        .x-ray.seo { border-color: var(--seo-color); color: #78350f; }
+        .x-ray.seo:hover { background: rgba(245, 158, 11, 0.1); }
+
+        /* TOOLTIP LOGIC */
+        .x-ray::before {
+            content: attr(data-origin);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-weight: 400;
+        }
+        .x-ray::after {
+            content: '';
+            position: absolute;
+            bottom: 110%; /* Arrow position */
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+        .x-ray:hover::before, .x-ray:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: 135%; /* Move up slightly on hover */
+        }
+        .x-ray:hover::after { bottom: 125%; }
+
+        /* LINK STYLING */
+        a { color: var(--inv-color); text-decoration: none; font-weight: 600; border-bottom: 1px dashed var(--inv-color); }
+        a:hover { background: rgba(59, 130, 246, 0.1); }
+
+        /* DISCLAIMER */
+        .disclaimer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-style: italic;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="header">
+        <h1>Automated Content Enrichment Logic</h1>
+        <p>Visualizing the data lineage behind the generated content.</p>
+    </div>
+
+    <div class="controls">
+        <span class="legend-label">Data Sources:</span>
+        <div class="badge"><div class="dot inv"></div> Live Inventory DB</div>
+        <div class="badge"><div class="dot fin"></div> Margin Calculator</div>
+        <div class="badge"><div class="dot trend"></div> Market Intelligence</div>
+        <div class="badge"><div class="dot seo"></div> GSC Search Data</div>
+    </div>
+
+    <div class="content-area">
+        <p>
+            As of <span class="x-ray inv" data-origin="System Timestamp: Date.now()">November 25, 2025</span>, 
+            <span class="x-ray inv" data-origin="DB: 'Last_week_load' Column">18 new units</span> were added this week, bringing the total household supplies inventory to 
+            <span class="x-ray inv" data-origin="DB: 'ON_Stock' Column">160 items</span> based on the Saturday evening inventory snapshot. This fresh stock infusion positions resellers well as we enter peak season for cleaning and household essentials.
+        </p>
+
+        <p>
+            The current inventory mix delivers an estimated gross margin of 
+            <span class="x-ray fin" data-origin="Formula: (Retail - Cost) / Retail">56.2%</span>, reflecting strong price spreads across the category. On average, each unit holds a potential gross profit of approximately 
+            <span class="x-ray fin" data-origin="DB: 'Avg_Net_Profit' Column">$13.53</span>, though this varies by specific model and brand. For example, purchasing 
+            <span class="x-ray fin" data-origin="Logic: Multiplier (10 * Avg Profit)">10 units could yield roughly $135.30</span> in gross profit potential. These figures are grounded in the mix of premium and standard products currently on hand, providing a reliable baseline for resellers assessing margin opportunities.
+        </p>
+
+        <p>
+            Looking at the <span class="x-ray trend" data-origin="Sheet: Trends_Spreadsheet (3-Year Avg)">3-year seasonal trend</span>, household supplies maintain a firm position as market leaders heading into November. The market pulse remains steady from October through November, signaling consistent demand during this period. 
+            <span class="x-ray inv" data-origin="DB: 'Top_Inventory_Details'">Swiffer</span> leads the pack, commanding 
+            <span class="x-ray inv" data-origin="DB: Brand Share Calculation">42% of the category’s brand share</span>. November’s seasonality is defined by the 
+            <span class="x-ray trend" data-origin="Static: Retail_Calendar_Map (Nov)">Black Friday Blitz</span>, a critical sales window dubbed 
+            <span class="x-ray trend" data-origin="Static: Strategy_Name">"The BIG ONE"</span> for many resellers. This month marks the peak inventory period, where volume and pricing align to create optimal conditions for liquidation sellers.
+        </p>
+
+        <p>
+            Product and brand mix reflect typical household cleaning essentials, including cleaners, detergents, liquids, floor care, and other cleaning supplies. 
+            <span class="x-ray inv" data-origin="DB: 'Top_Inventory_Details'">Finish</span> stands out as the premium brand model available, known for strong consumer recognition and resale value. Typical discount spreads hover around 
+            <span class="x-ray fin" data-origin="Standard: Liquidation Industry Baseline">60% off retail</span>, providing ample room for competitive pricing while maintaining attractive margins.
+        </p>
+
+        <p>
+            Who profits from this category? Amazon FBA sellers leverage the strong brand appeal and steady demand to scale sales volume. eBay resellers capitalize on individual unit sales and niche product listings. Local retail operators use this inventory to stock high-turnover cleaning essentials ahead of the holiday season, meeting immediate customer needs with trusted brands.
+        </p>
+
+        <p>
+            Calculate your specific margins on the live manifest now to seize the opportunity presented by these fresh arrivals. Inventory is moving quickly during this peak season, and locking in stock early can maximize your gross profit potential.
+        </p>
+
+        <div class="disclaimer">
+            *Note: Profit calculations and inventory counts are based on the Saturday evening inventory snapshot. Liquidation inventory moves fast; specific models and quantities are subject to prior sale.*
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
