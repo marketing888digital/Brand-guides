@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike Dunk Low Retro (Panda) - 888 Lots Product Page</title>
+    <title>Razer Viper Ultimate - 888 Lots Product Page</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
@@ -41,7 +41,7 @@
         /* --- LAYOUT GRID --- */
         .product-layout {
             display: grid;
-            grid-template-columns: 360px 1fr 320px; /* Images | Intel | Buy Box */
+            grid-template-columns: 360px 1fr 320px;
             gap: 20px;
             align-items: start;
         }
@@ -84,10 +84,9 @@
         .thumb:hover { border-color: var(--accent); }
         .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* --- COLUMN 2: INTELLIGENCE HUB (The B2B Core) --- */
+        /* --- COLUMN 2: INTELLIGENCE HUB --- */
         .intel-card { padding: 0; }
         
-        /* ID Bar */
         .id-bar {
             display: flex; gap: 10px; padding: 12px 20px; background: #f8fafc; border-bottom: 1px solid var(--border);
             flex-wrap: wrap;
@@ -100,7 +99,6 @@
         .id-pill:hover { border-color: var(--accent); color: var(--accent); }
         .id-pill i { font-size: 12px; }
 
-        /* Profit Dashboard */
         .profit-dash {
             display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border);
         }
@@ -111,15 +109,15 @@
         .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-sec); margin-bottom: 6px; }
         .val { font-size: 32px; font-weight: 800; color: var(--primary); line-height: 1; }
         .sub { font-size: 12px; font-weight: 600; margin-top: 6px; }
+        .text-success { color: var(--success); }
+        .text-sec { color: var(--text-sec); }
         
-        /* Market Context Table */
         .market-table { padding: 20px; }
         .m-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--border); }
         .m-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
         .m-key { font-size: 13px; color: var(--text-sec); font-weight: 500; }
         .m-val { font-size: 14px; font-weight: 700; color: var(--primary); }
 
-        /* External Tools */
         .tools-row {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-top: 1px solid var(--border);
         }
@@ -138,7 +136,7 @@
         .unit-label { font-size: 13px; color: var(--text-sec); font-weight: 500; }
 
         .stock-status {
-            background: var(--warning-bg); border: 1px solid #fcd34d; color: #92400e;
+            background: var(--success-bg); border: 1px solid var(--success-border); color: var(--success);
             padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 16px;
             display: flex; align-items: center; justify-content: center; gap: 6px;
         }
@@ -159,7 +157,7 @@
         }
         .btn-sec:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* --- LOWER DETAILS (Specs/Description) --- */
+        /* --- LOWER DETAILS --- */
         .details-section { margin-top: 20px; }
         .details-card { padding: 0; }
         
@@ -201,17 +199,15 @@
     <!-- PAGE HEADER -->
     <div class="page-header">
         <div class="breadcrumb">
-            <a href="#">Home</a> / <a href="#">Shoes</a> / <a href="#">Sneakers</a> / <span>Nike Lifestyle</span>
+            <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
         </div>
         <div class="title-row">
             <div>
-                <h1 class="product-title">Nike Dunk Low Retro White Black (Panda) - Size 9</h1>
+                <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse</h1>
                 <div class="header-badges">
-                    <span class="badge badge-hot"><i class="ph ph-fire"></i> High Demand</span>
-                    <span class="badge badge-fba"><i class="ph ph-package"></i> FBA Ready</span>
+                    <span class="badge badge-fba"><i class="ph ph-package"></i> Fulfilled by Amazon</span>
                 </div>
             </div>
-            <!-- Optional: Global Actions could go here -->
         </div>
     </div>
 
@@ -221,57 +217,56 @@
         <div class="card gallery">
             <div class="gallery-container">
                 <div class="main-img-box">
-                    <img src="https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg" class="main-img" id="mainImage">
+                    <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" class="main-img" id="mainImage" onerror="this.src='https://via.placeholder.com/400x400?text=Razer+Viper'">
                 </div>
                 <div class="thumb-grid">
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/712c-4zF11L._AC_UY1000_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71E4-9-w1CL._AC_UY1000_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71+angle.jpg" onerror="this.src='https://m.media-amazon.com/images/I/71W89O6qGUL._AC_UY1000_.jpg'"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" onerror="this.src='https://via.placeholder.com/100?text=1'"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://via.placeholder.com/100?text=2"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://via.placeholder.com/100?text=3"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://via.placeholder.com/100?text=4"></div>
                 </div>
             </div>
         </div>
 
-        <!-- 2. INTELLIGENCE HUB (Central Data) -->
+        <!-- 2. INTELLIGENCE HUB -->
         <div class="card intel-card">
-            <!-- ID Bar (Copyable) -->
+            <!-- ID Bar -->
             <div class="id-bar">
-                <div class="id-pill" onclick="copy(this)"><i class="ph ph-copy"></i> SKU: 888-A10W2P</div>
-                <div class="id-pill" onclick="copy(this)"><i class="ph ph-copy"></i> ASIN: B08W5GZ9X2</div>
-                <div class="id-pill" onclick="copy(this)"><i class="ph ph-copy"></i> UPC: 194958123456</div>
+                <div class="id-pill" onclick="copy(this)"><i class="ph ph-copy"></i> SKU: 888 B08565C5BB US</div>
+                <div class="id-pill" onclick="copy(this)"><i class="ph ph-copy"></i> ASIN: B08565C5BB</div>
             </div>
 
             <!-- Profit Dashboard -->
             <div class="profit-dash">
                 <div class="dash-box profit">
                     <div class="lbl">Estimated Profit</div>
-                    <div class="val text-success">+$86.00</div>
-                    <div class="sub text-success">ROI: 86%</div>
+                    <div class="val text-success">+$40.00</div>
+                    <div class="sub text-success">ROI: 45%</div>
                 </div>
                 <div class="dash-box">
                     <div class="lbl">Sales Rank</div>
-                    <div class="val">#420</div>
-                    <div class="sub text-sec">Top 0.1% in Shoes</div>
+                    <div class="val">#98</div>
+                    <div class="sub text-sec">in Category</div>
                 </div>
             </div>
 
             <!-- Market Data -->
             <div class="market-table">
                 <div class="m-row">
-                    <span class="m-key">Amazon Buy Box</span>
-                    <span class="m-val">$185.00</span>
+                    <span class="m-key">Est. Amazon Buy Box</span>
+                    <span class="m-val">$129.00</span>
                 </div>
                 <div class="m-row">
-                    <span class="m-key">Lowest FBA Offer</span>
-                    <span class="m-val">$182.50</span>
+                    <span class="m-key">MSRP</span>
+                    <span class="m-val">$129.99</span>
                 </div>
                 <div class="m-row">
                     <span class="m-key">Competition</span>
-                    <span class="m-val">14 Sellers <span style="font-weight:400; font-size:12px; color:var(--text-sec)">(3 FBA)</span></span>
+                    <span class="m-val">4 Sellers</span>
                 </div>
                 <div class="m-row">
-                    <span class="m-key">Monthly Sales</span>
-                    <span class="m-val">~1,200 Units</span>
+                    <span class="m-key">Category</span>
+                    <span class="m-val">Computer Peripheral</span>
                 </div>
             </div>
 
@@ -284,49 +279,49 @@
             </div>
         </div>
 
-        <!-- 3. TRANSACTION HUB (Buy Box) -->
+        <!-- 3. BUY BOX -->
         <div class="card buy-box">
             <div class="price-area">
-                <div class="msrp">MSRP $110.00</div>
-                <div class="final-price">$99.00</div>
-                <div class="unit-label">Per Unit</div>
+                <div class="msrp">Was $95.00</div>
+                <div class="final-price">$89.00</div>
+                <div class="unit-label">Per Unit <span style="color:var(--danger); font-weight:700;">[-6%]</span></div>
             </div>
 
             <div class="stock-status">
-                <i class="ph ph-warning-circle"></i> Only 12 Units Remaining
+                <i class="ph ph-check-circle"></i> In Stock: 132 Units
             </div>
 
             <div class="qty-control">
                 <button class="q-btn" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" class="q-input" value="2" min="2" max="12">
+                <input type="number" class="q-input" value="100" min="100" max="132">
                 <button class="q-btn" onclick="this.previousElementSibling.stepUp()">+</button>
             </div>
-            <div style="text-align: center; font-size: 11px; color: var(--text-sec); margin-bottom: 12px;">Minimum Order Quantity: 2 Units</div>
+            <div style="text-align: center; font-size: 11px; color: var(--text-sec); margin-bottom: 12px;">Minimum Order Quantity: 100 Units</div>
 
             <button class="btn-main">
                 <i class="ph ph-shopping-cart-simple"></i> Add to Order
             </button>
 
             <div class="btn-sec-group">
-                <button class="btn-sec"><i class="ph ph-handshake"></i> Offer</button>
+                <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
                 <button class="btn-sec"><i class="ph ph-heart"></i> Watch</button>
             </div>
             
             <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--border);">
                 <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
                     <span style="color:var(--text-sec)">Shipping</span>
-                    <span style="font-weight: 600;">$1.00 Flat Rate</span>
+                    <span style="font-weight: 600;">$1.00 per unit</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 12px;">
                     <span style="color:var(--text-sec)">Condition</span>
-                    <span style="font-weight: 600;">New (Original Box)</span>
+                    <span style="font-weight: 600;">Fulfilled by Amazon</span>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- LOWER DETAILS (Specs / Manifest) -->
+    <!-- LOWER DETAILS -->
     <div class="card details-section">
         <div class="tabs">
             <div class="tab active" onclick="switchTab(this, 'specs')">Specifications</div>
@@ -339,28 +334,28 @@
                 <div class="spec-group">
                     <h4>Product Details</h4>
                     <ul class="spec-list">
-                        <li><span>Brand</span> <span>Nike</span></li>
-                        <li><span>Model</span> <span>Dunk Low Retro</span></li>
-                        <li><span>MPN</span> <span>DD1391-100</span></li>
-                        <li><span>Release Date</span> <span>2021</span></li>
+                        <li><span>Brand</span> <span>Razer</span></li>
+                        <li><span>Model</span> <span>Viper Ultimate</span></li>
+                        <li><span>Type</span> <span>Wireless Gaming Mouse</span></li>
+                        <li><span>Color</span> <span>Classic Black</span></li>
                     </ul>
                 </div>
                 <div class="spec-group">
-                    <h4>Physical Specs</h4>
+                    <h4>Technical Specs</h4>
                     <ul class="spec-list">
-                        <li><span>Gender</span> <span>Men's</span></li>
-                        <li><span>Size</span> <span>9.0 US</span></li>
-                        <li><span>Colorway</span> <span>White / Black</span></li>
-                        <li><span>Weight</span> <span>2.5 lbs</span></li>
+                        <li><span>DPI</span> <span>20,000</span></li>
+                        <li><span>Buttons</span> <span>8 Programmable</span></li>
+                        <li><span>Battery</span> <span>70 Hours</span></li>
+                        <li><span>Material</span> <span>Plastic</span></li>
                     </ul>
                 </div>
                 <div class="spec-group">
                     <h4>Inventory Details</h4>
                     <ul class="spec-list">
-                        <li><span>Lot ID</span> <span>#359102</span></li>
-                        <li><span>Case Pack</span> <span>12 Units</span></li>
-                        <li><span>Warehouse</span> <span>NJ, USA</span></li>
-                        <li><span>Restriction</span> <span>Ungated</span></li>
+                        <li><span>In Stock</span> <span>132 pc(s)</span></li>
+                        <li><span>MOQ</span> <span>100 pc(s)</span></li>
+                        <li><span>Condition</span> <span>Fulfilled by Amazon</span></li>
+                        <li><span>Shipping</span> <span>$1.00 per unit</span></li>
                     </ul>
                 </div>
             </div>
@@ -368,8 +363,15 @@
         
         <div id="desc" class="tab-content">
             <p style="color: var(--text-sec); line-height: 1.6;">
-                The Nike Dunk Low Retro White Black (2021), also known as the "Panda", features a white leather upper with black leather overlays and Swooshes. A white midsole and black outsole completes the design. This is one of the highest velocity SKUs in the current market with consistent demand across all major marketplaces. All items are 100% authentic, new in original box.
+                <strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black
             </p>
+            <ul style="color: var(--text-sec); line-height: 1.8;">
+                <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom</li>
+                <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g: The Razer Viper Ultimate includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes</li>
+                <li>Faster Than Traditional Mechanical Switches: New Razer optical mouse switches uses light beam-based actuation, registering button presses at the speed of light</li>
+                <li>Ambidextrous Design: Created for left and right-handed users with accessible, programmable buttons on both sides</li>
+                <li>8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3. Max Speed (IPS)-650</li>
+            </ul>
         </div>
 
         <div id="ship" class="tab-content">
@@ -380,19 +382,14 @@
 </div>
 
 <script>
-    // Image Swap Logic
     function swap(el) {
         document.getElementById('mainImage').src = el.querySelector('img').src;
         document.querySelectorAll('.thumb').forEach(t => t.style.borderColor = '#e2e8f0');
         el.style.borderColor = '#2563eb';
     }
 
-    // Copy Logic with visual feedback
     function copy(el) {
         const originalText = el.innerHTML;
-        const originalBg = el.style.backgroundColor;
-        
-        // Simulating copy
         el.innerHTML = '<i class="ph ph-check"></i> Copied';
         el.style.backgroundColor = '#dcfce7';
         el.style.borderColor = '#bbf7d0';
@@ -406,13 +403,9 @@
         }, 1200);
     }
 
-    // Tab Switching Logic
     function switchTab(el, tabId) {
-        // Remove active class from all tabs and contents
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-        // Add active to clicked tab and target content
         el.classList.add('active');
         document.getElementById(tabId).classList.add('active');
     }
