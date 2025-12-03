@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Razer Viper Ultimate - 888 Lots</title>
+    <title>Razer Viper Ultimate - 888lots</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
     <style>
         :root {
-            /* 888lots.com Colors */
             --action-blue: #3B82F6;
             --urgent-red: #dc2626;
             --text-primary: #334155;
@@ -27,18 +25,21 @@
             background: var(--bg-space);
             font-family: 'Inter', -apple-system, sans-serif;
             color: var(--text-primary);
-            padding: 20px;
             font-size: 14px;
             line-height: 1.5;
         }
 
-        .container { max-width: 1300px; margin: 0 auto; }
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 16px;
+        }
 
         /* BREADCRUMB */
         .breadcrumb { 
             font-size: 12px; 
             color: var(--text-secondary); 
-            margin-bottom: 12px; 
+            margin-bottom: 16px; 
         }
         .breadcrumb a { 
             text-decoration: none; 
@@ -47,8 +48,8 @@
         }
         .breadcrumb a:hover { color: var(--action-blue); }
 
-        /* HEADER: 3-Second Rule Applied */
-        .page-header {
+        /* PRODUCT HEADER */
+        .product-header {
             background: white;
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -57,49 +58,52 @@
         }
 
         .product-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.2;
         }
 
-        /* HASHTAGS - The 3 Key Identifiers */
-        .tags {
+        .badges {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-        .tag {
+        .badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 12px;
+            padding: 6px 12px;
             border-radius: 4px;
             font-size: 12px;
             font-weight: 700;
             border: 1px solid;
         }
 
-        .tag-fba {
+        .badge-fba {
             background: var(--success-bg);
             border-color: #bbf7d0;
             color: var(--success);
         }
 
-        .tag-brand {
+        .badge-promo {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: var(--urgent-red);
+        }
+
+        .badge-category {
             background: var(--bg-highlight);
             border-color: var(--border);
             color: var(--text-secondary);
         }
 
-        .tag-brand::before { content: '#'; opacity: 0.6; margin-right: 2px; }
-
-        /* MAIN GRID */
+        /* MAIN GRID - Responsive Cards */
         .product-grid {
             display: grid;
-            grid-template-columns: 360px 1fr 340px;
+            grid-template-columns: 400px 1fr;
             gap: 16px;
             align-items: start;
         }
@@ -111,8 +115,14 @@
             overflow: hidden;
         }
 
-        /* === COLUMN 1: IMAGES === */
-        .gallery { padding: 16px; }
+        /* LEFT COLUMN - Images */
+        .gallery-card {
+            position: sticky;
+            top: 16px;
+        }
+
+        .gallery { padding: 20px; }
+
         .main-img-wrapper {
             aspect-ratio: 1/1;
             display: flex;
@@ -120,11 +130,15 @@
             justify-content: center;
             border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 20px;
+            padding: 24px;
             margin-bottom: 12px;
             background: white;
         }
-        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .main-img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+        }
         
         .thumbs {
             display: grid;
@@ -135,75 +149,94 @@
             aspect-ratio: 1/1;
             border: 2px solid var(--border);
             border-radius: 4px;
-            padding: 4px;
+            padding: 6px;
             cursor: pointer;
             transition: 0.2s;
         }
         .thumb:hover { border-color: var(--action-blue); }
-        .thumb img { width: 100%; height: 100%; object-fit: contain; }
-
-        /* === COLUMN 2: THE DEAL (HERO) === */
-        .deal-hero {
-            padding: 0;
-            border-top: 3px solid var(--urgent-red);
+        .thumb.active { border-color: var(--action-blue); }
+        .thumb img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
         }
 
-        /* THE HERO: Price & Discount */
-        .hero-section {
-            background: linear-gradient(135deg, #fee2e2 0%, white 100%);
+        /* RIGHT COLUMN - Stacked Cards */
+        .info-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* DEAL CARD - The Hero */
+        .deal-card {
+            border-top: 4px solid var(--urgent-red);
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, #fef2f2 0%, white 100%);
             padding: 32px 24px;
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
 
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
         .was-price {
             text-decoration: line-through;
             color: var(--text-secondary);
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
         }
 
         .current-price {
-            font-size: 72px;
+            font-size: 64px;
             font-weight: 900;
             color: var(--text-primary);
             line-height: 1;
-            margin: 8px 0;
             letter-spacing: -2px;
         }
 
         .discount-badge {
-            display: inline-block;
             background: var(--urgent-red);
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 900;
-            padding: 6px 16px;
+            padding: 8px 16px;
             border-radius: 6px;
-            margin-top: 4px;
         }
 
-        .per-unit {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 600;
+        .moq-alert {
+            display: inline-block;
+            background: var(--bg-highlight);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 4px;
             margin-top: 12px;
         }
 
-        /* THE SUBJECT: What is it? */
-        .ids-bar {
-            display: flex;
-            gap: 10px;
+        /* IDs Bar */
+        .ids-section {
             padding: 16px 24px;
             background: var(--bg-highlight);
             border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         .id-chip {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: white;
             border: 1px solid var(--border);
             padding: 6px 12px;
@@ -219,23 +252,36 @@
             color: var(--action-blue); 
         }
 
-        /* THE SCALE: Stock & Market Info */
-        .market-info {
+        /* Market Data */
+        .market-section {
             padding: 20px 24px;
         }
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border);
-            font-size: 14px;
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
         }
-        .info-row:last-child { border-bottom: none; }
-        .info-label { color: var(--text-secondary); font-weight: 500; }
-        .info-value { color: var(--text-primary); font-weight: 700; }
 
-        /* External Tools */
+        .data-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .data-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .data-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* Tools Bar */
         .tools-bar {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -245,7 +291,7 @@
         }
         .tool-link {
             background: white;
-            padding: 14px;
+            padding: 12px;
             text-align: center;
             font-size: 11px;
             font-weight: 600;
@@ -255,21 +301,86 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
         .tool-link:hover {
             background: var(--bg-highlight);
             color: var(--action-blue);
         }
-        .tool-link i { font-size: 20px; }
+        .tool-link i { font-size: 18px; }
 
-        /* === COLUMN 3: ACTION BOX === */
-        .action-box {
-            padding: 24px;
-            border-top: 4px solid var(--action-blue);
+        /* PROFIT CARD */
+        .profit-card {
+            border-top: 4px solid var(--success);
         }
 
-        /* Stock Status */
+        .profit-header {
+            padding: 20px 24px;
+            background: var(--success-bg);
+            border-bottom: 1px solid #bbf7d0;
+        }
+
+        .profit-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--success);
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .profit-calc {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .calc-row.total {
+            padding-top: 12px;
+            border-top: 2px solid #bbf7d0;
+        }
+        .calc-label { 
+            color: var(--text-secondary); 
+            font-weight: 500; 
+        }
+        .calc-value { 
+            font-weight: 700; 
+            color: var(--text-primary); 
+        }
+
+        .profit-highlight {
+            background: white;
+            border: 2px solid #bbf7d0;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        .profit-amount {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--success);
+            line-height: 1;
+        }
+        .profit-roi {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Stock Info */
+        .stock-section {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
         .stock-alert {
             background: var(--success-bg);
             border: 1px solid #bbf7d0;
@@ -279,37 +390,25 @@
             font-size: 13px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
         }
 
-        /* Profit Calculator */
-        .profit-calc {
-            background: var(--bg-highlight);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 16px;
-            margin-bottom: 20px;
+        /* ACTION CARD */
+        .action-card {
+            border-top: 4px solid var(--action-blue);
         }
 
-        .calc-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 13px;
+        .action-section {
+            padding: 24px;
         }
-        .calc-row:last-child { margin-bottom: 0; padding-top: 10px; border-top: 2px solid var(--border); }
-        .calc-label { color: var(--text-secondary); font-weight: 500; }
-        .calc-value { font-weight: 700; color: var(--text-primary); }
-        .calc-profit { color: var(--success); font-size: 18px; font-weight: 800; }
 
-        /* Quantity Controls */
-        .qty-section {
+        .qty-control-wrapper {
             margin-bottom: 16px;
         }
+
         .qty-label {
             font-size: 11px;
             color: var(--text-secondary);
@@ -317,15 +416,16 @@
             text-transform: uppercase;
             margin-bottom: 8px;
         }
+
         .qty-control {
             display: flex;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 6px;
             overflow: hidden;
         }
         .qty-btn {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background: var(--bg-highlight);
             border: none;
             font-size: 20px;
@@ -338,22 +438,21 @@
         .qty-input {
             flex: 1;
             border: none;
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
+            border-left: 2px solid var(--border);
+            border-right: 2px solid var(--border);
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--text-primary);
         }
 
-        .moq-hint {
+        .moq-note {
             font-size: 11px;
             color: var(--text-secondary);
             margin-top: 6px;
             text-align: center;
         }
 
-        /* CTA Buttons */
         .btn-primary {
             width: 100%;
             background: var(--action-blue);
@@ -386,7 +485,7 @@
 
         .btn-secondary {
             background: white;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             color: var(--text-secondary);
             padding: 12px;
             border-radius: 6px;
@@ -404,12 +503,12 @@
             color: var(--action-blue);
         }
 
-        /* Shipping & Condition */
-        .meta-info {
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 1px dashed var(--border);
+        .meta-section {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-highlight);
         }
+
         .meta-row {
             display: flex;
             justify-content: space-between;
@@ -420,102 +519,68 @@
         .meta-label { color: var(--text-secondary); }
         .meta-value { font-weight: 700; color: var(--text-primary); }
 
-        /* === BOTTOM TABS === */
-        .details-section {
-            margin-top: 16px;
-        }
-
-        .tabs {
-            display: flex;
-            background: var(--bg-highlight);
-            border: 1px solid var(--border);
-            border-bottom: none;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .tab {
-            padding: 14px 24px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-right: 1px solid var(--border);
-            transition: 0.15s;
-            background: transparent;
-        }
-        .tab:last-child { border-right: none; }
-        .tab.active {
-            background: white;
-            color: var(--text-primary);
-            border-top: 3px solid var(--action-blue);
-            margin-top: -3px;
-            padding-top: 17px;
-        }
-        .tab:hover:not(.active) { background: #e2e8f0; }
-
-        .tab-content {
-            display: none;
-            background: white;
-            border: 1px solid var(--border);
-            border-top: none;
-            border-radius: 0 0 8px 8px;
+        /* DESCRIPTION CARD */
+        .description-card {
             padding: 24px;
         }
-        .tab-content.active { display: block; }
 
-        .spec-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+        .description-card h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
         }
 
-        .spec-group h4 {
-            font-size: 11px;
-            text-transform: uppercase;
+        .description-card p {
             color: var(--text-secondary);
-            font-weight: 700;
+            line-height: 1.8;
             margin-bottom: 12px;
-            letter-spacing: 0.5px;
         }
 
-        .spec-list {
-            list-style: none;
+        .description-card ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 20px;
         }
 
-        .spec-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            font-size: 13px;
-            border-bottom: 1px solid var(--bg-highlight);
+        .description-card li {
+            margin-bottom: 8px;
         }
-        .spec-list li:last-child { border-bottom: none; }
-        .spec-list li span:first-child { color: var(--text-secondary); }
-        .spec-list li span:last-child { font-weight: 700; color: var(--text-primary); }
 
         /* RESPONSIVE */
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
             .product-grid {
-                grid-template-columns: 1fr 340px;
+                grid-template-columns: 1fr;
             }
-            .gallery {
-                grid-column: span 2;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
+            .gallery-card {
+                position: static;
+            }
+            .data-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 768px) {
-            .product-grid {
-                display: flex;
-                flex-direction: column;
+        @media (max-width: 640px) {
+            .container {
+                padding: 12px;
             }
-            .gallery {
-                display: block;
+            .product-title {
+                font-size: 20px;
             }
-            .spec-grid {
+            .current-price {
+                font-size: 48px;
+            }
+            .discount-badge {
+                font-size: 20px;
+            }
+            .data-grid {
                 grid-template-columns: 1fr;
+            }
+            .tools-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .thumbs {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -529,234 +594,230 @@
         <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
     </div>
 
-    <!-- HEADER: The 3 Key Identifiers -->
-    <div class="page-header">
+    <!-- PRODUCT HEADER -->
+    <div class="product-header">
         <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse</h1>
-        <div class="tags">
-            <span class="tag tag-fba"><i class="ph ph-check-circle"></i> Fulfilled by Amazon</span>
-            <span class="tag tag-brand">Razer</span>
-            <span class="tag tag-brand">Computer Peripheral</span>
+        <div class="badges">
+            <span class="badge badge-fba">
+                <i class="ph ph-seal-check"></i> Fulfilled by Amazon
+            </span>
+            <span class="badge badge-promo">
+                <i class="ph ph-sparkle"></i> First Order Discount
+            </span>
+            <span class="badge badge-category">#Razer</span>
+            <span class="badge badge-category">#Computer Peripheral</span>
         </div>
     </div>
 
     <div class="product-grid">
 
-        <!-- COLUMN 1: IMAGES -->
-        <div class="card gallery">
-            <div class="main-img-wrapper">
-                <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" class="main-img" id="mainImg" onerror="this.src='https://via.placeholder.com/400?text=Razer+Viper'">
-            </div>
-            <div class="thumbs">
-                <div class="thumb" onclick="swapImg(this)"><img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" onerror="this.src='https://via.placeholder.com/100?text=1'"></div>
-                <div class="thumb" onclick="swapImg(this)"><img src="https://via.placeholder.com/100?text=2"></div>
-                <div class="thumb" onclick="swapImg(this)"><img src="https://via.placeholder.com/100?text=3"></div>
-                <div class="thumb" onclick="swapImg(this)"><img src="https://via.placeholder.com/100?text=4"></div>
-            </div>
-        </div>
-
-        <!-- COLUMN 2: THE DEAL (HERO) -->
-        <div class="card deal-hero">
-            <!-- #1 THE HERO: Price & Discount -->
-            <div class="hero-section">
-                <div class="was-price">Was $95.00</div>
-                <div class="current-price">$89.00</div>
-                <div class="discount-badge">-6%</div>
-                <div class="per-unit">Per Unit</div>
-            </div>
-
-            <!-- #2 THE SUBJECT: IDs -->
-            <div class="ids-bar">
-                <div class="id-chip" onclick="copyText(this)" data-copy="888 B08565C5BB US">
-                    <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
+        <!-- LEFT COLUMN - Images -->
+        <div class="card gallery-card">
+            <div class="gallery">
+                <div class="main-img-wrapper">
+                    <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
                 </div>
-                <div class="id-chip" onclick="copyText(this)" data-copy="B08565C5BB">
-                    <i class="ph ph-copy"></i> ASIN: B08565C5BB
-                </div>
-            </div>
-
-            <!-- #3 THE SCALE: Market Data -->
-            <div class="market-info">
-                <div class="info-row">
-                    <span class="info-label">Est. Amazon Buy Box</span>
-                    <span class="info-value">$129.00</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">MSRP</span>
-                    <span class="info-value">$129.99</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Sales Rank</span>
-                    <span class="info-value">#98 in Category</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Competition</span>
-                    <span class="info-value">4 Sellers</span>
-                </div>
-            </div>
-
-            <!-- External Tools -->
-            <div class="tools-bar">
-                <a href="#" class="tool-link">
-                    <i class="ph ph-chart-line-up"></i>
-                    Keepa
-                </a>
-                <a href="#" class="tool-link">
-                    <i class="ph ph-calculator"></i>
-                    Calculator
-                </a>
-                <a href="#" class="tool-link">
-                    <i class="ph ph-amazon-logo"></i>
-                    Amazon
-                </a>
-                <a href="#" class="tool-link">
-                    <i class="ph ph-google-logo"></i>
-                    Google
-                </a>
-            </div>
-        </div>
-
-        <!-- COLUMN 3: ACTION BOX -->
-        <div class="card action-box">
-            <!-- Stock Status -->
-            <div class="stock-alert">
-                <i class="ph ph-check-circle"></i> In Stock: 132 Units
-            </div>
-
-            <!-- Profit Calculator -->
-            <div class="profit-calc">
-                <div class="calc-row">
-                    <span class="calc-label">Your Cost</span>
-                    <span class="calc-value">$89.00</span>
-                </div>
-                <div class="calc-row">
-                    <span class="calc-label">Est. Sell Price</span>
-                    <span class="calc-value">$129.00</span>
-                </div>
-                <div class="calc-row">
-                    <span class="calc-label">Est. Profit</span>
-                    <span class="calc-profit">+$40.00 (45% ROI)</span>
-                </div>
-            </div>
-
-            <!-- Quantity -->
-            <div class="qty-section">
-                <div class="qty-label">Quantity</div>
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
-                    <input type="number" class="qty-input" value="100" min="100" max="132">
-                    <button class="qty-btn" onclick="this.previousElementSibling.stepUp()">+</button>
-                </div>
-                <div class="moq-hint">MOQ: 100 Units</div>
-            </div>
-
-            <!-- CTAs -->
-            <button class="btn-primary">
-                <i class="ph ph-shopping-cart-simple"></i> Add to Order
-            </button>
-
-            <div class="btn-group">
-                <button class="btn-secondary">
-                    <i class="ph ph-handshake"></i> Negotiate
-                </button>
-                <button class="btn-secondary">
-                    <i class="ph ph-heart"></i> Watch
-                </button>
-            </div>
-
-            <!-- Meta Info -->
-            <div class="meta-info">
-                <div class="meta-row">
-                    <span class="meta-label">Shipping</span>
-                    <span class="meta-value">$1.00 per unit</span>
-                </div>
-                <div class="meta-row">
-                    <span class="meta-label">Condition</span>
-                    <span class="meta-value">Fulfilled by Amazon</span>
+                <div class="thumbs">
+                    <div class="thumb active" onclick="swapImg(this, 0)">
+                        <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" alt="View 1">
+                    </div>
+                    <div class="thumb" onclick="swapImg(this, 1)">
+                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=2" alt="View 2">
+                    </div>
+                    <div class="thumb" onclick="swapImg(this, 2)">
+                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=3" alt="View 3">
+                    </div>
+                    <div class="thumb" onclick="swapImg(this, 3)">
+                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=4" alt="View 4">
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
+        <!-- RIGHT COLUMN - Info Stack -->
+        <div class="info-stack">
 
-    <!-- BOTTOM TABS -->
-    <div class="card details-section">
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab(this, 'specs')">Specifications</div>
-            <div class="tab" onclick="switchTab(this, 'desc')">Description</div>
-            <div class="tab" onclick="switchTab(this, 'ship')">Shipping Info</div>
-        </div>
+            <!-- DEAL CARD -->
+            <div class="card deal-card">
+                <!-- Price Section -->
+                <div class="price-section">
+                    <div class="price-row">
+                        <span class="was-price">Was $95.00</span>
+                        <span class="current-price">$89.00</span>
+                        <span class="discount-badge">-6%</span>
+                    </div>
+                    <div class="moq-alert">MOQ: 100 Units</div>
+                </div>
 
-        <div id="specs" class="tab-content active">
-            <div class="spec-grid">
-                <div class="spec-group">
-                    <h4>Product Details</h4>
-                    <ul class="spec-list">
-                        <li><span>Brand</span> <span>Razer</span></li>
-                        <li><span>Model</span> <span>Viper Ultimate</span></li>
-                        <li><span>Type</span> <span>Wireless Gaming Mouse</span></li>
-                        <li><span>Color</span> <span>Classic Black</span></li>
-                    </ul>
+                <!-- IDs -->
+                <div class="ids-section">
+                    <div class="id-chip" onclick="copyText(this, '888 B08565C5BB US')">
+                        <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
+                    </div>
+                    <div class="id-chip" onclick="copyText(this, 'B08565C5BB')">
+                        <i class="ph ph-copy"></i> ASIN: B08565C5BB
+                    </div>
                 </div>
-                <div class="spec-group">
-                    <h4>Technical Specs</h4>
-                    <ul class="spec-list">
-                        <li><span>DPI</span> <span>20,000</span></li>
-                        <li><span>Buttons</span> <span>8 Programmable</span></li>
-                        <li><span>Battery</span> <span>70 Hours</span></li>
-                        <li><span>Material</span> <span>Plastic</span></li>
-                    </ul>
+
+                <!-- Market Data -->
+                <div class="market-section">
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <span class="data-label">Amazon Buy Box</span>
+                            <span class="data-value">$129.00</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">MSRP</span>
+                            <span class="data-value">$129.99</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Sales Rank</span>
+                            <span class="data-value">#98 in Category</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Competition</span>
+                            <span class="data-value">4 Sellers</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="spec-group">
-                    <h4>Inventory Details</h4>
-                    <ul class="spec-list">
-                        <li><span>In Stock</span> <span>132 pc(s)</span></li>
-                        <li><span>MOQ</span> <span>100 pc(s)</span></li>
-                        <li><span>Condition</span> <span>Fulfilled by Amazon</span></li>
-                        <li><span>Shipping</span> <span>$1.00 per unit</span></li>
-                    </ul>
+
+                <!-- Tools -->
+                <div class="tools-bar">
+                    <a href="#" class="tool-link">
+                        <i class="ph ph-chart-line-up"></i>
+                        Keepa
+                    </a>
+                    <a href="#" class="tool-link">
+                        <i class="ph ph-calculator"></i>
+                        Calculator
+                    </a>
+                    <a href="#" class="tool-link">
+                        <i class="ph ph-amazon-logo"></i>
+                        Amazon
+                    </a>
+                    <a href="#" class="tool-link">
+                        <i class="ph ph-google-logo"></i>
+                        Google
+                    </a>
                 </div>
             </div>
+
+            <!-- PROFIT CARD -->
+            <div class="card profit-card">
+                <div class="profit-header">
+                    <div class="profit-title">
+                        <i class="ph ph-trend-up"></i> Profit Estimation
+                    </div>
+                    <div class="profit-calc">
+                        <div class="calc-row">
+                            <span class="calc-label">Your Cost</span>
+                            <span class="calc-value">$89.00</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Est. Sell Price</span>
+                            <span class="calc-value">$129.00</span>
+                        </div>
+                        <div class="calc-row total">
+                            <span class="calc-label">Est. Profit per Unit</span>
+                            <span class="calc-value">$40.00</span>
+                        </div>
+                    </div>
+                    <div class="profit-highlight">
+                        <div class="profit-amount">+$40.00</div>
+                        <div class="profit-roi">45% ROI</div>
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div class="stock-section">
+                    <div class="stock-alert">
+                        <i class="ph ph-check-circle"></i> In Stock: 132 Units Available
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTION CARD -->
+            <div class="card action-card">
+                <div class="action-section">
+                    <!-- Quantity -->
+                    <div class="qty-control-wrapper">
+                        <div class="qty-label">Quantity</div>
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+                            <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
+                            <button class="qty-btn" onclick="adjustQty(1)">+</button>
+                        </div>
+                        <div class="moq-note">Minimum Order: 100 Units</div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <button class="btn-primary">
+                        <i class="ph ph-shopping-cart-simple"></i> Add to Order
+                    </button>
+
+                    <div class="btn-group">
+                        <button class="btn-secondary">
+                            <i class="ph ph-handshake"></i> Negotiate
+                        </button>
+                        <button class="btn-secondary">
+                            <i class="ph ph-heart"></i> Watch
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Meta Info -->
+                <div class="meta-section">
+                    <div class="meta-row">
+                        <span class="meta-label">Shipping Cost</span>
+                        <span class="meta-value">$1.00 per unit</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Condition</span>
+                        <span class="meta-value">Fulfilled by Amazon</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">SKU</span>
+                        <span class="meta-value">888 B08565C5BB US</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION CARD -->
+            <div class="card description-card">
+                <h3>Product Description</h3>
+                <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
+                <ul>
+                    <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom</li>
+                    <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g: Includes a 20K DPI optical sensor befitting the most serious gamers</li>
+                    <li>Faster Than Traditional Mechanical Switches: New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light</li>
+                    <li>Ambidextrous Design: Created for left and right-handed users with accessible, programmable buttons on both sides</li>
+                    <li>8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3</li>
+                </ul>
+            </div>
+
         </div>
 
-        <div id="desc" class="tab-content">
-            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
-                <strong style="color: var(--text-primary);">Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black
-            </p>
-            <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: 20px;">
-                <li style="margin-bottom: 8px;">25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom</li>
-                <li style="margin-bottom: 8px;">The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g: The Razer Viper Ultimate includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes</li>
-                <li style="margin-bottom: 8px;">Faster Than Traditional Mechanical Switches: New Razer optical mouse switches uses light beam-based actuation, registering button presses at the speed of light</li>
-                <li style="margin-bottom: 8px;">Ambidextrous Design: Created for left and right-handed users with accessible, programmable buttons on both sides</li>
-                <li style="margin-bottom: 8px;">8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3. Max Speed (IPS)-650</li>
-            </ul>
-        </div>
-
-        <div id="ship" class="tab-content">
-            <p style="color: var(--text-secondary); line-height: 1.6;">
-                <strong>Shipping Details:</strong><br><br>
-                • Flat rate: $1.00 per unit<br>
-                • Fulfilled by Amazon<br>
-                • Ships within 1-2 business days<br>
-                • Tracking provided
-            </p>
-        </div>
     </div>
 
 </div>
 
 <script>
-    function swapImg(el) {
+    // Image Gallery
+    function swapImg(el, index) {
         const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+        
         mainImg.src = el.querySelector('img').src;
-        document.querySelectorAll('.thumb').forEach(t => t.style.borderColor = '#e2e8f0');
-        el.style.borderColor = '#3B82F6';
+        
+        thumbs.forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
     }
 
-    function copyText(el) {
-        const textToCopy = el.getAttribute('data-copy');
+    // Copy to Clipboard
+    function copyText(el, text) {
         const originalHTML = el.innerHTML;
         
-        // Simulate copy
+        // Simulate copy (in real app, use navigator.clipboard.writeText)
         el.innerHTML = '<i class="ph ph-check"></i> Copied!';
         el.style.backgroundColor = '#f0fdf4';
         el.style.borderColor = '#bbf7d0';
@@ -770,11 +831,17 @@
         }, 1200);
     }
 
-    function switchTab(el, tabId) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
+    // Quantity Controls
+    function adjustQty(delta) {
+        const input = document.getElementById('qtyInput');
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
+        let value = parseInt(input.value) + delta;
+        
+        if (value < min) value = min;
+        if (value > max) value = max;
+        
+        input.value = value;
     }
 </script>
 
