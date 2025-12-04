@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Careers | 888Lots Wholesale & Liquidation Jobs</title>
+  <meta name="description" content="Apply for careers at 888Lots, an established wholesale and liquidation platform in the United States. Join our team and grow in B2B commerce." />
+
+  <style>
+    :root{
+      /* Page colors you requested (kept) */
+      --page-bg:#f8fafc;
+      --section-bg:#f1f5f9;
+      --text:#334155;
+      --muted:#4A5568;
+
+      /* Original page look: sharp corners + flat borders */
+      --line:#e5e7eb;
+      --radius:0px;
+      --shadow:none;
+
+      /* Required blue */
+      --blue:#3B82F6;
+      --blue-dark:#2563eb;
+
+      --brand:#00b6c8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:var(--page-bg);
+      color:var(--text);
+    }
+
+    /* Mock header */
+    .topbar{background:#fff;border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1180px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:14px}
+    .logo{display:flex;align-items:baseline;gap:2px;font-weight:900;letter-spacing:.5px}
+    .logo .a{color:var(--brand);font-size:26px;line-height:1}
+    .logo .b{color:#111827;font-size:26px;line-height:1}
+    .search{flex:1;display:flex;gap:8px;align-items:center;max-width:720px}
+    .search input{
+      width:100%;height:34px;border:1px solid #d1d5db;border-radius:4px;
+      padding:0 10px;outline:none;background:#fff;color:var(--text);font-size:13px;
+    }
+    .search button{
+      height:34px;padding:0 12px;border:0;background:#2f73c8;color:#fff;border-radius:2px;cursor:pointer;
+    }
+
+    .nav{
+      background: linear-gradient(#3b3b3b, #2f2f2f);
+      color:#fff; font-size:13px;
+    }
+    .nav-inner{
+      max-width:1180px;margin:0 auto;padding:10px 18px;
+      display:flex;gap:22px;align-items:center;overflow:auto;white-space:nowrap;
+    }
+    .nav a{color:#fff;text-decoration:none;opacity:.95}
+    .nav a:hover{opacity:1;text-decoration:underline}
+
+    .wrap{max-width:1180px;margin:0 auto;padding:18px}
+    .breadcrumb{color:#6b7280;font-size:12px;margin:10px 0 16px}
+    .breadcrumb a{color:#6b7280;text-decoration:none}
+    .breadcrumb a:hover{text-decoration:underline}
+
+    /* Page section like OG */
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    /* Typography closer to OG */
+    .page-title{margin:0 0 8px;font-size:20px;font-weight:700;color:#374151}
+    .lead{margin:0 0 14px;color:#6b7280;line-height:1.55;font-size:13px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 260px 1fr;
+      gap:24px;
+      align-items:start;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      margin-top:10px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* Left list */
+    .positions{background:#fff}
+    .positions h2{
+      margin:0 0 12px;
+      font-size:18px;
+      font-weight:700;
+      color:#374151;
+    }
+    .pos-row{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:10px 0;
+    }
+    .dot{
+      width:14px;height:14px;border-radius:50%;
+      border:2px solid var(--blue);
+      background:#fff;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+    .pos-name{
+      margin:0;
+      font-size:14px;
+      font-weight:700;
+      color:#374151;
+    }
+    .pos-loc{
+      margin:6px 0 0;
+      font-size:12px;
+      color:#6b7280;
+    }
+
+    /* Right description box */
+    .details{
+      background:#f3f4f6;
+      border:1px solid #d1d5db;
+      border-radius:0;
+      padding:18px 20px;
+    }
+    .section h3{
+      margin:0 0 8px;
+      font-size:13px;
+      font-weight:700;
+      color:#374151;
+    }
+    ul{
+      margin:0 0 16px;
+      padding-left:18px;
+      font-size:12.5px;
+      color:#4b5563;
+      line-height:1.6;
+    }
+
+    /* Apply area */
+    .apply{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid #d1d5db;
+    }
+    .apply h2{
+      margin:0 0 8px;
+      font-size:16px;
+      font-weight:700;
+      color:#374151;
+    }
+    .apply p{
+      margin:0 0 12px;
+      font-size:12.5px;
+      color:#6b7280;
+    }
+
+    form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:780px){form{grid-template-columns:1fr}}
+
+    label{display:block;font-size:12px;color:#4b5563;margin:0 0 5px;font-weight:700}
+    .field input,.field select,.field textarea{
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:2px;
+      padding:8px 10px;
+      font-size:13px;
+      outline:none;
+      background:#fff;
+      color:#111827;
+    }
+    .field textarea{min-height:130px;resize:vertical}
+    .span-2{grid-column:1 / -1}
+
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:2px}
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+      border:1px solid var(--blue);
+      padding:9px 12px;
+      border-radius:2px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn-primary:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+    .btn-ghost{
+      background:#fff;
+      border:1px solid #d1d5db;
+      padding:9px 12px;
+      border-radius:2px;
+      font-weight:700;
+      cursor:pointer;
+      color:#374151;
+    }
+    .btn-ghost:hover{background:#f9fafb}
+    .fineprint{font-size:12px;color:#6b7280;line-height:1.45}
+
+    /* Footer mock */
+    footer{margin-top:22px;background:#2f3f51;color:#d8e0ea}
+    .footer-inner{
+      max-width:1180px;margin:0 auto;padding:22px 18px;
+      display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:18px
+    }
+    @media (max-width:980px){.footer-inner{grid-template-columns:1fr 1fr}}
+    @media (max-width:560px){.footer-inner{grid-template-columns:1fr}}
+    .footer-brand small{display:block;opacity:.9}
+    .footer-col h4{margin:0 0 10px;font-size:13px;color:#fff;letter-spacing:.02em}
+    .footer-col a{display:block;color:#d8e0ea;text-decoration:none;margin:8px 0;font-size:13px;opacity:.95}
+    .footer-col a:hover{text-decoration:underline;opacity:1}
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="logo" aria-label="888Lots">
+        <span class="a">888</span><span class="b">LOTS</span>
+      </div>
+
+      <div class="search" role="search">
+        <input type="search" placeholder="Search" aria-label="Search products" />
+        <button type="button" aria-label="Search">🔍</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#">ITEMS</a>
+      <a href="#">LOTS</a>
+      <a href="#">SPECIAL DEALS</a>
+      <a href="#">FULFILLED BY AMAZON</a>
+      <a href="#">STOCK RADAR</a>
+      <a href="#">SELL TO US</a>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="breadcrumb">
+      <a href="#">Home</a> &nbsp;›&nbsp; Careers
+    </div>
+
+    <section class="card">
+      <!-- UPDATED HEADER + TEXT ONLY (as requested) -->
+      <h1 class="page-title">Careers at 888Lots</h1>
+      <p class="lead">
+        We’re hiring motivated team members to support a fast-moving and established <strong>wholesale and liquidation</strong> platform.
+        If you’re excited about B2B commerce and great customer communication, we’d love to hear from you.
+      </p>
+
+      <div class="grid">
+        <!-- Left -->
+        <aside class="positions" aria-label="Open positions">
+          <h2>Open Positions</h2>
+
+          <div class="pos-row">
+            <span class="dot" aria-hidden="true"></span>
+            <div>
+              <p class="pos-name">Junior Salesperson</p>
+              <p class="pos-loc">Linden, New Jersey</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right -->
+        <article class="details" aria-label="Job details and application form">
+          <div class="section">
+            <h3>What we require:</h3>
+            <ul>
+              <li>Must have experience selling in eBay and Amazon.com as well as computer and internet skills.</li>
+              <li>Promotes/sells/secures orders to existing and prospective customers.</li>
+              <li>Demonstrates products and services to existing/potential customers and assists them in selecting those best suited to their needs.</li>
+              <li>Professional phone manner and good communication skills.</li>
+              <li>Person must be Extroverted and Persistent in a fast paced environment.</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>What we offer:</h3>
+            <ul>
+              <li>Great job in a reputable company</li>
+              <li>Interesting projects for leading brands</li>
+              <li>Opportunity for professional development</li>
+              <li>Attractive salary</li>
+            </ul>
+          </div>
+
+          <div class="apply" id="apply">
+            <h2>Apply Now</h2>
+            <p>Submit your details below and we’ll review your application.</p>
+
+            <form action="#" method="post" enctype="multipart/form-data">
+              <div class="field">
+                <label for="fullName">Full Name *</label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number *</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 555-5555" />
+              </div>
+
+              <div class="field">
+                <label for="email">Email Address *</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="position">Position *</label>
+                <select id="position" name="position" required>
+                  <option value="">Select a role</option>
+                  <option value="Junior Salesperson" selected>Junior Salesperson (Linden, NJ)</option>
+                </select>
+              </div>
+
+              <div class="field span-2">
+                <label for="whyFit">Why do you think this job is right for you? *</label>
+                <textarea id="whyFit" name="whyFit" required
+                  placeholder="Briefly share your relevant experience, your strengths, and what makes you a strong fit for this role."></textarea>
+              </div>
+
+              <div class="field span-2">
+                <label for="resume">Resume (optional)</label>
+                <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" />
+              </div>
+
+              <div class="field span-2 actions">
+                <button class="btn-primary" type="submit">Submit Application</button>
+                <button class="btn-ghost" type="reset">Clear</button>
+                <span class="fineprint">
+                  By submitting, you confirm the information is accurate. We may contact you via email or phone.
+                </span>
+              </div>
+            </form>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" aria-label="888Lots footer logo">
+          <span class="a" style="color:#00b6c8;font-weight:900;">888</span><span class="b" style="color:#fff;font-weight:900;">LOTS</span>
+        </div>
+        <small>Wholesale Deals • Closeout Liquidation</small>
+        <small style="margin-top:10px; display:block;">1416 E Linden Ave, Linden, NJ 07036</small>
+        <small>contact@888lots.com • 1-844-888-LOTS (5687)</small>
+      </div>
+
+      <div class="footer-col">
+        <h4>Features</h4>
+        <a href="#">Order Support</a>
+        <a href="#">About 888Lots</a>
+        <a href="#">FAQ</a>
+        <a href="#">Blog</a>
+        <a href="#">Reviews</a>
+        <a href="#">Careers</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="#">Reservation Policy</a>
+        <a href="#">Negotiation Policy</a>
+        <a href="#">Terms and Conditions</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Note</h4>
+        <a href="#" onclick="return false;">Amazon and all related Marks are Trademarks of Amazon.com, Inc. or its affiliates.</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
