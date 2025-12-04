@@ -53,7 +53,7 @@
             font-weight: 700;
         }
 
-        /* HEADER */
+        /* HEADER WITH HASHTAGS */
         .product-header {
             background: white;
             border: 1px solid var(--border);
@@ -66,31 +66,60 @@
             font-size: 20px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.3;
+        }
+
+        /* HASHTAGS - Canonical data */
+        .hashtags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .hashtag {
+            font-size: 12px;
+            color: var(--action-blue);
+            font-weight: 600;
+            background: var(--bg-highlight);
+            padding: 4px 10px;
+            border-radius: 3px;
+            border: 1px solid var(--border);
         }
 
         .header-meta {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             flex-wrap: wrap;
             align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
         }
 
-        .sku-text {
+        /* COPYABLE CODES */
+        .code-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-size: 11px;
-            color: var(--text-secondary);
             font-family: monospace;
+            color: var(--text-secondary);
+            background: var(--bg-highlight);
+            padding: 4px 10px;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.15s;
         }
-
-        .category-link {
-            font-size: 11px;
+        .code-chip:hover {
+            background: white;
+            border-color: var(--action-blue);
             color: var(--action-blue);
-            text-decoration: none;
-            font-weight: 600;
         }
-        .category-link:hover {
-            text-decoration: underline;
+        .code-chip i {
+            font-size: 12px;
+            opacity: 0.6;
         }
 
         /* THREE COLUMN LAYOUT */
@@ -238,28 +267,49 @@
             object-fit: contain; 
         }
 
-        /* COLUMN 2: INFO */
+        /* COLUMN 2: UNIFIED INFO CARD */
         .info-main {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 0;
         }
 
-        /* IDs CARD */
-        .ids-card {
-            padding: 12px 16px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            align-items: center;
+        /* UNIFIED INFO CARD - No fragmentation */
+        .info-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
         }
 
-        .id-label {
-            font-size: 10px;
+        /* SECTION HEADERS - Subtle */
+        .section-header {
+            font-size: 11px;
+            font-weight: 700;
             color: var(--text-secondary);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            background: var(--bg-space);
+        }
+
+        /* IDS SECTION - Clean rows */
+        .ids-section {
+            padding: 14px 16px;
+        }
+
+        .id-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .id-row:last-child { margin-bottom: 0; }
+
+        .id-label {
+            font-size: 11px;
+            color: var(--text-secondary);
             font-weight: 600;
-            margin-right: 4px;
+            min-width: 50px;
         }
 
         .id-value {
@@ -267,30 +317,29 @@
             font-family: monospace;
             color: var(--text-primary);
             background: var(--bg-highlight);
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 3px;
             cursor: pointer;
             transition: 0.15s;
             border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .id-value:hover {
             background: white;
             border-color: var(--action-blue);
             color: var(--action-blue);
         }
-
-        /* MARKET DATA - Matching listing style */
-        .market-card {
-            padding: 16px;
+        .id-value i {
+            font-size: 12px;
+            opacity: 0.6;
         }
 
-        .market-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+        /* MARKET DATA - Clean grid */
+        .market-section {
+            padding: 16px;
+            background: white;
         }
 
         .market-grid {
@@ -300,10 +349,10 @@
         }
 
         .market-item {
-            border: 1px solid var(--border);
-            border-radius: 4px;
+            text-align: center;
             padding: 12px;
             background: var(--bg-space);
+            border-radius: 4px;
         }
         .market-label {
             font-size: 10px;
@@ -316,8 +365,8 @@
             color: var(--text-primary);
         }
 
-        /* TOOLS */
-        .tools-card {
+        /* TOOLS - Integrated */
+        .tools-section {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1px;
@@ -343,13 +392,10 @@
         }
         .tool-link i { font-size: 16px; }
 
-        /* PROFIT CARD - Clean */
-        .profit-card {
-            border-left: 3px solid var(--success);
-        }
-
-        .profit-content {
+        /* PROFIT SECTION - Integrated */
+        .profit-section {
             padding: 16px;
+            background: var(--success-bg);
         }
 
         .profit-title {
@@ -366,15 +412,13 @@
         .profit-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 6px 0;
             font-size: 13px;
-            border-bottom: 1px dashed var(--border);
         }
-        .profit-row:last-child {
-            border-bottom: none;
-            padding-top: 12px;
-            margin-top: 4px;
-            border-top: 2px solid var(--border);
+        .profit-row.total {
+            padding-top: 10px;
+            margin-top: 6px;
+            border-top: 2px solid var(--success);
         }
         .profit-label {
             color: var(--text-secondary);
@@ -443,7 +487,6 @@
         .stock-section {
             padding: 12px 16px;
             background: var(--bg-space);
-            border-bottom: 1px solid var(--border);
         }
 
         .stock-row {
@@ -561,8 +604,8 @@
 
         .meta-section {
             padding-top: 12px;
-            border-top: 1px dashed var(--border);
             margin-top: 12px;
+            border-top: 1px solid var(--border);
         }
 
         .meta-row {
@@ -677,13 +720,29 @@
         <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
     </div>
 
-    <!-- HEADER -->
+    <!-- HEADER WITH HASHTAGS -->
     <div class="product-header">
         <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</h1>
+        
+        <!-- HASHTAGS - Canonical data -->
+        <div class="hashtags">
+            <span class="hashtag">#Razer</span>
+            <span class="hashtag">#Computer Peripheral</span>
+            <span class="hashtag">#Gaming Mouse</span>
+            <span class="hashtag">#Wireless</span>
+        </div>
+
+        <!-- COPYABLE CODES -->
         <div class="header-meta">
-            <span class="sku-text">SKU: 888 B08565C5BB US</span>
-            <span style="color: var(--border);">|</span>
-            <a href="#" class="category-link">Computer Peripheral</a>
+            <span class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')">
+                <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
+            </span>
+            <span class="code-chip" onclick="copyCode(this, 'B08565C5BB')">
+                <i class="ph ph-copy"></i> ASIN: B08565C5BB
+            </span>
+            <span class="code-chip" onclick="copyCode(this, '0810091280019')">
+                <i class="ph ph-copy"></i> UPC: 0810091280019
+            </span>
         </div>
     </div>
 
@@ -723,58 +782,72 @@
             </div>
         </div>
 
-        <!-- COLUMN 2: INFO -->
+        <!-- COLUMN 2: UNIFIED INFO CARD -->
         <div class="info-main">
-
-            <!-- IDs -->
-            <div class="card ids-card">
-                <span class="id-label">SKU:</span>
-                <span class="id-value" onclick="copyText(this, '888 B08565C5BB US')">888 B08565C5BB US</span>
-                <span class="id-label">ASIN:</span>
-                <span class="id-value" onclick="copyText(this, 'B08565C5BB')">B08565C5BB</span>
-            </div>
-
-            <!-- MARKET DATA -->
-            <div class="card market-card">
-                <div class="market-title">Market Data</div>
-                <div class="market-grid">
-                    <div class="market-item">
-                        <div class="market-label">Est. Az Price</div>
-                        <div class="market-value">$129.00</div>
+            <div class="info-card">
+                
+                <!-- IDs SECTION -->
+                <div class="section-header">Product Identifiers</div>
+                <div class="ids-section">
+                    <div class="id-row">
+                        <span class="id-label">SKU</span>
+                        <span class="id-value" onclick="copyCode(this, '888 B08565C5BB US')">
+                            <i class="ph ph-copy"></i> 888 B08565C5BB US
+                        </span>
                     </div>
-                    <div class="market-item">
-                        <div class="market-label">MSRP</div>
-                        <div class="market-value">$129.99</div>
+                    <div class="id-row">
+                        <span class="id-label">ASIN</span>
+                        <span class="id-value" onclick="copyCode(this, 'B08565C5BB')">
+                            <i class="ph ph-copy"></i> B08565C5BB
+                        </span>
+                    </div>
+                    <div class="id-row">
+                        <span class="id-label">UPC</span>
+                        <span class="id-value" onclick="copyCode(this, '0810091280019')">
+                            <i class="ph ph-copy"></i> 0810091280019
+                        </span>
                     </div>
                 </div>
-            </div>
 
-            <!-- TOOLS -->
-            <div class="card tools-card">
-                <a href="#" class="tool-link">
-                    <i class="ph ph-chart-line-up"></i>
-                    Keepa
-                </a>
-                <a href="#" class="tool-link">
-                    <i class="ph ph-calculator"></i>
-                    Calculator
-                </a>
-                <a href="#" class="tool-link">
-                    <i class="ph-fill ph-amazon-logo"></i>
-                    Amazon
-                </a>
-                <a href="#" class="tool-link">
-                    <i class="ph-fill ph-google-logo"></i>
-                    Google
-                </a>
-            </div>
-
-            <!-- PROFIT ESTIMATOR -->
-            <div class="card profit-card">
-                <div class="profit-content">
-                    <div class="profit-title">
-                        <i class="ph-fill ph-trend-up"></i> PROFIT ESTIMATION
+                <!-- MARKET DATA -->
+                <div class="section-header">Market Data</div>
+                <div class="market-section">
+                    <div class="market-grid">
+                        <div class="market-item">
+                            <div class="market-label">Est. Az Price</div>
+                            <div class="market-value">$129.00</div>
+                        </div>
+                        <div class="market-item">
+                            <div class="market-label">MSRP</div>
+                            <div class="market-value">$129.99</div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- TOOLS -->
+                <div class="section-header">External Tools</div>
+                <div class="tools-section">
+                    <a href="#" class="tool-link">
+                        <i class="ph ph-chart-line-up"></i>
+                        Keepa
+                    </a>
+                    <a href="#" class="tool-link">
+                        <i class="ph ph-calculator"></i>
+                        Calculator
+                    </a>
+                    <a href="#" class="tool-link">
+                        <i class="ph-fill ph-amazon-logo"></i>
+                        Amazon
+                    </a>
+                    <a href="#" class="tool-link">
+                        <i class="ph-fill ph-google-logo"></i>
+                        Google
+                    </a>
+                </div>
+
+                <!-- PROFIT ESTIMATOR -->
+                <div class="section-header">Profit Estimation</div>
+                <div class="profit-section">
                     <div class="profit-row">
                         <span class="profit-label">Your Cost</span>
                         <span class="profit-value">$89.00</span>
@@ -783,13 +856,13 @@
                         <span class="profit-label">Est. Sell Price</span>
                         <span class="profit-value">$129.00</span>
                     </div>
-                    <div class="profit-row">
+                    <div class="profit-row total">
                         <span class="profit-label">Est. Profit per Unit</span>
                         <span class="profit-highlight">+$40.00 (45% ROI)</span>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
         <!-- COLUMN 3: PURCHASE CARD -->
@@ -899,4 +972,60 @@
 
 <script>
     function swapImg(el) {
-        const mainImg = document.getElementById('mainImg
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+        
+        mainImg.src = el.querySelector('img').src;
+        
+        thumbs.forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function toggleWatch(btn) {
+        const icon = btn.querySelector('i');
+        if (icon.classList.contains('ph-fill')) {
+            icon.classList.remove('ph-fill');
+        } else {
+            icon.classList.add('ph-fill');
+        }
+    }
+
+    function copyText(el, text) {
+        const originalText = el.textContent;
+        
+        el.textContent = 'Copied!';
+        el.style.background = var(--success-bg);
+        el.style.borderColor = '#bbf7d0';
+        el.style.color = var(--success);
+
+        setTimeout(() => {
+            el.textContent = originalText;
+            el.style.background = 'var(--bg-highlight)';
+            el.style.borderColor = 'var(--border)';
+            el.style.color = 'var(--text-primary)';
+        }, 1200);
+    }
+
+    function adjustQty(delta) {
+        const input = document.getElementById('qtyInput');
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
+        let value = parseInt(input.value) + delta;
+        
+        if (value < min) value = min;
+        if (value > max) value = max;
+        
+        input.value = value;
+    }
+
+    function switchTab(tabEl, tabId) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        tabEl.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
