@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Razer Viper Ultimate - 888Lots Redesign</title>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
       --text-main:#0f172a;--text-secondary:#64748b;--text-muted:#94a3b8;
     }
     *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
     body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--background);color:var(--text-main);font-size:14px;line-height:1.5;padding-bottom:40px}
     .container{max-width:1440px;margin:0 auto;padding:20px}
 
@@ -28,9 +29,9 @@
     .product-header{background:var(--surface);padding:20px;border-radius:8px;border:1px solid var(--border);margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
     .product-title{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:10px}
 
-    /* Pills under headline */
+    /* Pills */
     .headline-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#f1f5f9;color:#0f172a;font-weight:600;font-size:12px;text-decoration:none}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#f1f5f9;color:#0f172a;font-weight:600;font-size:12px;text-decoration:none;white-space:nowrap}
     .pill i{font-size:14px;opacity:.85}
 
     .header-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:12px}
@@ -42,20 +43,20 @@
     .badge.fba{background:var(--success-bg);color:var(--success)}
     .badge.promo{background:var(--danger-bg);color:var(--danger)}
 
-    /* Main grid */
+    /* Main grid (desktop) */
     .product-grid{display:grid;grid-template-columns:380px 1fr 340px;gap:16px;margin-bottom:20px;align-items:stretch}
     .gallery-card,.data-column,.buy-box{display:flex;flex-direction:column;height:100%}
 
     /* Gallery */
     .gallery-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);padding:16px}
     .main-image-container{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:#fff;overflow:hidden;border-radius:6px;border:1px solid var(--border)}
-    .main-image{max-width:100%;max-height:100%;object-fit:contain}
+    .main-image{width:100%;height:100%;object-fit:contain}
     .thumbnails{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:auto}
     .thumb{aspect-ratio:1/1;border:1px solid var(--border);border-radius:4px;padding:4px;cursor:pointer;transition:.2s;background:#fff;display:flex;align-items:center;justify-content:center}
     .thumb.active,.thumb:hover{border-color:var(--primary);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
     .thumb img{width:100%;height:100%;object-fit:contain}
 
-    /* Middle column (compact) */
+    /* Middle column */
     .data-stack{display:flex;flex-direction:column;gap:12px;flex:1;min-height:100%}
     .info-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;min-height:0;flex:1}
     .info-header{background:var(--background);padding:10px 14px;font-size:11px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
@@ -101,7 +102,7 @@
     .btn-outline{background:#fff;border:1px solid var(--border);padding:8px;border-radius:6px;font-size:12px;font-weight:700;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
     .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff}
 
-    /* Stacked detail sections (no tabs) */
+    /* Stacked details (no tabs) */
     .details-stack{display:flex;flex-direction:column;gap:12px;margin-top:20px}
     .detail-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
     .detail-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--background);font-size:13px;font-weight:800;color:var(--text-secondary);text-transform:uppercase}
@@ -111,26 +112,67 @@
     .detail-body ul{padding-left:18px;color:var(--text-secondary)}
     .detail-body li{margin-bottom:8px}
 
-    /* Copy tooltip */
-    .copy-tooltip{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:#0f172a;color:#fff;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none}
-    .copy-tooltip.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    /* ---------- RESPONSIVE BREAKPOINTS ---------- */
 
-    /* Responsive */
+    /* Large tablets / small laptops */
     @media (max-width:1200px){
-      .product-grid{grid-template-columns:1fr 320px}
-      .gallery-card{grid-column:span 2;gap:16px;height:auto}
-      .main-image-container{width:300px;margin-bottom:0}
-      .thumbnails{display:flex;flex-direction:column;width:80px;margin-top:0}
+      .container{padding:16px}
+      .product-grid{
+        grid-template-columns:1fr 320px; /* gallery+data | buybox */
+        align-items:start;
+      }
+      .gallery-card{grid-column:span 1}
+      .market-grid{grid-template-columns:1fr 1fr} /* two columns */
+      .current-price{font-size:34px}
     }
-    @media (max-width:900px){
-      .product-grid{grid-template-columns:1fr}
-      .gallery-card{display:block;height:auto}
-      .main-image-container{width:100%;margin-bottom:12px}
-      .thumbnails{display:grid;width:100%;grid-template-columns:repeat(4,1fr)}
-      .header-meta{flex-direction:column;align-items:flex-start}
-      .status-badges{margin-left:0;margin-top:8px}
-      .buy-box{position:static;height:auto}
-      .market-grid{grid-template-columns:1fr 1fr}
+
+    /* Tablets & phones (portrait) */
+    @media (max-width:960px){
+      body{font-size:13.5px}
+      .product-title{font-size:20px}
+      .headline-pills{
+        gap:6px;
+        margin:8px 0 8px;
+        overflow-x:auto;
+        padding-bottom:4px;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+      }
+      .headline-pills::-webkit-scrollbar{display:none}
+      .pill{padding:6px 9px;font-size:12px}
+
+      .product-grid{
+        grid-template-columns:1fr; /* single column */
+        gap:12px;
+      }
+
+      /* Re-order: Gallery -> Buy Box -> Data */
+      .gallery-card{order:1}
+      .buy-box{order:2;position:static}
+      .data-column{order:3}
+
+      .main-image-container{aspect-ratio:4/3}
+      .thumbnails{grid-template-columns:repeat(4,1fr)}
+      .info-header{padding:9px 12px}
+      .profit-section{padding:12px}
+      .profit-value-large{font-size:20px}
+      .market-grid{grid-template-columns:1fr} /* single column */
+      .tools-bar{grid-template-columns:repeat(2,1fr)}
+      .btn-cart{padding:14px;font-size:15px}
+      .secondary-actions{grid-template-columns:1fr}
+      .details-stack{gap:10px}
+      .detail-head{padding:12px 14px;font-size:12px}
+      .detail-body{padding:14px}
+    }
+
+    /* Small phones */
+    @media (max-width:640px){
+      .container{padding:14px}
+      .current-price{font-size:32px}
+      .price-section{margin-bottom:12px}
+      .qty-control{height:44px}
+      .breadcrums a{font-size:11px}
+      .id-chip{font-size:10px;padding:5px 8px}
     }
   </style>
 </head>
@@ -152,7 +194,7 @@
         Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black
       </h1>
 
-      <!-- Pills directly under headline -->
+      <!-- Pills under headline -->
       <div class="headline-pills">
         <a class="pill" href="/brand/razer"><i class="ph ph-certificate"></i>Razer</a>
         <a class="pill" href="/category/computer-peripheral"><i class="ph ph-hash"></i>Computer Peripheral</a>
@@ -268,7 +310,7 @@
       </aside>
     </div>
 
-    <!-- STACKED DETAILS (no tabs) -->
+    <!-- Stacked details -->
     <div class="details-stack">
       <section class="detail-card" id="desc">
         <div class="detail-head"><i class="ph ph-info"></i> Description</div>
@@ -319,7 +361,6 @@
   </div>
 
   <script>
-    // Profit math for $5 cost
     (function calc(){
       const estAz = 129.00;
       const cost  = 5.00;
