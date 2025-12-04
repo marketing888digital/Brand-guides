@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Razer Viper Ultimate - 888Lots Redesign</title>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
       --danger:#dc2626;--danger-bg:#fee2e2;
       --surface:#fff;--background:#f8fafc;--border:#e2e8f0;
       --text-main:#0f172a;--text-secondary:#64748b;--text-muted:#94a3b8;
+      --promo:#facc15; /* yellow */
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
@@ -27,21 +28,12 @@
 
     /* Header */
     .product-header{background:var(--surface);padding:20px;border-radius:8px;border:1px solid var(--border);margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
-    .product-title{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:10px}
-
-    /* Pills */
-    .headline-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#f1f5f9;color:#0f172a;font-weight:600;font-size:12px;text-decoration:none;white-space:nowrap}
-    .pill i{font-size:14px;opacity:.85}
+    .product-title{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:8px}
 
     .header-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:12px}
     .id-chips{display:flex;gap:8px;flex-wrap:wrap}
     .id-chip{font-family:monospace;font-size:11px;background:var(--background);padding:6px 10px;border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--text-secondary);border:1px solid var(--border);transition:.2s;user-select:none}
     .id-chip:hover{border-color:var(--primary);color:var(--primary);background:#fff}
-    .status-badges{display:flex;gap:8px;margin-left:auto}
-    .badge{font-size:11px;font-weight:800;padding:4px 8px;border-radius:4px;text-transform:uppercase}
-    .badge.fba{background:var(--success-bg);color:var(--success)}
-    .badge.promo{background:var(--danger-bg);color:var(--danger)}
 
     /* Main grid (desktop) */
     .product-grid{display:grid;grid-template-columns:380px 1fr 340px;gap:16px;margin-bottom:20px;align-items:stretch}
@@ -58,14 +50,22 @@
 
     /* Middle column */
     .data-stack{display:flex;flex-direction:column;gap:12px;flex:1;min-height:100%}
-    .info-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;min-height:0;flex:1}
-    .info-header{background:var(--background);padding:10px 14px;font-size:11px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-    .profit-section{padding:14px;background:var(--success-bg);flex:1}
-    .profit-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:var(--text-secondary)}
+    .info-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;min-height:0}
+    .info-header{background:var(--background);padding:9px 12px;font-size:11px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+
+    /* Reduced-height profit box */
+    .profit-section{padding:10px 12px;background:var(--success-bg)}
+    .profit-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--text-secondary)}
     .profit-row strong{color:var(--text-main)}
-    .profit-row.final{margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.05);margin-bottom:0;align-items:center}
-    .profit-value-large{font-size:22px;font-weight:800;color:var(--success);line-height:1}
-    .roi-pill{background:var(--success);color:#fff;font-size:12px;font-weight:700;padding:3px 6px;border-radius:4px;margin-left:8px}
+    .profit-row.final{margin-top:6px;padding-top:8px;border-top:1px solid rgba(0,0,0,.05);margin-bottom:0;align-items:center}
+    .profit-value-large{font-size:20px;font-weight:800;color:var(--success);line-height:1}
+    .roi-pill{background:var(--success);color:#fff;font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;margin-left:6px}
+
+    /* New Major details row */
+    .majors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px 12px}
+    .major-card{border:1px solid var(--border);border-radius:6px;padding:10px;background:#fff;display:flex;flex-direction:column;gap:4px}
+    .major-label{font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:var(--text-secondary);font-weight:800}
+    .major-value{font-size:14px;font-weight:800}
 
     .market-grid{display:grid;grid-template-columns:repeat(3,1fr);padding:12px;gap:16px}
     .data-point{display:flex;flex-direction:column;gap:2px}
@@ -102,6 +102,14 @@
     .btn-outline{background:#fff;border:1px solid var(--border);padding:8px;border-radius:6px;font-size:12px;font-weight:700;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
     .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff}
 
+    /* Strong promo + login area */
+    .promo-wrap{margin-top:14px;border:1px solid #f59e0b;border-radius:8px;overflow:hidden}
+    .promo-head{background:var(--promo);padding:10px;text-align:center;font-weight:900;font-size:13px;text-transform:uppercase}
+    .promo-body{padding:12px;text-align:center;font-size:12px;color:#6b7280}
+    .auth-cta{margin-top:12px;text-align:center;font-size:13px}
+    .auth-cta a{font-weight:800;color:var(--primary);text-decoration:none}
+    .auth-cta a:hover{text-decoration:underline}
+
     /* Stacked details (no tabs) */
     .details-stack{display:flex;flex-direction:column;gap:12px;margin-top:20px}
     .detail-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
@@ -112,66 +120,30 @@
     .detail-body ul{padding-left:18px;color:var(--text-secondary)}
     .detail-body li{margin-bottom:8px}
 
-    /* ---------- RESPONSIVE BREAKPOINTS ---------- */
-
-    /* Large tablets / small laptops */
+    /* ---------- RESPONSIVE ---------- */
     @media (max-width:1200px){
       .container{padding:16px}
-      .product-grid{
-        grid-template-columns:1fr 320px; /* gallery+data | buybox */
-        align-items:start;
-      }
-      .gallery-card{grid-column:span 1}
-      .market-grid{grid-template-columns:1fr 1fr} /* two columns */
-      .current-price{font-size:34px}
+      .product-grid{grid-template-columns:1fr 320px}
+      .market-grid{grid-template-columns:1fr 1fr}
+      .majors{grid-template-columns:1fr 1fr 1fr}
     }
-
-    /* Tablets & phones (portrait) */
     @media (max-width:960px){
       body{font-size:13.5px}
       .product-title{font-size:20px}
-      .headline-pills{
-        gap:6px;
-        margin:8px 0 8px;
-        overflow-x:auto;
-        padding-bottom:4px;
-        -webkit-overflow-scrolling:touch;
-        scrollbar-width:none;
-      }
-      .headline-pills::-webkit-scrollbar{display:none}
-      .pill{padding:6px 9px;font-size:12px}
-
-      .product-grid{
-        grid-template-columns:1fr; /* single column */
-        gap:12px;
-      }
-
-      /* Re-order: Gallery -> Buy Box -> Data */
-      .gallery-card{order:1}
-      .buy-box{order:2;position:static}
-      .data-column{order:3}
-
+      .product-grid{grid-template-columns:1fr;gap:12px}
+      .buy-box{position:static}
       .main-image-container{aspect-ratio:4/3}
       .thumbnails{grid-template-columns:repeat(4,1fr)}
-      .info-header{padding:9px 12px}
-      .profit-section{padding:12px}
-      .profit-value-large{font-size:20px}
-      .market-grid{grid-template-columns:1fr} /* single column */
+      .market-grid{grid-template-columns:1fr}
+      .majors{grid-template-columns:1fr}
       .tools-bar{grid-template-columns:repeat(2,1fr)}
-      .btn-cart{padding:14px;font-size:15px}
       .secondary-actions{grid-template-columns:1fr}
-      .details-stack{gap:10px}
-      .detail-head{padding:12px 14px;font-size:12px}
-      .detail-body{padding:14px}
     }
-
-    /* Small phones */
     @media (max-width:640px){
       .container{padding:14px}
       .current-price{font-size:32px}
       .price-section{margin-bottom:12px}
       .qty-control{height:44px}
-      .breadcrums a{font-size:11px}
       .id-chip{font-size:10px;padding:5px 8px}
     }
   </style>
@@ -194,26 +166,13 @@
         Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black
       </h1>
 
-      <!-- Pills under headline -->
-      <div class="headline-pills">
-        <a class="pill" href="/brand/razer"><i class="ph ph-certificate"></i>Razer</a>
-        <a class="pill" href="/category/computer-peripheral"><i class="ph ph-hash"></i>Computer Peripheral</a>
-        <a class="pill" href="/program/fba"><i class="ph ph-truck"></i>Fulfilled by Amazon</a>
-        <a class="pill" href="/program/price-drop"><i class="ph ph-arrow-circle-down"></i>Price Drop</a>
-        <a class="pill" href="/program/staff-picks"><i class="ph ph-seal-check"></i>Staff Picks</a>
-        <a class="pill" href="/program/suggested"><i class="ph ph-target"></i>Suggested</a>
-        <a class="pill" href="/program/5-dollar-store"><i class="ph ph-shopping-bag"></i>$5 Store</a>
-        <a class="pill" href="/condition/brand-new"><i class="ph ph-star"></i>Brand New</a>
-      </div>
-
       <div class="header-meta">
         <div class="id-chips">
           <div class="id-chip" onclick="copyToClipboard('888 B08565C5BB US','SKU')"><span style="opacity:.6">SKU:</span> 888 B08565C5BB US <i class="ph ph-copy"></i></div>
           <div class="id-chip" onclick="copyToClipboard('B08565C5BB','ASIN')"><span style="opacity:.6">ASIN:</span> B08565C5BB <i class="ph ph-copy"></i></div>
           <div class="id-chip" onclick="copyToClipboard('0810091280019','UPC')"><span style="opacity:.6">UPC:</span> 0810091280019 <i class="ph ph-copy"></i></div>
         </div>
-
-        </div>
+      </div>
     </header>
 
     <!-- Main Grid -->
@@ -243,6 +202,8 @@
       <!-- Column 2: Data -->
       <div class="data-column">
         <div class="data-stack">
+
+          <!-- Profit (reduced height) -->
           <div class="info-card">
             <div class="info-header" style="background:#f0fdf4;color:#15803d;border-color:#bbf7d0">
               <i class="ph-fill ph-money"></i> Profit Estimation
@@ -258,8 +219,25 @@
                 </div>
               </div>
             </div>
+
+            <!-- Major Details (NEW) -->
+            <div class="majors">
+              <div class="major-card">
+                <span class="major-label">Condition</span>
+                <span class="major-value">Fulfilled by Amazon</span>
+              </div>
+              <div class="major-card">
+                <span class="major-label">Brand</span>
+                <span class="major-value">Razer</span>
+              </div>
+              <div class="major-card">
+                <span class="major-label">Category</span>
+                <span class="major-value">Computer Peripheral</span>
+              </div>
+            </div>
           </div>
 
+          <!-- Market Intelligence -->
           <div class="info-card">
             <div class="info-header">Market Intelligence</div>
             <div class="market-grid">
@@ -277,6 +255,7 @@
               <a href="#" class="tool-btn"><i class="ph ph-chart-line-up"></i>Keepa</a>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -298,9 +277,21 @@
           <button class="qty-btn" onclick="updateQty(1)">+</button>
         </div>
         <button class="btn-cart"><i class="ph-bold ph-shopping-cart-simple"></i>Add to Cart</button>
+
         <div class="secondary-actions">
           <button class="btn-outline"><i class="ph-bold ph-heart"></i>Watch</button>
           <button class="btn-outline"><i class="ph-bold ph-handshake"></i>Negotiate</button>
+        </div>
+
+        <!-- Promo + Login/Register (NEW) -->
+        <div class="promo-wrap">
+          <div class="promo-head">First Order Promo</div>
+          <div class="promo-body">
+            Promotion valid for the first order only. Available for orders up to $1,000. Offer cannot be combined with other promotions.
+          </div>
+        </div>
+        <div class="auth-cta">
+          In order to buy this item please <a href="#">Login</a> or <a href="#">Register (It's FREE)</a>
         </div>
       </aside>
     </div>
@@ -350,7 +341,7 @@
   </div>
 
   <!-- Copy tooltip -->
-  <div id="copyTooltip" class="copy-tooltip">
+  <div id="copyTooltip" class="copy-tooltip" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:#0f172a;color:#fff;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none">
     <i class="ph-fill ph-check-circle" style="color:#4ade80"></i>
     <span id="tooltipText">Copied to clipboard</span>
   </div>
@@ -389,7 +380,12 @@
       navigator.clipboard.writeText(text).then(()=>{
         const tip=document.getElementById('copyTooltip');
         document.getElementById('tooltipText').innerText=`${label} Copied!`;
-        tip.classList.add('show'); setTimeout(()=>tip.classList.remove('show'),2000);
+        tip.style.opacity='1';
+        tip.style.transform='translateX(-50%) translateY(0)';
+        setTimeout(()=>{
+          tip.style.opacity='0';
+          tip.style.transform='translateX(-50%) translateY(100px)';
+        },2000);
       });
     }
   </script>
