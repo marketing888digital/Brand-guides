@@ -3,1027 +3,786 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Razer Viper Ultimate - 888lots</title>
+    <title>Razer Viper Ultimate - 888Lots Redesign</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 888lots actual colors */
-            --action-blue: #2563eb;
-            --urgent-red: #dc2626;
-            --text-primary: #334155;
+            /* Modern Color Palette based on Blue/White theme */
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #16a34a;
+            --success-bg: #dcfce7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --surface: #ffffff;
+            --background: #f1f5f9;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
             --text-secondary: #64748b;
             --text-muted: #94a3b8;
-            --bg-highlight: #f1f5f9;
-            --bg-space: #f8fafc;
-            --border: #cbd5e1;
-            --success: #16a34a;
-            --success-bg: #f0fdf4;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            background: var(--bg-space);
-            font-family: 'Inter', -apple-system, sans-serif;
-            color: var(--text-primary);
-            font-size: 13px;
-            line-height: 1.4;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-        .container { 
-            max-width: 1400px; 
-            margin: 0 auto; 
-            padding: 12px;
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* BREADCRUMB */
-        .breadcrumb { 
-            font-size: 11px; 
-            color: var(--text-secondary); 
-            margin-bottom: 12px; 
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
-        .breadcrumb a { 
-            text-decoration: none; 
-            color: var(--text-secondary); 
+        .breadcrumbs a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
         }
-        .breadcrumb a:hover { color: var(--action-blue); }
-        .breadcrumb span { 
-            color: var(--text-primary);
-            font-weight: 700;
-        }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .breadcrumbs span { font-weight: 600; color: var(--text-main); }
 
-        /* HEADER WITH HASHTAGS */
+        /* --- HEADER SECTION --- */
         .product-header {
-            background: white;
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
             border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 14px 18px;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .product-title {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
-            color: var(--text-primary);
             margin-bottom: 12px;
             line-height: 1.3;
         }
 
-        /* HASHTAGS - Canonical data */
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* Hashtags styled as pills */
         .hashtags {
             display: flex;
             gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
         }
-
-        .hashtag {
+        .tag {
+            background: #eff6ff;
+            color: var(--primary);
             font-size: 12px;
-            color: var(--action-blue);
             font-weight: 600;
-            background: var(--bg-highlight);
             padding: 4px 10px;
-            border-radius: 3px;
-            border: 1px solid var(--border);
+            border-radius: 99px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .tag:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        .header-meta {
+        /* Copyable Identifiers - moved from middle column to here */
+        .id-chips {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            align-items: center;
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
+            gap: 8px;
+            border-left: 1px solid var(--border);
+            padding-left: 12px;
+            margin-left: 4px;
         }
-
-        /* COPYABLE CODES */
-        .code-chip {
-            display: inline-flex;
+        .id-chip {
+            font-family: monospace;
+            font-size: 11px;
+            background: var(--background);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 11px;
-            font-family: monospace;
             color: var(--text-secondary);
-            background: var(--bg-highlight);
-            padding: 4px 10px;
-            border-radius: 3px;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: 0.15s;
+            border: 1px solid transparent;
+            transition: all 0.2s;
         }
-        .code-chip:hover {
+        .id-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
             background: white;
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-        }
-        .code-chip i {
-            font-size: 12px;
-            opacity: 0.6;
         }
 
-        /* THREE COLUMN LAYOUT */
+        /* --- MAIN GRID LAYOUT --- */
         .product-grid {
             display: grid;
-            grid-template-columns: 340px 1fr 340px;
-            gap: 12px;
+            grid-template-columns: 380px 1fr 340px; /* Gallery | Data | Action */
+            gap: 20px;
             align-items: start;
-            margin-bottom: 12px;
         }
 
-        .card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* COLUMN 1: GALLERY WITH RIBBON BADGES */
+        /* --- COLUMN 1: GALLERY --- */
         .gallery-card {
-            position: sticky;
-            top: 12px;
-        }
-
-        /* FBA RIBBON - Matching listing page */
-        .fba-ribbon {
-            position: absolute;
-            top: 10px;
-            left: -2px;
-            background: var(--success);
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 4px 10px 4px 8px;
-            z-index: 10;
-            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        .fba-ribbon::after {
-            content: '';
-            position: absolute;
-            right: -6px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: 6px solid var(--success);
-            border-top: 13px solid transparent;
-            border-bottom: 13px solid transparent;
-        }
-
-        /* PROMO RIBBON */
-        .promo-ribbon {
-            position: absolute;
-            top: 36px;
-            left: -2px;
-            background: var(--urgent-red);
-            color: white;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 3px 8px 3px 6px;
-            z-index: 10;
-            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        .promo-ribbon::after {
-            content: '';
-            position: absolute;
-            right: -5px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: 5px solid var(--urgent-red);
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-        }
-
-        /* WATCHLIST HEART */
-        .watchlist-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 32px;
-            height: 32px;
-            background: white;
+            background: var(--surface);
+            border-radius: 8px;
             border: 1px solid var(--border);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            padding: 16px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .badges {
+            position: absolute;
+            top: 12px;
+            left: 12px;
             z-index: 10;
-            transition: 0.2s;
-        }
-        .watchlist-btn:hover {
-            background: var(--bg-highlight);
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-        }
-        .watchlist-btn i {
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        .watchlist-btn:hover i {
-            color: var(--action-blue);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .gallery { 
-            padding: 14px; 
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        .badge.fba { background-color: var(--success); }
+        .badge.promo { background-color: var(--danger); }
 
-        .main-img-wrapper {
+        .main-image-container {
+            width: 100%;
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            border: 1px solid var(--background);
             border-radius: 4px;
-            padding: 16px;
-            margin-bottom: 10px;
-            background: white;
-        }
-        .main-img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; 
         }
         
-        .thumbs {
+        .main-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .thumbnails {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 8px;
         }
         .thumb {
             aspect-ratio: 1/1;
-            border: 2px solid var(--border);
-            border-radius: 3px;
-            padding: 4px;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .thumb:hover { border-color: var(--action-blue); }
-        .thumb.active { border-color: var(--action-blue); }
-        .thumb img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-        }
-
-        /* COLUMN 2: UNIFIED INFO CARD */
-        .info-main {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        /* UNIFIED INFO CARD - No fragmentation */
-        .info-card {
-            background: white;
             border: 1px solid var(--border);
             border-radius: 4px;
+            padding: 4px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: 0.2s;
+        }
+        .thumb.active, .thumb:hover {
+            opacity: 1;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* --- COLUMN 2: DATA DASHBOARD --- */
+        .data-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        /* SECTION HEADERS - Subtle */
-        .section-header {
-            font-size: 11px;
+        .info-card {
+            background: var(--surface);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .info-header {
+            background: var(--background);
+            padding: 10px 16px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 14px 16px;
-            background: var(--bg-space);
-        }
-
-        /* IDS SECTION - Clean rows */
-        .ids-section {
-            padding: 14px 16px;
-        }
-
-        .id-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-        .id-row:last-child { margin-bottom: 0; }
-
-        .id-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            min-width: 50px;
-        }
-
-        .id-value {
-            font-size: 11px;
-            font-family: monospace;
-            color: var(--text-primary);
-            background: var(--bg-highlight);
-            padding: 4px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: 0.15s;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .id-value:hover {
-            background: white;
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-        }
-        .id-value i {
-            font-size: 12px;
-            opacity: 0.6;
-        }
-
-        /* MARKET DATA - Clean grid */
-        .market-section {
-            padding: 16px;
-            background: white;
-        }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .market-item {
-            text-align: center;
-            padding: 12px;
-            background: var(--bg-space);
-            border-radius: 4px;
-        }
-        .market-label {
-            font-size: 10px;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
-        .market-value {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        /* TOOLS - Integrated */
-        .tools-section {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--border);
-        }
-        .tool-link {
-            background: white;
-            padding: 10px;
-            text-align: center;
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: 0.12s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-        }
-        .tool-link:hover {
-            background: var(--bg-highlight);
-            color: var(--action-blue);
-        }
-        .tool-link i { font-size: 16px; }
-
-        /* PROFIT SECTION - Integrated */
-        .profit-section {
-            padding: 16px;
-            background: var(--success-bg);
-        }
-
-        .profit-title {
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--success);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .profit-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            font-size: 13px;
-        }
-        .profit-row.total {
-            padding-top: 10px;
-            margin-top: 6px;
-            border-top: 2px solid var(--success);
-        }
-        .profit-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .profit-value {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .profit-highlight {
-            color: var(--success);
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        /* COLUMN 3: PURCHASE CARD - Matching listing style */
-        .purchase-card {
-            position: sticky;
-            top: 12px;
-        }
-
-        /* PRICE SECTION - Matching "Az Price" format */
-        .price-section {
-            padding: 16px;
             border-bottom: 1px solid var(--border);
         }
 
-        .price-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
+        /* Market Data Grid */
+        .market-data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 20px;
+            gap: 20px;
+            border-bottom: 1px solid var(--border);
         }
-
-        .price-main {
+        .data-point {
             display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 8px;
+            flex-direction: column;
+            gap: 4px;
         }
+        .data-label { font-size: 12px; color: var(--text-secondary); }
+        .data-value { font-size: 18px; font-weight: 700; color: var(--text-main); }
 
-        .current-price {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--text-primary);
-            line-height: 1;
+        /* Profit Section - Highlighted */
+        .profit-section {
+            padding: 20px;
+            background: var(--success-bg);
+            border-bottom: 1px solid var(--border);
         }
-
-        .old-price {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        /* REDUCED PRICE TAG - Matching listing cards */
-        .reduced-tag {
-            display: inline-block;
-            background: var(--urgent-red);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 3px;
-        }
-
-        /* STOCK */
-        .stock-section {
-            padding: 12px 16px;
-            background: var(--bg-space);
-        }
-
-        .stock-row {
+        .profit-row {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
-        .stock-row:last-child { margin-bottom: 0; }
-        .stock-label {
-            color: var(--text-secondary);
+        .profit-row.final {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 0;
+            align-items: baseline;
         }
-        .stock-value {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .stock-value.in-stock {
+        .profit-val-big {
+            font-size: 24px;
+            font-weight: 800;
             color: var(--success);
         }
-
-        /* ACTIONS */
-        .action-section {
-            padding: 16px;
-        }
-
-        .qty-section {
-            margin-bottom: 12px;
-        }
-
-        .qty-label {
-            font-size: 10px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .qty-control {
-            display: flex;
-            border: 1px solid var(--border);
+        .roi-badge {
+            background: var(--success);
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
             border-radius: 4px;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* External Tools Bar */
+        .tools-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            divide-x: 1px solid var(--border);
+        }
+        .tool-link {
+            padding: 12px;
+            text-align: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .tool-link:hover { background: var(--background); color: var(--primary); }
+        .tool-link i { font-size: 18px; }
+
+        /* Description Tabs */
+        .desc-container {
+            background: var(--surface);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-top: 4px;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+        .tab {
+            padding: 14px 24px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .tab:hover { color: var(--text-main); background: var(--background); }
+        .tab.active { color: var(--primary); border-bottom-color: var(--primary); background: transparent; }
+        
+        .tab-content {
+            padding: 24px;
+            display: none;
+            color: var(--text-secondary);
+        }
+        .tab-content.active { display: block; }
+        .tab-content ul { padding-left: 20px; margin-top: 10px; }
+        .tab-content li { margin-bottom: 8px; }
+
+        /* --- COLUMN 3: ACTION / BUY BOX --- */
+        .buy-box {
+            background: var(--surface);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .price-area {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .price-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; }
+        .price-flex { display: flex; align-items: baseline; gap: 10px; margin-top: 4px; }
+        .price-current { font-size: 36px; font-weight: 800; color: var(--text-main); letter-spacing: -1px; }
+        .price-old { text-decoration: line-through; color: var(--text-muted); }
+        .price-discount { color: var(--danger); font-weight: 700; font-size: 13px; background: var(--danger-bg); padding: 2px 6px; border-radius: 4px;}
+
+        .stock-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .stock-item { display: flex; flex-direction: column; gap: 2px; }
+        .stock-item span:first-child { color: var(--text-secondary); }
+        .stock-item span:last-child { font-weight: 700; color: var(--text-main); }
+        .text-green { color: var(--success) !important; }
+
+        .qty-wrapper {
+            margin-bottom: 16px;
+        }
+        .qty-label { font-size: 12px; font-weight: 600; margin-bottom: 6px; display: block; }
+        .qty-input-group {
+            display: flex;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
             overflow: hidden;
         }
         .qty-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-highlight);
+            width: 44px;
             border: none;
-            font-size: 18px;
+            background: var(--background);
             cursor: pointer;
+            font-size: 18px;
+            color: var(--text-main);
             transition: 0.1s;
-            color: var(--text-primary);
-            font-weight: 700;
         }
         .qty-btn:hover { background: #e2e8f0; }
         .qty-input {
             flex: 1;
             border: none;
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
             text-align: center;
             font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 600;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
         }
 
-        /* CART BUTTON - Matching listing page add to cart */
-        .btn-cart {
+        .btn-primary {
             width: 100%;
-            background: var(--action-blue);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 4px;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            transition: 0.2s;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .btn-outline {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--text-secondary);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            margin-bottom: 10px;
+            font-size: 13px;
             transition: 0.2s;
         }
-        .btn-cart:hover {
-            background: #1d4ed8;
-        }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); background: #eff6ff; }
 
-        .btn-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .btn-secondary {
-            background: white;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        .btn-secondary:hover {
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-            background: var(--bg-highlight);
-        }
-
-        .meta-section {
-            padding-top: 12px;
-            margin-top: 12px;
+        .shipping-info {
+            margin-top: 16px;
+            padding-top: 16px;
             border-top: 1px solid var(--border);
-        }
-
-        .meta-row {
+            font-size: 12px;
+            color: var(--text-secondary);
             display: flex;
             justify-content: space-between;
-            font-size: 11px;
-            margin-bottom: 6px;
-        }
-        .meta-row:last-child { margin-bottom: 0; }
-        .meta-label { color: var(--text-secondary); }
-        .meta-value { font-weight: 700; color: var(--text-primary); }
-
-        /* FULL WIDTH DESCRIPTION */
-        .description-section {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
         }
 
-        .tabs {
+        /* --- COPY TOOLTIP --- */
+        .copy-tooltip {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-main);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
             display: flex;
-            background: var(--bg-highlight);
-            border-bottom: 1px solid var(--border);
+            align-items: center;
+            gap: 8px;
+        }
+        .copy-tooltip.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        .tab {
-            padding: 12px 24px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-right: 1px solid var(--border);
-            transition: 0.15s;
-            background: transparent;
-            border-bottom: 3px solid transparent;
-        }
-        .tab:last-child { border-right: none; }
-        .tab.active {
-            background: white;
-            color: var(--text-primary);
-            border-bottom-color: var(--action-blue);
-        }
-        .tab:hover:not(.active) { background: #e2e8f0; }
-
-        .tab-content {
-            display: none;
-            padding: 20px 24px;
-        }
-        .tab-content.active { display: block; }
-
-        .tab-content h3 {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .tab-content p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 10px;
-            font-size: 13px;
-        }
-
-        .tab-content ul {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            padding-left: 18px;
-            font-size: 13px;
-        }
-
-        .tab-content li {
-            margin-bottom: 8px;
-        }
-
-        /* RESPONSIVE */
+        /* --- RESPONSIVE --- */
         @media (max-width: 1200px) {
-            .product-grid {
-                grid-template-columns: 300px 1fr 320px;
-            }
-        }
-
-        @media (max-width: 1024px) {
             .product-grid {
                 grid-template-columns: 1fr 340px;
             }
             .gallery-card {
-                grid-column: span 2;
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
             }
+            .badges { position: absolute; } /* Reset relative positioning context */
+            .main-image-container { margin-bottom: 0; height: 100%; }
+            .thumbnails { display: flex; flex-direction: column; width: 80px; }
+        }
+
+        @media (max-width: 900px) {
+            .gallery-card { display: block; }
+            .thumbnails { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; margin-top: 12px; }
         }
 
         @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-card {
-                grid-column: 1;
-            }
-            .purchase-card {
-                position: static;
-            }
+            .product-grid { grid-template-columns: 1fr; }
+            .product-title { font-size: 18px; }
+            .header-meta { flex-direction: column; align-items: flex-start; }
+            .id-chips { border-left: none; padding-left: 0; margin-left: 0; margin-top: 8px; flex-wrap: wrap; }
+            .gallery-card { position: static; }
+            .buy-box { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; border-radius: 12px 12px 0 0; border-bottom: none; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); padding: 12px; }
+            .buy-box .stock-grid, .buy-box .qty-wrapper, .buy-box .action-row, .buy-box .shipping-info { display: none; }
+            .price-area { margin-bottom: 0; padding-bottom: 0; border: none; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+            .container { padding-bottom: 140px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <a href="#">Home</a>
+        <i class="ph ph-caret-right"></i>
+        <a href="#">Computers, Laptops & Hardware</a>
+        <i class="ph ph-caret-right"></i>
+        <span>Computer Peripheral</span>
+    </nav>
 
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
-        <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
-    </div>
-
-    <!-- HEADER WITH HASHTAGS -->
-    <div class="product-header">
-        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</h1>
+    <!-- Header Section -->
+    <header class="product-header">
+        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
         
-        <!-- HASHTAGS - Canonical data -->
-        <div class="hashtags">
-            <span class="hashtag">#Razer</span>
-            <span class="hashtag">#Computer Peripheral</span>
-            <span class="hashtag">#Gaming Mouse</span>
-            <span class="hashtag">#Wireless</span>
-        </div>
-
-        <!-- COPYABLE CODES -->
         <div class="header-meta">
-            <span class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')">
-                <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
-            </span>
-            <span class="code-chip" onclick="copyCode(this, 'B08565C5BB')">
-                <i class="ph ph-copy"></i> ASIN: B08565C5BB
-            </span>
-            <span class="code-chip" onclick="copyCode(this, '0810091280019')">
-                <i class="ph ph-copy"></i> UPC: 0810091280019
-            </span>
-        </div>
-    </div>
+            <!-- Hashtags (Clickable) -->
+            <div class="hashtags">
+                <a href="#" class="tag">#Razer</a>
+                <a href="#" class="tag">#GamingMouse</a>
+                <a href="#" class="tag">#Wireless</a>
+                <a href="#" class="tag">#Peripheral</a>
+            </div>
 
-    <div class="product-grid">
-
-        <!-- COLUMN 1: GALLERY WITH RIBBONS -->
-        <div class="card gallery-card">
-            <!-- FBA RIBBON -->
-            <div class="fba-ribbon">FBA</div>
-            
-            <!-- PROMO RIBBON -->
-            <div class="promo-ribbon">FIRST ORDER</div>
-            
-            <!-- WATCHLIST -->
-            <button class="watchlist-btn" onclick="toggleWatch(this)">
-                <i class="ph ph-heart"></i>
-            </button>
-
-            <div class="gallery">
-                <div class="main-img-wrapper">
-                    <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
+            <!-- Identifiers (Moved from middle column to here for cleaner look) -->
+            <div class="id-chips">
+                <div class="id-chip" onclick="copyToClipboard('888 B08565C5BB US', 'SKU')">
+                    <span style="opacity: 0.6">SKU:</span> 888 B08565C5BB US <i class="ph ph-copy"></i>
                 </div>
-                <div class="thumbs">
-                    <div class="thumb active" onclick="swapImg(this)">
-                        <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" alt="View 1">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=2" alt="View 2">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=3" alt="View 3">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=4" alt="View 4">
-                    </div>
+                <div class="id-chip" onclick="copyToClipboard('B08565C5BB', 'ASIN')">
+                    <span style="opacity: 0.6">ASIN:</span> B08565C5BB <i class="ph ph-copy"></i>
+                </div>
+                <div class="id-chip" onclick="copyToClipboard('0810091280019', 'UPC')">
+                    <span style="opacity: 0.6">UPC:</span> 0810091280019 <i class="ph ph-copy"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Grid -->
+    <div class="product-grid">
+        
+        <!-- Column 1: Gallery -->
+        <div class="gallery-card">
+            <div class="badges">
+                <span class="badge fba">FBA</span>
+                <span class="badge promo">FIRST ORDER</span>
+            </div>
+            
+            <div class="main-image-container">
+                <!-- Using a clean placeholder for the Razer mouse -->
+                <img src="https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png" alt="Razer Viper Ultimate" class="main-image" id="mainImg">
+            </div>
+
+            <div class="thumbnails">
+                <div class="thumb active" onclick="changeImage(this, 'https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png')">
+                    <img src="https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png" alt="Front">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'https://m.media-amazon.com/images/I/61I21VpQWTL._AC_SL1500_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/61I21VpQWTL._AC_SL1500_.jpg" alt="Side">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'https://m.media-amazon.com/images/I/71r31-X1NPL._AC_SL1500_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/71r31-X1NPL._AC_SL1500_.jpg" alt="Top">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'https://m.media-amazon.com/images/I/81xHhXjFvXL._AC_SL1500_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/81xHhXjFvXL._AC_SL1500_.jpg" alt="Box">
                 </div>
             </div>
         </div>
 
-        <!-- COLUMN 2: UNIFIED INFO CARD -->
-        <div class="info-main">
+        <!-- Column 2: Data Dashboard -->
+        <div class="data-column">
+            
+            <!-- Profit Calculation (The most important B2B metric) -->
             <div class="info-card">
+                <div class="info-header" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">
+                    <i class="ph-fill ph-money"></i> Profit Estimation
+                </div>
+                <div class="profit-section">
+                    <div class="profit-row">
+                        <span style="color: var(--text-secondary)">Est. Sell Price (Az)</span>
+                        <span style="font-weight: 600">$129.00</span>
+                    </div>
+                    <div class="profit-row">
+                        <span style="color: var(--text-secondary)">Your Cost</span>
+                        <span style="font-weight: 600; color: var(--danger)">- $89.00</span>
+                    </div>
+                    <div class="profit-row final">
+                        <span>Est. Net Profit</span>
+                        <div>
+                            <span class="profit-val-big">+$40.00</span>
+                            <span class="roi-badge">45% ROI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Data & Tools -->
+            <div class="info-card">
+                <div class="info-header">Market Intelligence</div>
+                <div class="market-data-grid">
+                    <div class="data-point">
+                        <span class="data-label">Est. Az Price</span>
+                        <span class="data-value">$129.00</span>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-label">MSRP</span>
+                        <span class="data-value" style="color: var(--text-muted); text-decoration: line-through;">$129.99</span>
+                    </div>
+                    <!-- Note: Removed the text identifiers from here as requested, they are now in the header -->
+                </div>
                 
-                <!-- IDs SECTION -->
-                <div class="section-header">Product Identifiers</div>
-                <div class="ids-section">
-                    <div class="id-row">
-                        <span class="id-label">SKU</span>
-                        <span class="id-value" onclick="copyCode(this, '888 B08565C5BB US')">
-                            <i class="ph ph-copy"></i> 888 B08565C5BB US
-                        </span>
-                    </div>
-                    <div class="id-row">
-                        <span class="id-label">ASIN</span>
-                        <span class="id-value" onclick="copyCode(this, 'B08565C5BB')">
-                            <i class="ph ph-copy"></i> B08565C5BB
-                        </span>
-                    </div>
-                    <div class="id-row">
-                        <span class="id-label">UPC</span>
-                        <span class="id-value" onclick="copyCode(this, '0810091280019')">
-                            <i class="ph ph-copy"></i> 0810091280019
-                        </span>
-                    </div>
-                </div>
-
-                <!-- MARKET DATA -->
-                <div class="section-header">Market Data</div>
-                <div class="market-section">
-                    <div class="market-grid">
-                        <div class="market-item">
-                            <div class="market-label">Est. Az Price</div>
-                            <div class="market-value">$129.00</div>
-                        </div>
-                        <div class="market-item">
-                            <div class="market-label">MSRP</div>
-                            <div class="market-value">$129.99</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TOOLS -->
-                <div class="section-header">External Tools</div>
-                <div class="tools-section">
+                <div class="tools-bar">
                     <a href="#" class="tool-link">
                         <i class="ph ph-chart-line-up"></i>
-                        Keepa
+                        <span>Keepa</span>
                     </a>
                     <a href="#" class="tool-link">
                         <i class="ph ph-calculator"></i>
-                        Calculator
+                        <span>Calculator</span>
                     </a>
                     <a href="#" class="tool-link">
                         <i class="ph-fill ph-amazon-logo"></i>
-                        Amazon
+                        <span>Amazon</span>
                     </a>
                     <a href="#" class="tool-link">
                         <i class="ph-fill ph-google-logo"></i>
-                        Google
+                        <span>Google</span>
                     </a>
                 </div>
-
-                <!-- PROFIT ESTIMATOR -->
-                <div class="section-header">Profit Estimation</div>
-                <div class="profit-section">
-                    <div class="profit-row">
-                        <span class="profit-label">Your Cost</span>
-                        <span class="profit-value">$89.00</span>
-                    </div>
-                    <div class="profit-row">
-                        <span class="profit-label">Est. Sell Price</span>
-                        <span class="profit-value">$129.00</span>
-                    </div>
-                    <div class="profit-row total">
-                        <span class="profit-label">Est. Profit per Unit</span>
-                        <span class="profit-highlight">+$40.00 (45% ROI)</span>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Tabs Section -->
+            <div class="desc-container">
+                <div class="tabs">
+                    <div class="tab active" onclick="openTab(event, 'desc')">Description</div>
+                    <div class="tab" onclick="openTab(event, 'specs')">Specifications</div>
+                </div>
+                <div id="desc" class="tab-content active">
+                    <p style="margin-bottom: 12px; font-weight: 500; color: var(--text-main)">Razer Viper Ultimate Lightweight Wireless Gaming Mouse</p>
+                    <ul>
+                        <li><strong>25% Quicker Than Competing Wireless Mice:</strong> Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom.</li>
+                        <li><strong>Lightest Zero-Compromise Design:</strong> At 74g, it includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes.</li>
+                        <li><strong>Optical Mouse Switches:</strong> Uses light beam-based actuation, registering button presses at the speed of light.</li>
+                        <li><strong>70 Hr Battery Life:</strong> Play for days without charging.</li>
+                    </ul>
+                </div>
+                <div id="specs" class="tab-content">
+                    <ul>
+                        <li>Brand: Razer</li>
+                        <li>Model: Viper Ultimate (Classic Black)</li>
+                        <li>Sensor: Optical (20,000 DPI)</li>
+                        <li>Buttons: 8 Programmable</li>
+                        <li>Connectivity: HyperSpeed Wireless</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
-        <!-- COLUMN 3: PURCHASE CARD -->
-        <div class="card purchase-card">
-            
-            <!-- PRICE - Matching "Az Price" format -->
-            <div class="price-section">
-                <div class="price-label">Az Price</div>
-                <div class="price-main">
-                    <span class="current-price">$89.00</span>
-                    <span class="old-price">$95.00</span>
-                </div>
-                <span class="reduced-tag">Reduced Price -6%</span>
-            </div>
-
-            <!-- STOCK -->
-            <div class="stock-section">
-                <div class="stock-row">
-                    <span class="stock-label">In Stock</span>
-                    <span class="stock-value in-stock">132 pc(s)</span>
-                </div>
-                <div class="stock-row">
-                    <span class="stock-label">MOQ</span>
-                    <span class="stock-value">100 pc(s)</span>
-                </div>
-                <div class="stock-row">
-                    <span class="stock-label">Condition</span>
-                    <span class="stock-value">Fulfilled by Amazon</span>
+        <!-- Column 3: Buy Box / Action -->
+        <aside class="buy-box">
+            <div class="price-area">
+                <div class="price-label">Wholesale Price</div>
+                <div class="price-flex">
+                    <span class="price-current">$89.00</span>
+                    <span class="price-old">$95.00</span>
+                    <span class="price-discount">-6%</span>
                 </div>
             </div>
 
-            <!-- ACTIONS -->
-            <div class="action-section">
-                <div class="qty-section">
-                    <div class="qty-label">Quantity</div>
-                    <div class="qty-control">
-                        <button class="qty-btn" onclick="adjustQty(-1)">−</button>
-                        <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
-                        <button class="qty-btn" onclick="adjustQty(1)">+</button>
-                    </div>
+            <div class="stock-grid">
+                <div class="stock-item">
+                    <span>In Stock</span>
+                    <span class="text-green">132 units</span>
                 </div>
+                <div class="stock-item">
+                    <span>MOQ</span>
+                    <span>100 units</span>
+                </div>
+                <div class="stock-item" style="grid-column: span 2; margin-top: 8px;">
+                    <span>Condition</span>
+                    <span class="text-green"><i class="ph-fill ph-check-circle"></i> Fulfilled by Amazon</span>
+                </div>
+            </div>
 
-                <button class="btn-cart">
-                    <i class="ph-fill ph-shopping-cart-simple"></i> Add to Cart
+            <div class="qty-wrapper">
+                <label class="qty-label">Quantity</label>
+                <div class="qty-input-group">
+                    <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                    <input type="number" id="qty" class="qty-input" value="100" min="100" max="132">
+                    <button class="qty-btn" onclick="updateQty(1)">+</button>
+                </div>
+            </div>
+
+            <button class="btn-primary">
+                <i class="ph-bold ph-shopping-cart-simple"></i> Add to Cart
+            </button>
+
+            <div class="action-row">
+                <button class="btn-outline">
+                    <i class="ph-bold ph-handshake"></i> Negotiate
                 </button>
-
-                <div class="btn-group">
-                    <button class="btn-secondary">
-                        <i class="ph ph-handshake"></i> Negotiate
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="ph ph-heart"></i> Watch
-                    </button>
-                </div>
-
-                <div class="meta-section">
-                    <div class="meta-row">
-                        <span class="meta-label">Shipping Cost</span>
-                        <span class="meta-value">$1.00 per unit</span>
-                    </div>
-                </div>
+                <button class="btn-outline">
+                    <i class="ph-bold ph-heart"></i> Watch
+                </button>
             </div>
 
-        </div>
+            <div class="shipping-info">
+                <span>Shipping Cost</span>
+                <span style="font-weight: 600">$1.00 per unit</span>
+            </div>
+        </aside>
 
     </div>
+</div>
 
-    <!-- FULL WIDTH DESCRIPTION -->
-    <div class="description-section">
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
-            <div class="tab" onclick="switchTab(this, 'specs')">Specifications</div>
-            <div class="tab" onclick="switchTab(this, 'shipping')">Shipping Info</div>
-        </div>
-
-        <div id="description" class="tab-content active">
-            <h3>Product Description</h3>
-            <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
-            <ul>
-                <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom</li>
-                <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g: Includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes</li>
-                <li>Faster Than Traditional Mechanical Switches: New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light</li>
-                <li>Ambidextrous Design: Created for left and right-handed users with accessible, programmable buttons on both sides</li>
-                <li>8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3. Max Speed (IPS)-650</li>
-            </ul>
-        </div>
-
-        <div id="specs" class="tab-content">
-            <h3>Specifications</h3>
-            <p><strong>Brand:</strong> Razer<br>
-            <strong>Model:</strong> Viper Ultimate<br>
-            <strong>Type:</strong> Wireless Gaming Mouse<br>
-            <strong>Color:</strong> Classic Black<br>
-            <strong>Condition:</strong> Fulfilled by Amazon</p>
-        </div>
-
-        <div id="shipping" class="tab-content">
-            <h3>Shipping Information</h3>
-            <p><strong>Shipping Cost:</strong> $1.00 per unit<br>
-            <strong>Fulfillment:</strong> Fulfilled by Amazon<br>
-            <strong>Ships Within:</strong> 1-2 business days<br>
-            <strong>Tracking:</strong> Provided</p>
-        </div>
-    </div>
-
+<!-- Copy Feedback Tooltip -->
+<div id="copyTooltip" class="copy-tooltip">
+    <i class="ph-fill ph-check-circle"></i> <span id="tooltipText">Copied!</span>
 </div>
 
 <script>
-    function swapImg(el) {
-        const mainImg = document.getElementById('mainImg');
-        const thumbs = document.querySelectorAll('.thumb');
-        
-        mainImg.src = el.querySelector('img').src;
-        
-        thumbs.forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
+    // Image Switcher
+    function changeImage(thumb, src) {
+        document.getElementById('mainImg').src = src;
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
     }
 
-    function toggleWatch(btn) {
-        const icon = btn.querySelector('i');
-        if (icon.classList.contains('ph-fill')) {
-            icon.classList.remove('ph-fill');
-        } else {
-            icon.classList.add('ph-fill');
+    // Quantity Logic
+    function updateQty(change) {
+        const input = document.getElementById('qty');
+        let val = parseInt(input.value);
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
+        
+        val += change;
+        
+        if (val >= min && val <= max) {
+            input.value = val;
         }
     }
 
-    function copyText(el, text) {
-        const originalText = el.textContent;
-        
-        el.textContent = 'Copied!';
-        el.style.background = var(--success-bg);
-        el.style.borderColor = '#bbf7d0';
-        el.style.color = var(--success);
-
-        setTimeout(() => {
-            el.textContent = originalText;
-            el.style.background = 'var(--bg-highlight)';
-            el.style.borderColor = 'var(--border)';
-            el.style.color = 'var(--text-primary)';
-        }, 1200);
+    // Tabs Logic
+    function openTab(evt, tabName) {
+        var i, tabContent, tabs;
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].classList.remove('active');
+        }
+        tabs = document.getElementsByClassName("tab");
+        for (i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.add('active');
     }
 
-    function adjustQty(delta) {
-        const input = document.getElementById('qtyInput');
-        const min = parseInt(input.min);
-        const max = parseInt(input.max);
-        let value = parseInt(input.value) + delta;
-        
-        if (value < min) value = min;
-        if (value > max) value = max;
-        
-        input.value = value;
-    }
-
-    function switchTab(tabEl, tabId) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        
-        tabEl.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
+    // Copy to Clipboard with visual feedback
+    function copyToClipboard(text, label) {
+        navigator.clipboard.writeText(text).then(() => {
+            const tooltip = document.getElementById('copyTooltip');
+            const tooltipText = document.getElementById('tooltipText');
+            tooltipText.innerText = label + ' Copied!';
+            tooltip.classList.add('show');
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 2000);
+        });
     }
 </script>
 
