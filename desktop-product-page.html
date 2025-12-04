@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Razer Viper Ultimate - 888Lots Redesign</title>
+    <title>Razer Viper Ultimate - Perfect Alignment</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette */
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --success: #16a34a;
@@ -16,26 +15,23 @@
             --danger: #dc2626;
             --danger-bg: #fee2e2;
             --surface: #ffffff;
-            --background: #f8fafc;
+            --background: #f1f5f9;
             --border: #e2e8f0;
             --text-main: #0f172a;
             --text-secondary: #64748b;
             --text-muted: #94a3b8;
+            --radius: 8px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--background);
             color: var(--text-main);
             font-size: 14px;
-            line-height: 1.5;
-            padding-bottom: 40px;
+            line-height: 1.4;
+            padding-bottom: 60px;
         }
 
         .container {
@@ -44,467 +40,178 @@
             padding: 20px;
         }
 
-        /* --- BREADCRUMBS --- */
+        /* --- HEADER --- */
         .breadcrumbs {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
+            font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;
+            display: flex; gap: 8px; align-items: center;
         }
-        .breadcrumbs a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .breadcrumbs a:hover { color: var(--primary); }
-
-        /* --- HEADER SECTION --- */
         .product-header {
-            background: var(--surface);
-            padding: 24px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-bottom: 20px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            background: var(--surface); padding: 20px;
+            border-radius: var(--radius); border: 1px solid var(--border);
+            margin-bottom: 24px;
         }
-
-        .product-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.3;
-            color: var(--text-main);
-        }
-
+        .product-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
         .header-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            align-items: center;
-            border-top: 1px solid var(--border);
-            padding-top: 16px;
+            display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+            padding-top: 16px; border-top: 1px solid var(--border);
         }
-
-        /* Hashtags */
-        .hashtags {
-            display: flex;
-            gap: 8px;
-        }
-        .tag {
-            background: #eff6ff;
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 99px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .tag:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Copyable Identifiers */
-        .id-chips {
-            display: flex;
-            gap: 8px;
-        }
+        .tag { background: #eff6ff; color: var(--primary); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 99px; }
         .id-chip {
-            font-family: monospace;
-            font-size: 11px;
-            background: var(--background);
-            padding: 6px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-            transition: all 0.2s;
+            font-family: monospace; font-size: 11px; background: var(--background);
+            padding: 5px 10px; border-radius: 4px; cursor: pointer; color: var(--text-secondary); border: 1px solid var(--border);
         }
-        .id-chip:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: white;
-        }
+        .badge { font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
+        .badge.fba { background: var(--success-bg); color: var(--success); }
+        .badge.promo { background: var(--danger-bg); color: var(--danger); }
 
-        /* Status Badges */
-        .status-badges {
-            display: flex;
-            gap: 8px;
-            margin-left: auto;
-        }
-        .badge {
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .badge.fba { background-color: var(--success-bg); color: var(--success); }
-        .badge.promo { background-color: var(--danger-bg); color: var(--danger); }
-
-        /* --- MAIN GRID --- */
+        /* --- THE GRID LAYOUT --- */
         .product-grid {
             display: grid;
-            grid-template-columns: 380px 1fr 340px; /* Gallery | Data | Action */
-            gap: 20px;
-            align-items: start;
+            /* STRICT 3 COLUMN WIDTHS */
+            grid-template-columns: 360px 1fr 340px; 
+            gap: 24px;
+            /* THIS FORCES EQUAL HEIGHT */
+            align-items: stretch;
             margin-bottom: 24px;
         }
 
-        /* COLUMN 1: GALLERY */
-        .gallery-card {
+        /* --- UNIFIED CARD CLASS --- */
+        /* Every column uses this class to ensure they behave the same */
+        .card-col {
             background: var(--surface);
-            border-radius: 8px;
             border: 1px solid var(--border);
-            padding: 20px;
-            height: 100%;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%; /* Fill the grid cell */
         }
 
-        .main-image-container {
-            width: 100%;
-            aspect-ratio: 1/1;
+        /* --- LEFT: GALLERY --- */
+        .gallery-content {
+            padding: 20px;
+            flex: 1; /* Grow to fill space */
+            display: flex;
+            flex-direction: column;
+        }
+        .main-img-wrap {
+            flex: 1; /* This pushes the thumbnails down */
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 16px;
-            background: white;
-            overflow: hidden;
+            padding: 10px;
+            min-height: 250px; /* Minimum height ensures it doesn't collapse */
         }
-        
-        .main-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .thumbnails {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .thumbs {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+            margin-top: 20px;
         }
         .thumb {
-            aspect-ratio: 1/1;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 4px;
-            cursor: pointer;
-            transition: 0.2s;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            aspect-ratio: 1/1; border: 1px solid var(--border); border-radius: 4px; padding: 4px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
-        .thumb.active, .thumb:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-        }
-        .thumb img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-        }
+        .thumb.active { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* COLUMN 2: DATA CENTER */
-        .data-column {
+        /* --- MIDDLE: DASHBOARD --- */
+        /* Header */
+        .profit-header {
+            background: var(--success-bg); padding: 16px 24px;
+            border-bottom: 1px solid #bbf7d0;
+        }
+        .ph-title { font-size: 11px; font-weight: 700; color: #15803d; text-transform: uppercase; margin-bottom: 12px; }
+        .ph-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+        .ph-total { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(21, 128, 61, 0.2); align-items: center; }
+        .roi { background: var(--success); color: white; font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        
+        /* Body (Expands) */
+        .market-body {
+            padding: 24px;
+            flex: 1; /* CRITICAL: This fills the gap between Profit and Tools */
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
-
-        .info-card {
-            background: var(--surface);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .info-header {
-            background: var(--background);
-            padding: 12px 20px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .profit-section {
-            padding: 24px;
-            background: var(--success-bg);
-        }
-        .profit-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        .profit-row strong { color: var(--text-main); }
-        .profit-row.final {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            margin-bottom: 0;
-            align-items: center;
-        }
-        .profit-value-large {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--success);
-            line-height: 1;
-        }
-        .roi-pill {
-            background: var(--success);
-            color: white;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-left: 8px;
-        }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 20px;
-            gap: 24px;
-        }
-        .data-point { display: flex; flex-direction: column; gap: 4px; }
-        .data-label { font-size: 11px; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; }
-        .data-value { font-size: 20px; font-weight: 700; color: var(--text-main); }
-
-        .tools-bar {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border-top: 1px solid var(--border);
+        .sec-title { font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 16px; }
+        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .d-item { display: flex; flex-direction: column; gap: 4px; }
+        .d-val { font-size: 20px; font-weight: 700; color: var(--text-main); }
+        
+        /* Footer (Tools) */
+        .tools-footer {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--border); background: #f8fafc;
+            /* No margin-top needed because market-body has flex:1 */
         }
         .tool-btn {
-            padding: 14px;
-            background: white;
-            border: none;
-            border-right: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            transition: 0.2s;
+            padding: 14px; text-align: center; font-size: 11px; font-weight: 600; color: var(--text-secondary);
+            border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 5px;
+            text-decoration: none; transition: 0.1s;
         }
         .tool-btn:last-child { border-right: none; }
-        .tool-btn:hover { background: var(--background); color: var(--primary); }
-        .tool-btn i { font-size: 18px; }
+        .tool-btn:hover { background: white; color: var(--primary); }
 
-        /* COLUMN 3: BUY BOX */
-        .buy-box {
-            background: var(--surface);
-            border-radius: 8px;
-            border: 1px solid var(--border);
+        /* --- RIGHT: BUY BOX --- */
+        .buy-content {
             padding: 24px;
-            position: sticky;
-            top: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        .price-section {
-            margin-bottom: 24px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        .price-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
-        .price-row { display: flex; align-items: baseline; gap: 12px; }
-        .current-price { font-size: 36px; font-weight: 800; color: var(--text-main); line-height: 1; }
-        .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 14px; }
-        .discount-tag { 
-            background: var(--danger-bg); 
-            color: var(--danger); 
-            font-weight: 700; 
-            font-size: 12px; 
-            padding: 4px 8px; 
-            border-radius: 4px; 
-            margin-left: auto;
-        }
-
-        .stock-info {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 13px;
+            flex-direction: column;
+            height: 100%;
         }
-        .stock-label { color: var(--text-secondary); }
-        .stock-val { font-weight: 700; color: var(--text-main); }
-        .in-stock { color: var(--success); }
+        .price-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+        }
+        .p-now { font-size: 38px; font-weight: 800; color: var(--text-main); line-height: 1; }
+        .p-old { text-decoration: line-through; color: var(--text-muted); font-size: 14px; margin-left: 8px;}
+        .sale-tag { background: var(--danger-bg); color: var(--danger); font-size: 12px; padding: 4px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; }
 
-        .qty-control {
-            margin: 20px 0;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            display: flex;
-            height: 44px;
-            overflow: hidden;
+        .stock-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
+        .qty-box {
+            display: flex; border: 1px solid var(--border); border-radius: var(--radius);
+            height: 44px; overflow: hidden; margin-top: 16px; margin-bottom: 20px;
         }
-        .qty-btn {
-            width: 44px;
-            border: none;
-            background: var(--background);
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .qty-btn:hover { background: #e2e8f0; }
-        .qty-input {
-            flex: 1;
-            border: none;
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
+        .q-btn { width: 44px; border: none; background: #f8fafc; cursor: pointer; font-size: 18px; }
+        .q-in { flex: 1; border: none; text-align: center; font-weight: 600; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
 
-        .btn-cart {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            transition: 0.2s;
-            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        /* Action Buttons Area */
+        .actions-area {
+            margin-top: auto; /* CRITICAL: Pushes buttons to bottom aligning with other cards */
         }
-        .btn-cart:hover { background: var(--primary-hover); }
+        .btn-add {
+            width: 100%; background: var(--primary); color: white; border: none; padding: 14px;
+            border-radius: var(--radius); font-weight: 600; font-size: 15px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;
+        }
+        .btn-add:hover { background: var(--primary-hover); }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn-sec {
+            background: white; border: 1px solid var(--border); padding: 10px; border-radius: var(--radius);
+            font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-sec:hover { border-color: var(--primary); color: var(--primary); }
 
-        .secondary-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .btn-outline {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: 0.2s;
-        }
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: #eff6ff;
-        }
+        /* --- TABS --- */
+        .details-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+        .tabs-head { display: flex; background: #f8fafc; border-bottom: 1px solid var(--border); }
+        .tab-btn { padding: 16px 32px; font-size: 13px; font-weight: 600; color: var(--text-secondary); cursor: pointer; border-right: 1px solid var(--border); }
+        .tab-btn.active { background: white; color: var(--primary); border-bottom: 2px solid var(--primary); margin-bottom: -1px; }
+        .tab-body { padding: 32px; }
 
-        /* --- FULL WIDTH DESCRIPTION SECTION --- */
-        .full-width-section {
-            background: var(--surface);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-top: 24px;
-            overflow: hidden;
-        }
-
-        .tabs-header {
-            display: flex;
-            border-bottom: 1px solid var(--border);
-            background: var(--background);
-        }
-
-        .tab-btn {
-            padding: 16px 32px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-right: 1px solid var(--border);
-            background: transparent;
-            transition: 0.2s;
-            border-bottom: 2px solid transparent;
-        }
-        .tab-btn:hover { background: #e2e8f0; color: var(--text-main); }
-        .tab-btn.active {
-            background: var(--surface);
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            border-right: 1px solid var(--border);
-        }
-
-        .tab-content-area {
-            padding: 32px;
-            min-height: 200px;
-        }
-
-        .tab-pane { display: none; max-width: 900px; }
-        .tab-pane.active { display: block; }
-        .tab-pane h3 { font-size: 18px; margin-bottom: 16px; color: var(--text-main); }
-        .tab-pane p { margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; }
-        .tab-pane ul { padding-left: 20px; color: var(--text-secondary); }
-        .tab-pane li { margin-bottom: 10px; line-height: 1.6; }
-
-        /* --- COPY TOOLTIP --- */
-        .copy-tooltip {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #0f172a;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 500;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .copy-tooltip.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .product-grid { grid-template-columns: 1fr 340px; }
-            .gallery-card { grid-column: span 2; display: flex; gap: 24px; height: auto; }
-            .main-image-container { width: 300px; margin-bottom: 0; }
-            .thumbnails { display: flex; flex-direction: column; width: 80px; }
-        }
-
-        @media (max-width: 900px) {
-            .gallery-card { display: block; grid-column: 1; }
-            .main-image-container { width: 100%; margin-bottom: 16px; }
-            .thumbnails { display: grid; width: 100%; grid-template-columns: repeat(4, 1fr); }
-            .product-grid { grid-template-columns: 1fr; }
-            .header-meta { flex-direction: column; align-items: flex-start; }
-            .status-badges { margin-left: 0; margin-top: 8px; }
+        /* --- MOBILE --- */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+            .card-col { height: auto; } /* Let them stack naturally on mobile */
+            .main-img-wrap { min-height: auto; margin-bottom: 16px; }
+            .thumbs { display: flex; overflow-x: auto; }
+            .thumb { flex: 0 0 80px; }
+            
+            /* Order: Header -> Gallery -> Buy Box -> Dashboard */
+            .product-header { order: 1; }
+            .card-col:nth-child(1) { order: 2; }
+            .card-col:nth-child(3) { order: 3; }
+            .card-col:nth-child(2) { order: 4; }
         }
     </style>
 </head>
@@ -512,262 +219,158 @@
 
 <div class="container">
     
-    <!-- Breadcrumbs -->
     <nav class="breadcrumbs">
-        <a href="#">Home</a>
-        <i class="ph ph-caret-right"></i>
-        <a href="#">Computers & Hardware</a>
-        <i class="ph ph-caret-right"></i>
+        <a href="#">Home</a> <i class="ph ph-caret-right"></i>
+        <a href="#">Computers & Hardware</a> <i class="ph ph-caret-right"></i>
         <span>Computer Peripheral</span>
     </nav>
 
-    <!-- Header -->
     <header class="product-header">
-        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
-        
+        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - 8 Programmable Buttons</h1>
         <div class="header-meta">
-            <div class="hashtags">
-                <a href="#" class="tag">#Razer</a>
-                <a href="#" class="tag">#GamingMouse</a>
-                <a href="#" class="tag">#Wireless</a>
+            <div style="display:flex; gap:8px;">
+                <span class="tag">#Razer</span> <span class="tag">#GamingMouse</span>
             </div>
-
-            <div class="id-chips">
-                <div class="id-chip" onclick="copyToClipboard('888 B08565C5BB US', 'SKU')">
-                    <span style="opacity: 0.6">SKU:</span> 888 B08565C5BB US <i class="ph ph-copy"></i>
-                </div>
-                <div class="id-chip" onclick="copyToClipboard('B08565C5BB', 'ASIN')">
-                    <span style="opacity: 0.6">ASIN:</span> B08565C5BB <i class="ph ph-copy"></i>
-                </div>
-                <div class="id-chip" onclick="copyToClipboard('0810091280019', 'UPC')">
-                    <span style="opacity: 0.6">UPC:</span> 0810091280019 <i class="ph ph-copy"></i>
-                </div>
+            <div style="display:flex; gap:8px;">
+                <span class="id-chip">SKU: 888 B08565C5BB</span>
+                <span class="id-chip">ASIN: B08565C5BB</span>
             </div>
-
             <div class="status-badges">
-                <span class="badge fba">FBA</span>
-                <span class="badge promo">First Order</span>
+                <span class="badge fba">FBA</span> <span class="badge promo">First Order</span>
             </div>
         </div>
     </header>
 
-    <!-- Main Grid -->
     <div class="product-grid">
         
-        <!-- Column 1: Gallery (Real Images) -->
-        <div class="gallery-card">
-            <div class="main-image-container">
-                <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg" alt="Razer Viper Ultimate" class="main-image" id="mainImg">
-            </div>
-            <div class="thumbnails">
-                <!-- Thumb 1 -->
-                <div class="thumb active" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt="Main View">
+        <!-- CARD 1: Gallery -->
+        <div class="card-col">
+            <div class="gallery-content">
+                <!-- main-img-wrap has flex:1 to grow -->
+                <div class="main-img-wrap">
+                    <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg" id="mainImg" class="main-img">
                 </div>
-                <!-- Thumb 2 -->
-                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/71VU5sVbjML.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt="Top View">
-                </div>
-                <!-- Thumb 3 -->
-                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/8116loSN2PL.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/8116loSN2PL._UL_300_SS300_.jpg" alt="Side View">
-                </div>
-                <!-- Thumb 4 -->
-                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/615-YKhzOZL.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/615-YKhzOZL._UL_300_SS300_.jpg" alt="Perspective">
+                <!-- Thumbnails sit at the bottom -->
+                <div class="thumbs">
+                    <div class="thumb active" onclick="swap(this, 'https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg')">
+                        <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg">
+                    </div>
+                    <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/71VU5sVbjML.jpg')">
+                        <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg">
+                    </div>
+                    <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/8116loSN2PL.jpg')">
+                        <img src="https://m.media-amazon.com/images/I/8116loSN2PL._UL_300_SS300_.jpg">
+                    </div>
+                    <div class="thumb" onclick="swap(this, 'https://m.media-amazon.com/images/I/615-YKhzOZL.jpg')">
+                        <img src="https://m.media-amazon.com/images/I/615-YKhzOZL._UL_300_SS300_.jpg">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Column 2: Data Dashboard -->
-        <div class="data-column">
+        <!-- CARD 2: Dashboard (Middle) -->
+        <div class="card-col">
+            <!-- Profit Header (Fixed Height) -->
+            <div class="profit-header">
+                <div class="ph-title"><i class="ph-fill ph-money"></i> Profit Estimation</div>
+                <div class="ph-row"><span>Est. Sell Price (Az)</span> <strong>$129.00</strong></div>
+                <div class="ph-row"><span>Your Cost</span> <strong style="color:var(--danger)">- $89.00</strong></div>
+                <div class="ph-row ph-total">
+                    <span>Net Profit</span>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span style="font-size:22px; font-weight:800; color:var(--success)">+$40.00</span>
+                        <span class="roi">45% ROI</span>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Profit -->
-            <div class="info-card">
-                <div class="info-header" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">
-                    <i class="ph-fill ph-money"></i> Profit Estimation
-                </div>
-                <div class="profit-section">
-                    <div class="profit-row">
-                        <span>Est. Sell Price (Az)</span>
-                        <strong>$129.00</strong>
+            <!-- Market Body (Flex Grow - Fills the empty space) -->
+            <div class="market-body">
+                <div class="sec-title">Market Intelligence</div>
+                <div class="data-grid">
+                    <div class="d-item">
+                        <span style="color:var(--text-secondary); font-size:11px;">Est. Az Price</span>
+                        <span class="d-val">$129.00</span>
                     </div>
-                    <div class="profit-row">
-                        <span>Your Cost</span>
-                        <strong style="color: var(--danger)">- $89.00</strong>
-                    </div>
-                    <div class="profit-row final">
-                        <span>Net Profit</span>
-                        <div style="display:flex; align-items: center;">
-                            <span class="profit-value-large">+$40.00</span>
-                            <span class="roi-pill">45% ROI</span>
-                        </div>
+                    <div class="d-item">
+                        <span style="color:var(--text-secondary); font-size:11px;">MSRP</span>
+                        <span class="d-val" style="color:var(--text-muted); text-decoration:line-through">$129.99</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Market Data -->
-            <div class="info-card">
-                <div class="info-header">Market Intelligence</div>
-                <div class="market-grid">
-                    <div class="data-point">
-                        <span class="data-label">Est. Az Price</span>
-                        <span class="data-value">$129.00</span>
-                    </div>
-                    <div class="data-point">
-                        <span class="data-label">MSRP</span>
-                        <span class="data-value" style="color: var(--text-muted); text-decoration: line-through;">$129.99</span>
-                    </div>
-                </div>
-                
-                <div class="tools-bar">
-                    <a href="#" class="tool-btn">
-                        <i class="ph ph-chart-line-up"></i> Keepa
-                    </a>
-                    <a href="#" class="tool-btn">
-                        <i class="ph ph-calculator"></i> Calculator
-                    </a>
-                    <a href="#" class="tool-btn">
-                        <i class="ph-fill ph-amazon-logo"></i> Amazon
-                    </a>
-                    <a href="#" class="tool-btn">
-                        <i class="ph-fill ph-google-logo"></i> Google
-                    </a>
-                </div>
+            <!-- Tools Footer (Fixed Height at Bottom) -->
+            <div class="tools-footer">
+                <a href="#" class="tool-btn"><i class="ph ph-chart-line-up"></i> Keepa</a>
+                <a href="#" class="tool-btn"><i class="ph ph-calculator"></i> Calc</a>
+                <a href="#" class="tool-btn"><i class="ph-fill ph-amazon-logo"></i> Amazon</a>
+                <a href="#" class="tool-btn"><i class="ph-fill ph-google-logo"></i> Google</a>
             </div>
         </div>
 
-        <!-- Column 3: Buy Box -->
-        <aside class="buy-box">
-            <div class="price-section">
-                <div class="price-label">Wholesale Price</div>
+        <!-- CARD 3: Buy Box -->
+        <div class="card-col">
+            <div class="buy-content">
                 <div class="price-row">
-                    <span class="current-price">$89.00</span>
-                    <span class="old-price">$95.00</span>
-                    <span class="discount-tag">-6%</span>
+                    <div>
+                        <span style="font-size:11px; color:var(--text-secondary); display:block; margin-bottom:4px;">Wholesale Price</span>
+                        <span class="p-now">$89.00</span>
+                        <span class="p-old">$95.00</span>
+                    </div>
+                    <span class="sale-tag">-6%</span>
+                </div>
+
+                <div class="stock-row"><span style="color:var(--text-secondary)">In Stock</span> <span style="color:var(--success); font-weight:700">132 units</span></div>
+                <div class="stock-row"><span style="color:var(--text-secondary)">MOQ</span> <strong>100 units</strong></div>
+
+                <div class="qty-box">
+                    <button class="q-btn" onclick="qty(-1)">-</button>
+                    <input type="text" class="q-in" value="100" id="qtyIn">
+                    <button class="q-btn" onclick="qty(1)">+</button>
+                </div>
+
+                <!-- Actions Area (Margin Top Auto - Pushes to bottom) -->
+                <div class="actions-area">
+                    <button class="btn-add"><i class="ph-bold ph-shopping-cart-simple"></i> Add to Cart</button>
+                    <div class="btn-grid">
+                        <button class="btn-sec"><i class="ph ph-handshake"></i> Offer</button>
+                        <button class="btn-sec"><i class="ph ph-heart"></i> Watch</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="stock-info">
-                <span class="stock-label">In Stock</span>
-                <span class="stock-val in-stock">132 units</span>
-            </div>
-            <div class="stock-info">
-                <span class="stock-label">MOQ</span>
-                <span class="stock-val">100 units</span>
-            </div>
-
-            <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty(-1)">−</button>
-                <input type="number" id="qtyInput" class="qty-input" value="100" min="100" max="132">
-                <button class="qty-btn" onclick="updateQty(1)">+</button>
-            </div>
-
-            <button class="btn-cart">
-                <i class="ph-bold ph-shopping-cart-simple"></i> Add to Cart
-            </button>
-
-            <div class="secondary-actions">
-                <button class="btn-outline">
-                    <i class="ph-bold ph-handshake"></i> Negotiate
-                </button>
-                <button class="btn-outline">
-                    <i class="ph-bold ph-heart"></i> Watch
-                </button>
-            </div>
-        </aside>
+        </div>
 
     </div>
 
-    <!-- FULL WIDTH DETAILS SECTION -->
-    <div class="full-width-section">
-        <div class="tabs-header">
-            <div class="tab-btn active" onclick="switchTab(event, 'desc')">Description</div>
-            <div class="tab-btn" onclick="switchTab(event, 'specs')">Specifications</div>
-            <div class="tab-btn" onclick="switchTab(event, 'shipping')">Shipping Info</div>
+    <!-- TABS -->
+    <div class="details-section">
+        <div class="tabs-head">
+            <div class="tab-btn active">Description</div>
+            <div class="tab-btn">Specifications</div>
+            <div class="tab-btn">Shipping Info</div>
         </div>
-
-        <div class="tab-content-area">
-            <!-- Description Tab -->
-            <div id="desc" class="tab-pane active">
-                <h3>Product Overview</h3>
-                <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
-                <ul>
-                    <li><strong>25% Quicker Than Competing Wireless Mice:</strong> Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom.</li>
-                    <li><strong>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g:</strong> Includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes.</li>
-                    <li><strong>Faster Than Traditional Mechanical Switches:</strong> New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light.</li>
-                    <li><strong>Ambidextrous Design:</strong> Created for left and right-handed users with accessible, programmable buttons on both sides.</li>
-                </ul>
-            </div>
-
-            <!-- Specs Tab -->
-            <div id="specs" class="tab-pane">
-                <h3>Technical Specifications</h3>
-                <ul>
-                    <li><strong>Brand:</strong> Razer</li>
-                    <li><strong>Model:</strong> Viper Ultimate</li>
-                    <li><strong>Color:</strong> Classic Black</li>
-                    <li><strong>DPI:</strong> 20,000 Optical Sensor</li>
-                    <li><strong>Buttons:</strong> 8 Programmable</li>
-                    <li><strong>Battery Life:</strong> Up to 70 Hours</li>
-                    <li><strong>Weight:</strong> 74g</li>
-                </ul>
-            </div>
-
-            <!-- Shipping Tab -->
-            <div id="shipping" class="tab-pane">
-                <h3>Shipping & Handling</h3>
-                <ul>
-                    <li><strong>Shipping Cost:</strong> $1.00 per unit</li>
-                    <li><strong>Fulfillment:</strong> Fulfilled by Amazon (FBA)</li>
-                    <li><strong>Processing Time:</strong> 1-2 Business Days</li>
-                </ul>
-            </div>
+        <div class="tab-body">
+            <h3 style="margin-bottom:12px; font-size:16px;">Product Overview</h3>
+            <p style="color:var(--text-secondary); line-height:1.6; font-size:14px;"><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black.</p>
+            <ul style="padding-left:20px; margin-top:12px; color:var(--text-secondary); line-height:1.6; font-size:14px;">
+                <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction.</li>
+                <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g.</li>
+            </ul>
         </div>
     </div>
 
-</div>
-
-<!-- Copy Tooltip -->
-<div id="copyTooltip" class="copy-tooltip">
-    <i class="ph-fill ph-check-circle" style="color: #4ade80"></i> 
-    <span id="tooltipText">Copied to clipboard</span>
 </div>
 
 <script>
-    // Image Switcher
-    function swapImg(el, src) {
+    function swap(el, src) {
         document.getElementById('mainImg').src = src;
         document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
     }
-
-    // Quantity Logic
-    function updateQty(delta) {
-        const input = document.getElementById('qtyInput');
-        let val = parseInt(input.value) + delta;
-        const min = parseInt(input.min);
-        const max = parseInt(input.max);
-        if(val >= min && val <= max) input.value = val;
-    }
-
-    // Tab Logic
-    function switchTab(evt, tabId) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-        
-        evt.currentTarget.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
-    }
-
-    // Copy to Clipboard
-    function copyToClipboard(text, label) {
-        navigator.clipboard.writeText(text).then(() => {
-            const tooltip = document.getElementById('copyTooltip');
-            document.getElementById('tooltipText').innerText = `${label} Copied!`;
-            tooltip.classList.add('show');
-            setTimeout(() => tooltip.classList.remove('show'), 2000);
-        });
+    function qty(d) {
+        let el = document.getElementById('qtyIn');
+        let v = parseInt(el.value) + d;
+        if(v >= 100) el.value = v;
     }
 </script>
 
