@@ -132,11 +132,11 @@
             background: white;
         }
 
-        /* Status Badges (moved to header) */
+        /* Status Badges */
         .status-badges {
             display: flex;
             gap: 8px;
-            margin-left: auto; /* Push to right */
+            margin-left: auto;
         }
         .badge {
             font-size: 11px;
@@ -174,13 +174,13 @@
             justify-content: center;
             margin-bottom: 16px;
             background: white;
+            overflow: hidden;
         }
         
         .main-image {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            /* No overlays here */
         }
 
         .thumbnails {
@@ -196,12 +196,19 @@
             cursor: pointer;
             transition: 0.2s;
             background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .thumb.active, .thumb:hover {
             border-color: var(--primary);
             box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
         }
-        .thumb img { width: 100%; height: 100%; object-fit: contain; }
+        .thumb img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
 
         /* COLUMN 2: DATA CENTER */
         .data-column {
@@ -231,7 +238,6 @@
             align-items: center;
         }
 
-        /* Profit Section */
         .profit-section {
             padding: 24px;
             background: var(--success-bg);
@@ -267,7 +273,6 @@
             margin-left: 8px;
         }
 
-        /* Market Data */
         .market-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -278,7 +283,6 @@
         .data-label { font-size: 11px; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; }
         .data-value { font-size: 20px; font-weight: 700; color: var(--text-main); }
 
-        /* Tools */
         .tools-bar {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -457,32 +461,12 @@
             min-height: 200px;
         }
 
-        .tab-pane {
-            display: none;
-            max-width: 900px; /* Readable line length */
-        }
+        .tab-pane { display: none; max-width: 900px; }
         .tab-pane.active { display: block; }
-
-        .tab-pane h3 {
-            font-size: 18px;
-            margin-bottom: 16px;
-            color: var(--text-main);
-        }
-
-        .tab-pane p {
-            margin-bottom: 16px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .tab-pane ul {
-            padding-left: 20px;
-            color: var(--text-secondary);
-        }
-        .tab-pane li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
+        .tab-pane h3 { font-size: 18px; margin-bottom: 16px; color: var(--text-main); }
+        .tab-pane p { margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; }
+        .tab-pane ul { padding-left: 20px; color: var(--text-secondary); }
+        .tab-pane li { margin-bottom: 10px; line-height: 1.6; }
 
         /* --- COPY TOOLTIP --- */
         .copy-tooltip {
@@ -542,14 +526,12 @@
         <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
         
         <div class="header-meta">
-            <!-- Hashtags -->
             <div class="hashtags">
                 <a href="#" class="tag">#Razer</a>
                 <a href="#" class="tag">#GamingMouse</a>
                 <a href="#" class="tag">#Wireless</a>
             </div>
 
-            <!-- Identifiers (Click to Copy) -->
             <div class="id-chips">
                 <div class="id-chip" onclick="copyToClipboard('888 B08565C5BB US', 'SKU')">
                     <span style="opacity: 0.6">SKU:</span> 888 B08565C5BB US <i class="ph ph-copy"></i>
@@ -562,7 +544,6 @@
                 </div>
             </div>
 
-            <!-- Status Badges (Moved out of image) -->
             <div class="status-badges">
                 <span class="badge fba">FBA</span>
                 <span class="badge promo">First Order</span>
@@ -573,23 +554,27 @@
     <!-- Main Grid -->
     <div class="product-grid">
         
-        <!-- Column 1: Gallery (Clean Image) -->
+        <!-- Column 1: Gallery (Real Images) -->
         <div class="gallery-card">
             <div class="main-image-container">
-                <img src="https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png" alt="Razer Viper Ultimate" class="main-image" id="mainImg">
+                <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg" alt="Razer Viper Ultimate" class="main-image" id="mainImg">
             </div>
             <div class="thumbnails">
-                <div class="thumb active" onclick="swapImg(this, 'https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png')">
-                    <img src="https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png">
+                <!-- Thumb 1 -->
+                <div class="thumb active" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt="Main View">
                 </div>
-                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/61I21VpQWTL._AC_SL1500_.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/61I21VpQWTL._AC_SL1500_.jpg">
+                <!-- Thumb 2 -->
+                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/71VU5sVbjML.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt="Top View">
                 </div>
-                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/71r31-X1NPL._AC_SL1500_.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/71r31-X1NPL._AC_SL1500_.jpg">
+                <!-- Thumb 3 -->
+                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/8116loSN2PL.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/8116loSN2PL._UL_300_SS300_.jpg" alt="Side View">
                 </div>
-                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/81xHhXjFvXL._AC_SL1500_.jpg')">
-                    <img src="https://m.media-amazon.com/images/I/81xHhXjFvXL._AC_SL1500_.jpg">
+                <!-- Thumb 4 -->
+                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/615-YKhzOZL.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/615-YKhzOZL._UL_300_SS300_.jpg" alt="Perspective">
                 </div>
             </div>
         </div>
@@ -650,7 +635,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
 
         <!-- Column 3: Buy Box -->
