@@ -30,11 +30,7 @@
 
     /* Pills under headline */
     .headline-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-    .pill{
-      display:inline-flex;align-items:center;gap:6px;
-      padding:6px 10px;border-radius:999px;border:1px solid var(--border);
-      background:#f1f5f9;color:#0f172a;font-weight:600;font-size:12px;text-decoration:none
-    }
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#f1f5f9;color:#0f172a;font-weight:600;font-size:12px;text-decoration:none}
     .pill i{font-size:14px;opacity:.85}
 
     .header-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:12px}
@@ -46,7 +42,7 @@
     .badge.fba{background:var(--success-bg);color:var(--success)}
     .badge.promo{background:var(--danger-bg);color:var(--danger)}
 
-    /* Main grid (equal height columns) */
+    /* Main grid */
     .product-grid{display:grid;grid-template-columns:380px 1fr 340px;gap:16px;margin-bottom:20px;align-items:stretch}
     .gallery-card,.data-column,.buy-box{display:flex;flex-direction:column;height:100%}
 
@@ -59,7 +55,7 @@
     .thumb.active,.thumb:hover{border-color:var(--primary);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
     .thumb img{width:100%;height:100%;object-fit:contain}
 
-    /* Middle column (compressed) */
+    /* Middle column (compact) */
     .data-stack{display:flex;flex-direction:column;gap:12px;flex:1;min-height:100%}
     .info-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;min-height:0;flex:1}
     .info-header{background:var(--background);padding:10px 14px;font-size:11px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
@@ -105,19 +101,15 @@
     .btn-outline{background:#fff;border:1px solid var(--border);padding:8px;border-radius:6px;font-size:12px;font-weight:700;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
     .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff}
 
-    /* Details section */
-    .full-width-section{background:var(--surface);border-radius:8px;border:1px solid var(--border);margin-top:20px;overflow:hidden}
-    .tabs-header{display:flex;border-bottom:1px solid var(--border);background:var(--background)}
-    .tab-btn{padding:12px 20px;font-size:13px;font-weight:700;color:var(--text-secondary);cursor:pointer;border-right:1px solid var(--border);background:transparent;transition:.2s;border-bottom:2px solid transparent;user-select:none}
-    .tab-btn:hover{background:#e2e8f0;color:var(--text-main)}
-    .tab-btn.active{background:var(--surface);color:var(--primary);border-bottom:2px solid var(--primary);border-right:1px solid var(--border)}
-    .tab-content-area{padding:20px;min-height:160px}
-    .tab-pane{display:none;max-width:900px}
-    .tab-pane.active{display:block}
-    .tab-pane h3{font-size:16px;margin-bottom:12px}
-    .tab-pane p{margin-bottom:12px;color:var(--text-secondary)}
-    .tab-pane ul{padding-left:18px;color:var(--text-secondary)}
-    .tab-pane li{margin-bottom:8px}
+    /* Stacked detail sections (no tabs) */
+    .details-stack{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+    .detail-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+    .detail-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--background);font-size:13px;font-weight:800;color:var(--text-secondary);text-transform:uppercase}
+    .detail-body{padding:16px}
+    .detail-body h3{font-size:16px;margin-bottom:10px}
+    .detail-body p{color:var(--text-secondary);margin-bottom:10px}
+    .detail-body ul{padding-left:18px;color:var(--text-secondary)}
+    .detail-body li{margin-bottom:8px}
 
     /* Copy tooltip */
     .copy-tooltip{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:#0f172a;color:#fff;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none}
@@ -145,7 +137,7 @@
 <body>
   <div class="container">
 
-    <!-- Breadcrumbs (semantic) -->
+    <!-- Breadcrumbs -->
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/items">Items</a>
       <i class="ph ph-caret-right" aria-hidden="true"></i>
@@ -210,7 +202,7 @@
         </div>
       </div>
 
-      <!-- Column 2: Data (compressed) -->
+      <!-- Column 2: Data -->
       <div class="data-column">
         <div class="data-stack">
           <div class="info-card">
@@ -232,38 +224,15 @@
 
           <div class="info-card">
             <div class="info-header">Market Intelligence</div>
-
             <div class="market-grid">
-              <div class="data-point">
-                <span class="data-label">Est. Az Price</span>
-                <span class="data-value" id="miAzPrice">$129.00</span>
-              </div>
-              <div class="data-point">
-                <span class="data-label">MSRP</span>
-                <span class="data-value" style="color:var(--text-muted);text-decoration:line-through">$129.99</span>
-              </div>
-              <div class="data-point">
-                <span class="data-label">Est. Az Buy Box</span>
-                <span class="data-value data-muted" id="miBuyBox">Data not available</span>
-              </div>
-              <div class="data-point">
-                <span class="data-label">Az Sales Rank</span>
-                <span class="data-value" id="miRank">#112</span>
-              </div>
-              <div class="data-point">
-                <span class="data-label">Az Offers</span>
-                <span class="data-value" id="miOffers">4</span>
-              </div>
-              <div class="data-point">
-                <span class="data-label">ASIN</span>
-                <span class="data-value" id="miAsin">B08565C5BB</span>
-              </div>
+              <div class="data-point"><span class="data-label">Est. Az Price</span><span class="data-value" id="miAzPrice">$129.00</span></div>
+              <div class="data-point"><span class="data-label">MSRP</span><span class="data-value" style="color:var(--text-muted);text-decoration:line-through">$129.99</span></div>
+              <div class="data-point"><span class="data-label">Est. Az Buy Box</span><span class="data-value data-muted" id="miBuyBox">Data not available</span></div>
+              <div class="data-point"><span class="data-label">Az Sales Rank</span><span class="data-value" id="miRank">#112</span></div>
+              <div class="data-point"><span class="data-label">Az Offers</span><span class="data-value" id="miOffers">4</span></div>
+              <div class="data-point"><span class="data-label">ASIN</span><span class="data-value" id="miAsin">B08565C5BB</span></div>
             </div>
-
-            <p class="micro-note">
-              *Estimated Buy Box price may vary. Amazon pricing and offers change frequently; we update as often as possible.
-            </p>
-
+            <p class="micro-note">*Estimated Buy Box price may vary. Amazon pricing and offers change frequently; we update as often as possible.</p>
             <div class="tools-bar">
               <a href="#" class="tool-btn"><i class="ph ph-chart-line-up"></i>Keepa</a>
               <a href="#" class="tool-btn"><i class="ph ph-calculator"></i>Calculator</a>
@@ -274,7 +243,7 @@
         </div>
       </div>
 
-      <!-- Column 3: Buy Box (set to $5) -->
+      <!-- Column 3: Buy Box -->
       <aside class="buy-box">
         <div class="price-section">
           <div class="price-label">Wholesale Price</div>
@@ -299,26 +268,25 @@
       </aside>
     </div>
 
-    <!-- Details -->
-    <div class="full-width-section">
-      <div class="tabs-header">
-        <div class="tab-btn active" onclick="switchTab(event,'desc')">Description</div>
-        <div class="tab-btn" onclick="switchTab(event,'specs')">Specifications</div>
-        <div class="tab-btn" onclick="switchTab(event,'shipping')">Shipping Info</div>
-      </div>
-      <div class="tab-content-area">
-        <div id="desc" class="tab-pane active">
+    <!-- STACKED DETAILS (no tabs) -->
+    <div class="details-stack">
+      <section class="detail-card" id="desc">
+        <div class="detail-head"><i class="ph ph-info"></i> Description</div>
+        <div class="detail-body">
           <h3>Product Overview</h3>
-          <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
+          <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches, 20K DPI Optical Sensor, Chroma Lighting, 8 Programmable Buttons, up to 70 hours battery, Classic Black.</p>
           <ul>
-            <li><strong>HyperSpeed wireless</strong> for low latency.</li>
+            <li><strong>HyperSpeed wireless</strong> for ultra-low latency.</li>
             <li><strong>74g lightweight</strong> with 20K DPI sensor.</li>
-            <li><strong>Optical switches</strong> register at light speed.</li>
-            <li><strong>Ambidextrous</strong> with side buttons both sides.</li>
+            <li><strong>Optical switches</strong> actuate at light speed.</li>
+            <li><strong>Ambidextrous</strong> design with side buttons on both sides.</li>
           </ul>
         </div>
-        <div id="specs" class="tab-pane">
-          <h3>Technical Specifications</h3>
+      </section>
+
+      <section class="detail-card" id="specs">
+        <div class="detail-head"><i class="ph ph-sliders-horizontal"></i> Specifications</div>
+        <div class="detail-body">
           <ul>
             <li><strong>Brand:</strong> Razer</li>
             <li><strong>Model:</strong> Viper Ultimate</li>
@@ -329,15 +297,18 @@
             <li><strong>Weight:</strong> 74g</li>
           </ul>
         </div>
-        <div id="shipping" class="tab-pane">
-          <h3>Shipping & Handling</h3>
+      </section>
+
+      <section class="detail-card" id="shipping">
+        <div class="detail-head"><i class="ph ph-truck"></i> Shipping & Handling</div>
+        <div class="detail-body">
           <ul>
             <li><strong>Shipping Cost:</strong> $1 per unit</li>
             <li><strong>Fulfillment:</strong> FBA</li>
             <li><strong>Processing:</strong> 1–2 business days</li>
           </ul>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 
@@ -348,7 +319,7 @@
   </div>
 
   <script>
-    // Update profit math for $5 cost
+    // Profit math for $5 cost
     (function calc(){
       const estAz = 129.00;
       const cost  = 5.00;
@@ -377,12 +348,6 @@
       let val=parseInt(input.value||'0',10)+delta;
       const min=parseInt(input.min,10), max=parseInt(input.max,10);
       if(val>=min && val<=max) input.value=val;
-    }
-    function switchTab(evt,tabId){
-      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-      evt.currentTarget.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
     }
     function copyToClipboard(text,label){
       navigator.clipboard.writeText(text).then(()=>{
