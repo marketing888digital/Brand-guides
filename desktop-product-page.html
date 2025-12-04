@@ -474,3 +474,318 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
+
+        .tab-pane ul {
+            padding-left: 20px;
+            color: var(--text-secondary);
+        }
+        .tab-pane li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* --- COPY TOOLTIP --- */
+        .copy-tooltip {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #0f172a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .copy-tooltip.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .product-grid { grid-template-columns: 1fr 340px; }
+            .gallery-card { grid-column: span 2; display: flex; gap: 24px; height: auto; }
+            .main-image-container { width: 300px; margin-bottom: 0; }
+            .thumbnails { display: flex; flex-direction: column; width: 80px; }
+        }
+
+        @media (max-width: 900px) {
+            .gallery-card { display: block; grid-column: 1; }
+            .main-image-container { width: 100%; margin-bottom: 16px; }
+            .thumbnails { display: grid; width: 100%; grid-template-columns: repeat(4, 1fr); }
+            .product-grid { grid-template-columns: 1fr; }
+            .header-meta { flex-direction: column; align-items: flex-start; }
+            .status-badges { margin-left: 0; margin-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <a href="#">Home</a>
+        <i class="ph ph-caret-right"></i>
+        <a href="#">Computers & Hardware</a>
+        <i class="ph ph-caret-right"></i>
+        <span>Computer Peripheral</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="product-header">
+        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
+        
+        <div class="header-meta">
+            <!-- Hashtags -->
+            <div class="hashtags">
+                <a href="#" class="tag">#Razer</a>
+                <a href="#" class="tag">#GamingMouse</a>
+                <a href="#" class="tag">#Wireless</a>
+            </div>
+
+            <!-- Identifiers (Click to Copy) -->
+            <div class="id-chips">
+                <div class="id-chip" onclick="copyToClipboard('888 B08565C5BB US', 'SKU')">
+                    <span style="opacity: 0.6">SKU:</span> 888 B08565C5BB US <i class="ph ph-copy"></i>
+                </div>
+                <div class="id-chip" onclick="copyToClipboard('B08565C5BB', 'ASIN')">
+                    <span style="opacity: 0.6">ASIN:</span> B08565C5BB <i class="ph ph-copy"></i>
+                </div>
+                <div class="id-chip" onclick="copyToClipboard('0810091280019', 'UPC')">
+                    <span style="opacity: 0.6">UPC:</span> 0810091280019 <i class="ph ph-copy"></i>
+                </div>
+            </div>
+
+            <!-- Status Badges (Moved out of image) -->
+            <div class="status-badges">
+                <span class="badge fba">FBA</span>
+                <span class="badge promo">First Order</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="product-grid">
+        
+        <!-- Column 1: Gallery (Clean Image) -->
+        <div class="gallery-card">
+            <div class="main-image-container">
+                <img src="https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png" alt="Razer Viper Ultimate" class="main-image" id="mainImg">
+            </div>
+            <div class="thumbnails">
+                <div class="thumb active" onclick="swapImg(this, 'https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png')">
+                    <img src="https://assets2.razerzone.com/images/pnx.assets/618c0b6542407551082538/razer-viper-ultimate-dock-quartz-500x500.png">
+                </div>
+                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/61I21VpQWTL._AC_SL1500_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/61I21VpQWTL._AC_SL1500_.jpg">
+                </div>
+                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/71r31-X1NPL._AC_SL1500_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/71r31-X1NPL._AC_SL1500_.jpg">
+                </div>
+                <div class="thumb" onclick="swapImg(this, 'https://m.media-amazon.com/images/I/81xHhXjFvXL._AC_SL1500_.jpg')">
+                    <img src="https://m.media-amazon.com/images/I/81xHhXjFvXL._AC_SL1500_.jpg">
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Data Dashboard -->
+        <div class="data-column">
+            
+            <!-- Profit -->
+            <div class="info-card">
+                <div class="info-header" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">
+                    <i class="ph-fill ph-money"></i> Profit Estimation
+                </div>
+                <div class="profit-section">
+                    <div class="profit-row">
+                        <span>Est. Sell Price (Az)</span>
+                        <strong>$129.00</strong>
+                    </div>
+                    <div class="profit-row">
+                        <span>Your Cost</span>
+                        <strong style="color: var(--danger)">- $89.00</strong>
+                    </div>
+                    <div class="profit-row final">
+                        <span>Net Profit</span>
+                        <div style="display:flex; align-items: center;">
+                            <span class="profit-value-large">+$40.00</span>
+                            <span class="roi-pill">45% ROI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Data -->
+            <div class="info-card">
+                <div class="info-header">Market Intelligence</div>
+                <div class="market-grid">
+                    <div class="data-point">
+                        <span class="data-label">Est. Az Price</span>
+                        <span class="data-value">$129.00</span>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-label">MSRP</span>
+                        <span class="data-value" style="color: var(--text-muted); text-decoration: line-through;">$129.99</span>
+                    </div>
+                </div>
+                
+                <div class="tools-bar">
+                    <a href="#" class="tool-btn">
+                        <i class="ph ph-chart-line-up"></i> Keepa
+                    </a>
+                    <a href="#" class="tool-btn">
+                        <i class="ph ph-calculator"></i> Calculator
+                    </a>
+                    <a href="#" class="tool-btn">
+                        <i class="ph-fill ph-amazon-logo"></i> Amazon
+                    </a>
+                    <a href="#" class="tool-btn">
+                        <i class="ph-fill ph-google-logo"></i> Google
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Column 3: Buy Box -->
+        <aside class="buy-box">
+            <div class="price-section">
+                <div class="price-label">Wholesale Price</div>
+                <div class="price-row">
+                    <span class="current-price">$89.00</span>
+                    <span class="old-price">$95.00</span>
+                    <span class="discount-tag">-6%</span>
+                </div>
+            </div>
+
+            <div class="stock-info">
+                <span class="stock-label">In Stock</span>
+                <span class="stock-val in-stock">132 units</span>
+            </div>
+            <div class="stock-info">
+                <span class="stock-label">MOQ</span>
+                <span class="stock-val">100 units</span>
+            </div>
+
+            <div class="qty-control">
+                <button class="qty-btn" onclick="updateQty(-1)">−</button>
+                <input type="number" id="qtyInput" class="qty-input" value="100" min="100" max="132">
+                <button class="qty-btn" onclick="updateQty(1)">+</button>
+            </div>
+
+            <button class="btn-cart">
+                <i class="ph-bold ph-shopping-cart-simple"></i> Add to Cart
+            </button>
+
+            <div class="secondary-actions">
+                <button class="btn-outline">
+                    <i class="ph-bold ph-handshake"></i> Negotiate
+                </button>
+                <button class="btn-outline">
+                    <i class="ph-bold ph-heart"></i> Watch
+                </button>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- FULL WIDTH DETAILS SECTION -->
+    <div class="full-width-section">
+        <div class="tabs-header">
+            <div class="tab-btn active" onclick="switchTab(event, 'desc')">Description</div>
+            <div class="tab-btn" onclick="switchTab(event, 'specs')">Specifications</div>
+            <div class="tab-btn" onclick="switchTab(event, 'shipping')">Shipping Info</div>
+        </div>
+
+        <div class="tab-content-area">
+            <!-- Description Tab -->
+            <div id="desc" class="tab-pane active">
+                <h3>Product Overview</h3>
+                <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
+                <ul>
+                    <li><strong>25% Quicker Than Competing Wireless Mice:</strong> Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom.</li>
+                    <li><strong>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g:</strong> Includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes.</li>
+                    <li><strong>Faster Than Traditional Mechanical Switches:</strong> New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light.</li>
+                    <li><strong>Ambidextrous Design:</strong> Created for left and right-handed users with accessible, programmable buttons on both sides.</li>
+                </ul>
+            </div>
+
+            <!-- Specs Tab -->
+            <div id="specs" class="tab-pane">
+                <h3>Technical Specifications</h3>
+                <ul>
+                    <li><strong>Brand:</strong> Razer</li>
+                    <li><strong>Model:</strong> Viper Ultimate</li>
+                    <li><strong>Color:</strong> Classic Black</li>
+                    <li><strong>DPI:</strong> 20,000 Optical Sensor</li>
+                    <li><strong>Buttons:</strong> 8 Programmable</li>
+                    <li><strong>Battery Life:</strong> Up to 70 Hours</li>
+                    <li><strong>Weight:</strong> 74g</li>
+                </ul>
+            </div>
+
+            <!-- Shipping Tab -->
+            <div id="shipping" class="tab-pane">
+                <h3>Shipping & Handling</h3>
+                <ul>
+                    <li><strong>Shipping Cost:</strong> $1.00 per unit</li>
+                    <li><strong>Fulfillment:</strong> Fulfilled by Amazon (FBA)</li>
+                    <li><strong>Processing Time:</strong> 1-2 Business Days</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Copy Tooltip -->
+<div id="copyTooltip" class="copy-tooltip">
+    <i class="ph-fill ph-check-circle" style="color: #4ade80"></i> 
+    <span id="tooltipText">Copied to clipboard</span>
+</div>
+
+<script>
+    // Image Switcher
+    function swapImg(el, src) {
+        document.getElementById('mainImg').src = src;
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    // Quantity Logic
+    function updateQty(delta) {
+        const input = document.getElementById('qtyInput');
+        let val = parseInt(input.value) + delta;
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
+        if(val >= min && val <= max) input.value = val;
+    }
+
+    // Tab Logic
+    function switchTab(evt, tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+        
+        evt.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // Copy to Clipboard
+    function copyToClipboard(text, label) {
+        navigator.clipboard.writeText(text).then(() => {
+            const tooltip = document.getElementById('copyTooltip');
+            document.getElementById('tooltipText').innerText = `${label} Copied!`;
+            tooltip.classList.add('show');
+            setTimeout(() => tooltip.classList.remove('show'), 2000);
+        });
+    }
+</script>
+
+</body>
+</html>
