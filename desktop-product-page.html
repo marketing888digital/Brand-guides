@@ -8,13 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --action-blue: #3B82F6;
+            /* 888lots actual colors */
+            --action-blue: #2563eb;
             --urgent-red: #dc2626;
             --text-primary: #334155;
-            --text-secondary: #4A5568;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
             --bg-highlight: #f1f5f9;
             --bg-space: #f8fafc;
-            --border: #e2e8f0;
+            --border: #cbd5e1;
             --success: #16a34a;
             --success-bg: #f0fdf4;
         }
@@ -46,63 +48,55 @@
             color: var(--text-secondary); 
         }
         .breadcrumb a:hover { color: var(--action-blue); }
+        .breadcrumb span { 
+            color: var(--text-primary);
+            font-weight: 700;
+        }
 
-        /* COMPACT HEADER */
+        /* HEADER */
         .product-header {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 4px;
             padding: 14px 18px;
             margin-bottom: 12px;
         }
 
         .product-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .badges {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 3px;
-            font-size: 11px;
+            font-size: 20px;
             font-weight: 700;
-            border: 1px solid;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
         }
 
-        .badge-fba {
-            background: var(--success-bg);
-            border-color: #bbf7d0;
-            color: var(--success);
+        .header-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .badge-promo {
-            background: #fef2f2;
-            border-color: #fecaca;
-            color: var(--urgent-red);
-        }
-
-        .badge-category {
-            background: var(--bg-highlight);
-            border-color: var(--border);
+        .sku-text {
+            font-size: 11px;
             color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        .category-link {
+            font-size: 11px;
+            color: var(--action-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .category-link:hover {
+            text-decoration: underline;
         }
 
         /* THREE COLUMN LAYOUT */
         .product-grid {
             display: grid;
-            grid-template-columns: 340px 1fr 360px;
+            grid-template-columns: 340px 1fr 340px;
             gap: 12px;
             align-items: start;
             margin-bottom: 12px;
@@ -111,14 +105,95 @@
         .card {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 4px;
             overflow: hidden;
+            position: relative;
         }
 
-        /* COLUMN 1: GALLERY */
+        /* COLUMN 1: GALLERY WITH RIBBON BADGES */
         .gallery-card {
             position: sticky;
             top: 12px;
+        }
+
+        /* FBA RIBBON - Matching listing page */
+        .fba-ribbon {
+            position: absolute;
+            top: 10px;
+            left: -2px;
+            background: var(--success);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px 4px 8px;
+            z-index: 10;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .fba-ribbon::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 6px solid var(--success);
+            border-top: 13px solid transparent;
+            border-bottom: 13px solid transparent;
+        }
+
+        /* PROMO RIBBON */
+        .promo-ribbon {
+            position: absolute;
+            top: 36px;
+            left: -2px;
+            background: var(--urgent-red);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 3px 8px 3px 6px;
+            z-index: 10;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .promo-ribbon::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 5px solid var(--urgent-red);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        /* WATCHLIST HEART */
+        .watchlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.2s;
+        }
+        .watchlist-btn:hover {
+            background: var(--bg-highlight);
+            border-color: var(--action-blue);
+            color: var(--action-blue);
+        }
+        .watchlist-btn i {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        .watchlist-btn:hover i {
+            color: var(--action-blue);
         }
 
         .gallery { 
@@ -163,68 +238,80 @@
             object-fit: contain; 
         }
 
-        /* COLUMN 2: INFO STACK */
+        /* COLUMN 2: INFO */
         .info-main {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        /* IDS */
+        /* IDs CARD */
         .ids-card {
             padding: 12px 16px;
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            background: var(--bg-highlight);
+            align-items: center;
         }
 
-        .id-chip {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background: white;
-            border: 1px solid var(--border);
-            padding: 5px 10px;
-            border-radius: 3px;
+        .id-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .id-value {
             font-size: 11px;
             font-family: monospace;
-            color: var(--text-secondary);
+            color: var(--text-primary);
+            background: var(--bg-highlight);
+            padding: 4px 8px;
+            border-radius: 3px;
             cursor: pointer;
             transition: 0.15s;
+            border: 1px solid var(--border);
         }
-        .id-chip:hover { 
-            border-color: var(--action-blue); 
-            color: var(--action-blue); 
+        .id-value:hover {
+            background: white;
+            border-color: var(--action-blue);
+            color: var(--action-blue);
         }
 
-        /* MARKET DATA - ONLY WHAT WE HAVE */
+        /* MARKET DATA - Matching listing style */
         .market-card {
             padding: 16px;
+        }
+
+        .market-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
         }
 
         .market-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 12px;
         }
 
         .market-item {
-            text-align: center;
-            padding: 12px;
-            background: var(--bg-highlight);
+            border: 1px solid var(--border);
             border-radius: 4px;
+            padding: 12px;
+            background: var(--bg-space);
         }
         .market-label {
             font-size: 10px;
-            text-transform: uppercase;
             color: var(--text-secondary);
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
+            margin-bottom: 4px;
         }
         .market-value {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--text-primary);
         }
@@ -256,13 +343,13 @@
         }
         .tool-link i { font-size: 16px; }
 
-        /* PROFIT ESTIMATOR */
+        /* PROFIT CARD - Clean */
         .profit-card {
-            border-left: 4px solid var(--success);
+            border-left: 3px solid var(--success);
         }
 
         .profit-content {
-            padding: 14px 16px;
+            padding: 16px;
         }
 
         .profit-title {
@@ -270,133 +357,120 @@
             text-transform: uppercase;
             font-weight: 700;
             color: var(--success);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
-        .profit-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 12px;
+        .profit-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px dashed var(--border);
         }
-
-        .profit-item {
-            text-align: center;
+        .profit-row:last-child {
+            border-bottom: none;
+            padding-top: 12px;
+            margin-top: 4px;
+            border-top: 2px solid var(--border);
         }
         .profit-label {
-            font-size: 10px;
             color: var(--text-secondary);
-            margin-bottom: 4px;
+            font-weight: 500;
         }
         .profit-value {
-            font-size: 16px;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--text-primary);
         }
-
-        .profit-result {
-            background: var(--success-bg);
-            border: 2px solid #bbf7d0;
-            border-radius: 4px;
-            padding: 12px;
-            text-align: center;
-        }
-        .profit-amount {
-            font-size: 28px;
-            font-weight: 900;
+        .profit-highlight {
             color: var(--success);
-            line-height: 1;
-        }
-        .profit-roi {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-top: 2px;
+            font-size: 18px;
+            font-weight: 800;
         }
 
-        /* COLUMN 3: UNIFIED PURCHASE CARD */
+        /* COLUMN 3: PURCHASE CARD - Matching listing style */
         .purchase-card {
-            border-top: 4px solid var(--action-blue);
             position: sticky;
             top: 12px;
         }
 
-        /* PRICE SECTION */
+        /* PRICE SECTION - Matching "Az Price" format */
         .price-section {
-            padding: 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #fef2f2 0%, white 100%);
+            padding: 16px;
             border-bottom: 1px solid var(--border);
         }
 
-        .price-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 10px;
+        .price-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
         }
 
-        .was-price {
-            text-decoration: line-through;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 600;
+        .price-main {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 8px;
         }
 
         .current-price {
-            font-size: 48px;
-            font-weight: 900;
+            font-size: 32px;
+            font-weight: 800;
             color: var(--text-primary);
             line-height: 1;
-            letter-spacing: -1px;
         }
 
-        .discount-badge {
+        .old-price {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* REDUCED PRICE TAG - Matching listing cards */
+        .reduced-tag {
+            display: inline-block;
             background: var(--urgent-red);
             color: white;
-            font-size: 24px;
-            font-weight: 900;
-            padding: 8px 14px;
-            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 3px;
         }
 
         /* STOCK */
         .stock-section {
-            padding: 14px 20px;
-            background: var(--success-bg);
-            border-bottom: 1px solid #bbf7d0;
+            padding: 12px 16px;
+            background: var(--bg-space);
+            border-bottom: 1px solid var(--border);
         }
 
-        .stock-alert {
-            color: var(--success);
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
+        .stock-row {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            justify-content: space-between;
+            font-size: 12px;
             margin-bottom: 6px;
         }
-
-        .moq-note {
-            text-align: center;
-            font-size: 11px;
+        .stock-row:last-child { margin-bottom: 0; }
+        .stock-label {
             color: var(--text-secondary);
-            font-weight: 600;
+        }
+        .stock-value {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .stock-value.in-stock {
+            color: var(--success);
         }
 
         /* ACTIONS */
         .action-section {
-            padding: 20px;
+            padding: 16px;
         }
 
         .qty-section {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .qty-label {
@@ -409,13 +483,13 @@
 
         .qty-control {
             display: flex;
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 4px;
             overflow: hidden;
         }
         .qty-btn {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             background: var(--bg-highlight);
             border: none;
             font-size: 18px;
@@ -428,23 +502,24 @@
         .qty-input {
             flex: 1;
             border: none;
-            border-left: 2px solid var(--border);
-            border-right: 2px solid var(--border);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
             text-align: center;
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 700;
             color: var(--text-primary);
         }
 
-        .btn-primary {
+        /* CART BUTTON - Matching listing page add to cart */
+        .btn-cart {
             width: 100%;
             background: var(--action-blue);
             color: white;
             border: none;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 800;
-            border-radius: 5px;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 4px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -452,29 +527,25 @@
             gap: 6px;
             margin-bottom: 10px;
             transition: 0.2s;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
         }
-        .btn-primary:hover {
-            background: #2563eb;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+        .btn-cart:hover {
+            background: #1d4ed8;
         }
 
         .btn-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
-            margin-bottom: 14px;
         }
 
         .btn-secondary {
             background: white;
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
             color: var(--text-secondary);
-            padding: 11px;
+            padding: 10px;
             border-radius: 4px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.15s;
             display: flex;
@@ -485,11 +556,13 @@
         .btn-secondary:hover {
             border-color: var(--action-blue);
             color: var(--action-blue);
+            background: var(--bg-highlight);
         }
 
-        .meta-list {
+        .meta-section {
+            padding-top: 12px;
             border-top: 1px dashed var(--border);
-            padding-top: 14px;
+            margin-top: 12px;
         }
 
         .meta-row {
@@ -502,11 +575,11 @@
         .meta-label { color: var(--text-secondary); }
         .meta-value { font-weight: 700; color: var(--text-primary); }
 
-        /* FULL WIDTH DESCRIPTION AT BOTTOM */
+        /* FULL WIDTH DESCRIPTION */
         .description-section {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 4px;
             overflow: hidden;
         }
 
@@ -519,7 +592,7 @@
         .tab {
             padding: 12px 24px;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
             border-right: 1px solid var(--border);
@@ -543,21 +616,21 @@
 
         .tab-content h3 {
             font-size: 15px;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 12px;
         }
 
         .tab-content p {
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.6;
             margin-bottom: 10px;
             font-size: 13px;
         }
 
         .tab-content ul {
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.6;
             padding-left: 18px;
             font-size: 13px;
         }
@@ -569,7 +642,7 @@
         /* RESPONSIVE */
         @media (max-width: 1200px) {
             .product-grid {
-                grid-template-columns: 300px 1fr 340px;
+                grid-template-columns: 300px 1fr 320px;
             }
         }
 
@@ -592,9 +665,6 @@
             .purchase-card {
                 position: static;
             }
-            .market-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -609,23 +679,29 @@
 
     <!-- HEADER -->
     <div class="product-header">
-        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse</h1>
-        <div class="badges">
-            <span class="badge badge-fba">
-                <i class="ph-fill ph-seal-check"></i> Fulfilled by Amazon
-            </span>
-            <span class="badge badge-promo">
-                <i class="ph-fill ph-sparkle"></i> First Order Discount
-            </span>
-            <span class="badge badge-category">#Razer</span>
-            <span class="badge badge-category">#Computer Peripheral</span>
+        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</h1>
+        <div class="header-meta">
+            <span class="sku-text">SKU: 888 B08565C5BB US</span>
+            <span style="color: var(--border);">|</span>
+            <a href="#" class="category-link">Computer Peripheral</a>
         </div>
     </div>
 
     <div class="product-grid">
 
-        <!-- COLUMN 1: GALLERY -->
+        <!-- COLUMN 1: GALLERY WITH RIBBONS -->
         <div class="card gallery-card">
+            <!-- FBA RIBBON -->
+            <div class="fba-ribbon">FBA</div>
+            
+            <!-- PROMO RIBBON -->
+            <div class="promo-ribbon">FIRST ORDER</div>
+            
+            <!-- WATCHLIST -->
+            <button class="watchlist-btn" onclick="toggleWatch(this)">
+                <i class="ph ph-heart"></i>
+            </button>
+
             <div class="gallery">
                 <div class="main-img-wrapper">
                     <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
@@ -652,19 +728,18 @@
 
             <!-- IDs -->
             <div class="card ids-card">
-                <div class="id-chip" onclick="copyText(this, '888 B08565C5BB US')">
-                    <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
-                </div>
-                <div class="id-chip" onclick="copyText(this, 'B08565C5BB')">
-                    <i class="ph ph-copy"></i> ASIN: B08565C5BB
-                </div>
+                <span class="id-label">SKU:</span>
+                <span class="id-value" onclick="copyText(this, '888 B08565C5BB US')">888 B08565C5BB US</span>
+                <span class="id-label">ASIN:</span>
+                <span class="id-value" onclick="copyText(this, 'B08565C5BB')">B08565C5BB</span>
             </div>
 
-            <!-- MARKET DATA - ONLY WHAT WE HAVE -->
+            <!-- MARKET DATA -->
             <div class="card market-card">
+                <div class="market-title">Market Data</div>
                 <div class="market-grid">
                     <div class="market-item">
-                        <div class="market-label">Amazon Buy Box</div>
+                        <div class="market-label">Est. Az Price</div>
                         <div class="market-value">$129.00</div>
                     </div>
                     <div class="market-item">
@@ -700,47 +775,50 @@
                     <div class="profit-title">
                         <i class="ph-fill ph-trend-up"></i> PROFIT ESTIMATION
                     </div>
-                    <div class="profit-grid">
-                        <div class="profit-item">
-                            <div class="profit-label">Your Cost</div>
-                            <div class="profit-value">$89.00</div>
-                        </div>
-                        <div class="profit-item">
-                            <div class="profit-label">Est. Sell Price</div>
-                            <div class="profit-value">$129.00</div>
-                        </div>
-                        <div class="profit-item">
-                            <div class="profit-label">Per Unit Profit</div>
-                            <div class="profit-value">$40.00</div>
-                        </div>
+                    <div class="profit-row">
+                        <span class="profit-label">Your Cost</span>
+                        <span class="profit-value">$89.00</span>
                     </div>
-                    <div class="profit-result">
-                        <div class="profit-amount">+$40.00</div>
-                        <div class="profit-roi">45% ROI</div>
+                    <div class="profit-row">
+                        <span class="profit-label">Est. Sell Price</span>
+                        <span class="profit-value">$129.00</span>
+                    </div>
+                    <div class="profit-row">
+                        <span class="profit-label">Est. Profit per Unit</span>
+                        <span class="profit-highlight">+$40.00 (45% ROI)</span>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- COLUMN 3: UNIFIED PURCHASE CARD -->
+        <!-- COLUMN 3: PURCHASE CARD -->
         <div class="card purchase-card">
             
-            <!-- PRICE -->
+            <!-- PRICE - Matching "Az Price" format -->
             <div class="price-section">
-                <div class="price-row">
-                    <span class="was-price">Was $95.00</span>
+                <div class="price-label">Az Price</div>
+                <div class="price-main">
                     <span class="current-price">$89.00</span>
-                    <span class="discount-badge">-6%</span>
+                    <span class="old-price">$95.00</span>
                 </div>
+                <span class="reduced-tag">Reduced Price -6%</span>
             </div>
 
             <!-- STOCK -->
             <div class="stock-section">
-                <div class="stock-alert">
-                    <i class="ph-fill ph-check-circle"></i> In Stock: 132 Units
+                <div class="stock-row">
+                    <span class="stock-label">In Stock</span>
+                    <span class="stock-value in-stock">132 pc(s)</span>
                 </div>
-                <div class="moq-note">MOQ: 100 Units</div>
+                <div class="stock-row">
+                    <span class="stock-label">MOQ</span>
+                    <span class="stock-value">100 pc(s)</span>
+                </div>
+                <div class="stock-row">
+                    <span class="stock-label">Condition</span>
+                    <span class="stock-value">Fulfilled by Amazon</span>
+                </div>
             </div>
 
             <!-- ACTIONS -->
@@ -754,8 +832,8 @@
                     </div>
                 </div>
 
-                <button class="btn-primary">
-                    <i class="ph-fill ph-shopping-cart-simple"></i> Add to Order
+                <button class="btn-cart">
+                    <i class="ph-fill ph-shopping-cart-simple"></i> Add to Cart
                 </button>
 
                 <div class="btn-group">
@@ -767,18 +845,10 @@
                     </button>
                 </div>
 
-                <div class="meta-list">
+                <div class="meta-section">
                     <div class="meta-row">
-                        <span class="meta-label">Shipping</span>
+                        <span class="meta-label">Shipping Cost</span>
                         <span class="meta-value">$1.00 per unit</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-label">Condition</span>
-                        <span class="meta-value">FBA</span>
-                    </div>
-                    <div class="meta-row">
-                        <span class="meta-label">SKU</span>
-                        <span class="meta-value">888 B08565C5BB US</span>
                     </div>
                 </div>
             </div>
@@ -787,7 +857,7 @@
 
     </div>
 
-    <!-- FULL WIDTH DESCRIPTION WITH TABS -->
+    <!-- FULL WIDTH DESCRIPTION -->
     <div class="description-section">
         <div class="tabs">
             <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
@@ -829,51 +899,4 @@
 
 <script>
     function swapImg(el) {
-        const mainImg = document.getElementById('mainImg');
-        const thumbs = document.querySelectorAll('.thumb');
-        
-        mainImg.src = el.querySelector('img').src;
-        
-        thumbs.forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
-    }
-
-    function copyText(el, text) {
-        const originalHTML = el.innerHTML;
-        
-        el.innerHTML = '<i class="ph ph-check"></i> Copied!';
-        el.style.backgroundColor = '#f0fdf4';
-        el.style.borderColor = '#bbf7d0';
-        el.style.color = '#16a34a';
-
-        setTimeout(() => {
-            el.innerHTML = originalHTML;
-            el.style.backgroundColor = 'white';
-            el.style.borderColor = '#e2e8f0';
-            el.style.color = '#4A5568';
-        }, 1200);
-    }
-
-    function adjustQty(delta) {
-        const input = document.getElementById('qtyInput');
-        const min = parseInt(input.min);
-        const max = parseInt(input.max);
-        let value = parseInt(input.value) + delta;
-        
-        if (value < min) value = min;
-        if (value > max) value = max;
-        
-        input.value = value;
-    }
-
-    function switchTab(tabEl, tabId) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        
-        tabEl.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
-    }
-</script>
-
-</body>
-</html>
+        const mainImg = document.getElementById('mainImg
