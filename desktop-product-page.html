@@ -25,59 +25,67 @@
             background: var(--bg-space);
             font-family: 'Inter', -apple-system, sans-serif;
             color: var(--text-primary);
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1.4;
         }
 
         .container { 
             max-width: 1400px; 
             margin: 0 auto; 
-            padding: 16px;
+            padding: 12px;
         }
 
         /* BREADCRUMB */
         .breadcrumb { 
-            font-size: 12px; 
+            font-size: 11px; 
             color: var(--text-secondary); 
-            margin-bottom: 16px; 
+            margin-bottom: 12px; 
         }
         .breadcrumb a { 
             text-decoration: none; 
             color: var(--text-secondary); 
-            transition: 0.2s; 
         }
         .breadcrumb a:hover { color: var(--action-blue); }
 
-        /* PRODUCT HEADER */
+        /* COMPACT HEADER */
         .product-header {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 20px 24px;
-            margin-bottom: 16px;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+            min-width: 0;
         }
 
         .product-title {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             line-height: 1.2;
         }
 
         .badges {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 12px;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
             font-weight: 700;
             border: 1px solid;
         }
@@ -100,28 +108,66 @@
             color: var(--text-secondary);
         }
 
-        /* MAIN GRID - Responsive Cards */
+        /* PRICE IN HEADER */
+        .header-price {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .price-box {
+            text-align: right;
+        }
+
+        .was-price {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .current-price {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .discount-badge {
+            background: var(--urgent-red);
+            color: white;
+            font-size: 20px;
+            font-weight: 900;
+            padding: 8px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        /* TWO COLUMN LAYOUT */
         .product-grid {
             display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 16px;
+            grid-template-columns: 340px 1fr 320px;
+            gap: 12px;
             align-items: start;
         }
 
         .card {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
         }
 
-        /* LEFT COLUMN - Images */
+        /* COLUMN 1: COMPACT GALLERY */
         .gallery-card {
             position: sticky;
-            top: 16px;
+            top: 12px;
         }
 
-        .gallery { padding: 20px; }
+        .gallery { 
+            padding: 14px; 
+        }
 
         .main-img-wrapper {
             aspect-ratio: 1/1;
@@ -129,9 +175,9 @@
             align-items: center;
             justify-content: center;
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 24px;
-            margin-bottom: 12px;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 10px;
             background: white;
         }
         .main-img { 
@@ -143,15 +189,15 @@
         .thumbs {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 6px;
         }
         .thumb {
             aspect-ratio: 1/1;
             border: 2px solid var(--border);
-            border-radius: 4px;
-            padding: 6px;
+            border-radius: 3px;
+            padding: 4px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.15s;
         }
         .thumb:hover { border-color: var(--action-blue); }
         .thumb.active { border-color: var(--action-blue); }
@@ -161,86 +207,30 @@
             object-fit: contain; 
         }
 
-        /* RIGHT COLUMN - Stacked Cards */
-        .info-stack {
+        /* COLUMN 2: DENSE INFO GRID */
+        .info-main {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
-        /* DEAL CARD - The Hero */
-        .deal-card {
-            border-top: 4px solid var(--urgent-red);
-        }
-
-        .price-section {
-            background: linear-gradient(135deg, #fef2f2 0%, white 100%);
-            padding: 32px 24px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .price-row {
+        /* COMPACT IDS */
+        .ids-card {
+            padding: 12px 16px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 8px;
-        }
-
-        .was-price {
-            text-decoration: line-through;
-            color: var(--text-secondary);
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .current-price {
-            font-size: 64px;
-            font-weight: 900;
-            color: var(--text-primary);
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-
-        .discount-badge {
-            background: var(--urgent-red);
-            color: white;
-            font-size: 28px;
-            font-weight: 900;
-            padding: 8px 16px;
-            border-radius: 6px;
-        }
-
-        .moq-alert {
-            display: inline-block;
-            background: var(--bg-highlight);
-            color: var(--text-primary);
-            font-size: 13px;
-            font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 4px;
-            margin-top: 12px;
-        }
-
-        /* IDs Bar */
-        .ids-section {
-            padding: 16px 24px;
-            background: var(--bg-highlight);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
+            background: var(--bg-highlight);
         }
 
         .id-chip {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: white;
             border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 5px 10px;
+            border-radius: 3px;
             font-size: 11px;
             font-family: monospace;
             color: var(--text-secondary);
@@ -252,183 +242,216 @@
             color: var(--action-blue); 
         }
 
-        /* Market Data */
-        .market-section {
-            padding: 20px 24px;
+        /* MARKET DATA GRID - COMPACT */
+        .market-card {
+            padding: 16px;
         }
 
-        .data-grid {
+        .market-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
         }
 
-        .data-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        .market-item {
+            text-align: center;
         }
-        .data-label {
-            font-size: 11px;
+        .market-label {
+            font-size: 10px;
             text-transform: uppercase;
             color: var(--text-secondary);
             font-weight: 600;
-            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
         }
-        .data-value {
-            font-size: 18px;
+        .market-value {
+            font-size: 16px;
             font-weight: 800;
             color: var(--text-primary);
         }
 
-        /* Tools Bar */
-        .tools-bar {
+        /* TOOLS - COMPACT */
+        .tools-card {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1px;
             background: var(--border);
-            border-top: 1px solid var(--border);
         }
         .tool-link {
             background: white;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: 0.15s;
+            transition: 0.12s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
         }
         .tool-link:hover {
             background: var(--bg-highlight);
             color: var(--action-blue);
         }
-        .tool-link i { font-size: 18px; }
+        .tool-link i { font-size: 16px; }
 
-        /* PROFIT CARD */
+        /* PROFIT ESTIMATOR - COMPACT */
         .profit-card {
-            border-top: 4px solid var(--success);
+            border-left: 4px solid var(--success);
         }
 
-        .profit-header {
-            padding: 20px 24px;
-            background: var(--success-bg);
-            border-bottom: 1px solid #bbf7d0;
+        .profit-content {
+            padding: 14px 16px;
         }
 
         .profit-title {
-            font-size: 13px;
+            font-size: 11px;
             text-transform: uppercase;
             font-weight: 700;
             color: var(--success);
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
-        }
-
-        .profit-calc {
+            margin-bottom: 10px;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .calc-row {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 14px;
-        }
-        .calc-row.total {
-            padding-top: 12px;
-            border-top: 2px solid #bbf7d0;
-        }
-        .calc-label { 
-            color: var(--text-secondary); 
-            font-weight: 500; 
-        }
-        .calc-value { 
-            font-weight: 700; 
-            color: var(--text-primary); 
+            gap: 4px;
         }
 
-        .profit-highlight {
-            background: white;
-            border: 2px solid #bbf7d0;
-            border-radius: 6px;
-            padding: 16px;
+        .profit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .profit-item {
             text-align: center;
-            margin-top: 16px;
+        }
+        .profit-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .profit-value {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .profit-result {
+            background: var(--success-bg);
+            border: 2px solid #bbf7d0;
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
         }
         .profit-amount {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 900;
             color: var(--success);
             line-height: 1;
         }
         .profit-roi {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--text-secondary);
             font-weight: 600;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
-        /* Stock Info */
-        .stock-section {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border);
+        /* DESCRIPTION - COMPACT */
+        .description-card {
+            padding: 16px;
+        }
+
+        .description-card h3 {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .description-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .description-card ul {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding-left: 16px;
+            font-size: 12px;
+        }
+
+        .description-card li {
+            margin-bottom: 6px;
+        }
+
+        /* COLUMN 3: ACTION SIDEBAR - COMPACT */
+        .action-sidebar {
+            position: sticky;
+            top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* STOCK */
+        .stock-card {
+            padding: 12px;
+            background: var(--success-bg);
+            border: 1px solid #bbf7d0;
         }
 
         .stock-alert {
-            background: var(--success-bg);
-            border: 1px solid #bbf7d0;
             color: var(--success);
-            padding: 12px;
-            border-radius: 6px;
             font-size: 13px;
             font-weight: 700;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
+        }
+
+        .moq-note {
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 6px;
         }
 
         /* ACTION CARD */
         .action-card {
-            border-top: 4px solid var(--action-blue);
+            border-top: 3px solid var(--action-blue);
+            padding: 16px;
         }
 
-        .action-section {
-            padding: 24px;
-        }
-
-        .qty-control-wrapper {
-            margin-bottom: 16px;
+        .qty-section {
+            margin-bottom: 12px;
         }
 
         .qty-label {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .qty-control {
             display: flex;
             border: 2px solid var(--border);
-            border-radius: 6px;
+            border-radius: 4px;
             overflow: hidden;
         }
         .qty-btn {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             background: var(--bg-highlight);
             border: none;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             transition: 0.1s;
             color: var(--text-primary);
@@ -441,16 +464,9 @@
             border-left: 2px solid var(--border);
             border-right: 2px solid var(--border);
             text-align: center;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--text-primary);
-        }
-
-        .moq-note {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-top: 6px;
-            text-align: center;
         }
 
         .btn-primary {
@@ -458,129 +474,107 @@
             background: var(--action-blue);
             color: white;
             border: none;
-            padding: 16px;
-            font-size: 16px;
+            padding: 13px;
+            font-size: 14px;
             font-weight: 800;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 12px;
+            gap: 6px;
+            margin-bottom: 10px;
             transition: 0.2s;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         .btn-primary:hover {
             background: #2563eb;
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
 
         .btn-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .btn-secondary {
             background: white;
             border: 2px solid var(--border);
             color: var(--text-secondary);
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 13px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
         }
         .btn-secondary:hover {
             border-color: var(--action-blue);
             color: var(--action-blue);
         }
 
-        .meta-section {
-            padding: 20px 24px;
-            border-top: 1px solid var(--border);
-            background: var(--bg-highlight);
+        .meta-list {
+            border-top: 1px dashed var(--border);
+            padding-top: 12px;
         }
 
         .meta-row {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 8px;
+            font-size: 11px;
+            margin-bottom: 6px;
         }
         .meta-row:last-child { margin-bottom: 0; }
         .meta-label { color: var(--text-secondary); }
         .meta-value { font-weight: 700; color: var(--text-primary); }
 
-        /* DESCRIPTION CARD */
-        .description-card {
-            padding: 24px;
-        }
-
-        .description-card h3 {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-
-        .description-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-
-        .description-card ul {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            padding-left: 20px;
-        }
-
-        .description-card li {
-            margin-bottom: 8px;
-        }
-
         /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: 300px 1fr 280px;
+            }
+            .market-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: 1fr 320px;
+            }
+            .gallery-card {
+                grid-column: span 2;
+            }
+            .info-main {
+                grid-column: 1;
+            }
+            .action-sidebar {
+                grid-column: 2;
+                grid-row: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
             .product-grid {
                 grid-template-columns: 1fr;
             }
             .gallery-card {
+                grid-column: 1;
+            }
+            .action-sidebar {
                 position: static;
             }
-            .data-grid {
+            .market-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 12px;
-            }
-            .product-title {
-                font-size: 20px;
-            }
-            .current-price {
-                font-size: 48px;
-            }
-            .discount-badge {
-                font-size: 20px;
-            }
-            .data-grid {
-                grid-template-columns: 1fr;
-            }
-            .tools-bar {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .thumbs {
-                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -594,24 +588,33 @@
         <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
     </div>
 
-    <!-- PRODUCT HEADER -->
+    <!-- COMPACT HEADER WITH PRICE -->
     <div class="product-header">
-        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse</h1>
-        <div class="badges">
-            <span class="badge badge-fba">
-                <i class="ph ph-seal-check"></i> Fulfilled by Amazon
-            </span>
-            <span class="badge badge-promo">
-                <i class="ph ph-sparkle"></i> First Order Discount
-            </span>
-            <span class="badge badge-category">#Razer</span>
-            <span class="badge badge-category">#Computer Peripheral</span>
+        <div class="header-left">
+            <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse</h1>
+            <div class="badges">
+                <span class="badge badge-fba">
+                    <i class="ph-fill ph-seal-check"></i> Fulfilled by Amazon
+                </span>
+                <span class="badge badge-promo">
+                    <i class="ph-fill ph-sparkle"></i> First Order Discount
+                </span>
+                <span class="badge badge-category">#Razer</span>
+                <span class="badge badge-category">#Computer Peripheral</span>
+            </div>
+        </div>
+        <div class="header-price">
+            <div class="price-box">
+                <div class="was-price">Was $95.00</div>
+                <div class="current-price">$89.00</div>
+            </div>
+            <div class="discount-badge">-6%</div>
         </div>
     </div>
 
     <div class="product-grid">
 
-        <!-- LEFT COLUMN - Images -->
+        <!-- COLUMN 1: GALLERY -->
         <div class="card gallery-card">
             <div class="gallery">
                 <div class="main-img-wrapper">
@@ -634,165 +637,152 @@
             </div>
         </div>
 
-        <!-- RIGHT COLUMN - Info Stack -->
-        <div class="info-stack">
+        <!-- COLUMN 2: DENSE INFO -->
+        <div class="info-main">
 
-            <!-- DEAL CARD -->
-            <div class="card deal-card">
-                <!-- Price Section -->
-                <div class="price-section">
-                    <div class="price-row">
-                        <span class="was-price">Was $95.00</span>
-                        <span class="current-price">$89.00</span>
-                        <span class="discount-badge">-6%</span>
-                    </div>
-                    <div class="moq-alert">MOQ: 100 Units</div>
+            <!-- IDs -->
+            <div class="card ids-card">
+                <div class="id-chip" onclick="copyText(this, '888 B08565C5BB US')">
+                    <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
                 </div>
-
-                <!-- IDs -->
-                <div class="ids-section">
-                    <div class="id-chip" onclick="copyText(this, '888 B08565C5BB US')">
-                        <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
-                    </div>
-                    <div class="id-chip" onclick="copyText(this, 'B08565C5BB')">
-                        <i class="ph ph-copy"></i> ASIN: B08565C5BB
-                    </div>
-                </div>
-
-                <!-- Market Data -->
-                <div class="market-section">
-                    <div class="data-grid">
-                        <div class="data-item">
-                            <span class="data-label">Amazon Buy Box</span>
-                            <span class="data-value">$129.00</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">MSRP</span>
-                            <span class="data-value">$129.99</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Sales Rank</span>
-                            <span class="data-value">#98 in Category</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Competition</span>
-                            <span class="data-value">4 Sellers</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools -->
-                <div class="tools-bar">
-                    <a href="#" class="tool-link">
-                        <i class="ph ph-chart-line-up"></i>
-                        Keepa
-                    </a>
-                    <a href="#" class="tool-link">
-                        <i class="ph ph-calculator"></i>
-                        Calculator
-                    </a>
-                    <a href="#" class="tool-link">
-                        <i class="ph ph-amazon-logo"></i>
-                        Amazon
-                    </a>
-                    <a href="#" class="tool-link">
-                        <i class="ph ph-google-logo"></i>
-                        Google
-                    </a>
+                <div class="id-chip" onclick="copyText(this, 'B08565C5BB')">
+                    <i class="ph ph-copy"></i> ASIN: B08565C5BB
                 </div>
             </div>
 
-            <!-- PROFIT CARD -->
+            <!-- MARKET DATA -->
+            <div class="card market-card">
+                <div class="market-grid">
+                    <div class="market-item">
+                        <div class="market-label">Amazon Buy Box</div>
+                        <div class="market-value">$129.00</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-label">MSRP</div>
+                        <div class="market-value">$129.99</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-label">Sales Rank</div>
+                        <div class="market-value">#98</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-label">Competition</div>
+                        <div class="market-value">4 Sellers</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOOLS -->
+            <div class="card tools-card">
+                <a href="#" class="tool-link">
+                    <i class="ph ph-chart-line-up"></i>
+                    Keepa
+                </a>
+                <a href="#" class="tool-link">
+                    <i class="ph ph-calculator"></i>
+                    Calculator
+                </a>
+                <a href="#" class="tool-link">
+                    <i class="ph-fill ph-amazon-logo"></i>
+                    Amazon
+                </a>
+                <a href="#" class="tool-link">
+                    <i class="ph-fill ph-google-logo"></i>
+                    Google
+                </a>
+            </div>
+
+            <!-- PROFIT ESTIMATOR -->
             <div class="card profit-card">
-                <div class="profit-header">
+                <div class="profit-content">
                     <div class="profit-title">
-                        <i class="ph ph-trend-up"></i> Profit Estimation
+                        <i class="ph-fill ph-trend-up"></i> PROFIT ESTIMATION
                     </div>
-                    <div class="profit-calc">
-                        <div class="calc-row">
-                            <span class="calc-label">Your Cost</span>
-                            <span class="calc-value">$89.00</span>
+                    <div class="profit-grid">
+                        <div class="profit-item">
+                            <div class="profit-label">Your Cost</div>
+                            <div class="profit-value">$89.00</div>
                         </div>
-                        <div class="calc-row">
-                            <span class="calc-label">Est. Sell Price</span>
-                            <span class="calc-value">$129.00</span>
+                        <div class="profit-item">
+                            <div class="profit-label">Est. Sell Price</div>
+                            <div class="profit-value">$129.00</div>
                         </div>
-                        <div class="calc-row total">
-                            <span class="calc-label">Est. Profit per Unit</span>
-                            <span class="calc-value">$40.00</span>
+                        <div class="profit-item">
+                            <div class="profit-label">Per Unit Profit</div>
+                            <div class="profit-value">$40.00</div>
                         </div>
                     </div>
-                    <div class="profit-highlight">
+                    <div class="profit-result">
                         <div class="profit-amount">+$40.00</div>
                         <div class="profit-roi">45% ROI</div>
                     </div>
                 </div>
-
-                <!-- Stock -->
-                <div class="stock-section">
-                    <div class="stock-alert">
-                        <i class="ph ph-check-circle"></i> In Stock: 132 Units Available
-                    </div>
-                </div>
             </div>
 
-            <!-- ACTION CARD -->
+            <!-- DESCRIPTION -->
+            <div class="card description-card">
+                <h3>Product Description</h3>
+                <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
+                <ul>
+                    <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology</li>
+                    <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g</li>
+                    <li>Faster Than Traditional Mechanical Switches: Light beam-based actuation</li>
+                    <li>Ambidextrous Design: For left and right-handed users</li>
+                    <li>8 Programmable Buttons via Razer Synapse 3</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- COLUMN 3: ACTION SIDEBAR -->
+        <div class="action-sidebar">
+
+            <!-- STOCK -->
+            <div class="card stock-card">
+                <div class="stock-alert">
+                    <i class="ph-fill ph-check-circle"></i> In Stock: 132 Units
+                </div>
+                <div class="moq-note">MOQ: 100 Units</div>
+            </div>
+
+            <!-- ACTIONS -->
             <div class="card action-card">
-                <div class="action-section">
-                    <!-- Quantity -->
-                    <div class="qty-control-wrapper">
-                        <div class="qty-label">Quantity</div>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="adjustQty(-1)">−</button>
-                            <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
-                            <button class="qty-btn" onclick="adjustQty(1)">+</button>
-                        </div>
-                        <div class="moq-note">Minimum Order: 100 Units</div>
-                    </div>
-
-                    <!-- CTAs -->
-                    <button class="btn-primary">
-                        <i class="ph ph-shopping-cart-simple"></i> Add to Order
-                    </button>
-
-                    <div class="btn-group">
-                        <button class="btn-secondary">
-                            <i class="ph ph-handshake"></i> Negotiate
-                        </button>
-                        <button class="btn-secondary">
-                            <i class="ph ph-heart"></i> Watch
-                        </button>
+                <div class="qty-section">
+                    <div class="qty-label">Quantity</div>
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+                        <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
+                        <button class="qty-btn" onclick="adjustQty(1)">+</button>
                     </div>
                 </div>
 
-                <!-- Meta Info -->
-                <div class="meta-section">
+                <button class="btn-primary">
+                    <i class="ph-fill ph-shopping-cart-simple"></i> Add to Order
+                </button>
+
+                <div class="btn-group">
+                    <button class="btn-secondary">
+                        <i class="ph ph-handshake"></i> Negotiate
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="ph ph-heart"></i> Watch
+                    </button>
+                </div>
+
+                <div class="meta-list">
                     <div class="meta-row">
-                        <span class="meta-label">Shipping Cost</span>
+                        <span class="meta-label">Shipping</span>
                         <span class="meta-value">$1.00 per unit</span>
                     </div>
                     <div class="meta-row">
                         <span class="meta-label">Condition</span>
-                        <span class="meta-value">Fulfilled by Amazon</span>
+                        <span class="meta-value">FBA</span>
                     </div>
                     <div class="meta-row">
                         <span class="meta-label">SKU</span>
                         <span class="meta-value">888 B08565C5BB US</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- DESCRIPTION CARD -->
-            <div class="card description-card">
-                <h3>Product Description</h3>
-                <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
-                <ul>
-                    <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom</li>
-                    <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g: Includes a 20K DPI optical sensor befitting the most serious gamers</li>
-                    <li>Faster Than Traditional Mechanical Switches: New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light</li>
-                    <li>Ambidextrous Design: Created for left and right-handed users with accessible, programmable buttons on both sides</li>
-                    <li>8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3</li>
-                </ul>
             </div>
 
         </div>
@@ -802,7 +792,6 @@
 </div>
 
 <script>
-    // Image Gallery
     function swapImg(el, index) {
         const mainImg = document.getElementById('mainImg');
         const thumbs = document.querySelectorAll('.thumb');
@@ -813,11 +802,9 @@
         el.classList.add('active');
     }
 
-    // Copy to Clipboard
     function copyText(el, text) {
         const originalHTML = el.innerHTML;
         
-        // Simulate copy (in real app, use navigator.clipboard.writeText)
         el.innerHTML = '<i class="ph ph-check"></i> Copied!';
         el.style.backgroundColor = '#f0fdf4';
         el.style.borderColor = '#bbf7d0';
@@ -831,7 +818,6 @@
         }, 1200);
     }
 
-    // Quantity Controls
     function adjustQty(delta) {
         const input = document.getElementById('qtyInput');
         const min = parseInt(input.min);
