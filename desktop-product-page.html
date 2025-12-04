@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-brand="888lots">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,124 +8,217 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* ==============================
+       Brand Color System (Base + Semantic Tokens)
+       ============================== */
     :root{
-      --primary:#2563eb;--primary-hover:#1d4ed8;
-      --success:#16a34a;--success-bg:#dcfce7;
-      --danger:#dc2626;--danger-bg:#fee2e2;
-      --surface:#fff;--background:#f8fafc;--border:#e2e8f0;
-      --text-main:#0f172a;--text-secondary:#64748b;--text-muted:#94a3b8;
-      --promo:#facc15; /* yellow */
+      /* Base — from Brand Guides */
+      --blue-500:  #3B82F6;   /* Bright Blue – CTAs */
+      --red-600:   #dc2626;   /* Discounts / urgency */
+      --slate-800: #334155;   /* Main text */
+      --slate-600: #4A5568;   /* Secondary text */
+      --slate-100: #f1f5f9;   /* Section bg */
+      --slate-50:  #f8fafc;   /* Page bg */
+      --yellow-400:#FACC15;   /* Promo highlight */
+      --green-600: #16a34a;   /* Positive KPI */
+      --orange-500:#f97316;   /* Warnings */
+      --black:     #0b1220;
+
+      /* Semantic roles */
+      --bg-page:   var(--slate-50);
+      --bg-card:   #ffffff;
+      --bg-muted:  var(--slate-100);
+
+      --text-main:   var(--slate-800);
+      --text-muted:  var(--slate-600);
+
+      --cta:         var(--blue-500);
+      --cta-hover:   #2563eb;
+      --cta-ring:    rgba(59,130,246,.35);
+
+      --deal-discount: var(--red-600);
+      --deal-promo:    var(--yellow-400);
+      --deal-invite:   var(--blue-500);
+      --deal-announce: #6b7280;
+
+      --kpi-good:  var(--green-600);
+      --kpi-warn:  var(--orange-500);
+      --kpi-bad:   var(--red-600);
+
+      --chip-bg:      var(--slate-100);
+      --chip-text:    var(--slate-800);
+      --chip-border:  #e2e8f0;
+
+      --badge-success-bg:#dcfce7;
+      --badge-success-tx:var(--green-600);
+
+      --border:   #e2e8f0;
+      --shadow:   0 4px 12px rgba(0,0,0,.06);
     }
+
+    /* ==============================
+       Base Layout
+       ============================== */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--background);color:var(--text-main);font-size:14px;line-height:1.5;padding-bottom:40px}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;
+      background:var(--bg-page);
+      color:var(--text-main);
+      font-size:14px; line-height:1.5;
+      padding-bottom:40px;
+    }
     .container{max-width:1440px;margin:0 auto;padding:20px}
 
     /* Breadcrumbs */
-    .breadcrumbs{font-size:12px;color:var(--text-secondary);margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .breadcrumbs a{color:var(--text-secondary);text-decoration:none;transition:color .2s}
-    .breadcrumbs a:hover{color:var(--primary)}
+    .breadcrumbs{font-size:12px;color:var(--text-muted);margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .breadcrumbs a{color:var(--text-muted);text-decoration:none;transition:color .2s}
+    .breadcrumbs a:hover{color:var(--cta)}
 
     /* Header */
-    .product-header{background:var(--surface);padding:20px;border-radius:8px;border:1px solid var(--border);margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+    .product-header{
+      background:var(--bg-card);padding:20px;border-radius:8px;border:1px solid var(--border);
+      margin-bottom:16px;box-shadow:var(--shadow)
+    }
     .product-title{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:8px}
+
+    /* Program pills under title (keep) */
+    .headline-pills{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--chip-bg);color:var(--chip-text);
+      border:1px solid var(--chip-border);
+      border-radius:999px;padding:6px 10px;
+      font-weight:700;font-size:12px;text-decoration:none;white-space:nowrap;
+      transition:.2s;
+    }
+    .pill i{font-size:14px;opacity:.85}
+    .pill:hover{border-color:var(--cta);color:var(--cta);background:#fff}
 
     .header-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-top:1px solid var(--border);padding-top:12px}
     .id-chips{display:flex;gap:8px;flex-wrap:wrap}
-    .id-chip{font-family:monospace;font-size:11px;background:var(--background);padding:6px 10px;border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--text-secondary);border:1px solid var(--border);transition:.2s;user-select:none}
-    .id-chip:hover{border-color:var(--primary);color:var(--primary);background:#fff}
+    .id-chip{
+      font-family:monospace;font-size:11px;background:var(--bg-page);padding:6px 10px;border-radius:4px;cursor:pointer;
+      display:flex;align-items:center;gap:6px;color:var(--text-muted);border:1px solid var(--border);transition:.2s;user-select:none
+    }
+    .id-chip:hover{border-color:var(--cta);color:var(--cta);background:#fff}
 
-    /* Main grid (desktop) */
-    .product-grid{display:grid;grid-template-columns:380px 1fr 340px;gap:16px;margin-bottom:20px;align-items:stretch}
+    /* Main grid */
+    .product-grid{
+      display:grid;grid-template-columns:380px 1fr 340px;gap:16px;margin-bottom:20px;align-items:stretch
+    }
     .gallery-card,.data-column,.buy-box{display:flex;flex-direction:column;height:100%}
 
     /* Gallery */
-    .gallery-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);padding:16px}
+    .gallery-card{background:var(--bg-card);border-radius:8px;border:1px solid var(--border);padding:16px}
     .main-image-container{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:#fff;overflow:hidden;border-radius:6px;border:1px solid var(--border)}
     .main-image{width:100%;height:100%;object-fit:contain}
     .thumbnails{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto}
     .thumb{aspect-ratio:1/1;border:1px solid var(--border);border-radius:4px;padding:4px;cursor:pointer;transition:.2s;background:#fff;display:flex;align-items:center;justify-content:center}
-    .thumb.active,.thumb:hover{border-color:var(--primary);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
+    .thumb.active,.thumb:hover{border-color:var(--cta);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
     .thumb img{width:100%;height:100%;object-fit:contain}
 
     /* Middle column */
     .data-stack{display:flex;flex-direction:column;gap:12px;flex:1;min-height:100%}
-    .info-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;min-height:0}
-    .info-header{background:var(--background);padding:9px 12px;font-size:11px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    .info-card{background:var(--bg-card);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;min-height:0}
+    .info-header{
+      background:var(--bg-muted);padding:9px 12px;font-size:11px;font-weight:800;color:var(--text-muted);
+      text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center
+    }
 
-    /* Reduced-height profit box */
-    .profit-section{padding:10px 12px;background:var(--success-bg)}
-    .profit-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--text-secondary)}
+    /* Profit (reduced height) */
+    .profit-section{padding:10px 12px;background:#ecfdf5;border-bottom:1px solid #bbf7d0}
+    .profit-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--text-muted)}
     .profit-row strong{color:var(--text-main)}
     .profit-row.final{margin-top:6px;padding-top:8px;border-top:1px solid rgba(0,0,0,.05);margin-bottom:0;align-items:center}
-    .profit-value-large{font-size:20px;font-weight:800;color:var(--success);line-height:1}
-    .roi-pill{background:var(--success);color:#fff;font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;margin-left:6px}
+    .profit-value-large{font-size:20px;font-weight:900;color:var(--kpi-good);line-height:1}
+    .roi-pill{background:var(--kpi-good);color:#fff;font-size:11px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:6px}
 
-    /* New Major details row */
+    /* Major Details row (Condition/Brand/Category lives here) */
     .majors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px 12px}
     .major-card{border:1px solid var(--border);border-radius:6px;padding:10px;background:#fff;display:flex;flex-direction:column;gap:4px}
-    .major-label{font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:var(--text-secondary);font-weight:800}
+    .major-label{font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted);font-weight:800}
     .major-value{font-size:14px;font-weight:800}
 
+    /* Market Intelligence */
     .market-grid{display:grid;grid-template-columns:repeat(3,1fr);padding:12px;gap:16px}
     .data-point{display:flex;flex-direction:column;gap:2px}
-    .data-label{font-size:10px;text-transform:uppercase;color:var(--text-secondary);font-weight:700}
+    .data-label{font-size:10px;text-transform:uppercase;color:var(--text-muted);font-weight:700}
     .data-value{font-size:18px;font-weight:800}
-    .data-muted{color:var(--text-muted);font-weight:700}
-    .micro-note{padding:0 12px 12px;color:var(--text-muted);font-size:11px;line-height:1.4}
+    .data-muted{color:#94a3b8;font-weight:700}
+    .micro-note{padding:0 12px 12px;color:#94a3b8;font-size:11px;line-height:1.4}
 
     .tools-bar{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);margin-top:auto}
-    .tool-btn{padding:10px;background:#fff;border:none;border-right:1px solid var(--border);color:var(--text-secondary);font-weight:700;font-size:11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;transition:.2s}
+    .tool-btn{
+      padding:10px;background:#fff;border:none;border-right:1px solid var(--border);color:var(--text-muted);
+      font-weight:800;font-size:11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;transition:.2s
+    }
     .tool-btn:last-child{border-right:none}
-    .tool-btn:hover{background:var(--background);color:var(--primary)}
+    .tool-btn:hover{background:var(--bg-muted);color:var(--cta)}
     .tool-btn i{font-size:18px}
 
     /* Buy box */
-    .buy-box{background:var(--surface);border-radius:8px;border:1px solid var(--border);padding:20px;position:sticky;top:16px;box-shadow:0 4px 12px rgba(0,0,0,.03)}
+    .buy-box{
+      background:var(--bg-card);border-radius:8px;border:1px solid var(--border);padding:20px;
+      position:sticky;top:16px;box-shadow:var(--shadow)
+    }
     .price-section{margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-    .price-label{font-size:12px;color:var(--text-secondary);margin-bottom:2px}
+    .price-label{font-size:12px;color:var(--text-muted);margin-bottom:2px}
     .price-row{display:flex;align-items:baseline;gap:10px}
-    .current-price{font-size:36px;font-weight:800;line-height:1}
-    .old-price{text-decoration:line-through;color:var(--text-muted);font-size:13px}
-    .discount-tag{background:var(--danger-bg);color:var(--danger);font-weight:800;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:auto}
+    .current-price{font-size:36px;font-weight:900;line-height:1}
+    .old-price{text-decoration:line-through;color:#94a3b8;font-size:13px}
+    .discount-tag{
+      background:#fee2e2;color:var(--deal-discount);font-weight:900;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:auto
+    }
     .stock-info{display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px}
-    .stock-label{color:var(--text-secondary)}
-    .stock-val{font-weight:800}
-    .in-stock{color:var(--success)}
+    .stock-label{color:var(--text-muted)}
+    .stock-val{font-weight:900}
+    .in-stock{color:var(--kpi-good)}
     .qty-control{margin:14px 0;border:1px solid var(--border);border-radius:6px;display:flex;height:40px;overflow:hidden}
-    .qty-btn{width:40px;border:none;background:var(--background);font-size:18px;cursor:pointer;transition:.2s}
+    .qty-btn{width:40px;border:none;background:var(--bg-muted);font-size:18px;cursor:pointer;transition:.2s}
     .qty-btn:hover{background:#e2e8f0}
-    .qty-input{flex:1;border:none;border-left:1px solid var(--border);border-right:1px solid var(--border);text-align:center;font-size:16px;font-weight:700;outline:none}
-    .btn-cart{width:100%;background:var(--primary);color:#fff;border:none;padding:12px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:.2s;box-shadow:0 2px 4px rgba(37,99,235,.2)}
-    .btn-cart:hover{background:var(--primary-hover)}
-    .secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-    .btn-outline{background:#fff;border:1px solid var(--border);padding:8px;border-radius:6px;font-size:12px;font-weight:700;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
-    .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff}
+    .qty-input{flex:1;border:none;border-left:1px solid var(--border);border-right:1px solid var(--border);text-align:center;font-size:16px;font-weight:800;outline:none}
 
-    /* Strong promo + login area */
-    .promo-wrap{margin-top:14px;border:1px solid #f59e0b;border-radius:8px;overflow:hidden}
-    .promo-head{background:var(--promo);padding:10px;text-align:center;font-weight:900;font-size:13px;text-transform:uppercase}
-    .promo-body{padding:12px;text-align:center;font-size:12px;color:#6b7280}
+    .btn-cart{
+      width:100%;background:var(--cta);color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:900;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:.2s;
+      box-shadow:0 2px 4px rgba(59,130,246,.25)
+    }
+    .btn-cart:hover{background:var(--cta-hover)}
+    .btn-cart:focus-visible{outline:3px solid var(--cta-ring);outline-offset:2px}
+
+    .secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .btn-outline{
+      background:#fff;border:1px solid var(--border);padding:10px;border-radius:8px;font-size:12px;font-weight:900;color:var(--text-muted);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s
+    }
+    .btn-outline:hover{border-color:var(--cta);color:var(--cta);background:#eff6ff}
+
+    /* Promo + Auth Block */
+    .promo-wrap{margin-top:14px;border:1px solid #eab308;border-radius:10px;overflow:hidden}
+    .promo-head{background:var(--deal-promo);padding:10px;text-align:center;font-weight:900;font-size:13px;text-transform:uppercase;color:var(--black)}
+    .promo-body{padding:12px;text-align:center;font-size:12px;color:var(--text-muted);background:#fff;border-top:1px solid #fef08a}
     .auth-cta{margin-top:12px;text-align:center;font-size:13px}
-    .auth-cta a{font-weight:800;color:var(--primary);text-decoration:none}
+    .auth-cta a{font-weight:900;color:var(--cta);text-decoration:none}
     .auth-cta a:hover{text-decoration:underline}
 
-    /* Stacked details (no tabs) */
+    /* Stacked details */
     .details-stack{display:flex;flex-direction:column;gap:12px;margin-top:20px}
-    .detail-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-    .detail-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--background);font-size:13px;font-weight:800;color:var(--text-secondary);text-transform:uppercase}
+    .detail-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+    .detail-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--bg-muted);font-size:13px;font-weight:900;color:var(--text-muted);text-transform:uppercase}
     .detail-body{padding:16px}
     .detail-body h3{font-size:16px;margin-bottom:10px}
-    .detail-body p{color:var(--text-secondary);margin-bottom:10px}
-    .detail-body ul{padding-left:18px;color:var(--text-secondary)}
+    .detail-body p{color:var(--text-muted);margin-bottom:10px}
+    .detail-body ul{padding-left:18px;color:var(--text-muted)}
     .detail-body li{margin-bottom:8px}
 
-    /* ---------- RESPONSIVE ---------- */
+    /* ============ Responsive ============ */
     @media (max-width:1200px){
       .container{padding:16px}
       .product-grid{grid-template-columns:1fr 320px}
       .market-grid{grid-template-columns:1fr 1fr}
       .majors{grid-template-columns:1fr 1fr 1fr}
+      .current-price{font-size:34px}
     }
     @media (max-width:960px){
       body{font-size:13.5px}
@@ -138,6 +231,8 @@
       .majors{grid-template-columns:1fr}
       .tools-bar{grid-template-columns:repeat(2,1fr)}
       .secondary-actions{grid-template-columns:1fr}
+      .headline-pills{overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+      .headline-pills::-webkit-scrollbar{display:none}
     }
     @media (max-width:640px){
       .container{padding:14px}
@@ -166,6 +261,15 @@
         Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black
       </h1>
 
+      <!-- Keep ONLY program pills (no brand / subcategory / condition here) -->
+      <div class="headline-pills">
+        <a class="pill" href="/program/newest"><i class="ph ph-sparkle"></i>Newest</a>
+        <a class="pill" href="/program/price-drop"><i class="ph ph-arrow-circle-down"></i>Price Drop</a>
+        <a class="pill" href="/program/staff-picks"><i class="ph ph-seal-check"></i>Staff Picks</a>
+        <a class="pill" href="/program/suggested"><i class="ph ph-target"></i>Suggested</a>
+        <a class="pill" href="/program/5-dollar-store"><i class="ph ph-shopping-bag"></i>$5 Store</a>
+      </div>
+
       <div class="header-meta">
         <div class="id-chips">
           <div class="id-chip" onclick="copyToClipboard('888 B08565C5BB US','SKU')"><span style="opacity:.6">SKU:</span> 888 B08565C5BB US <i class="ph ph-copy"></i></div>
@@ -178,7 +282,7 @@
     <!-- Main Grid -->
     <div class="product-grid">
 
-      <!-- Column 1: Gallery -->
+      <!-- Gallery -->
       <div class="gallery-card">
         <div class="main-image-container">
           <img id="mainImg" class="main-image" alt="Razer Viper Ultimate" src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_1000_.jpg">
@@ -199,18 +303,18 @@
         </div>
       </div>
 
-      <!-- Column 2: Data -->
+      <!-- Data -->
       <div class="data-column">
         <div class="data-stack">
 
-          <!-- Profit (reduced height) -->
+          <!-- Profit (short) -->
           <div class="info-card">
-            <div class="info-header" style="background:#f0fdf4;color:#15803d;border-color:#bbf7d0">
+            <div class="info-header">
               <i class="ph-fill ph-money"></i> Profit Estimation
             </div>
             <div class="profit-section">
               <div class="profit-row"><span>Est. Sell Price (Az)</span><strong id="estAzPrice">$129.00</strong></div>
-              <div class="profit-row"><span>Your Cost</span><strong id="yourCost" style="color:var(--danger)">- $5.00</strong></div>
+              <div class="profit-row"><span>Your Cost</span><strong id="yourCost" style="color:var(--kpi-bad)">- $5.00</strong></div>
               <div class="profit-row final">
                 <span>Net Profit</span>
                 <div style="display:flex;align-items:center">
@@ -220,7 +324,7 @@
               </div>
             </div>
 
-            <!-- Major Details (NEW) -->
+            <!-- Major Details -->
             <div class="majors">
               <div class="major-card">
                 <span class="major-label">Condition</span>
@@ -242,7 +346,7 @@
             <div class="info-header">Market Intelligence</div>
             <div class="market-grid">
               <div class="data-point"><span class="data-label">Est. Az Price</span><span class="data-value" id="miAzPrice">$129.00</span></div>
-              <div class="data-point"><span class="data-label">MSRP</span><span class="data-value" style="color:var(--text-muted);text-decoration:line-through">$129.99</span></div>
+              <div class="data-point"><span class="data-label">MSRP</span><span class="data-value" style="color:#94a3b8;text-decoration:line-through">$129.99</span></div>
               <div class="data-point"><span class="data-label">Est. Az Buy Box</span><span class="data-value data-muted" id="miBuyBox">Data not available</span></div>
               <div class="data-point"><span class="data-label">Az Sales Rank</span><span class="data-value" id="miRank">#112</span></div>
               <div class="data-point"><span class="data-label">Az Offers</span><span class="data-value" id="miOffers">4</span></div>
@@ -259,7 +363,7 @@
         </div>
       </div>
 
-      <!-- Column 3: Buy Box -->
+      <!-- Buy Box -->
       <aside class="buy-box">
         <div class="price-section">
           <div class="price-label">Wholesale Price</div>
@@ -271,11 +375,13 @@
         </div>
         <div class="stock-info"><span class="stock-label">In Stock</span><span class="stock-val in-stock">132 units</span></div>
         <div class="stock-info"><span class="stock-label">MOQ</span><span class="stock-val">100 units</span></div>
+
         <div class="qty-control">
           <button class="qty-btn" onclick="updateQty(-1)">−</button>
           <input id="qtyInput" class="qty-input" type="number" value="100" min="100" max="132">
           <button class="qty-btn" onclick="updateQty(1)">+</button>
         </div>
+
         <button class="btn-cart"><i class="ph-bold ph-shopping-cart-simple"></i>Add to Cart</button>
 
         <div class="secondary-actions">
@@ -283,11 +389,12 @@
           <button class="btn-outline"><i class="ph-bold ph-handshake"></i>Negotiate</button>
         </div>
 
-        <!-- Promo + Login/Register (NEW) -->
+        <!-- Promo + Auth -->
         <div class="promo-wrap">
           <div class="promo-head">First Order Promo</div>
           <div class="promo-body">
-            Promotion valid for the first order only. Available for orders up to $1,000. Offer cannot be combined with other promotions.
+            Promotion valid for the first order only. Available for orders up to $1,000.
+            Offer cannot be combined with other promotions.
           </div>
         </div>
         <div class="auth-cta">
@@ -341,7 +448,7 @@
   </div>
 
   <!-- Copy tooltip -->
-  <div id="copyTooltip" class="copy-tooltip" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:#0f172a;color:#fff;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none">
+  <div id="copyTooltip" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:#0f172a;color:#fff;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none">
     <i class="ph-fill ph-check-circle" style="color:#4ade80"></i>
     <span id="tooltipText">Copied to clipboard</span>
   </div>
