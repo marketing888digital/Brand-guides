@@ -87,19 +87,6 @@
             flex: 1;
         }
 
-        .condition-badge {
-            flex-shrink: 0;
-            background: var(--bg-highlight);
-            color: var(--text-primary);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 6px 10px;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            letter-spacing: 0.5px;
-        }
-
         .hashtags {
             display: flex;
             gap: 8px;
@@ -224,24 +211,33 @@
             background: var(--border);
         }
 
-        /* Market Data */
-        .market-grid {
+        /* Shared Grid Style for Product Data & Market Data */
+        .data-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 12px;
         }
-        .market-stat {
+        .data-stat {
             background: var(--bg-space);
             border-radius: 6px;
             padding: 10px;
             text-align: center;
             border: 1px solid transparent;
             transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 60px;
         }
-        .market-stat:hover { border-color: #cbd5e1; background: #f1f5f9; }
+        .data-stat:hover { border-color: #cbd5e1; background: #f1f5f9; }
+        
         .stat-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; font-weight: 600; }
-        .stat-value { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
-        .stat-sub { font-size: 10px; color: var(--text-muted); }
+        .stat-value { font-size: 14px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px; line-height: 1.2; }
+        .stat-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+        /* Special highlights */
+        .text-green { color: var(--success); }
+        .text-blue { color: var(--action-blue); }
 
         /* Tools */
         .tools-grid {
@@ -412,11 +408,6 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .tab-content h3 { font-size: 18px; color: var(--text-primary); margin-bottom: 16px; }
-        .tab-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
-        .tab-content ul { padding-left: 20px; color: var(--text-secondary); line-height: 1.6; }
-        .tab-content li { margin-bottom: 8px; }
-
         /* RESPONSIVE */
         @media (max-width: 1200px) { .product-grid { grid-template-columns: 320px 1fr 340px; } }
         @media (max-width: 1024px) { 
@@ -447,7 +438,6 @@
     <div class="product-header">
         <div class="title-row">
             <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
-            <span class="condition-badge">New / FBA Ready</span>
         </div>
         
         <div class="hashtags">
@@ -498,20 +488,40 @@
         <!-- COLUMN 2: INTELLIGENCE DASHBOARD -->
         <div class="card info-card">
             
+            <!-- NEW SECTION: PRODUCT DATA (Added here as requested) -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-tag"></i> Product Data</div>
+                <div class="data-grid">
+                    <div class="data-stat">
+                        <div class="stat-label">Condition</div>
+                        <div class="stat-value text-green"><i class="ph-fill ph-seal-check"></i> Brand New</div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="stat-label">Brand</div>
+                        <div class="stat-value">Razer</div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="stat-label">Category</div>
+                        <div class="stat-value">Electronics</div>
+                        <div class="stat-sub">Computer Peripheral</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Market Data -->
             <div class="info-group">
                 <div class="info-section-header"><i class="ph-bold ph-chart-line-up"></i> Market Data</div>
-                <div class="market-grid">
-                    <div class="market-stat">
+                <div class="data-grid">
+                    <div class="data-stat">
                         <div class="stat-label">Est. Az Price</div>
                         <div class="stat-value">$129.00</div>
                     </div>
-                    <div class="market-stat">
+                    <div class="data-stat">
                         <div class="stat-label">Sales Rank</div>
-                        <div class="stat-value">#142</div>
+                        <div class="stat-value text-blue">#142</div>
                         <div class="stat-sub">Video Games</div>
                     </div>
-                    <div class="market-stat">
+                    <div class="data-stat">
                         <div class="stat-label">MSRP</div>
                         <div class="stat-value">$129.99</div>
                     </div>
