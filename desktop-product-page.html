@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +9,7 @@
         :root {
             /* 888lots actual colors */
             --action-blue: #2563eb;
+            --action-dark: #1e3a8a;
             --urgent-red: #dc2626;
             --text-primary: #334155;
             --text-secondary: #64748b;
@@ -53,7 +53,7 @@
             font-weight: 700;
         }
 
-        /* HEADER WITH HASHTAGS */
+        /* HEADER */
         .product-header {
             background: white;
             border: 1px solid var(--border);
@@ -70,7 +70,6 @@
             line-height: 1.3;
         }
 
-        /* HASHTAGS - Canonical data */
         .hashtags {
             display: flex;
             gap: 8px;
@@ -97,7 +96,6 @@
             border-top: 1px solid var(--border);
         }
 
-        /* COPYABLE CODES */
         .code-chip {
             display: inline-flex;
             align-items: center;
@@ -117,12 +115,9 @@
             border-color: var(--action-blue);
             color: var(--action-blue);
         }
-        .code-chip i {
-            font-size: 12px;
-            opacity: 0.6;
-        }
+        .code-chip i { font-size: 12px; opacity: 0.6; }
 
-        /* THREE COLUMN LAYOUT */
+        /* GRID */
         .product-grid {
             display: grid;
             grid-template-columns: 340px 1fr 340px;
@@ -139,91 +134,10 @@
             position: relative;
         }
 
-        /* COLUMN 1: GALLERY WITH RIBBON BADGES */
-        .gallery-card {
-            position: sticky;
-            top: 12px;
-        }
-
-        /* FBA RIBBON - Matching listing page */
-        .fba-ribbon {
-            position: absolute;
-            top: 10px;
-            left: -2px;
-            background: var(--success);
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 4px 10px 4px 8px;
-            z-index: 10;
-            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        .fba-ribbon::after {
-            content: '';
-            position: absolute;
-            right: -6px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: 6px solid var(--success);
-            border-top: 13px solid transparent;
-            border-bottom: 13px solid transparent;
-        }
-
-        /* PROMO RIBBON */
-        .promo-ribbon {
-            position: absolute;
-            top: 36px;
-            background: var(--urgent-red);
-            color: white;
-            font-size: 9px;
-            font-weight: 700;
-            z-index: 10;
-        }
-        .promo-ribbon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-        }
-
-        /* WATCHLIST HEART */
-        .watchlist-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 32px;
-            height: 32px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: 0.2s;
-        }
-        .watchlist-btn:hover {
-            background: var(--bg-highlight);
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-        }
-        .watchlist-btn i {
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        .watchlist-btn:hover i {
-            color: var(--action-blue);
-        }
-
-        .gallery { 
-            padding: 14px; 
-        }
-
+        /* GALLERY */
+        .gallery-card { position: sticky; top: 12px; }
+        
+        .gallery { padding: 14px; }
         .main-img-wrapper {
             aspect-ratio: 1/1;
             display: flex;
@@ -235,17 +149,8 @@
             margin-bottom: 10px;
             background: white;
         }
-        .main-img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; 
-        }
-        
-        .thumbs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-        }
+        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
         .thumb {
             aspect-ratio: 1/1;
             border: 2px solid var(--border);
@@ -254,29 +159,13 @@
             cursor: pointer;
             transition: 0.15s;
         }
-        .thumb:hover { border-color: var(--action-blue); }
-        .thumb.active { border-color: var(--action-blue); }
-        .thumb img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-        }
+        .thumb:hover, .thumb.active { border-color: var(--action-blue); }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* COLUMN 2: UNIFIED INFO CARD */
-        .info-main {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        /* UNIFIED INFO CARD - No fragmentation */
-        .info-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-        }
-
-        /* SECTION HEADERS - Subtle */
+        /* INFO COLUMN */
+        .info-main { display: flex; flex-direction: column; gap: 0; }
+        .info-card { background: white; border: 1px solid var(--border); border-radius: 4px; }
+        
         .section-header {
             font-size: 11px;
             font-weight: 700;
@@ -287,500 +176,263 @@
             background: var(--bg-space);
         }
 
-        /* IDS SECTION - Clean rows */
-        .ids-section {
-            padding: 14px 16px;
-        }
+        .market-section { padding: 16px; }
+        .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .market-item { text-align: center; padding: 12px; border-radius: 4px; }
+        .market-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; }
+        .market-value { font-size: 18px; font-weight: 800; color: var(--text-primary); }
 
-        .id-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-        .id-row:last-child { margin-bottom: 0; }
-
-        .id-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            min-width: 50px;
-        }
-
-        .id-value {
-            font-size: 11px;
-            font-family: monospace;
-            color: var(--text-primary);
-            background: var(--bg-highlight);
-            padding: 4px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: 0.15s;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .id-value:hover {
-            background: white;
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-        }
-        .id-value i {
-            font-size: 12px;
-            opacity: 0.6;
-        }
-
-        /* MARKET DATA - Clean grid */
-        .market-section {
-            padding: 16px;
-        }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .market-item {
-            text-align: center;
-            padding: 12px;
-            border-radius: 4px;
-        }
-        .market-label {
-            font-size: 10px;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
-        .market-value {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        /* TOOLS - Integrated */
         .tools-section {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--border);
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border);
         }
         .tool-link {
-            background: white;
-            padding: 10px;
-            text-align: center;
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: 0.12s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
+            background: white; padding: 10px; text-align: center; font-size: 10px; font-weight: 600;
+            color: var(--text-secondary); text-decoration: none; transition: 0.12s;
+            display: flex; flex-direction: column; align-items: center; gap: 3px;
         }
-        .tool-link:hover {
-            background: var(--bg-highlight);
-            color: var(--action-blue);
-        }
+        .tool-link:hover { background: var(--bg-highlight); color: var(--action-blue); }
         .tool-link i { font-size: 16px; }
 
-        /* PROFIT SECTION - Integrated */
-        .profit-section {
-            padding: 16px;
-            background: var(--success-bg);
-        }
+        .profit-section { padding: 16px; background: var(--success-bg); }
+        .profit-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+        .profit-row.total { padding-top: 10px; margin-top: 6px; border-top: 2px solid var(--success); }
+        .profit-label { color: var(--text-secondary); font-weight: 500; }
+        .profit-value { font-weight: 700; color: var(--text-primary); }
+        .profit-highlight { color: var(--success); font-size: 18px; font-weight: 800; }
 
-        .profit-title {
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--success);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+        /* PURCHASE CARD */
+        .purchase-card { position: sticky; top: 12px; }
 
-        .profit-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            font-size: 13px;
-        }
-        .profit-row.total {
-            padding-top: 10px;
-            margin-top: 6px;
-            border-top: 2px solid var(--success);
-        }
-        .profit-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .profit-value {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .profit-highlight {
-            color: var(--success);
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        /* COLUMN 3: PURCHASE CARD - Matching listing style */
-        .purchase-card {
-            position: sticky;
-            top: 12px;
-        }
-
-        /* PRICE SECTION - Matching "Az Price" format */
-        .price-section {
-            padding: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .price-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-
-        .price-main {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .current-price {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--text-primary);
-            line-height: 1;
-        }
-
-        .old-price {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        /* REDUCED PRICE TAG - Matching listing cards */
+        .price-section { padding: 16px; border-bottom: 1px solid var(--border); }
+        .price-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 6px; }
+        .price-main { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+        .current-price { font-size: 32px; font-weight: 800; color: var(--text-primary); line-height: 1; }
+        .old-price { font-size: 12px; color: var(--text-muted); text-decoration: line-through; }
         .reduced-tag {
-            display: inline-block;
-            background: var(--urgent-red);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 3px;
+            display: inline-block; background: var(--urgent-red); color: white;
+            font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px;
         }
 
-        /* STOCK */
-        .stock-section {
-            padding: 12px 16px;
-            background: var(--bg-space);
-        }
-
-        .stock-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 6px;
-        }
+        .stock-section { padding: 12px 16px; background: var(--bg-space); }
+        .stock-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
         .stock-row:last-child { margin-bottom: 0; }
-        .stock-label {
-            color: var(--text-secondary);
-        }
-        .stock-value {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .stock-value.in-stock {
-            color: var(--success);
-        }
+        .stock-label { color: var(--text-secondary); }
+        .stock-value { font-weight: 700; color: var(--text-primary); }
+        .stock-value.in-stock { color: var(--success); }
 
-        /* ACTIONS */
-        .action-section {
-            padding: 16px;
-        }
+        .action-section { padding: 16px; }
 
-        .qty-section {
-            margin-bottom: 12px;
-        }
-
-        .qty-label {
-            font-size: 10px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .qty-control {
-            display: flex;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-        }
+        .qty-section { margin-bottom: 12px; }
+        .qty-label { font-size: 10px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; margin-bottom: 6px; }
+        .qty-control { display: flex; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
         .qty-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-highlight);
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.1s;
-            color: var(--text-primary);
-            font-weight: 700;
+            width: 40px; height: 40px; background: var(--bg-highlight); border: none;
+            font-size: 18px; cursor: pointer; transition: 0.1s; color: var(--text-primary); font-weight: 700;
         }
         .qty-btn:hover { background: #e2e8f0; }
         .qty-input {
-            flex: 1;
-            border: none;
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            text-align: center;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
+            flex: 1; border: none; border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+            text-align: center; font-size: 16px; font-weight: 700; color: var(--text-primary);
         }
 
-        /* CART BUTTON - Matching listing page add to cart */
         .btn-cart {
-            width: 100%;
-            background: var(--action-blue);
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 4px;
-            cursor: pointer;
+            width: 100%; background: var(--action-blue); color: white; border: none;
+            padding: 12px; font-size: 14px; font-weight: 700; border-radius: 4px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 6px; margin-bottom: 10px; transition: 0.2s;
+        }
+        .btn-cart:hover { background: #1d4ed8; }
+
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .btn-secondary {
+            background: white; border: 1px solid var(--border); color: var(--text-secondary);
+            padding: 10px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;
+            transition: 0.15s; display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+        .btn-secondary:hover { border-color: var(--action-blue); color: var(--action-blue); background: var(--bg-highlight); }
+
+        /* ========================================= */
+        /* === REDESIGNED PROMO & AUTH SECTION ===== */
+        /* ========================================= */
+
+        .promo-auth-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 1. The Promo "Coupon" */
+        .promo-card-accent {
+            background: linear-gradient(135deg, #fff1f2 0%, #ffffff 100%);
+            border: 2px dashed #fecaca;
+            border-radius: 8px;
+            padding: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .promo-card-accent:hover {
+            border-color: var(--urgent-red);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.08);
+        }
+
+        .promo-accent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .promo-title-group {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-bottom: 10px;
-            transition: 0.2s;
-        }
-        .btn-cart:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 8px;
         }
 
-        .btn-secondary {
-            background: white;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
+        .promo-icon-circle {
+            width: 28px;
+            height: 28px;
+            background: #fee2e2;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-        }
-        .btn-secondary:hover {
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-            background: var(--bg-highlight);
-        }
-
-        /* PROMO SECTION - Cleaner, no harsh yellow */
-        .promo-section {
-            margin-top: 16px;
-            padding-top: 16px;
-        }
-
-        .promo-card {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-
-        .promo-header {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
-
-        .promo-icon {
-            font-size: 16px;
             color: var(--urgent-red);
         }
 
-        .promo-title {
+        .promo-title-text {
             font-size: 12px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 800;
+            color: #991b1b; /* darker red */
             text-transform: uppercase;
         }
 
-        .promo-badge {
+        .promo-big-badge {
             background: var(--urgent-red);
             color: white;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 3px;
-            margin-left: auto;
+            padding: 4px 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+            transform: rotate(-2deg);
         }
 
-        .promo-text {
+        .promo-desc {
             font-size: 11px;
             color: var(--text-secondary);
             line-height: 1.5;
+            padding-left: 36px; /* align with text */
         }
 
-        /* AUTH CTA - Simple buttons only */
-        .auth-notice {
-            background: var(--bg-space);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 12px;
-            text-align: center;
+        /* 2. The Auth Buttons */
+        .auth-wrapper {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
         }
 
-        .auth-text {
+        .auth-header {
             font-size: 11px;
             color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .auth-links {
-            display: flex;
-            gap: 8px;
-        }
-
-        .auth-link {
-            flex: 1;
-            background: var(--action-blue);
-            color: white;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 8px;
-            border-radius: 5px;
-            transition: 0.2s;
             text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .auth-header i { font-size: 14px; }
+
+        .auth-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
-        .auth-link:hover {
-            background: #1d4ed8;
+        .btn-auth {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        .auth-link.secondary {
+        .btn-auth.login {
+            background: var(--text-primary); /* Dark button */
+            color: white;
+            border: 1px solid var(--text-primary);
+        }
+        .btn-auth.login:hover {
+            background: #0f172a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-auth.register {
             background: white;
             color: var(--action-blue);
-            border: 1px solid var(--action-blue);
+            border: 1px solid var(--border);
         }
-
-        .auth-link.secondary:hover {
+        .btn-auth.register:hover {
+            border-color: var(--action-blue);
             background: #eff6ff;
+            color: var(--action-blue);
+            transform: translateY(-1px);
+        }
+        
+        /* Shipping cost meta */
+        .meta-section {
+            margin-top: 16px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border);
+        }
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-secondary);
         }
 
-        /* FULL WIDTH DESCRIPTION */
+        /* TABS & DESCRIPTION (Unchanged) */
         .description-section {
             background: white;
             border: 1px solid var(--border);
             border-radius: 4px;
             overflow: hidden;
         }
-
-        .tabs {
-            display: flex;
-            background: var(--bg-highlight);
-            border-bottom: 1px solid var(--border);
-        }
-
+        .tabs { display: flex; background: var(--bg-highlight); border-bottom: 1px solid var(--border); }
         .tab {
-            padding: 12px 24px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-right: 1px solid var(--border);
-            transition: 0.15s;
-            background: transparent;
-            border-bottom: 3px solid transparent;
+            padding: 12px 24px; font-size: 13px; font-weight: 600; color: var(--text-secondary);
+            cursor: pointer; border-right: 1px solid var(--border); transition: 0.15s;
+            background: transparent; border-bottom: 3px solid transparent;
         }
         .tab:last-child { border-right: none; }
-        .tab.active {
-            background: white;
-            color: var(--text-primary);
-            border-bottom-color: var(--action-blue);
-        }
+        .tab.active { background: white; color: var(--text-primary); border-bottom-color: var(--action-blue); }
         .tab:hover:not(.active) { background: #e2e8f0; }
-
-        .tab-content {
-            display: none;
-            padding: 20px 24px;
-        }
+        .tab-content { display: none; padding: 20px 24px; }
         .tab-content.active { display: block; }
-
-        .tab-content h3 {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .tab-content p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 10px;
-            font-size: 13px;
-        }
-
-        .tab-content ul {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            padding-left: 18px;
-            font-size: 13px;
-        }
-
-        .tab-content li {
-            margin-bottom: 8px;
-        }
+        .tab-content h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+        .tab-content p, .tab-content ul { color: var(--text-secondary); line-height: 1.6; font-size: 13px; }
+        .tab-content ul { padding-left: 18px; }
+        .tab-content li { margin-bottom: 8px; }
 
         /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            .product-grid {
-                grid-template-columns: 300px 1fr 320px;
-            }
-        }
-
+        @media (max-width: 1200px) { .product-grid { grid-template-columns: 300px 1fr 320px; } }
         @media (max-width: 1024px) {
-            .product-grid {
-                grid-template-columns: 1fr 340px;
-            }
-            .gallery-card {
-                grid-column: span 2;
-            }
+            .product-grid { grid-template-columns: 1fr 340px; }
+            .gallery-card { grid-column: span 2; }
         }
-
         @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-card {
-                grid-column: 1;
-            }
-            .purchase-card {
-                position: static;
-            }
+            .product-grid { grid-template-columns: 1fr; }
+            .gallery-card { grid-column: 1; }
+            .purchase-card { position: static; }
         }
     </style>
 </head>
@@ -793,64 +445,42 @@
         <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
     </div>
 
-    <!-- HEADER WITH HASHTAGS -->
+    <!-- HEADER -->
     <div class="product-header">
         <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</h1>
-        
-        <!-- HASHTAGS - Canonical data -->
         <div class="hashtags">
             <span class="hashtag">#Razer</span>
             <span class="hashtag">#Computer Peripheral</span>
             <span class="hashtag">#Gaming Mouse</span>
             <span class="hashtag">#Wireless</span>
         </div>
-
-        <!-- COPYABLE CODES -->
         <div class="header-meta">
-            <span class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')">
-                <i class="ph ph-copy"></i> SKU: 888 B08565C5BB US
-            </span>
-            <span class="code-chip" onclick="copyCode(this, 'B08565C5BB')">
-                <i class="ph ph-copy"></i> ASIN: B08565C5BB
-            </span>
-            <span class="code-chip" onclick="copyCode(this, '0810091280019')">
-                <i class="ph ph-copy"></i> UPC: 0810091280019
-            </span>
+            <span class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')"><i class="ph ph-copy"></i> SKU: 888 B08565C5BB US</span>
+            <span class="code-chip" onclick="copyCode(this, 'B08565C5BB')"><i class="ph ph-copy"></i> ASIN: B08565C5BB</span>
+            <span class="code-chip" onclick="copyCode(this, '0810091280019')"><i class="ph ph-copy"></i> UPC: 0810091280019</span>
         </div>
     </div>
 
     <div class="product-grid">
 
-        <!-- COLUMN 1: GALLERY WITH RIBBONS -->
+        <!-- COLUMN 1: GALLERY -->
         <div class="card gallery-card">
-
-
             <div class="gallery">
                 <div class="main-img-wrapper">
                     <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
                 </div>
                 <div class="thumbs">
-                    <div class="thumb active" onclick="swapImg(this)">
-                        <img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" alt="View 1">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=2" alt="View 2">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=3" alt="View 3">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=4" alt="View 4">
-                    </div>
+                    <div class="thumb active" onclick="swapImg(this)"><img src="https://i.postimg.cc/L6BhKWFL/razer-mouse.png" alt="View 1"></div>
+                    <div class="thumb" onclick="swapImg(this)"><img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=2" alt="View 2"></div>
+                    <div class="thumb" onclick="swapImg(this)"><img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=3" alt="View 3"></div>
+                    <div class="thumb" onclick="swapImg(this)"><img src="https://via.placeholder.com/100x100/f1f5f9/cbd5e1?text=4" alt="View 4"></div>
                 </div>
             </div>
         </div>
 
-        <!-- COLUMN 2: UNIFIED INFO CARD -->
+        <!-- COLUMN 2: INFO -->
         <div class="info-main">
             <div class="info-card">
-
-                <!-- MARKET DATA -->
                 <div class="section-header">Market Data</div>
                 <div class="market-section">
                     <div class="market-grid">
@@ -864,52 +494,25 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- TOOLS -->
                 <div class="section-header">External Tools</div>
                 <div class="tools-section">
-                    <a href="#" class="tool-link">
-                        <i class="ph ph-chart-line-up"></i>
-                        Keepa
-                    </a>
-                    <a href="#" class="tool-link">
-                        <i class="ph ph-calculator"></i>
-                        Calculator
-                    </a>
-                    <a href="#" class="tool-link">
-                        <i class="ph-fill ph-amazon-logo"></i>
-                        Amazon
-                    </a>
-                    <a href="#" class="tool-link">
-                        <i class="ph-fill ph-google-logo"></i>
-                        Google
-                    </a>
+                    <a href="#" class="tool-link"><i class="ph ph-chart-line-up"></i> Keepa</a>
+                    <a href="#" class="tool-link"><i class="ph ph-calculator"></i> Calculator</a>
+                    <a href="#" class="tool-link"><i class="ph-fill ph-amazon-logo"></i> Amazon</a>
+                    <a href="#" class="tool-link"><i class="ph-fill ph-google-logo"></i> Google</a>
                 </div>
-
-                <!-- PROFIT ESTIMATOR -->
                 <div class="section-header">Profit Estimation</div>
                 <div class="profit-section">
-                    <div class="profit-row">
-                        <span class="profit-label">Your Cost</span>
-                        <span class="profit-value">$89.00</span>
-                    </div>
-                    <div class="profit-row">
-                        <span class="profit-label">Est. Sell Price</span>
-                        <span class="profit-value">$129.00</span>
-                    </div>
-                    <div class="profit-row total">
-                        <span class="profit-label">Est. Profit per Unit</span>
-                        <span class="profit-highlight">+$40.00 (45% ROI)</span>
-                    </div>
+                    <div class="profit-row"><span class="profit-label">Your Cost</span><span class="profit-value">$89.00</span></div>
+                    <div class="profit-row"><span class="profit-label">Est. Sell Price</span><span class="profit-value">$129.00</span></div>
+                    <div class="profit-row total"><span class="profit-label">Est. Profit per Unit</span><span class="profit-highlight">+$40.00 (45% ROI)</span></div>
                 </div>
-
             </div>
         </div>
 
-        <!-- COLUMN 3: PURCHASE CARD -->
+        <!-- COLUMN 3: PURCHASE CARD (REVISED) -->
         <div class="card purchase-card">
             
-            <!-- PRICE - Matching "Az Price" format -->
             <div class="price-section">
                 <div class="price-label">Az Price</div>
                 <div class="price-main">
@@ -919,23 +522,12 @@
                 <span class="reduced-tag">Reduced Price -6%</span>
             </div>
 
-            <!-- STOCK -->
             <div class="stock-section">
-                <div class="stock-row">
-                    <span class="stock-label">In Stock</span>
-                    <span class="stock-value in-stock">132 pc(s)</span>
-                </div>
-                <div class="stock-row">
-                    <span class="stock-label">MOQ</span>
-                    <span class="stock-value">100 pc(s)</span>
-                </div>
-                <div class="stock-row">
-                    <span class="stock-label">Condition</span>
-                    <span class="stock-value">Fulfilled by Amazon</span>
-                </div>
+                <div class="stock-row"><span class="stock-label">In Stock</span><span class="stock-value in-stock">132 pc(s)</span></div>
+                <div class="stock-row"><span class="stock-label">MOQ</span><span class="stock-value">100 pc(s)</span></div>
+                <div class="stock-row"><span class="stock-label">Condition</span><span class="stock-value">Fulfilled by Amazon</span></div>
             </div>
 
-            <!-- ACTIONS -->
             <div class="action-section">
                 <div class="qty-section">
                     <div class="qty-label">Quantity</div>
@@ -951,31 +543,38 @@
                 </button>
 
                 <div class="btn-group">
-                    <button class="btn-secondary">
-                        <i class="ph ph-handshake"></i> Negotiate
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="ph ph-heart"></i> Watch
-                    </button>
+                    <button class="btn-secondary"><i class="ph ph-handshake"></i> Negotiate</button>
+                    <button class="btn-secondary"><i class="ph ph-heart"></i> Watch</button>
                 </div>
 
-                <!-- PROMO SECTION -->
-                <div class="promo-section">
-                    <div class="promo-card">
-                        <div class="promo-header">
-                            <i class="ph-fill ph-sparkle promo-icon"></i>
-                            <span class="promo-title">First Order Discount</span>
-                            <span class="promo-badge">-95%</span>
+                <!-- NEW PROMO & AUTH DESIGN -->
+                <div class="promo-auth-container">
+                    
+                    <!-- Coupon Design -->
+                    <div class="promo-card-accent">
+                        <div class="promo-accent-header">
+                            <div class="promo-title-group">
+                                <div class="promo-icon-circle">
+                                    <i class="ph-fill ph-tag"></i>
+                                </div>
+                                <span class="promo-title-text">New Customer Deal</span>
+                            </div>
+                            <span class="promo-big-badge">-95% OFF</span>
                         </div>
-                        <p class="promo-text">This exclusive discount is valid for your first order only. Available for orders up to $1,000. Cannot be combined with other promotions.</p>
+                        <p class="promo-desc">
+                            Exclusive first-order discount on shipping & fees. Valid for orders up to $1,000.
+                        </p>
                     </div>
 
-                    <!-- AUTH NOTICE -->
-                    <div class="auth-notice">
-                        <p class="auth-text">Ready to order? Please sign in to continue</p>
-                        <div class="auth-links">
-                            <a href="#" class="auth-link">Login</a>
-                            <a href="#" class="auth-link secondary">Register Free</a>
+                    <!-- Modern Auth Buttons -->
+                    <div class="auth-wrapper">
+                        <div class="auth-header">
+                            <i class="ph-fill ph-lock-key"></i>
+                            <span>Sign in to unlock this price</span>
+                        </div>
+                        <div class="auth-grid">
+                            <a href="#" class="btn-auth login">Login</a>
+                            <a href="#" class="btn-auth register">Register Free</a>
                         </div>
                     </div>
                 </div>
@@ -992,7 +591,7 @@
 
     </div>
 
-    <!-- FULL WIDTH DESCRIPTION -->
+    <!-- TABS -->
     <div class="description-section">
         <div class="tabs">
             <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
@@ -1011,22 +610,13 @@
                 <li>8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3. Max Speed (IPS)-650</li>
             </ul>
         </div>
-
         <div id="specs" class="tab-content">
             <h3>Specifications</h3>
-            <p><strong>Brand:</strong> Razer<br>
-            <strong>Model:</strong> Viper Ultimate<br>
-            <strong>Type:</strong> Wireless Gaming Mouse<br>
-            <strong>Color:</strong> Classic Black<br>
-            <strong>Condition:</strong> Fulfilled by Amazon</p>
+            <p><strong>Brand:</strong> Razer<br><strong>Model:</strong> Viper Ultimate<br><strong>Type:</strong> Wireless Gaming Mouse<br><strong>Color:</strong> Classic Black<br><strong>Condition:</strong> Fulfilled by Amazon</p>
         </div>
-
         <div id="shipping" class="tab-content">
             <h3>Shipping Information</h3>
-            <p><strong>Shipping Cost:</strong> $1.00 per unit<br>
-            <strong>Fulfillment:</strong> Fulfilled by Amazon<br>
-            <strong>Ships Within:</strong> 1-2 business days<br>
-            <strong>Tracking:</strong> Provided</p>
+            <p><strong>Shipping Cost:</strong> $1.00 per unit<br><strong>Fulfillment:</strong> Fulfilled by Amazon<br><strong>Ships Within:</strong> 1-2 business days<br><strong>Tracking:</strong> Provided</p>
         </div>
     </div>
 
@@ -1036,31 +626,16 @@
     function swapImg(el) {
         const mainImg = document.getElementById('mainImg');
         const thumbs = document.querySelectorAll('.thumb');
-        
         mainImg.src = el.querySelector('img').src;
-        
         thumbs.forEach(t => t.classList.remove('active'));
         el.classList.add('active');
     }
-
-    function toggleWatch(btn) {
-        const icon = btn.querySelector('i');
-        if (icon.classList.contains('ph-fill')) {
-            icon.classList.remove('ph-fill');
-        } else {
-            icon.classList.add('ph-fill');
-        }
-    }
-
     function copyCode(el, text) {
         const originalHTML = el.innerHTML;
-        
-        // Simulate copy
         el.innerHTML = '<i class="ph ph-check"></i> Copied!';
         el.style.background = 'var(--success-bg)';
         el.style.borderColor = '#bbf7d0';
         el.style.color = 'var(--success)';
-
         setTimeout(() => {
             el.innerHTML = originalHTML;
             el.style.background = 'var(--bg-highlight)';
@@ -1068,23 +643,16 @@
             el.style.color = 'var(--text-secondary)';
         }, 1200);
     }
-
     function adjustQty(delta) {
         const input = document.getElementById('qtyInput');
-        const min = parseInt(input.min);
-        const max = parseInt(input.max);
+        const min = parseInt(input.min); const max = parseInt(input.max);
         let value = parseInt(input.value) + delta;
-        
-        if (value < min) value = min;
-        if (value > max) value = max;
-        
+        if (value < min) value = min; if (value > max) value = max;
         input.value = value;
     }
-
     function switchTab(tabEl, tabId) {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        
         tabEl.classList.add('active');
         document.getElementById(tabId).classList.add('active');
     }
