@@ -1,747 +1,891 @@
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Razer Viper Ultimate - 888lots</title>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* 888lots palette */
-            --action-blue: #2563eb;
-            --action-dark: #1e3a8a;
-            --urgent-red: #dc2626;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --bg-highlight: #f1f5f9;
-            --bg-space: #f8fafc;
-            --border: #e2e8f0;
-            --success: #16a34a;
-            --success-bg: #f0fdf4;
-            --profit-bg: #ecfdf5;
-            --profit-text: #15803d;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Razer Viper Ultimate - 888lots</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+  <style>
+    :root{
+      --action-blue:#2563eb;
+      --action-dark:#1e3a8a;
+      --urgent-red:#dc2626;
 
-        body {
-            background: var(--bg-space);
-            font-family: 'Inter', -apple-system, sans-serif;
-            color: var(--text-primary);
-            font-size: 13px;
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
+      --text-primary:#1e293b;
+      --text-secondary:#64748b;
+      --text-muted:#94a3b8;
 
-        .container { 
-            max-width: 1400px; 
-            margin: 0 auto; 
-            padding: 24px;
-        }
+      --bg-highlight:#f1f5f9;
+      --bg-space:#f8fafc;
 
-        /* BREADCRUMB */
-        .breadcrumb { 
-            font-size: 12px; 
-            color: var(--text-secondary); 
-            margin-bottom: 20px; 
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .breadcrumb a { 
-            text-decoration: none; 
-            color: var(--text-secondary); 
-            transition: color 0.2s;
-        }
-        .breadcrumb a:hover { color: var(--action-blue); }
-        .breadcrumb i { font-size: 10px; color: var(--text-muted); }
-        .breadcrumb span { 
-            color: var(--text-primary);
-            font-weight: 600;
-        }
+      --border:#e2e8f0;
 
-        /* HEADER */
-        .product-header {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-        }
+      --success:#16a34a;
+      --success-bg:#f0fdf4;
 
-        .title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-        }
+      --profit-bg:#ecfdf5;
+      --profit-text:#15803d;
 
-        .product-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            line-height: 1.3;
-            flex: 1;
-        }
+      --shadow: 0 1px 3px rgba(0,0,0,0.04);
+      --radius: 10px;
+    }
 
-        .hashtags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg-space);
+      font-family:Inter,-apple-system,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text-primary);
+      font-size:13px;
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+    }
 
-        .hashtag {
-            font-size: 12px;
-            color: var(--action-blue);
-            font-weight: 600;
-            background: #eff6ff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid #dbeafe;
-        }
+    .container{max-width:1400px;margin:0 auto;padding:24px}
 
-        .header-meta {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            align-items: center;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-        }
+    /* Breadcrumb */
+    .breadcrumb{
+      font-size:12px;color:var(--text-secondary);margin-bottom:18px;
+      display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+    }
+    .breadcrumb a{color:var(--text-secondary);text-decoration:none;transition:color .15s}
+    .breadcrumb a:hover{color:var(--action-blue)}
+    .breadcrumb i{font-size:10px;color:var(--text-muted)}
+    .breadcrumb span{color:var(--text-primary);font-weight:600}
 
-        .code-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            font-family: 'Roboto Mono', monospace;
-            color: var(--text-secondary);
-            background: var(--bg-space);
-            padding: 6px 12px;
-            border-radius: 4
-            px;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            user-select: none;
-        }
-        .code-chip:hover {
-            background: white;
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-            transform: translateY(-1px);
-        }
-        .code-chip i { font-size: 14px; opacity: 0.7; }
+    /* Header */
+    .product-header{
+      background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+      padding:18px 18px 14px;margin-bottom:18px;box-shadow:var(--shadow);
+    }
 
-        /* GRID LAYOUT */
-        .product-grid {
-            display: grid;
-            grid-template-columns: 380px 1fr 360px;
-            gap: 24px;
-            align-items: start;
-            margin-bottom: 24px;
-        }
+    .title-row{
+      display:flex;gap:16px;align-items:flex-start;justify-content:space-between;
+    }
 
-        .card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-        }
+    .product-title{
+      font-size:22px;font-weight:800;line-height:1.25;letter-spacing:-0.3px;
+      margin-bottom:10px;flex:1;min-width:0;
+    }
 
-        /* === COLUMN 1: GALLERY === */
-        .gallery-card { position: sticky; top: 24px; padding: 16px; z-index: 10; }
-        
-        .main-img-wrapper {
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 12px;
-            background: white;
-            position: relative;
-        }
-        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.2s; }
-        
-        .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-        .thumb {
-            aspect-ratio: 1/1;
-            border-radius: 4px;
-            padding: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: white;
-            border: 1px solid var(--border);
-            opacity: 0.7;
-        }
-        .thumb:hover { border-color: var(--action-blue); opacity: 1; }
-        .thumb.active { border-color: var(--action-blue); box-shadow: 0 0 0 2px rgba(37,99,235,0.1); opacity: 1; }
-        .thumb img { width: 100%; height: 100%; object-fit: contain; }
+    /* Balanced header row: tags left, IDs dropdown right */
+    .header-row{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
 
-        /* === COLUMN 2: INTELLIGENCE CARD === */
-        .info-card {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;min-width:0}
 
-        .info-section-header {
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .info-section-header::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
+    .pill{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:12px;font-weight:700;
+      color:var(--action-blue);
+      border:1px solid #dbeafe;
+      background:#eff6ff;
+      padding:4px 10px;border-radius:999px;
+      white-space:nowrap;
+      cursor:pointer;
+      transition: all .15s ease;
+      user-select:none;
+    }
+    .pill:hover{transform:translateY(-1px);border-color:#bfdbfe}
 
-        /* Shared Grid Style for Product Data & Market Data */
-        .data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
-        }
-        .data-stat {
-            background: var(--bg-space);
-            border-radius: 6px;
-            padding: 10px;
-            text-align: center;
-            border: 1px solid transparent;
-            transition: 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 60px;
-        }
-        .data-stat:hover { border-color: #cbd5e1; background: #f1f5f9; }
-        
-        .stat-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; font-weight: 600; }
-        .stat-value { font-size: 14px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px; line-height: 1.2; }
-        .stat-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+    /* Tag overflow popover */
+    .pill.more{
+      color:var(--text-secondary);
+      border-color:var(--border);
+      background:var(--bg-space);
+      font-weight:700;
+    }
+    .tag-popover{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:#fff;border:1px solid var(--border);
+      box-shadow:0 10px 30px rgba(2,6,23,0.10);
+      border-radius:12px;
+      padding:8px;
+      min-width:220px;
+      z-index:50;
+      display:none;
+    }
+    .tag-popover.open{display:block}
+    .tag-popover .pill{width:100%;justify-content:flex-start;border-radius:10px}
 
-        /* Special highlights */
-        .text-green { color: var(--success); }
-        .text-blue { color: var(--action-blue); }
+    .tag-wrap{position:relative;display:inline-flex}
 
-        /* Tools */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .tool-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            transition: all 0.2s;
-            background: white;
-        }
-        .tool-btn:hover {
-            border-color: var(--action-blue);
-            color: var(--action-blue);
-            background: #eff6ff;
-        }
+    /* IDs compact dropdown */
+    .ids{
+      display:flex;gap:10px;align-items:center;flex-shrink:0;
+    }
+    .ids-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:700;color:var(--text-secondary);
+      background:var(--bg-space);
+      border:1px solid var(--border);
+      padding:8px 10px;border-radius:12px;
+      cursor:pointer;transition:all .15s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .ids-btn:hover{border-color:var(--action-blue);color:var(--action-blue);background:#eff6ff}
+    .ids-btn i{font-size:16px;opacity:.8}
 
-        /* Calculator Style Profit */
-        .profit-calculator {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .calc-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-        .calc-row.operator {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 12px;
-            margin-bottom: 12px;
-        }
-        .calc-label { color: var(--text-secondary); }
-        .calc-val { font-weight: 600; color: var(--text-primary); font-family: 'Roboto Mono', monospace; }
-        .calc-val.cost { color: var(--urgent-red); }
-        
-        .calc-result {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--profit-bg);
-            padding: 10px 12px;
-            border-radius: 4px;
-            border: 1px dashed var(--success);
-        }
-        .calc-result-label { font-weight: 700; color: var(--profit-text); font-size: 12px; text-transform: uppercase; }
-        .calc-result-val { font-size: 18px; font-weight: 800; color: var(--profit-text); }
+    .ids-panel{
+      position:absolute;right:0;top:calc(100% + 8px);
+      width:min(360px, 92vw);
+      background:#fff;border:1px solid var(--border);
+      box-shadow:0 10px 30px rgba(2,6,23,0.10);
+      border-radius:12px;
+      padding:10px;
+      z-index:60;
+      display:none;
+    }
+    .ids-panel.open{display:block}
 
-        /* === COLUMN 3: PURCHASE CARD === */
-        .purchase-card { position: sticky; top: 24px; z-index: 10; }
+    .id-row{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:10px;border-radius:10px;border:1px solid var(--border);
+      background:var(--bg-space);
+      margin-bottom:8px;
+    }
+    .id-row:last-child{margin-bottom:0}
+    .id-left{display:flex;align-items:center;gap:10px;min-width:0}
+    .id-label{
+      font-size:11px;font-weight:900;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;
+      width:44px;flex-shrink:0;
+    }
+    .id-val{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:12px;font-weight:700;color:var(--text-primary);
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      max-width:220px;
+    }
+    .copy-btn{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:12px;font-weight:800;
+      border:1px solid var(--border);
+      padding:8px 10px;border-radius:10px;
+      background:#fff;color:var(--text-secondary);
+      cursor:pointer;transition:all .15s ease;
+      user-select:none;
+      flex-shrink:0;
+    }
+    .copy-btn:hover{border-color:var(--action-blue);background:#eff6ff;color:var(--action-blue)}
+    .copy-btn i{font-size:16px}
 
-        .price-section { padding: 24px; border-bottom: 1px solid var(--border); position: relative; }
-        .price-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-        .price-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
-        
-        .price-main { display: flex; align-items: baseline; gap: 8px; }
-        .currency { font-size: 20px; font-weight: 600; color: var(--text-primary); vertical-align: top; }
-        .current-price { font-size: 42px; font-weight: 800; color: var(--text-primary); line-height: 1; letter-spacing: -1.5px; }
-        .old-price-block { display: flex; flex-direction: column; align-items: flex-start; margin-left: 4px; }
-        .old-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; }
-        .discount-pill { background: var(--urgent-red); color: white; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+    /* Grid layout */
+    .product-grid{
+      display:grid;
+      grid-template-columns: 380px 1fr 360px;
+      gap:18px;
+      align-items:start;
+      margin-bottom:18px;
+    }
 
-        .stock-section { padding: 16px 24px; background: var(--bg-space); border-bottom: 1px solid var(--border); }
-        .stock-indicator { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--success); }
-        .stock-indicator i { font-weight: 800; }
-        .progress-bg { height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
-        .progress-fill { height: 100%; background: var(--success); width: 75%; border-radius: 10px; }
-        
-        .moq-row { display: flex; justify-content: space-between; font-size: 12px; }
-        .moq-label { color: var(--text-secondary); }
-        .moq-val { font-weight: 600; color: var(--text-primary); }
+    .card{
+      background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
 
-        .action-section { padding: 24px; }
+    /* Column 1 Gallery */
+    .gallery-card{position:sticky;top:18px;padding:16px;z-index:10}
+    .main-img-wrapper{
+      aspect-ratio:1/1;
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--border);border-radius:12px;
+      padding:18px;margin-bottom:12px;background:#fff;
+    }
+    .main-img{max-width:100%;max-height:100%;object-fit:contain;transition:opacity .2s}
+    .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .thumb{
+      aspect-ratio:1/1;border-radius:10px;padding:6px;
+      cursor:pointer;transition:all .15s;
+      background:#fff;border:1px solid var(--border);opacity:.8;
+    }
+    .thumb:hover{border-color:var(--action-blue);opacity:1}
+    .thumb.active{
+      border-color:var(--action-blue);
+      box-shadow:0 0 0 3px rgba(37,99,235,.10);
+      opacity:1;
+    }
+    .thumb img{width:100%;height:100%;object-fit:contain}
 
-        .qty-group { display: flex; gap: 10px; margin-bottom: 16px; height: 48px; }
-        .qty-wrapper {
-            flex: 1;
-            display: flex;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .qty-btn {
-            width: 40px; border: none; background: white; cursor: pointer;
-            font-size: 18px; color: var(--text-secondary); transition: 0.2s;
-        }
-        .qty-btn:hover { background: var(--bg-highlight); color: var(--action-blue); }
-        .qty-input {
-            flex: 1; border: none; border-left: 1px solid var(--border); border-right: 1px solid var(--border);
-            text-align: center; font-size: 16px; font-weight: 700; color: var(--text-primary); outline: none;
-        }
-        
-        .btn-cart {
-            width: 100%; height: 48px; background: var(--action-blue); color: white; border: none;
-            font-size: 15px; font-weight: 600; border-radius: 6px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            gap: 8px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-        }
-        .btn-cart:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3); }
+    /* Column 2 Info */
+    .info-card{padding:18px;display:flex;flex-direction:column;gap:18px}
 
-        .secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-        .btn-sec {
-            padding: 10px; background: white; border: 1px solid var(--border); border-radius: 6px;
-            font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 6px; transition: 0.2s;
-        }
-        .btn-sec:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+    .info-section-header{
+      font-size:11px;font-weight:900;text-transform:uppercase;
+      color:var(--text-muted);letter-spacing:.5px;
+      display:flex;align-items:center;gap:8px;margin-bottom:10px;
+    }
+    .info-section-header::after{content:"";flex:1;height:1px;background:var(--border)}
+    .data-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .data-stat{
+      background:var(--bg-space);
+      border:1px solid transparent;
+      border-radius:12px;padding:10px 10px;
+      text-align:center;min-height:62px;
+      display:flex;flex-direction:column;justify-content:center;
+      transition:all .15s;
+    }
+    .data-stat:hover{border-color:#cbd5e1;background:#f1f5f9}
+    .stat-label{font-size:10px;color:var(--text-secondary);margin-bottom:4px;text-transform:uppercase;font-weight:700}
+    .stat-value{font-size:14px;font-weight:800;letter-spacing:-0.2px;line-height:1.2}
+    .stat-sub{font-size:10px;color:var(--text-muted);margin-top:2px}
+    .text-green{color:var(--success)}
+    .text-blue{color:var(--action-blue)}
 
-        /* PROMO & AUTH (Refined) */
-        .promo-container { display: flex; flex-direction: column; gap: 16px; }
+    .tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .tool-btn{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px;border-radius:12px;border:1px solid var(--border);
+      color:var(--text-secondary);text-decoration:none;font-size:12px;font-weight:700;
+      transition:all .15s;background:#fff;
+    }
+    .tool-btn:hover{border-color:var(--action-blue);color:var(--action-blue);background:#eff6ff}
 
-        .promo-box {
-            background: linear-gradient(135deg, #fff1f2 0%, #fff 100%);
-            border: 1px dashed #fda4af;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            padding: 24px 12px 24px 12px;
-            margin: 24px;
-        }
-        .promo-header { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
-        .promo-icon { color: var(--urgent-red); font-size: 20px; }
-        .promo-title { font-weight: 800; color: #9f1239; font-size: 13px; text-transform: uppercase; }
-        .promo-tag {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--urgent-red);
-            color: white;
-            font-size: 16px;
-            font-weight: 800;
-            padding: 3px 6px;
-            border-radius: 4px;
-        }
-        .promo-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+    .profit-calculator{
+      background:#fff;border:1px solid var(--border);border-radius:14px;
+      padding:14px;box-shadow:0 2px 4px rgba(0,0,0,0.02);
+    }
+    .calc-row{
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:13px;margin-bottom:8px;
+    }
+    .calc-row.operator{border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:10px}
+    .calc-label{color:var(--text-secondary);font-weight:600}
+    .calc-val{
+      font-weight:800;color:var(--text-primary);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+    .calc-val.cost{color:var(--urgent-red)}
+    .calc-result{
+      display:flex;justify-content:space-between;align-items:center;
+      background:var(--profit-bg);
+      padding:10px 12px;border-radius:12px;border:1px dashed var(--success);
+    }
+    .calc-result-label{font-weight:900;color:var(--profit-text);font-size:12px;text-transform:uppercase}
+    .calc-result-val{font-size:18px;font-weight:900;color:var(--profit-text)}
 
-        .auth-overlay {
-            background: var(--bg-space);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            text-align: center;
-        }
-        .auth-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        .auth-buttons { display: flex; gap: 10px; }
-        .btn-auth { flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
-        .btn-auth.login { background: var(--text-primary); color: white; }
-        .btn-auth.login:hover { background: #0f172a; }
-        .btn-auth.reg { background: white; border: 1px solid var(--border); color: var(--action-blue); }
-        .btn-auth.reg:hover { border-color: var(--action-blue); background: #eff6ff; }
+    /* Column 3 Purchase */
+    .purchase-card{position:sticky;top:18px;z-index:10}
 
-        /* DESCRIPTION TABS */
-        .desc-container { background: white; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 24px; }
-        .tabs-header { display: flex; background: var(--bg-space); border-bottom: 1px solid var(--border); }
-        .tab-btn {
-            padding: 16px 24px; font-size: 14px; font-weight: 600; color: var(--text-secondary);
-            cursor: pointer; border-right: 1px solid var(--border); transition: 0.2s;
-            position: relative;
-        }
-        .tab-btn:hover { background: #e2e8f0; color: var(--text-primary); }
-        .tab-btn.active { background: white; color: var(--action-blue); box-shadow: inset 0 3px 0 var(--action-blue); }
-        .tab-content { display: none; padding: 32px; animation: fadeIn 0.3s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    /* Promo inside card, tighter spacing */
+    .promo-box{
+      background:linear-gradient(135deg,#fff1f2 0%,#fff 100%);
+      border:1px dashed #fda4af;
+      border-radius:14px;
+      margin:16px;
+      padding:14px 14px 14px 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .promo-header{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+    .promo-icon{color:var(--urgent-red);font-size:20px}
+    .promo-title{font-weight:900;color:#9f1239;font-size:12px;text-transform:uppercase;letter-spacing:.3px}
+    .promo-tag{
+      position:absolute;top:10px;right:10px;
+      background:var(--urgent-red);color:#fff;font-size:13px;font-weight:900;
+      padding:4px 8px;border-radius:10px;
+      transform:rotate(-9deg);
+      box-shadow:0 6px 16px rgba(220,38,38,.25);
+    }
+    .promo-text{font-size:12px;color:var(--text-secondary);line-height:1.45}
 
-        /* RESPONSIVE */
-        @media (max-width: 1200px) { .product-grid { grid-template-columns: 320px 1fr 340px; } }
-        @media (max-width: 1024px) { 
-            .product-grid { grid-template-columns: 1fr 360px; } 
-            .gallery-card { grid-column: 1 / -1; position: static; }
-            .thumbs { justify-content: center; }
-        }
-        @media (max-width: 768px) { 
-            .product-grid { grid-template-columns: 1fr; }
-            .purchase-card { position: static; }
-            .title-row { flex-direction: column-reverse; gap: 10px; }
-        }
-    </style>
+    .price-section{padding:16px;border-top:1px solid rgba(0,0,0,0.00);border-bottom:1px solid var(--border)}
+    .price-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .price-label{font-size:12px;color:var(--text-secondary);font-weight:700}
+
+    .price-main{display:flex;align-items:baseline;gap:8px}
+    .currency{font-size:18px;font-weight:800}
+    .current-price{font-size:44px;font-weight:900;letter-spacing:-1.5px;line-height:1}
+    .old-price-block{display:flex;flex-direction:column;align-items:flex-start;margin-left:4px}
+    .old-price{font-size:13px;color:var(--text-muted);text-decoration:line-through;font-weight:700}
+    .per-unit{font-size:12px;color:var(--text-secondary);font-weight:700}
+
+    .stock-section{padding:14px 16px;background:var(--bg-space);border-bottom:1px solid var(--border)}
+    .stock-indicator{display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:13px;font-weight:900;color:var(--success)}
+    .progress-bg{height:6px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:10px}
+    .progress-fill{height:100%;background:var(--success);width:75%;border-radius:999px}
+    .moq-row{display:flex;justify-content:space-between;font-size:12px}
+    .moq-label{color:var(--text-secondary);font-weight:700}
+    .moq-val{font-weight:900}
+
+    .action-section{padding:16px}
+
+    .qty-group{display:flex;gap:10px;margin-bottom:12px;align-items:stretch}
+    .qty-wrapper{
+      flex:1;display:flex;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;
+      height:48px;
+    }
+    .qty-btn{
+      width:40px;border:none;background:#fff;cursor:pointer;
+      font-size:18px;color:var(--text-secondary);transition:.15s;
+    }
+    .qty-btn:hover{background:var(--bg-highlight);color:var(--action-blue)}
+    .qty-input{
+      flex:1;border:none;border-left:1px solid var(--border);border-right:1px solid var(--border);
+      text-align:center;font-size:16px;font-weight:900;color:var(--text-primary);outline:none;
+    }
+
+    .btn-cart{
+      width:100%;height:48px;background:var(--action-blue);color:#fff;border:none;
+      font-size:15px;font-weight:900;border-radius:14px;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+      transition:all .15s;
+      box-shadow:0 8px 18px rgba(37,99,235,.22);
+    }
+    .btn-cart:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 12px 22px rgba(37,99,235,.28)}
+    .btn-cart:active{transform:translateY(0px)}
+
+    .secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .btn-sec{
+      padding:10px;background:#fff;border:1px solid var(--border);border-radius:14px;
+      font-size:13px;font-weight:800;color:var(--text-secondary);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:6px;transition:.15s;
+    }
+    .btn-sec:hover{border-color:var(--action-blue);color:var(--action-blue);background:#eff6ff}
+
+    /* Guest gate: keep Add to Cart visible; show clear microcopy + modal */
+    .guest-note{
+      margin-top:12px;
+      font-size:12px;
+      color:var(--text-secondary);
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 12px;border-radius:14px;border:1px solid var(--border);
+      background:var(--bg-space);
+      font-weight:700;
+    }
+    .guest-note a{color:var(--action-blue);text-decoration:none;font-weight:900}
+    .guest-note a:hover{text-decoration:underline}
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(2,6,23,.55);
+      display:none;align-items:center;justify-content:center;
+      padding:18px;z-index:999;
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(520px, 94vw);
+      background:#fff;border:1px solid var(--border);border-radius:18px;
+      box-shadow:0 25px 60px rgba(2,6,23,.25);
+      overflow:hidden;
+    }
+    .modal-head{
+      padding:14px 16px;
+      display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg,#fff, #f8fafc);
+    }
+    .modal-title{
+      display:flex;align-items:center;gap:10px;
+      font-size:14px;font-weight:900;color:var(--text-primary);
+    }
+    .modal-close{
+      border:none;background:transparent;cursor:pointer;
+      width:38px;height:38px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-secondary);transition:.15s;
+    }
+    .modal-close:hover{background:var(--bg-highlight);color:var(--text-primary)}
+    .modal-body{padding:16px}
+    .modal-copy{color:var(--text-secondary);font-size:13px;margin-bottom:12px}
+    .benefits{
+      display:grid;gap:10px;margin:12px 0 14px;
+    }
+    .benefit{
+      display:flex;align-items:flex-start;gap:10px;
+      padding:10px 12px;border:1px solid var(--border);
+      border-radius:14px;background:var(--bg-space);
+      color:var(--text-secondary);
+      font-weight:700;
+    }
+    .benefit i{color:var(--success);font-size:18px;margin-top:1px}
+    .modal-actions{
+      display:flex;gap:10px;margin-top:14px;
+    }
+    .btn-auth{
+      flex:1;padding:12px;border-radius:14px;
+      font-size:13px;font-weight:900;text-decoration:none;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      transition:.15s;border:1px solid transparent;
+      cursor:pointer;
+    }
+    .btn-auth.login{background:var(--text-primary);color:#fff}
+    .btn-auth.login:hover{background:#0f172a}
+    .btn-auth.reg{background:#fff;border-color:var(--border);color:var(--action-blue)}
+    .btn-auth.reg:hover{border-color:var(--action-blue);background:#eff6ff}
+
+    /* Tabs */
+    .desc-container{
+      background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+      overflow:hidden;margin-top:18px;box-shadow:var(--shadow);
+    }
+    .tabs-header{display:flex;background:var(--bg-space);border-bottom:1px solid var(--border);flex-wrap:wrap}
+    .tab-btn{
+      padding:14px 18px;font-size:13px;font-weight:900;color:var(--text-secondary);
+      cursor:pointer;border-right:1px solid var(--border);transition:.15s;
+      position:relative;user-select:none;
+    }
+    .tab-btn:hover{background:#e2e8f0;color:var(--text-primary)}
+    .tab-btn.active{background:#fff;color:var(--action-blue);box-shadow:inset 0 3px 0 var(--action-blue)}
+    .tab-content{display:none;padding:22px;animation:fadeIn .22s ease}
+    .tab-content.active{display:block}
+    .tab-content h3{font-size:15px;font-weight:900;margin-bottom:10px}
+    .tab-content p{color:var(--text-secondary);margin-bottom:12px}
+    .tab-content ul{padding-left:18px;color:var(--text-secondary)}
+    .tab-content li{margin:6px 0}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Responsive */
+    @media (max-width:1200px){
+      .product-grid{grid-template-columns:320px 1fr 340px}
+    }
+    @media (max-width:1024px){
+      .product-grid{grid-template-columns:1fr 360px}
+      .gallery-card{grid-column:1 / -1;position:static}
+    }
+    @media (max-width:768px){
+      .container{padding:16px}
+      .product-header{padding:14px}
+      .product-title{font-size:18px}
+      .product-grid{grid-template-columns:1fr}
+      .purchase-card{position:static}
+      .data-grid{grid-template-columns:1fr;gap:10px}
+      .tools-grid{grid-template-columns:1fr}
+      .thumbs{grid-template-columns:repeat(4,1fr)}
+      .ids{width:100%}
+      .ids-btn{width:100%;justify-content:space-between}
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
 
-<div class="container">
-
-    <!-- BREADCRUMB -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb">
-        <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
-        <a href="#">Items</a> <i class="ph-bold ph-caret-right"></i>
-        <a href="#">Computers, Laptops & Hardware</a> <i class="ph-bold ph-caret-right"></i>
-        <a href="#">Computer Peripheral</a> <i class="ph-bold ph-caret-right"></i>
-        <span>Razer Viper Ultimate...</span>
+      <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
+      <a href="#">Items</a> <i class="ph-bold ph-caret-right"></i>
+      <a href="#">Computers, Laptops & Hardware</a> <i class="ph-bold ph-caret-right"></i>
+      <a href="#">Computer Peripheral</a> <i class="ph-bold ph-caret-right"></i>
+      <span>Razer Viper Ultimate...</span>
     </div>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <div class="product-header">
-        <div class="title-row">
-            <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
-        </div>
-        
-        <div class="hashtags">
-            <span class="hashtag">#Newest</span>
-            <span class="hashtag">#Trending</span>
-            <span class="hashtag">#$5 Store</span>
-            <span class="hashtag">#Restock</span>
-        </div>
-        
-        <div class="header-meta">
-            <div class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')">
-                <i class="ph ph-barcode"></i> SKU: 888 B08565C5BB US
+      <div class="title-row">
+        <h1 class="product-title">
+          Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons
+        </h1>
+      </div>
+
+      <!-- Balanced header: tags left, IDs right (dropdown) -->
+      <div class="header-row">
+        <div class="pill-row" id="tagRow">
+          <span class="pill" data-tag="#Trending">Trending</span>
+          <span class="pill" data-tag="#Restock">Restock</span>
+
+          <span class="tag-wrap">
+            <span class="pill more" id="moreTagsBtn">+2</span>
+            <div class="tag-popover" id="tagPopover" role="menu" aria-label="More tags">
+              <span class="pill" data-tag="#Newest">New</span>
+              <span class="pill" data-tag="#$5 Store">$5 Store</span>
             </div>
-            <div class="code-chip" onclick="copyCode(this, 'B08565C5BB')">
-                <i class="ph ph-amazon-logo"></i> ASIN: B08565C5BB
-            </div>
-            <div class="code-chip" onclick="copyCode(this, '0810091280019')">
-                <i class="ph ph-qr-code"></i> UPC: 0810091280019
-            </div>
+          </span>
         </div>
+
+        <div class="ids" style="position:relative">
+          <div class="ids-btn" id="idsBtn" aria-expanded="false" aria-controls="idsPanel">
+            <span><i class="ph ph-barcode"></i> Product IDs</span>
+            <i class="ph ph-caret-down"></i>
+          </div>
+
+          <div class="ids-panel" id="idsPanel" role="dialog" aria-label="Product IDs">
+            <div class="id-row">
+              <div class="id-left">
+                <div class="id-label">SKU</div>
+                <div class="id-val" title="888 B08565C5BB US">888 B08565C5BB US</div>
+              </div>
+              <button class="copy-btn" onclick="copyText('888 B08565C5BB US', this)">
+                <i class="ph ph-copy"></i> Copy
+              </button>
+            </div>
+
+            <div class="id-row">
+              <div class="id-left">
+                <div class="id-label">ASIN</div>
+                <div class="id-val" title="B08565C5BB">B08565C5BB</div>
+              </div>
+              <button class="copy-btn" onclick="copyText('B08565C5BB', this)">
+                <i class="ph ph-copy"></i> Copy
+              </button>
+            </div>
+
+            <div class="id-row">
+              <div class="id-left">
+                <div class="id-label">UPC</div>
+                <div class="id-val" title="0810091280019">0810091280019</div>
+              </div>
+              <button class="copy-btn" onclick="copyText('0810091280019', this)">
+                <i class="ph ph-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- Main grid -->
     <div class="product-grid">
 
-        <!-- COLUMN 1: GALLERY -->
-        <div class="card gallery-card">
-            <div class="gallery">
-                <div class="main-img-wrapper">
-                    <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
-                </div>
-                <div class="thumbs">
-                    <div class="thumb active" onclick="swapImg(this)">
-                        <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" alt="View 1">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt="View 2">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://m.media-amazon.com/images/I/619BkvYWQ6L._AC_SL1500_.jpg" alt="View 3">
-                    </div>
-                    <div class="thumb" onclick="swapImg(this)">
-                        <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt="View 4">
-                    </div>
-                </div>
+      <!-- Column 1: Gallery -->
+      <div class="card gallery-card">
+        <div class="main-img-wrapper">
+          <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
+        </div>
+        <div class="thumbs">
+          <div class="thumb active" onclick="swapImg(this)">
+            <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" alt="View 1">
+          </div>
+          <div class="thumb" onclick="swapImg(this)">
+            <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt="View 2">
+          </div>
+          <div class="thumb" onclick="swapImg(this)">
+            <img src="https://m.media-amazon.com/images/I/619BkvYWQ6L._AC_SL1500_.jpg" alt="View 3">
+          </div>
+          <div class="thumb" onclick="swapImg(this)">
+            <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt="View 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Intelligence -->
+      <div class="card info-card">
+
+        <div class="info-group">
+          <div class="info-section-header"><i class="ph-bold ph-tag"></i> Product Data</div>
+          <div class="data-grid">
+            <div class="data-stat">
+              <div class="stat-label">Condition</div>
+              <div class="stat-value text-green"><i class="ph-fill ph-seal-check"></i> Brand New</div>
             </div>
+            <div class="data-stat">
+              <div class="stat-label">Brand</div>
+              <div class="stat-value">Razer</div>
+            </div>
+            <div class="data-stat">
+              <div class="stat-label">Category</div>
+              <div class="stat-value">Electronics</div>
+              <div class="stat-sub">Computer Peripheral</div>
+            </div>
+          </div>
         </div>
 
-        <!-- COLUMN 2: INTELLIGENCE DASHBOARD -->
-        <div class="card info-card">
-            
-            <!-- NEW SECTION: PRODUCT DATA (Added here as requested) -->
-            <div class="info-group">
-                <div class="info-section-header"><i class="ph-bold ph-tag"></i> Product Data</div>
-                <div class="data-grid">
-                    <div class="data-stat">
-                        <div class="stat-label">Condition</div>
-                        <div class="stat-value text-green"><i class="ph-fill ph-seal-check"></i> Brand New</div>
-                    </div>
-                    <div class="data-stat">
-                        <div class="stat-label">Brand</div>
-                        <div class="stat-value">Razer</div>
-                    </div>
-                    <div class="data-stat">
-                        <div class="stat-label">Category</div>
-                        <div class="stat-value">Electronics</div>
-                        <div class="stat-sub">Computer Peripheral</div>
-                    </div>
-                </div>
+        <div class="info-group">
+          <div class="info-section-header"><i class="ph-bold ph-chart-line-up"></i> Market Data</div>
+          <div class="data-grid">
+            <div class="data-stat">
+              <div class="stat-label">Est. Az Price</div>
+              <div class="stat-value">$129.00</div>
             </div>
-
-            <!-- Market Data -->
-            <div class="info-group">
-                <div class="info-section-header"><i class="ph-bold ph-chart-line-up"></i> Market Data</div>
-                <div class="data-grid">
-                    <div class="data-stat">
-                        <div class="stat-label">Est. Az Price</div>
-                        <div class="stat-value">$129.00</div>
-                    </div>
-                    <div class="data-stat">
-                        <div class="stat-label">Sales Rank</div>
-                        <div class="stat-value text-blue">#142</div>
-                        <div class="stat-sub">Video Games</div>
-                    </div>
-                    <div class="data-stat">
-                        <div class="stat-label">MSRP</div>
-                        <div class="stat-value">$129.99</div>
-                    </div>
-                </div>
+            <div class="data-stat">
+              <div class="stat-label">Sales Rank</div>
+              <div class="stat-value text-blue">#142</div>
+              <div class="stat-sub">Video Games</div>
             </div>
-
-            <!-- Profit Calculator (Visual) -->
-            <div class="info-group">
-                <div class="info-section-header"><i class="ph-bold ph-calculator"></i> Profit Calculator</div>
-                <div class="profit-calculator">
-                    <div class="calc-row">
-                        <span class="calc-label">Est. Sell Price</span>
-                        <span class="calc-val">$129.00</span>
-                    </div>
-                    <div class="calc-row">
-                        <span class="calc-label">Your Unit Cost</span>
-                        <span class="calc-val cost">− $89.00</span>
-                    </div>
-                    <div class="calc-row operator">
-                        <span class="calc-label">Est. Fees & </span>
-                        <span class="calc-val cost">− $10.00</span>
-                    </div>
-                    <div class="calc-result">
-                        <span class="calc-result-label">Net Profit / Unit</span>
-                        <span class="calc-result-val">+$30.00</span>
-                    </div>
-                </div>
+            <div class="data-stat">
+              <div class="stat-label">MSRP</div>
+              <div class="stat-value">$129.99</div>
             </div>
-
-            <!-- Tools -->
-            <div class="info-group">
-                <div class="info-section-header"><i class="ph-bold ph-toolbox"></i> Research Tools</div>
-                <div class="tools-grid">
-                    <a href="#" class="tool-btn"><i class="ph-fill ph-chart-bar"></i> Keepa Chart</a>
-                    <a href="#" class="tool-btn"><i class="ph-fill ph-calculator"></i> FBA Calc</a>
-                    <a href="#" class="tool-btn"><i class="ph-fill ph-amazon-logo"></i> View on Amz</a>
-                    <a href="#" class="tool-btn"><i class="ph-fill ph-google-logo"></i> Search Google</a>
-                </div>
-            </div>
-
+          </div>
         </div>
 
-        <!-- COLUMN 3: PURCHASE ACTION -->
-        <div class="card purchase-card">
-            <div class="promo-container">
-                    <div class="promo-box">
-                        <span class="promo-tag">-60%</span>
-                        <div class="promo-header">
-                            <i class="ph-fill ph-gift promo-icon"></i>
-                            <span class="promo-title">New Customer Offer</span>
-                        </div>
-                        <p class="promo-text">One-time discount on shipping & fees for your first order up to $1,000.</p>
-                    </div>
-            <div class="price-section">
-                <div class="price-header">
-                    <span class="price-label">Wholesale Price</span>
-                </div>
-                <div class="price-main">
-                    <span class="currency">$</span>
-                    <span class="current-price">89.00</span>
-                    <div class="old-price-block">
-                        <span class="old-price">$95.00</span>
-                        <span class="price-label">/ unit</span>
-                    </div>
-                </div>
+        <div class="info-group">
+          <div class="info-section-header"><i class="ph-bold ph-calculator"></i> Profit Calculator</div>
+          <div class="profit-calculator">
+            <div class="calc-row">
+              <span class="calc-label">Est. Sell Price</span>
+              <span class="calc-val">$129.00</span>
             </div>
-
-            <div class="stock-section">
-                <div class="stock-indicator">
-                    <i class="ph-fill ph-check-circle"></i> In Stock (132 units)
-                </div>
-                <div class="progress-bg">
-                    <div class="progress-fill"></div>
-                </div>
-                <div class="moq-row">
-                    <span class="moq-label">Min Order Qty (MOQ)</span>
-                    <span class="moq-val">100 Units</span>
-                </div>
+            <div class="calc-row">
+              <span class="calc-label">Your Unit Cost</span>
+              <span class="calc-val cost">− $89.00</span>
             </div>
-
-            <div class="action-section">
-                <div class="qty-group">
-                    <div class="qty-wrapper">
-                        <button class="qty-btn" onclick="adjustQty(-1)">−</button>
-                        <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
-                        <button class="qty-btn" onclick="adjustQty(1)">+</button>
-                    </div>
-                    <button class="btn-cart">
-                        <i class="ph-fill ph-shopping-cart"></i> Add to Cart
-                    </button>
-                </div>
-
-                <div class="secondary-actions">
-                    <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
-                    <button class="btn-sec"><i class="ph ph-eye"></i> Watch List</button>
-                </div>
-
-                
-
-                    <div class="auth-overlay">
-                        <div class="auth-title"><i class="ph-fill ph-lock-key"></i> Login to unlock price</div>
-                        <div class="auth-buttons">
-                            <a href="#" class="btn-auth login">Sign In</a>
-                            <a href="#" class="btn-auth reg">Register</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="calc-row operator">
+              <span class="calc-label">Est. Fees</span>
+              <span class="calc-val cost">− $10.00</span>
             </div>
+            <div class="calc-result">
+              <span class="calc-result-label">Net Profit / Unit</span>
+              <span class="calc-result-val">+$30.00</span>
+            </div>
+          </div>
         </div>
 
+        <div class="info-group">
+          <div class="info-section-header"><i class="ph-bold ph-toolbox"></i> Research Tools</div>
+          <div class="tools-grid">
+            <a href="#" class="tool-btn"><i class="ph-fill ph-chart-bar"></i> Keepa Chart</a>
+            <a href="#" class="tool-btn"><i class="ph-fill ph-calculator"></i> FBA Calc</a>
+            <a href="#" class="tool-btn"><i class="ph-fill ph-amazon-logo"></i> View on Amz</a>
+            <a href="#" class="tool-btn"><i class="ph-fill ph-google-logo"></i> Search Google</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Column 3: Purchase -->
+      <div class="card purchase-card">
+
+        <div class="promo-box">
+          <span class="promo-tag">-60%</span>
+          <div class="promo-header">
+            <i class="ph-fill ph-gift promo-icon"></i>
+            <span class="promo-title">New Customer Offer</span>
+          </div>
+          <p class="promo-text">One-time discount on shipping &amp; fees for your first order up to $1,000.</p>
+        </div>
+
+        <div class="price-section">
+          <div class="price-header">
+            <span class="price-label">Wholesale Price</span>
+            <span class="price-label" title="Promotion applied at checkout">Up to 60% first order</span>
+          </div>
+
+          <div class="price-main">
+            <span class="currency">$</span>
+            <span class="current-price">89.00</span>
+            <div class="old-price-block">
+              <span class="old-price">$95.00</span>
+              <span class="per-unit">/ unit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stock-section">
+          <div class="stock-indicator">
+            <i class="ph-fill ph-check-circle"></i> In Stock (132 units)
+          </div>
+          <div class="progress-bg"><div class="progress-fill"></div></div>
+          <div class="moq-row">
+            <span class="moq-label">Min Order Qty (MOQ)</span>
+            <span class="moq-val">100 Units</span>
+          </div>
+        </div>
+
+        <div class="action-section">
+          <div class="qty-group">
+            <div class="qty-wrapper">
+              <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+              <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
+              <button class="qty-btn" onclick="adjustQty(1)">+</button>
+            </div>
+          </div>
+
+          <!-- Keep Add to Cart visible (guest click opens modal) -->
+          <button class="btn-cart" id="addToCartBtn">
+            <i class="ph-fill ph-shopping-cart"></i> Add to Cart
+          </button>
+
+          <div class="secondary-actions">
+            <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
+            <button class="btn-sec"><i class="ph ph-eye"></i> Watch List</button>
+          </div>
+
+          <div class="guest-note" id="guestNote">
+            <i class="ph-fill ph-lock-key"></i>
+            Guests: <a href="#" onclick="openAuthModal(event)">sign in</a> or <a href="#" onclick="openAuthModal(event)">register</a> to add to cart and unlock wholesale pricing.
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- TABS -->
+    <!-- Tabs -->
     <div class="desc-container">
-        <div class="tabs-header">
-            <div class="tab-btn active" onclick="switchTab(this, 'description')">Description</div>
-            <div class="tab-btn" onclick="switchTab(this, 'specs')">Specifications</div>
-            <div class="tab-btn" onclick="switchTab(this, 'manifest')">Manifest & Shipping</div>
-        </div>
+      <div class="tabs-header">
+        <div class="tab-btn active" onclick="switchTab(this,'description')">Description</div>
+        <div class="tab-btn" onclick="switchTab(this,'specs')">Specifications</div>
+        <div class="tab-btn" onclick="switchTab(this,'manifest')">Manifest &amp; Shipping</div>
+      </div>
 
-        <div id="description" class="tab-content active">
-            <h3>Product Overview</h3>
-            <p>The <strong>Razer Viper Ultimate</strong> is the definitive wireless gaming mouse, built for esports professionals. It features Razer's Hyperspeed Wireless technology, which is 25% faster than any other wireless technology available.</p>
-            <ul>
-                <li><strong>Razer Focus+ Optical Sensor:</strong> 20,000 DPI sensitivity for pinpoint accuracy.</li>
-                <li><strong>74g Lightweight Design:</strong> Achieves its weight without the need for honeycomb holes.</li>
-                <li><strong>Optical Mouse Switches:</strong> Actuation at the speed of light, rated for 70 million clicks.</li>
-                <li><strong>70 Hours Battery Life:</strong> Play for days on a single charge.</li>
-            </ul>
-        </div>
-        <div id="specs" class="tab-content">
-            <h3>Technical Specifications</h3>
-            <ul>
-                <li>Brand: Razer</li>
-                <li>Model: Viper Ultimate (RZ01-03050100-R3U1)</li>
-                <li>Connectivity: HyperSpeed Wireless / Wired Speedflex Cable</li>
-                <li>Sensor: Focus+ Optical</li>
-                <li>Max Speed (IPS): 650</li>
-                <li>Max Acceleration (G): 50</li>
-            </ul>
-        </div>
-        <div id="manifest" class="tab-content">
-            <h3>Manifest & Logistics</h3>
-            <p><strong>Condition:</strong> Brand New (Retail Packaging)</p>
-            <p><strong>Fulfillment:</strong> Items are stored in Amazon FBA centers (USA). Can be shipped to your warehouse or forwarded to another FBA center.</p>
-            <p><strong>Shipping Cost:</strong> Estimated $1.00 per unit (varies by location).</p>
-        </div>
+      <div id="description" class="tab-content active">
+        <h3>Product Overview</h3>
+        <p>
+          The <strong>Razer Viper Ultimate</strong> is the definitive wireless gaming mouse, built for esports professionals.
+          It features Razer's Hyperspeed Wireless technology, which is 25% faster than any other wireless technology available.
+        </p>
+        <ul>
+          <li><strong>Razer Focus+ Optical Sensor:</strong> 20,000 DPI sensitivity for pinpoint accuracy.</li>
+          <li><strong>74g Lightweight Design:</strong> Achieves its weight without the need for honeycomb holes.</li>
+          <li><strong>Optical Mouse Switches:</strong> Actuation at the speed of light, rated for 70 million clicks.</li>
+          <li><strong>70 Hours Battery Life:</strong> Play for days on a single charge.</li>
+        </ul>
+      </div>
+
+      <div id="specs" class="tab-content">
+        <h3>Technical Specifications</h3>
+        <ul>
+          <li>Brand: Razer</li>
+          <li>Model: Viper Ultimate (RZ01-03050100-R3U1)</li>
+          <li>Connectivity: HyperSpeed Wireless / Wired Speedflex Cable</li>
+          <li>Sensor: Focus+ Optical</li>
+          <li>Max Speed (IPS): 650</li>
+          <li>Max Acceleration (G): 50</li>
+        </ul>
+      </div>
+
+      <div id="manifest" class="tab-content">
+        <h3>Manifest &amp; Logistics</h3>
+        <p><strong>Condition:</strong> Brand New (Retail Packaging)</p>
+        <p><strong>Fulfillment:</strong> Items are stored in Amazon FBA centers (USA). Can be shipped to your warehouse or forwarded to another FBA center.</p>
+        <p><strong>Shipping Cost:</strong> Estimated $1.00 per unit (varies by location).</p>
+      </div>
     </div>
 
-</div>
+  </div>
 
-<script>
-    function swapImg(el) {
-        const mainImg = document.getElementById('mainImg');
-        const thumbs = document.querySelectorAll('.thumb');
-        
-        // Simple fade effect
-        mainImg.style.opacity = 0;
-        setTimeout(() => {
-            mainImg.src = el.querySelector('img').src;
-            mainImg.style.opacity = 1;
-        }, 150);
+  <!-- Auth Modal -->
+  <div class="modal-backdrop" id="authBackdrop" role="dialog" aria-modal="true" aria-label="Sign in or register">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-head">
+        <div class="modal-title">
+          <i class="ph-fill ph-lock-key"></i>
+          Sign in to buy wholesale
+        </div>
+        <button class="modal-close" onclick="closeAuthModal()" aria-label="Close">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
 
-        thumbs.forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
+      <div class="modal-body">
+        <div class="modal-copy">
+          To add this item to cart and unlock wholesale pricing (MOQ ordering, Negotiation, Watch List), please sign in or register.
+        </div>
+
+        <div class="benefits">
+          <div class="benefit"><i class="ph-fill ph-check-circle"></i> Access wholesale &amp; liquidation pricing</div>
+          <div class="benefit"><i class="ph-fill ph-check-circle"></i> Add to cart with MOQ rules</div>
+          <div class="benefit"><i class="ph-fill ph-check-circle"></i> Save items and negotiate deals</div>
+        </div>
+
+        <div class="modal-actions">
+          <a class="btn-auth reg" href="#"><i class="ph ph-user-plus"></i> Register</a>
+          <a class="btn-auth login" href="#"><i class="ph ph-sign-in"></i> Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Demo state: guest user
+    const isGuest = true;
+
+    // Image swap
+    function swapImg(el){
+      const mainImg = document.getElementById('mainImg');
+      const thumbs = document.querySelectorAll('.thumb');
+      mainImg.style.opacity = 0;
+      setTimeout(()=>{ mainImg.src = el.querySelector('img').src; mainImg.style.opacity = 1; }, 120);
+      thumbs.forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
     }
 
-    function copyCode(el, text) {
-        // Mock copy to clipboard
-        navigator.clipboard.writeText(text);
-        
-        const originalHTML = el.innerHTML;
-        const originalBg = el.style.background;
-        
-        el.innerHTML = '<i class="ph-bold ph-check"></i> Copied!';
-        el.style.background = 'var(--success-bg)';
-        el.style.borderColor = 'var(--success)';
-        el.style.color = 'var(--success)';
-        
-        setTimeout(() => {
-            el.innerHTML = originalHTML;
-            el.style.background = originalBg;
-            el.style.borderColor = 'var(--border)';
-            el.style.color = 'var(--text-secondary)';
-        }, 1200);
+    // Quantity adjust
+    function adjustQty(delta){
+      const input = document.getElementById('qtyInput');
+      const min = parseInt(input.min, 10);
+      const max = parseInt(input.max, 10);
+      let value = (parseInt(input.value, 10) || min) + delta;
+      if (value < min) value = min;
+      if (value > max) value = max;
+      input.value = value;
     }
 
-    function adjustQty(delta) {
-        const input = document.getElementById('qtyInput');
-        const min = parseInt(input.min);
-        const max = parseInt(input.max);
-        let value = parseInt(input.value) + delta;
-        
-        if (value < min) value = min;
-        if (value > max) value = max;
-        
-        input.value = value;
+    // Tabs
+    function switchTab(tabEl, tabId){
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tabEl.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
     }
 
-    function switchTab(tabEl, tabId) {
-        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        
-        tabEl.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
+    // Copy helper
+    function copyText(text, btn){
+      navigator.clipboard.writeText(text);
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="ph ph-check"></i> Copied';
+      btn.style.borderColor = 'var(--success)';
+      btn.style.background = 'var(--success-bg)';
+      btn.style.color = 'var(--success)';
+      setTimeout(()=>{
+        btn.innerHTML = original;
+        btn.removeAttribute('style');
+      }, 900);
     }
-</script>
 
+    // Header: IDs dropdown
+    const idsBtn = document.getElementById('idsBtn');
+    const idsPanel = document.getElementById('idsPanel');
+
+    idsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = idsPanel.classList.toggle('open');
+      idsBtn.setAttribute('aria-expanded', String(open));
+      // close tags popover if open
+      document.getElementById('tagPopover').classList.remove('open');
+    });
+
+    // Header: tags "more" popover
+    const moreTagsBtn = document.getElementById('moreTagsBtn');
+    const tagPopover = document.getElementById('tagPopover');
+
+    moreTagsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tagPopover.classList.toggle('open');
+      // close IDs if open
+      idsPanel.classList.remove('open');
+      idsBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Close popovers on outside click / ESC
+    document.addEventListener('click', () => {
+      idsPanel.classList.remove('open');
+      idsBtn.setAttribute('aria-expanded','false');
+      tagPopover.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape'){
+        idsPanel.classList.remove('open');
+        idsBtn.setAttribute('aria-expanded','false');
+        tagPopover.classList.remove('open');
+        closeAuthModal();
+      }
+    });
+
+    // Guest gate modal
+    const backdrop = document.getElementById('authBackdrop');
+    function openAuthModal(ev){
+      if (ev) ev.preventDefault();
+      backdrop.classList.add('open');
+    }
+    function closeAuthModal(){
+      backdrop.classList.remove('open');
+    }
+    backdrop.addEventListener('click', closeAuthModal);
+
+    // Add to cart button behavior
+    document.getElementById('addToCartBtn').addEventListener('click', () => {
+      if (isGuest){
+        openAuthModal();
+        return;
+      }
+      alert('Added to cart (demo).');
+    });
+  </script>
 </body>
 </html>
