@@ -11,14 +11,16 @@
             --action-blue: #2563eb;
             --action-dark: #1e3a8a;
             --urgent-red: #dc2626;
-            --text-primary: #334155;
+            --text-primary: #1e293b;
             --text-secondary: #64748b;
             --text-muted: #94a3b8;
             --bg-highlight: #f1f5f9;
             --bg-space: #f8fafc;
-            --border: #e2e8f0; /* Softer border */
+            --border: #e2e8f0;
             --success: #16a34a;
             --success-bg: #f0fdf4;
+            --profit-bg: #ecfdf5;
+            --profit-text: #15803d;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,19 +31,23 @@
             color: var(--text-primary);
             font-size: 13px;
             line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container { 
             max-width: 1400px; 
             margin: 0 auto; 
-            padding: 20px;
+            padding: 24px;
         }
 
         /* BREADCRUMB */
         .breadcrumb { 
             font-size: 12px; 
             color: var(--text-secondary); 
-            margin-bottom: 16px; 
+            margin-bottom: 20px; 
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .breadcrumb a { 
             text-decoration: none; 
@@ -49,6 +55,7 @@
             transition: color 0.2s;
         }
         .breadcrumb a:hover { color: var(--action-blue); }
+        .breadcrumb i { font-size: 10px; color: var(--text-muted); }
         .breadcrumb span { 
             color: var(--text-primary);
             font-weight: 600;
@@ -58,25 +65,46 @@
         .product-header {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
         }
 
         .product-title {
             font-size: 22px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             line-height: 1.3;
+            flex: 1;
+        }
+
+        .condition-badge {
+            flex-shrink: 0;
+            background: var(--bg-highlight);
+            color: var(--text-primary);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            letter-spacing: 0.5px;
         }
 
         .hashtags {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         .hashtag {
@@ -94,7 +122,7 @@
             gap: 12px;
             flex-wrap: wrap;
             align-items: center;
-            padding-top: 14px;
+            padding-top: 16px;
             border-top: 1px solid var(--border);
         }
 
@@ -103,41 +131,43 @@
             align-items: center;
             gap: 6px;
             font-size: 12px;
-            font-family: monospace;
+            font-family: 'Roboto Mono', monospace;
             color: var(--text-secondary);
             background: var(--bg-space);
             padding: 6px 12px;
-            border-radius: 4px;
+            border-radius: 6px;
             border: 1px solid var(--border);
             cursor: pointer;
-            transition: 0.15s;
+            transition: all 0.2s ease;
+            user-select: none;
         }
         .code-chip:hover {
             background: white;
             border-color: var(--action-blue);
             color: var(--action-blue);
+            transform: translateY(-1px);
         }
-        .code-chip i { font-size: 14px; opacity: 0.6; }
+        .code-chip i { font-size: 14px; opacity: 0.7; }
 
         /* GRID LAYOUT */
         .product-grid {
             display: grid;
-            grid-template-columns: 380px 1fr 360px; /* Slightly wider columns */
-            gap: 20px;
+            grid-template-columns: 380px 1fr 360px;
+            gap: 24px;
             align-items: start;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .card {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         /* === COLUMN 1: GALLERY === */
-        .gallery-card { position: sticky; top: 20px; padding: 16px; }
+        .gallery-card { position: sticky; top: 24px; padding: 16px; z-index: 10; }
         
         .main-img-wrapper {
             aspect-ratio: 1/1;
@@ -151,242 +181,254 @@
             background: white;
             position: relative;
         }
-        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.2s; }
         
         .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
         .thumb {
             aspect-ratio: 1/1;
-            border: 2px solid transparent;
-            border-radius: 4px;
+            border-radius: 6px;
             padding: 4px;
             cursor: pointer;
-            transition: 0.15s;
+            transition: all 0.2s;
             background: white;
             border: 1px solid var(--border);
+            opacity: 0.7;
         }
-        .thumb:hover { border-color: var(--action-blue); }
-        .thumb.active { border-color: var(--action-blue); box-shadow: 0 0 0 1px var(--action-blue); }
+        .thumb:hover { border-color: var(--action-blue); opacity: 1; }
+        .thumb.active { border-color: var(--action-blue); box-shadow: 0 0 0 2px rgba(37,99,235,0.1); opacity: 1; }
         .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* === COLUMN 2: INFO CARD (REDESIGNED) === */
+        /* === COLUMN 2: INTELLIGENCE CARD === */
         .info-card {
             padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 24px; /* Space between sections */
-        }
-
-        .info-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            gap: 24px;
         }
 
         .info-section-header {
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             color: var(--text-muted);
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
+            margin-bottom: 12px;
         }
         .info-section-header::after {
             content: '';
             flex: 1;
             height: 1px;
             background: var(--border);
-            opacity: 0.6;
         }
 
-        /* Market Data - Clean Horizontal Layout */
-        .market-row {
+        /* Market Data */
+        .market-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
         }
         .market-stat {
             background: var(--bg-space);
             border-radius: 6px;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
             border: 1px solid transparent;
             transition: 0.2s;
         }
         .market-stat:hover { border-color: #cbd5e1; background: #f1f5f9; }
-        
-        .stat-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
-        .stat-value { font-size: 20px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; }
+        .stat-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; font-weight: 600; }
+        .stat-value { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
+        .stat-sub { font-size: 10px; color: var(--text-muted); }
 
-        /* External Tools - Clean Button Row */
-        .tools-row {
-            display: flex;
+        /* Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 8px;
-            flex-wrap: wrap;
         }
-        .tool-pill {
-            flex: 1;
+        .tool-btn {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             padding: 10px;
             border-radius: 6px;
             border: 1px solid var(--border);
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 500;
             transition: all 0.2s;
             background: white;
-            min-width: 70px;
         }
-        .tool-pill:hover {
+        .tool-btn:hover {
             border-color: var(--action-blue);
             color: var(--action-blue);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.05);
+            background: #eff6ff;
         }
-        .tool-pill i { font-size: 18px; color: var(--text-muted); transition: color 0.2s; }
-        .tool-pill:hover i { color: var(--action-blue); }
 
-        /* Profit Estimation - Clean List */
-        .profit-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        /* Calculator Style Profit */
+        .profit-calculator {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
-        .profit-item {
+        .calc-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 13px;
+            margin-bottom: 8px;
         }
-        .profit-label { color: var(--text-secondary); }
-        .profit-val { font-weight: 600; color: var(--text-primary); }
+        .calc-row.operator {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+        .calc-label { color: var(--text-secondary); }
+        .calc-val { font-weight: 600; color: var(--text-primary); font-family: 'Roboto Mono', monospace; }
+        .calc-val.cost { color: var(--urgent-red); }
         
-        /* The Result Row */
-        .profit-result {
-            margin-top: 6px;
-            padding-top: 14px;
-            border-top: 1px dashed var(--border);
+        .calc-result {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--profit-bg);
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px dashed var(--success);
         }
-        .profit-result-label { font-weight: 600; color: var(--text-primary); font-size: 13px; }
-        .profit-result-val { 
-            font-size: 18px; 
-            font-weight: 800; 
-            color: var(--success); 
-            background: var(--success-bg);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
+        .calc-result-label { font-weight: 700; color: var(--profit-text); font-size: 12px; text-transform: uppercase; }
+        .calc-result-val { font-size: 18px; font-weight: 800; color: var(--profit-text); }
 
         /* === COLUMN 3: PURCHASE CARD === */
-        .purchase-card { position: sticky; top: 20px; }
+        .purchase-card { position: sticky; top: 24px; z-index: 10; }
 
-        .price-section { padding: 20px; border-bottom: 1px solid var(--border); }
-        .price-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
-        .price-main { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
-        .current-price { font-size: 36px; font-weight: 800; color: var(--text-primary); line-height: 1; letter-spacing: -1px; }
-        .old-price { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
-        .reduced-tag {
-            display: inline-block; background: var(--urgent-red); color: white;
-            font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 100px;
+        .price-section { padding: 24px; border-bottom: 1px solid var(--border); position: relative; }
+        .price-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .price-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+        
+        .price-main { display: flex; align-items: baseline; gap: 8px; }
+        .currency { font-size: 20px; font-weight: 600; color: var(--text-primary); vertical-align: top; }
+        .current-price { font-size: 42px; font-weight: 800; color: var(--text-primary); line-height: 1; letter-spacing: -1.5px; }
+        .old-price-block { display: flex; flex-direction: column; align-items: flex-start; margin-left: 4px; }
+        .old-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; }
+        .discount-pill { background: var(--urgent-red); color: white; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+
+        .stock-section { padding: 16px 24px; background: var(--bg-space); border-bottom: 1px solid var(--border); }
+        .stock-indicator { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--success); }
+        .stock-indicator i { font-weight: 800; }
+        .progress-bg { height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { height: 100%; background: var(--success); width: 75%; border-radius: 10px; }
+        
+        .moq-row { display: flex; justify-content: space-between; font-size: 12px; }
+        .moq-label { color: var(--text-secondary); }
+        .moq-val { font-weight: 600; color: var(--text-primary); }
+
+        .action-section { padding: 24px; }
+
+        .qty-group { display: flex; gap: 10px; margin-bottom: 16px; height: 48px; }
+        .qty-wrapper {
+            flex: 1;
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
         }
-
-        .stock-section { padding: 14px 20px; background: var(--bg-space); border-bottom: 1px solid var(--border); }
-        .stock-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
-        .stock-row:last-child { margin-bottom: 0; }
-        .stock-label { color: var(--text-secondary); }
-        .stock-value { font-weight: 600; color: var(--text-primary); }
-        .stock-value.in-stock { color: var(--success); }
-
-        .action-section { padding: 20px; }
-
-        .qty-control { display: flex; margin-bottom: 16px; }
         .qty-btn {
-            width: 44px; height: 44px; background: white; border: 1px solid var(--border);
-            font-size: 18px; cursor: pointer; color: var(--text-primary); font-weight: 700;
-            transition: 0.2s;
+            width: 40px; border: none; background: white; cursor: pointer;
+            font-size: 18px; color: var(--text-secondary); transition: 0.2s;
         }
-        .qty-btn:first-child { border-radius: 4px 0 0 4px; }
-        .qty-btn:last-child { border-radius: 0 4px 4px 0; }
-        .qty-btn:hover { background: var(--bg-highlight); border-color: #cbd5e1; z-index: 1; }
+        .qty-btn:hover { background: var(--bg-highlight); color: var(--action-blue); }
         .qty-input {
-            flex: 1; border: 1px solid var(--border); border-left: none; border-right: none;
-            text-align: center; font-size: 16px; font-weight: 700; color: var(--text-primary);
+            flex: 1; border: none; border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+            text-align: center; font-size: 16px; font-weight: 700; color: var(--text-primary); outline: none;
         }
-
+        
         .btn-cart {
-            width: 100%; background: var(--action-blue); color: white; border: none;
-            padding: 14px; font-size: 15px; font-weight: 600; border-radius: 6px;
+            width: 100%; height: 48px; background: var(--action-blue); color: white; border: none;
+            font-size: 15px; font-weight: 600; border-radius: 6px;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
-            gap: 8px; margin-bottom: 12px; transition: 0.2s; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+            gap: 8px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
         }
-        .btn-cart:hover { background: #1d4ed8; transform: translateY(-1px); }
+        .btn-cart:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3); }
 
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .btn-secondary {
-            background: white; border: 1px solid var(--border); color: var(--text-secondary);
-            padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer;
-            transition: 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px;
+        .secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .btn-sec {
+            padding: 10px; background: white; border: 1px solid var(--border); border-radius: 6px;
+            font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px; transition: 0.2s;
         }
-        .btn-secondary:hover { border-color: var(--action-blue); color: var(--action-blue); background: var(--bg-highlight); }
+        .btn-sec:hover { border-color: var(--text-secondary); color: var(--text-primary); }
 
-        /* PROMO & AUTH (Your liked design) */
-        .promo-auth-container { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+        /* PROMO & AUTH (Refined) */
+        .promo-container { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
 
-        .promo-card-accent {
-            background: linear-gradient(135deg, #fff1f2 0%, #ffffff 100%);
-            border: 2px dashed #fecaca;
+        .promo-box {
+            background: linear-gradient(135deg, #fff1f2 0%, #fff 100%);
+            border: 1px dashed #fda4af;
             border-radius: 8px;
             padding: 16px;
-            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
         }
-        .promo-card-accent:hover { border-color: var(--urgent-red); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.08); }
-        .promo-accent-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .promo-title-group { display: flex; align-items: center; gap: 10px; }
-        .promo-icon-circle { width: 32px; height: 32px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--urgent-red); }
-        .promo-title-text { font-size: 13px; font-weight: 800; color: #991b1b; text-transform: uppercase; }
-        .promo-big-badge { background: var(--urgent-red); color: white; font-size: 12px; font-weight: 800; padding: 4px 8px; border-radius: 4px; transform: rotate(-2deg); }
-        .promo-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; padding-left: 42px; }
+        .promo-header { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+        .promo-icon { color: var(--urgent-red); font-size: 20px; }
+        .promo-title { font-weight: 800; color: #9f1239; font-size: 13px; text-transform: uppercase; }
+        .promo-tag { position: absolute; top: 10px; right: 10px; background: var(--urgent-red); color: white; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; }
+        .promo-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
-        .auth-wrapper { border-top: 1px solid var(--border); padding-top: 20px; }
-        .auth-header { font-size: 12px; color: var(--text-secondary); text-align: center; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        .auth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .btn-auth { display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        .btn-auth.login { background: var(--text-primary); color: white; border: 1px solid var(--text-primary); }
-        .btn-auth.login:hover { background: #0f172a; transform: translateY(-1px); }
-        .btn-auth.register { background: white; color: var(--action-blue); border: 1px solid var(--border); }
-        .btn-auth.register:hover { border-color: var(--action-blue); background: #eff6ff; transform: translateY(-1px); }
+        .auth-overlay {
+            background: var(--bg-space);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .auth-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .auth-buttons { display: flex; gap: 10px; }
+        .btn-auth { flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
+        .btn-auth.login { background: var(--text-primary); color: white; }
+        .btn-auth.login:hover { background: #0f172a; }
+        .btn-auth.reg { background: white; border: 1px solid var(--border); color: var(--action-blue); }
+        .btn-auth.reg:hover { border-color: var(--action-blue); background: #eff6ff; }
 
-        /* Meta at bottom of cart */
-        .meta-section { margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--border); }
-        .meta-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); }
-
-        /* TABS (Unchanged) */
-        .description-section { background: white; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-top: 20px; }
-        .tabs { display: flex; background: var(--bg-space); border-bottom: 1px solid var(--border); }
-        .tab { padding: 16px 24px; font-size: 14px; font-weight: 600; color: var(--text-secondary); cursor: pointer; border-right: 1px solid var(--border); transition: 0.15s; background: transparent; border-bottom: 3px solid transparent; }
-        .tab:last-child { border-right: none; }
-        .tab.active { background: white; color: var(--text-primary); border-bottom-color: var(--action-blue); }
-        .tab:hover:not(.active) { background: #e2e8f0; }
-        .tab-content { display: none; padding: 30px; }
+        /* DESCRIPTION TABS */
+        .desc-container { background: white; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 24px; }
+        .tabs-header { display: flex; background: var(--bg-space); border-bottom: 1px solid var(--border); }
+        .tab-btn {
+            padding: 16px 24px; font-size: 14px; font-weight: 600; color: var(--text-secondary);
+            cursor: pointer; border-right: 1px solid var(--border); transition: 0.2s;
+            position: relative;
+        }
+        .tab-btn:hover { background: #e2e8f0; color: var(--text-primary); }
+        .tab-btn.active { background: white; color: var(--action-blue); box-shadow: inset 0 3px 0 var(--action-blue); }
+        .tab-content { display: none; padding: 32px; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
-        .tab-content h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
-        .tab-content p, .tab-content ul { color: var(--text-secondary); line-height: 1.6; font-size: 14px; }
-        .tab-content ul { padding-left: 20px; }
-        .tab-content li { margin-bottom: 10px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tab-content h3 { font-size: 18px; color: var(--text-primary); margin-bottom: 16px; }
+        .tab-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+        .tab-content ul { padding-left: 20px; color: var(--text-secondary); line-height: 1.6; }
+        .tab-content li { margin-bottom: 8px; }
 
         /* RESPONSIVE */
         @media (max-width: 1200px) { .product-grid { grid-template-columns: 320px 1fr 340px; } }
-        @media (max-width: 1024px) { .product-grid { grid-template-columns: 1fr 360px; } .gallery-card { grid-column: span 2; } }
-        @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } .gallery-card { grid-column: 1; position: static; } .purchase-card { position: static; } }
+        @media (max-width: 1024px) { 
+            .product-grid { grid-template-columns: 1fr 360px; } 
+            .gallery-card { grid-column: 1 / -1; position: static; }
+            .thumbs { justify-content: center; }
+        }
+        @media (max-width: 768px) { 
+            .product-grid { grid-template-columns: 1fr; }
+            .purchase-card { position: static; }
+            .title-row { flex-direction: column-reverse; gap: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -395,33 +437,45 @@
 
     <!-- BREADCRUMB -->
     <div class="breadcrumb">
-        <a href="#">Home</a> / <a href="#">Items</a> / <a href="#">Computers, Laptops & Hardware</a> / <span>Computer Peripheral</span>
+        <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
+        <a href="#">Items</a> <i class="ph-bold ph-caret-right"></i>
+        <a href="#">Hardware</a> <i class="ph-bold ph-caret-right"></i>
+        <span>Razer</span>
     </div>
 
     <!-- HEADER -->
     <div class="product-header">
-        <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</h1>
-        <div class="hashtags">
-            <span class="hashtag">Razer</span>
-            <span class="hashtag">Computer Peripheral</span>
-            <span class="hashtag">Gaming Mouse</span>
-            <span class="hashtag">Trending</span>
-            <span class="hashtag">Price Recently Reduced</span>
+        <div class="title-row">
+            <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
+            <span class="condition-badge">New / FBA Ready</span>
         </div>
+        
+        <div class="hashtags">
+            <span class="hashtag">#GamingMouse</span>
+            <span class="hashtag">#Razer</span>
+            <span class="hashtag">#HighMargin</span>
+            <span class="hashtag">#TopSeller</span>
+        </div>
+        
         <div class="header-meta">
-            <span class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')"><i class="ph ph-copy"></i> SKU: 888 B08565C5BB US</span>
-            <span class="code-chip" onclick="copyCode(this, 'B08565C5BB')"><i class="ph ph-copy"></i> ASIN: B08565C5BB</span>
-            <span class="code-chip" onclick="copyCode(this, '0810091280019')"><i class="ph ph-copy"></i> UPC: 0810091280019</span>
+            <div class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')">
+                <i class="ph ph-barcode"></i> SKU: 888 B08565C5BB US
+            </div>
+            <div class="code-chip" onclick="copyCode(this, 'B08565C5BB')">
+                <i class="ph ph-amazon-logo"></i> ASIN: B08565C5BB
+            </div>
+            <div class="code-chip" onclick="copyCode(this, '0810091280019')">
+                <i class="ph ph-qr-code"></i> UPC: 0810091280019
+            </div>
         </div>
     </div>
 
     <div class="product-grid">
 
-        <!-- COLUMN 1: GALLERY WITH REAL IMAGES -->
+        <!-- COLUMN 1: GALLERY -->
         <div class="card gallery-card">
             <div class="gallery">
                 <div class="main-img-wrapper">
-                    <!-- Real Razer Viper Ultimate Image -->
                     <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
                 </div>
                 <div class="thumbs">
@@ -441,17 +495,21 @@
             </div>
         </div>
 
-        <!-- COLUMN 2: REDESIGNED UNIFIED INFO CARD -->
-        <!-- No more weird backgrounds, proper hierarchy -->
+        <!-- COLUMN 2: INTELLIGENCE DASHBOARD -->
         <div class="card info-card">
             
-            <!-- SECTION 1: MARKET DATA -->
-            <div class="info-section">
-                <div class="info-section-header">Market Data</div>
-                <div class="market-row">
+            <!-- Market Data -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-chart-line-up"></i> Market Data</div>
+                <div class="market-grid">
                     <div class="market-stat">
                         <div class="stat-label">Est. Az Price</div>
                         <div class="stat-value">$129.00</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">Sales Rank</div>
+                        <div class="stat-value">#142</div>
+                        <div class="stat-sub">Video Games</div>
                     </div>
                     <div class="market-stat">
                         <div class="stat-label">MSRP</div>
@@ -460,152 +518,147 @@
                 </div>
             </div>
 
-            <!-- SECTION 2: EXTERNAL TOOLS -->
-            <div class="info-section">
-                <div class="info-section-header">External Tools</div>
-                <div class="tools-row">
-                    <a href="#" class="tool-pill">
-                        <i class="ph ph-chart-line-up"></i>
-                        Keepa
-                    </a>
-                    <a href="#" class="tool-pill">
-                        <i class="ph ph-calculator"></i>
-                        Calc
-                    </a>
-                    <a href="#" class="tool-pill">
-                        <i class="ph-fill ph-amazon-logo"></i>
-                        Amazon
-                    </a>
-                    <a href="#" class="tool-pill">
-                        <i class="ph-fill ph-google-logo"></i>
-                        Google
-                    </a>
+            <!-- Profit Calculator (Visual) -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-calculator"></i> Profit Calculator</div>
+                <div class="profit-calculator">
+                    <div class="calc-row">
+                        <span class="calc-label">Est. Sell Price</span>
+                        <span class="calc-val">$129.00</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Your Unit Cost</span>
+                        <span class="calc-val cost">− $89.00</span>
+                    </div>
+                    <div class="calc-row operator">
+                        <span class="calc-label">Est. Fees & Ship</span>
+                        <span class="calc-val cost">− $10.00</span>
+                    </div>
+                    <div class="calc-result">
+                        <span class="calc-result-label">Net Profit / Unit</span>
+                        <span class="calc-result-val">+$30.00</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- SECTION 3: PROFIT ESTIMATION -->
-            <div class="info-section">
-                <div class="info-section-header">Profit Estimation</div>
-                <div class="profit-list">
-                    <div class="profit-item">
-                        <span class="profit-label">Your Cost</span>
-                        <span class="profit-val">$89.00</span>
-                    </div>
-                    <div class="profit-item">
-                        <span class="profit-label">Est. Sell Price</span>
-                        <span class="profit-val">$129.00</span>
-                    </div>
-                    <div class="profit-result">
-                        <span class="profit-result-label">Est. Profit per Unit</span>
-                        <span class="profit-result-val">+$40.00 (45%)</span>
-                    </div>
+            <!-- Tools -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-toolbox"></i> Research Tools</div>
+                <div class="tools-grid">
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-chart-bar"></i> Keepa Chart</a>
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-calculator"></i> FBA Calc</a>
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-amazon-logo"></i> View on Amz</a>
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-google-logo"></i> Search Google</a>
                 </div>
             </div>
 
         </div>
 
-        <!-- COLUMN 3: PURCHASE CARD WITH LIKED PROMO -->
+        <!-- COLUMN 3: PURCHASE ACTION -->
         <div class="card purchase-card">
             
             <div class="price-section">
-                <div class="price-label">Az Price</div>
-                <div class="price-main">
-                    <span class="current-price">$89.00</span>
-                    <span class="old-price">$95.00</span>
+                <div class="price-header">
+                    <span class="price-label">Wholesale Price</span>
+                    <span class="discount-pill">-6% OFF</span>
                 </div>
-                <span class="reduced-tag">Reduced Price -6%</span>
+                <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="current-price">89.00</span>
+                    <div class="old-price-block">
+                        <span class="old-price">$95.00</span>
+                        <span class="price-label">/ unit</span>
+                    </div>
+                </div>
             </div>
 
             <div class="stock-section">
-                <div class="stock-row"><span class="stock-label">In Stock</span><span class="stock-value in-stock">132 pc(s)</span></div>
-                <div class="stock-row"><span class="stock-label">MOQ</span><span class="stock-value">100 pc(s)</span></div>
-                <div class="stock-row"><span class="stock-label">Condition</span><span class="stock-value">Fulfilled by Amazon</span></div>
+                <div class="stock-indicator">
+                    <i class="ph-fill ph-check-circle"></i> In Stock (132 units)
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="moq-row">
+                    <span class="moq-label">Min Order Qty (MOQ)</span>
+                    <span class="moq-val">100 Units</span>
+                </div>
             </div>
 
             <div class="action-section">
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="adjustQty(-1)">−</button>
-                    <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
-                    <button class="qty-btn" onclick="adjustQty(1)">+</button>
+                <div class="qty-group">
+                    <div class="qty-wrapper">
+                        <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+                        <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
+                        <button class="qty-btn" onclick="adjustQty(1)">+</button>
+                    </div>
+                    <button class="btn-cart">
+                        <i class="ph-fill ph-shopping-cart"></i> Add to Cart
+                    </button>
                 </div>
 
-                <button class="btn-cart">
-                    <i class="ph-fill ph-shopping-cart-simple"></i> Add to Cart
-                </button>
-
-                <div class="btn-group">
-                    <button class="btn-secondary"><i class="ph ph-handshake"></i> Negotiate</button>
-                    <button class="btn-secondary"><i class="ph ph-heart"></i> Watch</button>
+                <div class="secondary-actions">
+                    <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
+                    <button class="btn-sec"><i class="ph ph-eye"></i> Watch List</button>
                 </div>
 
-                <!-- PROMO & AUTH (Kept exactly as you liked it) -->
-                <div class="promo-auth-container">
-                    
-                    <div class="promo-card-accent">
-                        <div class="promo-accent-header">
-                            <div class="promo-title-group">
-                                <div class="promo-icon-circle">
-                                    <i class="ph-fill ph-tag"></i>
-                                </div>
-                                <span class="promo-title-text">New Customer Deal</span>
-                            </div>
-                            <span class="promo-big-badge">-95% OFF</span>
+                <div class="promo-container">
+                    <div class="promo-box">
+                        <span class="promo-tag">-95% SHIP</span>
+                        <div class="promo-header">
+                            <i class="ph-fill ph-gift promo-icon"></i>
+                            <span class="promo-title">New Customer Offer</span>
                         </div>
-                        <p class="promo-desc">
-                            Exclusive first-order discount on shipping & fees. Valid for orders up to $1,000.
-                        </p>
+                        <p class="promo-text">One-time discount on shipping & fees for your first order up to $1,000.</p>
                     </div>
 
-                    <div class="auth-wrapper">
-                        <div class="auth-header">
-                            <i class="ph-fill ph-lock-key"></i>
-                            <span>Sign in to unlock this price</span>
+                    <div class="auth-overlay">
+                        <div class="auth-title"><i class="ph-fill ph-lock-key"></i> Login to unlock price</div>
+                        <div class="auth-buttons">
+                            <a href="#" class="btn-auth login">Sign In</a>
+                            <a href="#" class="btn-auth reg">Register</a>
                         </div>
-                        <div class="auth-grid">
-                            <a href="#" class="btn-auth login">Login</a>
-                            <a href="#" class="btn-auth register">Register Free</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="meta-section">
-                    <div class="meta-row">
-                        <span class="meta-label">Shipping Cost</span>
-                        <span class="meta-value">$1.00 per unit</span>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
 
     <!-- TABS -->
-    <div class="description-section">
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
-            <div class="tab" onclick="switchTab(this, 'specs')">Specifications</div>
-            <div class="tab" onclick="switchTab(this, 'shipping')">Shipping Info</div>
+    <div class="desc-container">
+        <div class="tabs-header">
+            <div class="tab-btn active" onclick="switchTab(this, 'description')">Description</div>
+            <div class="tab-btn" onclick="switchTab(this, 'specs')">Specifications</div>
+            <div class="tab-btn" onclick="switchTab(this, 'manifest')">Manifest & Shipping</div>
         </div>
 
         <div id="description" class="tab-content active">
-            <h3>Product Description</h3>
-            <p><strong>Razer Viper Ultimate Lightweight Wireless Gaming Mouse:</strong> Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons - 70 Hr Battery - Classic Black</p>
+            <h3>Product Overview</h3>
+            <p>The <strong>Razer Viper Ultimate</strong> is the definitive wireless gaming mouse, built for esports professionals. It features Razer's Hyperspeed Wireless technology, which is 25% faster than any other wireless technology available.</p>
             <ul>
-                <li>25% Quicker Than Competing Wireless Mice: Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom</li>
-                <li>The Lightest, Zero-Compromise Wireless Esports Gaming Mouse at 74g: Includes a 20K DPI optical sensor befitting the most serious gamers without the need for drilled holes</li>
-                <li>Faster Than Traditional Mechanical Switches: New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light</li>
-                <li>Ambidextrous Design: Created for left and right-handed users with accessible, programmable buttons on both sides</li>
-                <li>8 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3. Max Speed (IPS)-650</li>
+                <li><strong>Razer Focus+ Optical Sensor:</strong> 20,000 DPI sensitivity for pinpoint accuracy.</li>
+                <li><strong>74g Lightweight Design:</strong> Achieves its weight without the need for honeycomb holes.</li>
+                <li><strong>Optical Mouse Switches:</strong> Actuation at the speed of light, rated for 70 million clicks.</li>
+                <li><strong>70 Hours Battery Life:</strong> Play for days on a single charge.</li>
             </ul>
         </div>
         <div id="specs" class="tab-content">
-            <h3>Specifications</h3>
-            <p><strong>Brand:</strong> Razer<br><strong>Model:</strong> Viper Ultimate<br><strong>Type:</strong> Wireless Gaming Mouse<br><strong>Color:</strong> Classic Black<br><strong>Condition:</strong> Fulfilled by Amazon</p>
+            <h3>Technical Specifications</h3>
+            <ul>
+                <li>Brand: Razer</li>
+                <li>Model: Viper Ultimate (RZ01-03050100-R3U1)</li>
+                <li>Connectivity: HyperSpeed Wireless / Wired Speedflex Cable</li>
+                <li>Sensor: Focus+ Optical</li>
+                <li>Max Speed (IPS): 650</li>
+                <li>Max Acceleration (G): 50</li>
+            </ul>
         </div>
-        <div id="shipping" class="tab-content">
-            <h3>Shipping Information</h3>
-            <p><strong>Shipping Cost:</strong> $1.00 per unit<br><strong>Fulfillment:</strong> Fulfilled by Amazon<br><strong>Ships Within:</strong> 1-2 business days<br><strong>Tracking:</strong> Provided</p>
+        <div id="manifest" class="tab-content">
+            <h3>Manifest & Logistics</h3>
+            <p><strong>Condition:</strong> Brand New (Retail Packaging)</p>
+            <p><strong>Fulfillment:</strong> Items are stored in Amazon FBA centers (USA). Can be shipped to your warehouse or forwarded to another FBA center.</p>
+            <p><strong>Shipping Cost:</strong> Estimated $1.00 per unit (varies by location).</p>
         </div>
     </div>
 
@@ -615,33 +668,54 @@
     function swapImg(el) {
         const mainImg = document.getElementById('mainImg');
         const thumbs = document.querySelectorAll('.thumb');
-        mainImg.src = el.querySelector('img').src;
+        
+        // Simple fade effect
+        mainImg.style.opacity = 0;
+        setTimeout(() => {
+            mainImg.src = el.querySelector('img').src;
+            mainImg.style.opacity = 1;
+        }, 150);
+
         thumbs.forEach(t => t.classList.remove('active'));
         el.classList.add('active');
     }
+
     function copyCode(el, text) {
+        // Mock copy to clipboard
+        navigator.clipboard.writeText(text);
+        
         const originalHTML = el.innerHTML;
-        el.innerHTML = '<i class="ph ph-check"></i> Copied!';
+        const originalBg = el.style.background;
+        
+        el.innerHTML = '<i class="ph-bold ph-check"></i> Copied!';
         el.style.background = 'var(--success-bg)';
-        el.style.borderColor = '#bbf7d0';
+        el.style.borderColor = 'var(--success)';
         el.style.color = 'var(--success)';
+        
         setTimeout(() => {
             el.innerHTML = originalHTML;
-            el.style.background = 'var(--bg-space)';
+            el.style.background = originalBg;
             el.style.borderColor = 'var(--border)';
             el.style.color = 'var(--text-secondary)';
         }, 1200);
     }
+
     function adjustQty(delta) {
         const input = document.getElementById('qtyInput');
-        const min = parseInt(input.min); const max = parseInt(input.max);
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
         let value = parseInt(input.value) + delta;
-        if (value < min) value = min; if (value > max) value = max;
+        
+        if (value < min) value = min;
+        if (value > max) value = max;
+        
         input.value = value;
     }
+
     function switchTab(tabEl, tabId) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
         tabEl.classList.add('active');
         document.getElementById(tabId).classList.add('active');
     }
