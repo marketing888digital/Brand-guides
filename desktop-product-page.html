@@ -1,496 +1,725 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple iPad (2018 Model) - 888Lots</title>
+    <title>Razer Viper Ultimate - 888lots</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 888lots Approximate Palette derived from screenshot */
-            --brand-blue: #2251a3; /* Main header blue */
-            --brand-dark: #1a3c7a;
-            --accent-red: #e12d2d; /* Cart/Price color */
-            --bg-body: #f4f6f8;
-            --border-color: #e0e0e0;
-            --text-main: #333333;
-            --text-light: #777777;
-            --success-green: #28a745;
-            --badge-fba: #f0f2f5;
+            /* 888lots palette */
+            --action-blue: #2563eb;
+            --action-dark: #1e3a8a;
+            --urgent-red: #dc2626;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --bg-highlight: #f1f5f9;
+            --bg-space: #f8fafc;
+            --border: #e2e8f0;
+            --success: #16a34a;
+            --success-bg: #f0fdf4;
+            --profit-bg: #ecfdf5;
+            --profit-text: #15803d;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Open Sans', sans-serif; /* Matching the site's likely font */
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            background: var(--bg-space);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text-primary);
             font-size: 13px;
-        }
-
-        /* --- FAKE HEADER TO MATCH SCREENSHOT --- */
-        .site-header {
-            background-color: white;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .top-bar {
-            background-color: var(--brand-blue);
-            height: 60px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            color: white;
-            gap: 20px;
-        }
-        .logo-placeholder { font-weight: 900; font-size: 24px; font-style: italic; letter-spacing: -1px; margin-right: 20px; }
-        .search-bar {
-            flex: 1;
-            max-width: 800px;
-            display: flex;
-        }
-        .search-input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            outline: none;
-        }
-        .search-btn {
-            background: #4a8df8;
-            border: none;
-            padding: 0 20px;
-            color: white;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        .nav-icons { display: flex; gap: 15px; margin-left: auto; font-size: 20px; }
-        
-        .sub-nav {
-            background-color: var(--brand-dark);
-            color: white;
-            display: flex;
-            padding: 0 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .nav-item { padding: 12px 15px; cursor: pointer; border-right: 1px solid rgba(255,255,255,0.1); }
-        .nav-item:hover { background: rgba(255,255,255,0.1); }
-        .nav-item.active { background: #142f61; }
-
-        /* --- MAIN CONTAINER --- */
-        .container {
-            max-width: 1300px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        .breadcrumb {
-            margin-bottom: 15px;
-            color: var(--text-light);
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .breadcrumb a { text-decoration: none; color: var(--text-light); }
-        .breadcrumb a:hover { color: var(--brand-blue); }
-
-        /* --- PRODUCT GRID LAYOUT --- */
-        .product-layout {
-            display: grid;
-            grid-template-columns: 350px 1fr 320px; /* Gallery - Info - Action */
-            gap: 20px;
-            align-items: start;
-        }
-
-        .panel {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 4px; /* Slightly sharper corners like screenshot */
-            padding: 20px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-
-        /* COLUMN 1: IMAGES */
-        .gallery-panel { position: relative; padding: 10px; }
-        .fba-badge-vertical {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #eef2f6;
-            color: #5b6b7f;
-            font-weight: 700;
-            font-size: 10px;
-            padding: 4px;
-            border: 1px solid #dce2e8;
-            border-radius: 3px;
-            writing-mode: vertical-lr;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 1px;
-            z-index: 2;
-        }
-        
-        .main-image {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: contain;
-            margin-bottom: 10px;
-        }
-        .thumbs-row { display: flex; gap: 8px; justify-content: center; }
-        .thumb {
-            width: 50px; height: 50px; border: 1px solid var(--border-color);
-            cursor: pointer; padding: 2px;
-        }
-        .thumb:hover { border-color: var(--brand-blue); }
-
-        /* COLUMN 2: MIDDLE INTEL (The Request) */
-        .info-panel { display: flex; flex-direction: column; gap: 15px; }
-
-        /* The "Pills" Strip */
-        .specs-pills {
-            display: flex;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-        }
-        .pill {
-            display: flex;
-            flex-direction: column;
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            padding: 6px 12px;
-            border-radius: 4px;
-            min-width: 80px;
-        }
-        .pill-label { font-size: 10px; color: var(--text-light); text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
-        .pill-value { font-size: 12px; font-weight: 600; color: var(--text-main); }
-        .pill-value.condition { color: var(--success-green); }
-
-        .product-title {
-            font-family: 'Roboto', sans-serif;
-            font-size: 20px;
-            font-weight: 600; /* Not too bold, matches site style */
-            color: #333;
             line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Combined Market Data & Profit Block */
-        .intel-box {
-            border: 1px solid #cce5ff;
-            background: #f0f7ff;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .intel-header {
-            background: #e6f2ff;
-            padding: 8px 15px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--brand-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #cce5ff;
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 24px;
         }
 
-        .market-stats-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            padding: 12px 15px;
-            border-bottom: 1px solid #dae8f7;
-            background: white;
-        }
-        .stat-group { display: flex; flex-direction: column; gap: 2px; }
-        .stat-label { font-size: 11px; color: var(--text-light); }
-        .stat-val { font-size: 14px; font-weight: 700; color: #333; }
-        .stat-val.rank { color: var(--brand-blue); }
-
-        .profit-waterfall {
-            padding: 12px 15px;
-            background: white;
-        }
-        .calc-row {
-            display: flex; justify-content: space-between;
-            font-size: 13px; margin-bottom: 6px;
-        }
-        .calc-row.final {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border-color);
-            font-weight: 700;
-            font-size: 15px;
-        }
-        .profit-green { color: var(--success-green); }
-        .cost-red { color: #d32f2f; }
-
-        /* Tools Row */
-        .tools-actions { display: flex; gap: 10px; }
-        .tool-link {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-            border: 1px solid var(--border-color);
-            background: white;
-            color: var(--text-light);
-            padding: 8px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .tool-link:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
-
-        /* COLUMN 3: ACTION */
-        .price-display {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-        .unit-price {
-            font-size: 32px;
-            font-weight: 700;
-            color: #333; /* Dark gray like screenshot, not red */
-            line-height: 1;
-        }
-        .unit-label { font-size: 12px; color: var(--text-light); }
-        
-        .az-price-ref {
-            margin-top: 8px;
-            font-size: 13px;
-            color: var(--text-light);
-        }
-        .az-price-strike { text-decoration: line-through; }
-
-        .stock-status {
+        /* BREADCRUMB */
+        .breadcrumb { 
+            font-size: 12px; 
+            color: var(--text-secondary); 
+            margin-bottom: 20px; 
             display: flex;
             align-items: center;
             gap: 6px;
-            color: var(--success-green);
-            font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 15px;
+        }
+        .breadcrumb a { 
+            text-decoration: none; 
+            color: var(--text-secondary); 
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover { color: var(--action-blue); }
+        .breadcrumb i { font-size: 10px; color: var(--text-muted); }
+        .breadcrumb span { 
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
-        .qty-selector {
+        /* HEADER */
+        .product-header {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .title-row {
             display: flex;
-            height: 40px;
-            margin-bottom: 10px;
-        }
-        .qty-input {
-            width: 60px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            font-weight: bold;
-            border-right: none;
-            border-radius: 4px 0 0 4px;
-        }
-        .qty-btn-wrap {
-            display: flex; flex-direction: column;
-        }
-        .qty-mini-btn {
-            height: 20px; width: 20px; border: 1px solid var(--border-color);
-            background: #f8f9fa; cursor: pointer; font-size: 10px;
-            display: flex; align-items: center; justify-content: center;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
         }
 
-        .add-btn {
-            background: var(--brand-blue); /* Screenshot has red carts, but primary action is usually brand color */
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            font-size: 14px;
+        .product-title {
+            font-size: 22px;
             font-weight: 700;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: background 0.2s;
-        }
-        .add-btn:hover { background: var(--brand-dark); }
-        
-        .manifest-info {
-            margin-top: 15px;
-            background: #fff8e1;
-            border: 1px solid #ffeeba;
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #856404;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+            flex: 1;
         }
 
-        @media (max-width: 1000px) {
-            .product-layout { grid-template-columns: 1fr; }
-            .info-panel { order: 1; }
-            .gallery-panel { order: 2; }
-            .action-panel { order: 3; }
+        .condition-badge {
+            flex-shrink: 0;
+            background: var(--bg-highlight);
+            color: var(--text-primary);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            letter-spacing: 0.5px;
+        }
+
+        .hashtags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .hashtag {
+            font-size: 12px;
+            color: var(--action-blue);
+            font-weight: 600;
+            background: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #dbeafe;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .code-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-secondary);
+            background: var(--bg-space);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .code-chip:hover {
+            background: white;
+            border-color: var(--action-blue);
+            color: var(--action-blue);
+            transform: translateY(-1px);
+        }
+        .code-chip i { font-size: 14px; opacity: 0.7; }
+
+        /* GRID LAYOUT */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr 360px;
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        /* === COLUMN 1: GALLERY === */
+        .gallery-card { position: sticky; top: 24px; padding: 16px; z-index: 10; }
+        
+        .main-img-wrapper {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 12px;
+            background: white;
+            position: relative;
+        }
+        .main-img { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.2s; }
+        
+        .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .thumb {
+            aspect-ratio: 1/1;
+            border-radius: 6px;
+            padding: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            border: 1px solid var(--border);
+            opacity: 0.7;
+        }
+        .thumb:hover { border-color: var(--action-blue); opacity: 1; }
+        .thumb.active { border-color: var(--action-blue); box-shadow: 0 0 0 2px rgba(37,99,235,0.1); opacity: 1; }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* === COLUMN 2: INTELLIGENCE CARD === */
+        .info-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-section-header {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .info-section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Market Data */
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+        .market-stat {
+            background: var(--bg-space);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .market-stat:hover { border-color: #cbd5e1; background: #f1f5f9; }
+        .stat-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; font-weight: 600; }
+        .stat-value { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
+        .stat-sub { font-size: 10px; color: var(--text-muted); }
+
+        /* Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .tool-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+            background: white;
+        }
+        .tool-btn:hover {
+            border-color: var(--action-blue);
+            color: var(--action-blue);
+            background: #eff6ff;
+        }
+
+        /* Calculator Style Profit */
+        .profit-calculator {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .calc-row.operator {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+        .calc-label { color: var(--text-secondary); }
+        .calc-val { font-weight: 600; color: var(--text-primary); font-family: 'Roboto Mono', monospace; }
+        .calc-val.cost { color: var(--urgent-red); }
+        
+        .calc-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--profit-bg);
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px dashed var(--success);
+        }
+        .calc-result-label { font-weight: 700; color: var(--profit-text); font-size: 12px; text-transform: uppercase; }
+        .calc-result-val { font-size: 18px; font-weight: 800; color: var(--profit-text); }
+
+        /* === COLUMN 3: PURCHASE CARD === */
+        .purchase-card { position: sticky; top: 24px; z-index: 10; }
+
+        .price-section { padding: 24px; border-bottom: 1px solid var(--border); position: relative; }
+        .price-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .price-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+        
+        .price-main { display: flex; align-items: baseline; gap: 8px; }
+        .currency { font-size: 20px; font-weight: 600; color: var(--text-primary); vertical-align: top; }
+        .current-price { font-size: 42px; font-weight: 800; color: var(--text-primary); line-height: 1; letter-spacing: -1.5px; }
+        .old-price-block { display: flex; flex-direction: column; align-items: flex-start; margin-left: 4px; }
+        .old-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; }
+        .discount-pill { background: var(--urgent-red); color: white; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+
+        .stock-section { padding: 16px 24px; background: var(--bg-space); border-bottom: 1px solid var(--border); }
+        .stock-indicator { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--success); }
+        .stock-indicator i { font-weight: 800; }
+        .progress-bg { height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { height: 100%; background: var(--success); width: 75%; border-radius: 10px; }
+        
+        .moq-row { display: flex; justify-content: space-between; font-size: 12px; }
+        .moq-label { color: var(--text-secondary); }
+        .moq-val { font-weight: 600; color: var(--text-primary); }
+
+        .action-section { padding: 24px; }
+
+        .qty-group { display: flex; gap: 10px; margin-bottom: 16px; height: 48px; }
+        .qty-wrapper {
+            flex: 1;
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .qty-btn {
+            width: 40px; border: none; background: white; cursor: pointer;
+            font-size: 18px; color: var(--text-secondary); transition: 0.2s;
+        }
+        .qty-btn:hover { background: var(--bg-highlight); color: var(--action-blue); }
+        .qty-input {
+            flex: 1; border: none; border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+            text-align: center; font-size: 16px; font-weight: 700; color: var(--text-primary); outline: none;
+        }
+        
+        .btn-cart {
+            width: 100%; height: 48px; background: var(--action-blue); color: white; border: none;
+            font-size: 15px; font-weight: 600; border-radius: 6px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 8px; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+        .btn-cart:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3); }
+
+        .secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .btn-sec {
+            padding: 10px; background: white; border: 1px solid var(--border); border-radius: 6px;
+            font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px; transition: 0.2s;
+        }
+        .btn-sec:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+
+        /* PROMO & AUTH (Refined) */
+        .promo-container { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+
+        .promo-box {
+            background: linear-gradient(135deg, #fff1f2 0%, #fff 100%);
+            border: 1px dashed #fda4af;
+            border-radius: 8px;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .promo-header { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+        .promo-icon { color: var(--urgent-red); font-size: 20px; }
+        .promo-title { font-weight: 800; color: #9f1239; font-size: 13px; text-transform: uppercase; }
+        .promo-tag { position: absolute; top: 10px; right: 10px; background: var(--urgent-red); color: white; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; }
+        .promo-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+        .auth-overlay {
+            background: var(--bg-space);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .auth-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .auth-buttons { display: flex; gap: 10px; }
+        .btn-auth { flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
+        .btn-auth.login { background: var(--text-primary); color: white; }
+        .btn-auth.login:hover { background: #0f172a; }
+        .btn-auth.reg { background: white; border: 1px solid var(--border); color: var(--action-blue); }
+        .btn-auth.reg:hover { border-color: var(--action-blue); background: #eff6ff; }
+
+        /* DESCRIPTION TABS */
+        .desc-container { background: white; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 24px; }
+        .tabs-header { display: flex; background: var(--bg-space); border-bottom: 1px solid var(--border); }
+        .tab-btn {
+            padding: 16px 24px; font-size: 14px; font-weight: 600; color: var(--text-secondary);
+            cursor: pointer; border-right: 1px solid var(--border); transition: 0.2s;
+            position: relative;
+        }
+        .tab-btn:hover { background: #e2e8f0; color: var(--text-primary); }
+        .tab-btn.active { background: white; color: var(--action-blue); box-shadow: inset 0 3px 0 var(--action-blue); }
+        .tab-content { display: none; padding: 32px; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tab-content h3 { font-size: 18px; color: var(--text-primary); margin-bottom: 16px; }
+        .tab-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+        .tab-content ul { padding-left: 20px; color: var(--text-secondary); line-height: 1.6; }
+        .tab-content li { margin-bottom: 8px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) { .product-grid { grid-template-columns: 320px 1fr 340px; } }
+        @media (max-width: 1024px) { 
+            .product-grid { grid-template-columns: 1fr 360px; } 
+            .gallery-card { grid-column: 1 / -1; position: static; }
+            .thumbs { justify-content: center; }
+        }
+        @media (max-width: 768px) { 
+            .product-grid { grid-template-columns: 1fr; }
+            .purchase-card { position: static; }
+            .title-row { flex-direction: column-reverse; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- FAKE HEADER -->
-    <div class="site-header">
-        <div class="top-bar">
-            <div class="logo-placeholder">888LOTS</div>
-            <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search items, lots, brands...">
-                <button class="search-btn"><i class="ph-bold ph-magnifying-glass"></i></button>
-            </div>
-            <div class="nav-icons">
-                <i class="ph ph-bell"></i>
-                <i class="ph ph-heart"></i>
-                <i class="ph ph-shopping-cart"></i>
-            </div>
+<div class="container">
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
+        <a href="#">Items</a> <i class="ph-bold ph-caret-right"></i>
+        <a href="#">Hardware</a> <i class="ph-bold ph-caret-right"></i>
+        <span>Razer</span>
+    </div>
+
+    <!-- HEADER -->
+    <div class="product-header">
+        <div class="title-row">
+            <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor - Chroma Lighting - 8 Programmable Buttons</h1>
+            <span class="condition-badge">New / FBA Ready</span>
         </div>
-        <div class="sub-nav">
-            <div class="nav-item active">ITEMS</div>
-            <div class="nav-item">LOTS</div>
-            <div class="nav-item">SPECIAL DEALS</div>
-            <div class="nav-item">FULFILLED BY AMAZON</div>
-            <div class="nav-item">STOCK RADAR</div>
+        
+        <div class="hashtags">
+            <span class="hashtag">#GamingMouse</span>
+            <span class="hashtag">#Razer</span>
+            <span class="hashtag">#HighMargin</span>
+            <span class="hashtag">#TopSeller</span>
+        </div>
+        
+        <div class="header-meta">
+            <div class="code-chip" onclick="copyCode(this, '888 B08565C5BB US')">
+                <i class="ph ph-barcode"></i> SKU: 888 B08565C5BB US
+            </div>
+            <div class="code-chip" onclick="copyCode(this, 'B08565C5BB')">
+                <i class="ph ph-amazon-logo"></i> ASIN: B08565C5BB
+            </div>
+            <div class="code-chip" onclick="copyCode(this, '0810091280019')">
+                <i class="ph ph-qr-code"></i> UPC: 0810091280019
+            </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="#"><i class="ph-fill ph-house"></i></a>
-            <i class="ph-bold ph-caret-right"></i>
-            <a href="#">Items</a>
-            <i class="ph-bold ph-caret-right"></i>
-            <a href="#">Computer Peripheral</a>
-            <i class="ph-bold ph-caret-right"></i>
-            <span>Razer</span>
+    <div class="product-grid">
+
+        <!-- COLUMN 1: GALLERY -->
+        <div class="card gallery-card">
+            <div class="gallery">
+                <div class="main-img-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" class="main-img" id="mainImg" alt="Razer Viper Ultimate">
+                </div>
+                <div class="thumbs">
+                    <div class="thumb active" onclick="swapImg(this)">
+                        <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" alt="View 1">
+                    </div>
+                    <div class="thumb" onclick="swapImg(this)">
+                        <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt="View 2">
+                    </div>
+                    <div class="thumb" onclick="swapImg(this)">
+                        <img src="https://m.media-amazon.com/images/I/619BkvYWQ6L._AC_SL1500_.jpg" alt="View 3">
+                    </div>
+                    <div class="thumb" onclick="swapImg(this)">
+                        <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt="View 4">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="product-layout">
-
-            <!-- LEFT: IMAGES -->
-            <div class="panel gallery-panel">
-                <div class="fba-badge-vertical">FBA</div>
-                <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" class="main-image">
-                <div class="thumbs-row">
-                    <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" class="thumb">
-                    <img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" class="thumb">
-                    <img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" class="thumb">
+        <!-- COLUMN 2: INTELLIGENCE DASHBOARD -->
+        <div class="card info-card">
+            
+            <!-- Market Data -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-chart-line-up"></i> Market Data</div>
+                <div class="market-grid">
+                    <div class="market-stat">
+                        <div class="stat-label">Est. Az Price</div>
+                        <div class="stat-value">$129.00</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">Sales Rank</div>
+                        <div class="stat-value">#142</div>
+                        <div class="stat-sub">Video Games</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">MSRP</div>
+                        <div class="stat-value">$129.99</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- MIDDLE: INTELLIGENCE (THE REQUEST) -->
-            <div class="panel info-panel">
-                
-                <!-- 1. The "Pills" Header -->
-                <div class="specs-pills">
-                    <div class="pill">
-                        <span class="pill-label">Condition</span>
-                        <span class="pill-value condition">Brand New</span>
+            <!-- Profit Calculator (Visual) -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-calculator"></i> Profit Calculator</div>
+                <div class="profit-calculator">
+                    <div class="calc-row">
+                        <span class="calc-label">Est. Sell Price</span>
+                        <span class="calc-val">$129.00</span>
                     </div>
-                    <div class="pill">
-                        <span class="pill-label">Category</span>
-                        <span class="pill-value">Peripheral</span>
+                    <div class="calc-row">
+                        <span class="calc-label">Your Unit Cost</span>
+                        <span class="calc-val cost">− $89.00</span>
                     </div>
-                    <div class="pill">
-                        <span class="pill-label">Brand</span>
-                        <span class="pill-value">Razer</span>
+                    <div class="calc-row operator">
+                        <span class="calc-label">Est. Fees & Ship</span>
+                        <span class="calc-val cost">− $10.00</span>
                     </div>
-                </div>
-
-                <h1 class="product-title">Razer Viper Ultimate Lightweight Wireless Gaming Mouse: Fastest Gaming Switches - 20K DPI Optical Sensor</h1>
-
-                <!-- 2. Market & Profit Analysis -->
-                <div class="intel-box">
-                    <div class="intel-header">
-                        <span><i class="ph-bold ph-chart-line-up"></i> MARKET INTELLIGENCE</span>
-                        <span>ASIN: B08565C5BB</span>
+                    <div class="calc-result">
+                        <span class="calc-result-label">Net Profit / Unit</span>
+                        <span class="calc-result-val">+$30.00</span>
                     </div>
-                    
-                    <div class="market-stats-row">
-                        <div class="stat-group">
-                            <span class="stat-label">Az Sales Rank</span>
-                            <span class="stat-val rank">#112</span>
-                        </div>
-                        <div class="stat-group">
-                            <span class="stat-label">Az Offers</span>
-                            <span class="stat-val">4</span>
-                        </div>
-                        <div class="stat-group">
-                            <span class="stat-label">Est. Az Price</span>
-                            <span class="stat-val">$129.00</span>
-                        </div>
-                    </div>
-
-                    <div class="profit-waterfall">
-                        <div class="calc-row">
-                            <span style="color:var(--text-light)">Est. Sell Price</span>
-                            <span>$129.00</span>
-                        </div>
-                        <div class="calc-row">
-                            <span style="color:var(--text-light)">Your Cost</span>
-                            <span class="cost-red">- $89.00</span>
-                        </div>
-                        <div class="calc-row">
-                            <span style="color:var(--text-light)">Est. Fees</span>
-                            <span class="cost-red">- $10.00</span>
-                        </div>
-                        <div class="calc-row final">
-                            <span>Est. Net Profit</span>
-                            <span class="profit-green">+$30.00 (23%)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Tools -->
-                <div class="tools-actions">
-                    <a href="#" class="tool-link"><i class="ph-bold ph-chart-bar"></i> Keepa</a>
-                    <a href="#" class="tool-link"><i class="ph-bold ph-amazon-logo"></i> Amazon</a>
-                    <a href="#" class="tool-link"><i class="ph-bold ph-google-logo"></i> Google</a>
-                </div>
-
-            </div>
-
-            <!-- RIGHT: ACTION -->
-            <div class="panel action-panel">
-                <div class="price-display">
-                    <div class="unit-price">$89.00 <span class="unit-label">/ unit</span></div>
-                    <div class="az-price-ref">
-                        Az Price: <span class="az-price-strike">$129.00</span>
-                    </div>
-                </div>
-
-                <div class="stock-status">
-                    <i class="ph-fill ph-check-circle"></i> 132 units available
-                </div>
-
-                <div style="display:flex; gap:10px; align-items: center; margin-bottom:10px;">
-                    <div class="qty-selector">
-                        <input type="text" class="qty-input" value="100">
-                        <div class="qty-btn-wrap">
-                            <button class="qty-mini-btn"><i class="ph-bold ph-caret-up"></i></button>
-                            <button class="qty-mini-btn"><i class="ph-bold ph-caret-down"></i></button>
-                        </div>
-                    </div>
-                    <span style="font-size:12px; color:var(--text-light)">Min: 100</span>
-                </div>
-
-                <button class="add-btn">
-                    <i class="ph-bold ph-shopping-cart"></i> ADD TO CART
-                </button>
-
-                <div class="manifest-info">
-                    <strong><i class="ph-bold ph-truck"></i> Shipping:</strong><br>
-                    Ships from USA (FBA)<br>
-                    Est. $1.00 / unit
                 </div>
             </div>
 
+            <!-- Tools -->
+            <div class="info-group">
+                <div class="info-section-header"><i class="ph-bold ph-toolbox"></i> Research Tools</div>
+                <div class="tools-grid">
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-chart-bar"></i> Keepa Chart</a>
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-calculator"></i> FBA Calc</a>
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-amazon-logo"></i> View on Amz</a>
+                    <a href="#" class="tool-btn"><i class="ph-fill ph-google-logo"></i> Search Google</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUMN 3: PURCHASE ACTION -->
+        <div class="card purchase-card">
+            
+            <div class="price-section">
+                <div class="price-header">
+                    <span class="price-label">Wholesale Price</span>
+                    <span class="discount-pill">-6% OFF</span>
+                </div>
+                <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="current-price">89.00</span>
+                    <div class="old-price-block">
+                        <span class="old-price">$95.00</span>
+                        <span class="price-label">/ unit</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stock-section">
+                <div class="stock-indicator">
+                    <i class="ph-fill ph-check-circle"></i> In Stock (132 units)
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="moq-row">
+                    <span class="moq-label">Min Order Qty (MOQ)</span>
+                    <span class="moq-val">100 Units</span>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <div class="qty-group">
+                    <div class="qty-wrapper">
+                        <button class="qty-btn" onclick="adjustQty(-1)">−</button>
+                        <input type="number" class="qty-input" id="qtyInput" value="100" min="100" max="132">
+                        <button class="qty-btn" onclick="adjustQty(1)">+</button>
+                    </div>
+                    <button class="btn-cart">
+                        <i class="ph-fill ph-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+
+                <div class="secondary-actions">
+                    <button class="btn-sec"><i class="ph ph-handshake"></i> Negotiate</button>
+                    <button class="btn-sec"><i class="ph ph-eye"></i> Watch List</button>
+                </div>
+
+                <div class="promo-container">
+                    <div class="promo-box">
+                        <span class="promo-tag">-95% SHIP</span>
+                        <div class="promo-header">
+                            <i class="ph-fill ph-gift promo-icon"></i>
+                            <span class="promo-title">New Customer Offer</span>
+                        </div>
+                        <p class="promo-text">One-time discount on shipping & fees for your first order up to $1,000.</p>
+                    </div>
+
+                    <div class="auth-overlay">
+                        <div class="auth-title"><i class="ph-fill ph-lock-key"></i> Login to unlock price</div>
+                        <div class="auth-buttons">
+                            <a href="#" class="btn-auth login">Sign In</a>
+                            <a href="#" class="btn-auth reg">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TABS -->
+    <div class="desc-container">
+        <div class="tabs-header">
+            <div class="tab-btn active" onclick="switchTab(this, 'description')">Description</div>
+            <div class="tab-btn" onclick="switchTab(this, 'specs')">Specifications</div>
+            <div class="tab-btn" onclick="switchTab(this, 'manifest')">Manifest & Shipping</div>
+        </div>
+
+        <div id="description" class="tab-content active">
+            <h3>Product Overview</h3>
+            <p>The <strong>Razer Viper Ultimate</strong> is the definitive wireless gaming mouse, built for esports professionals. It features Razer's Hyperspeed Wireless technology, which is 25% faster than any other wireless technology available.</p>
+            <ul>
+                <li><strong>Razer Focus+ Optical Sensor:</strong> 20,000 DPI sensitivity for pinpoint accuracy.</li>
+                <li><strong>74g Lightweight Design:</strong> Achieves its weight without the need for honeycomb holes.</li>
+                <li><strong>Optical Mouse Switches:</strong> Actuation at the speed of light, rated for 70 million clicks.</li>
+                <li><strong>70 Hours Battery Life:</strong> Play for days on a single charge.</li>
+            </ul>
+        </div>
+        <div id="specs" class="tab-content">
+            <h3>Technical Specifications</h3>
+            <ul>
+                <li>Brand: Razer</li>
+                <li>Model: Viper Ultimate (RZ01-03050100-R3U1)</li>
+                <li>Connectivity: HyperSpeed Wireless / Wired Speedflex Cable</li>
+                <li>Sensor: Focus+ Optical</li>
+                <li>Max Speed (IPS): 650</li>
+                <li>Max Acceleration (G): 50</li>
+            </ul>
+        </div>
+        <div id="manifest" class="tab-content">
+            <h3>Manifest & Logistics</h3>
+            <p><strong>Condition:</strong> Brand New (Retail Packaging)</p>
+            <p><strong>Fulfillment:</strong> Items are stored in Amazon FBA centers (USA). Can be shipped to your warehouse or forwarded to another FBA center.</p>
+            <p><strong>Shipping Cost:</strong> Estimated $1.00 per unit (varies by location).</p>
         </div>
     </div>
+
+</div>
+
+<script>
+    function swapImg(el) {
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+        
+        // Simple fade effect
+        mainImg.style.opacity = 0;
+        setTimeout(() => {
+            mainImg.src = el.querySelector('img').src;
+            mainImg.style.opacity = 1;
+        }, 150);
+
+        thumbs.forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function copyCode(el, text) {
+        // Mock copy to clipboard
+        navigator.clipboard.writeText(text);
+        
+        const originalHTML = el.innerHTML;
+        const originalBg = el.style.background;
+        
+        el.innerHTML = '<i class="ph-bold ph-check"></i> Copied!';
+        el.style.background = 'var(--success-bg)';
+        el.style.borderColor = 'var(--success)';
+        el.style.color = 'var(--success)';
+        
+        setTimeout(() => {
+            el.innerHTML = originalHTML;
+            el.style.background = originalBg;
+            el.style.borderColor = 'var(--border)';
+            el.style.color = 'var(--text-secondary)';
+        }, 1200);
+    }
+
+    function adjustQty(delta) {
+        const input = document.getElementById('qtyInput');
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
+        let value = parseInt(input.value) + delta;
+        
+        if (value < min) value = min;
+        if (value > max) value = max;
+        
+        input.value = value;
+    }
+
+    function switchTab(tabEl, tabId) {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        tabEl.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
 
 </body>
 </html>
