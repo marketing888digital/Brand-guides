@@ -369,14 +369,25 @@
             background: linear-gradient(135deg, #fff1f2 0%, #fff 100%);
             border: 1px dashed #fda4af;
             border-radius: 8px;
-            padding: 16px;
             position: relative;
             overflow: hidden;
+            padding: 24px;
         }
         .promo-header { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
         .promo-icon { color: var(--urgent-red); font-size: 20px; }
         .promo-title { font-weight: 800; color: #9f1239; font-size: 13px; text-transform: uppercase; }
-        .promo-tag { position: absolute; top: 10px; right: 10px; background: var(--urgent-red); color: white; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; }
+        .promo-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--urgent-red);
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transform: rotate(-15deg);
+        }
         .promo-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
         .auth-overlay {
@@ -542,7 +553,7 @@
                         <span class="calc-val cost">− $89.00</span>
                     </div>
                     <div class="calc-row operator">
-                        <span class="calc-label">Est. Fees & Ship</span>
+                        <span class="calc-label">Est. Fees & </span>
                         <span class="calc-val cost">− $10.00</span>
                     </div>
                     <div class="calc-result">
@@ -569,7 +580,7 @@
         <div class="card purchase-card">
             <div class="promo-container">
                     <div class="promo-box">
-                        <span class="promo-tag">-95% SHIP</span>
+                        <span class="promo-tag">-60%</span>
                         <div class="promo-header">
                             <i class="ph-fill ph-gift promo-icon"></i>
                             <span class="promo-title">New Customer Offer</span>
@@ -579,7 +590,6 @@
             <div class="price-section">
                 <div class="price-header">
                     <span class="price-label">Wholesale Price</span>
-                    <span class="discount-pill">-6% OFF</span>
                 </div>
                 <div class="price-main">
                     <span class="currency">$</span>
