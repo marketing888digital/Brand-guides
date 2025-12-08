@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Razer Viper Ultimate - Wholesale</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#3B82F6;
+      --primary-dark:#1e40af;
+      --primary-light:#eff6ff;
+      --danger:#dc2626;
+      --danger-bg:#fef2f2;
+      --success:#10b981;
+      --success-bg:#ecfdf5;
+      --success-text:#047857;
+      --bg-body:#f8fafc;
+      --bg-card:#ffffff;
+      --text-main:#334155;
+      --text-sec:#4A5568;
+      --text-muted:#94a3b8;
+      --border:#e2e8f0;
+      --radius:12px;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+      --shadow-md:0 4px 10px rgba(0,0,0,.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg-body);
+      font-family:Inter,system-ui,-apple-system,sans-serif;
+      color:var(--text-main);
+      font-size:13px;
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      padding-bottom:80px;
+    }
+    .container{max-width:1380px;margin:0 auto;padding:24px 18px}
+    button{font-family:inherit;cursor:pointer}
+    a{text-decoration:none;color:inherit}
+
+    /* Deal Type Banner */
+    .deal-type-banner{
+      background:linear-gradient(135deg, var(--danger) 0%, #b91c1c 100%);
+      color:#fff;
+      padding:12px 20px;
+      border-radius:var(--radius);
+      margin-bottom:20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 8px 20px rgba(220,38,38,0.25);
+    }
+    .deal-type-banner .left{display:flex;align-items:center;gap:12px}
+    .deal-type-banner .badge{
+      background:rgba(255,255,255,0.25);
+      padding:6px 12px;
+      border-radius:8px;
+      font-weight:900;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      backdrop-filter:blur(10px);
+    }
+    .deal-type-banner .main-text{
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:-0.02em;
+    }
+    .deal-type-banner .qualifier{
+      font-size:11px;
+      font-weight:700;
+      opacity:0.9;
+    }
+
+    .breadcrumb{
+      font-size:12px;color:var(--text-sec);
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .breadcrumb a{color:var(--text-sec);transition:.2s}
+    .breadcrumb a:hover{color:var(--primary)}
+    .breadcrumb i{font-size:10px;color:var(--text-muted)}
+    .breadcrumb span{color:var(--text-main);font-weight:800}
+
+    .product-header{margin-bottom:20px}
+    .title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+    .product-title{
+      font-size:24px;font-weight:900;line-height:1.2;letter-spacing:-.02em;color:var(--text-main);
+    }
+    
+    .quick-tags{
+      display:flex;
+      gap:8px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .quick-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 12px;
+      border-radius:6px;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:0.3px;
+      border:1px solid;
+    }
+    .quick-tag.trending{background:#fef3c7;border-color:#fbbf24;color:#92400e}
+    .quick-tag.restock{background:#dbeafe;border-color:#3B82F6;color:#1e40af}
+    .quick-tag.new{background:#f3e8ff;border-color:#a855f7;color:#6b21a8}
+
+    .product-grid{
+      display:grid;
+      grid-template-columns: 380px 1fr 360px;
+      gap:20px;
+      align-items:start;
+    }
+    .card{
+      background:var(--bg-card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-md);
+      overflow:hidden;
+    }
+
+    .gallery-wrapper{position:sticky;top:20px;padding:14px;border:1px solid var(--border)}
+    .main-stage{
+      aspect-ratio:1/1;
+      padding:18px;
+      display:flex;align-items:center;justify-content:center;
+      background:#fff;
+      margin-bottom:10px;border-radius:var(--radius);
+      border:1px solid var(--border);
+    }
+    .main-img{max-width:100%;max-height:100%;object-fit:contain;transition:opacity .2s}
+
+    .thumbs-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .thumb-btn{
+      aspect-ratio:1/1;border-radius:12px;padding:6px;
+      border:1px solid var(--border);cursor:pointer;
+      transition:.15s;opacity:.8;background:#fff;
+    }
+    .thumb-btn:hover,.thumb-btn.active{border-color:var(--primary);opacity:1;box-shadow:0 0 0 3px rgba(59,130,246,.10)}
+    .thumb-btn img{width:100%;height:100%;object-fit:contain}
+
+    /* --- MODIFIED SECTION: Identifiers Row --- */
+    .ids-col{
+      display:grid;
+      /* Changed from 1fr to repeat(3, 1fr) for 3 columns */
+      grid-template-columns: repeat(3, 1fr); 
+      gap:12px;
+    }
+    .id-row{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:8px 10px;border-radius:8px;
+      border:1px solid var(--border);
+      background:var(--bg-body);
+      min-width: 0; /* Prevents overflow */
+    }
+    .id-left{display:flex;align-items:center;gap:10px;min-width:0}
+    .id-k{
+      width:36px;flex-shrink:0;
+      font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.4px;
+      color:var(--text-muted);
+    }
+    .id-v{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,monospace;
+      font-size:11px;font-weight:800;color:var(--text-main);
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      /* Removed fixed max-width so it flexes better in columns */
+      width: 100%;
+    }
+    .copy-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:24px;height:24px;border-radius:6px;
+      border:1px solid var(--border);
+      background:#fff;color:var(--text-sec);
+      font-size:12px;transition:.15s;flex-shrink:0;padding:0;
+    }
+    .copy-btn:hover{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+    /* ---------------------------------------- */
+
+    .info-stack{display:flex;flex-direction:column;gap:14px}
+
+    .section-label{
+      font-size:11px;font-weight:900;text-transform:uppercase;color:var(--text-muted);
+      letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:6px;
+    }
+
+    .calc-card{
+      background:linear-gradient(to bottom,#fff,#f8fafc);
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+    }
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+    .calc-input-group{display:flex;flex-direction:column;gap:6px}
+    .calc-label{font-size:11px;font-weight:900;color:var(--text-sec)}
+    .input-wrapper{position:relative;display:flex;align-items:center}
+    .input-prefix{position:absolute;left:10px;color:var(--text-muted);font-weight:900;font-size:13px}
+    .calc-input{
+      width:100%;padding:8px 10px 8px 22px;
+      border:1px solid var(--border);border-radius:8px;
+      font-weight:900;color:var(--text-main);font-size:13px;
+      transition:.15s;background:#fff;
+    }
+    .calc-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(59,130,246,.10)}
+    .calc-input.locked{background:#f1f5f9;color:var(--text-muted);border-color:transparent}
+
+    .calc-results{
+      background:var(--success-bg);
+      border:1px solid #bbf7d0;
+      border-radius:10px;
+      padding:12px 16px;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .result-label{font-size:10px;font-weight:900;color:var(--success-text);text-transform:uppercase}
+    .result-val{font-size:22px;font-weight:900;color:var(--success-text);line-height:1}
+    .roi-badge{
+      display:inline-block;
+      background:#fff;padding:4px 8px;border-radius:6px;
+      font-size:11px;font-weight:900;color:var(--success-text);
+      box-shadow:var(--shadow-sm);margin-top:4px;
+    }
+
+    .tools-row{display:flex;gap:8px;flex-wrap:wrap}
+    .tool-chip{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:12px;font-weight:800;color:var(--text-sec);
+      background:#fff;border:1px solid var(--border);
+      padding:6px 12px;border-radius:99px;
+      transition:.15s;
+    }
+    .tool-chip:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);transform:translateY(-1px)}
+
+    .specs-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;
+      background:#fff;padding:14px;border-radius:var(--radius);
+      border:1px solid var(--border);
+    }
+    .spec-item{display:flex;flex-direction:column;gap:2px}
+    .spec-k{font-size:11px;color:var(--text-muted);font-weight:900}
+    .spec-v{font-size:13px;font-weight:800;color:var(--text-main)}
+
+    .tabs-section{margin-top:10px}
+    .tabs-nav{display:flex;gap:18px;border-bottom:1px solid var(--border);margin-bottom:14px}
+    .tab-link{
+      padding-bottom:10px;font-weight:900;color:var(--text-sec);cursor:pointer;
+      border-bottom:2px solid transparent;transition:.15s;font-size:12px;
+    }
+    .tab-link.active{color:var(--primary);border-color:var(--primary)}
+    .tab-content{display:none;color:var(--text-sec);line-height:1.6;font-size:13px}
+    .tab-content.active{display:block;animation:fadeUp .22s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Buy Box */
+    .buy-box{
+      position:sticky;top:20px;
+      padding:18px;
+      display:flex;flex-direction:column;gap:14px;
+      border-top:4px solid var(--danger);
+      background:#fff;
+      border:1px solid var(--border);
+    }
+
+    .promo-box{
+      background:var(--danger-bg);
+      border:2px solid var(--danger);
+      border-radius:10px;
+      padding:14px;
+      position:relative;
+    }
+    .promo-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:8px;
+    }
+    .promo-title i{color:var(--danger);font-size:20px}
+    .promo-title span{
+      font-weight:900;
+      font-size:13px;
+      color:var(--danger);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+    .promo-box p{
+      font-size:12px;
+      color:var(--text-sec);
+      font-weight:700;
+      line-height:1.4;
+    }
+    .promo-discount{
+      position:absolute;
+      top:-8px;
+      right:12px;
+      background:var(--danger);
+      color:#fff;
+      padding:6px 14px;
+      border-radius:20px;
+      font-weight:900;
+      font-size:14px;
+      box-shadow:0 4px 12px rgba(220,38,38,0.3);
+    }
+
+    .price-display{display:flex;flex-direction:column;gap:2px}
+    .price-label{font-size:12px;color:var(--text-sec);font-weight:800;display:flex;justify-content:space-between}
+    .price-row{display:flex;align-items:baseline;gap:6px}
+    .big-price{font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1;color:var(--text-main)}
+    .unit-price{color:var(--text-muted);font-size:13px;font-weight:700}
+    .msrp-strike{text-decoration:line-through;color:var(--text-muted);font-size:12px;font-weight:700}
+
+    .stock-meter{background:var(--bg-body);padding:10px;border-radius:10px;border:1px solid var(--border)}
+    .stock-top{display:flex;justify-content:space-between;font-size:11px;font-weight:900;margin-bottom:6px}
+    .stock-bar{height:6px;background:#cbd5e1;border-radius:999px;overflow:hidden}
+    .stock-fill{height:100%;width:75%;background:var(--success);border-radius:999px}
+    .moq-note{font-size:10px;color:var(--text-muted);margin-top:4px;text-align:right;font-weight:800}
+
+    .action-row{display:grid;grid-template-columns:1fr 2fr;gap:8px}
+    .qty-control{
+      display:flex;align-items:center;justify-content:space-between;
+      border:1px solid var(--border);border-radius:10px;padding:0 4px;
+      height:44px;background:#fff;
+    }
+    .qty-control button{border:none;background:none;font-size:16px;color:var(--text-sec);padding:0 8px;font-weight:900}
+    .qty-control input{
+      width:40px;border:none;text-align:center;font-weight:900;font-size:14px;color:var(--text-main);
+      outline:none;background:transparent;
+    }
+    .btn-primary{
+      background:var(--primary);color:#fff;border:none;border-radius:10px;
+      font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;
+      transition:.15s;
+      width:100%;height:44px;
+      box-shadow:0 8px 16px rgba(59,130,246,.18);
+    }
+    .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}
+    .btn-primary:active{transform:translateY(0)}
+
+    .secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .btn-sec{
+      height:38px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text-sec);
+      font-weight:800;
+      font-size:12px;
+      display:flex;align-items:center;justify-content:center;gap:6px;
+      transition:.15s;
+    }
+    .btn-sec:hover{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+
+    .guest-gate{
+      background:var(--bg-body);
+      border:1px dashed var(--border);
+      padding:12px;border-radius:10px;text-align:center;
+      font-size:11px;color:var(--text-sec);font-weight:700;
+      display:none;
+    }
+    .auth-buttons{display:flex;gap:8px;margin-top:8px}
+    .btn-auth{
+      flex:1;height:36px;border-radius:8px;font-weight:900;font-size:11px;
+      display:flex;align-items:center;justify-content:center;gap:6px;
+      border:1px solid var(--border);transition:.15s;
+    }
+    .btn-auth.login{background:var(--text-main);border-color:var(--text-main);color:#fff}
+    .btn-auth.reg{background:#fff;color:var(--primary)}
+
+    .mobile-bar{
+      position:fixed;bottom:0;left:0;right:0;
+      background:#fff;padding:12px 14px;
+      box-shadow:0 -4px 20px rgba(0,0,0,0.10);
+      display:none;z-index:100;
+      align-items:center;justify-content:space-between;
+      border-top:1px solid var(--border);
+    }
+
+    @media (max-width:1100px){
+      .product-grid{grid-template-columns:1fr 340px}
+      .gallery-wrapper{grid-row:1;position:static}
+      .info-stack{grid-row:2}
+      .buy-box{grid-row:1;grid-column:2;position:sticky;top:20px}
+    }
+    @media (max-width:860px){
+      .product-grid{display:flex;flex-direction:column}
+      .gallery-wrapper,.buy-box{position:static;width:100%}
+      .mobile-bar{display:flex}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      /* Stack Identifiers back to 1 column on mobile */
+      .ids-col{grid-template-columns: 1fr;} 
+      .deal-type-banner{flex-direction:column;align-items:flex-start;gap:8px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    
+    <div class="deal-type-banner">
+      <div class="left">
+        <span class="badge">FIRST ORDER OFFER</span>
+        <div>
+          <div class="main-text">Up to 60% First Order Discount</div>
+          <div class="qualifier">One-time discount for orders up to $1,000</div>
+        </div>
+      </div>
+      <i class="ph-fill ph-gift" style="font-size:32px;opacity:0.95"></i>
+    </div>
+
+    <div class="breadcrumb">
+      <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
+      <a href="#">Computers & Hardware</a> <i class="ph-bold ph-caret-right"></i>
+      <a href="#">Peripherals</a> <i class="ph-bold ph-caret-right"></i>
+      <span>Razer Viper Ultimate</span>
+    </div>
+
+    <div class="product-header">
+      <div class="title-row">
+        <div>
+          <h1 class="product-title">Razer Viper Ultimate Hyperspeed Lightest Wireless Gaming Mouse & RGB Charging Dock</h1>
+          
+          <div class="quick-tags">
+            <div class="quick-tag trending"><i class="ph-fill ph-trend-up"></i> Trending</div>
+            <div class="quick-tag restock"><i class="ph-fill ph-package"></i> Restock</div>
+            <div class="quick-tag new"><i class="ph-fill ph-sparkle"></i> New Arrival</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      
+      <div class="card gallery-wrapper">
+        <div class="main-stage">
+          <img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" id="mainImg" class="main-img" alt="Product">
+        </div>
+
+        <div class="thumbs-row">
+          <div class="thumb-btn active" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" alt=""></div>
+          <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt=""></div>
+          <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/619BkvYWQ6L._AC_SL1500_.jpg" alt=""></div>
+          <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt=""></div>
+        </div>
+      </div>
+
+      <div class="info-stack">
+        
+        <div class="card calc-card">
+          <div class="section-label"><i class="ph-fill ph-calculator"></i> Profit Simulator</div>
+          <div class="calc-grid">
+            <div class="calc-input-group">
+              <label class="calc-label">Est. Sell Price</label>
+              <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="sellPrice" class="calc-input" value="129.00" oninput="calculateProfit()">
+              </div>
+            </div>
+            <div class="calc-input-group">
+              <label class="calc-label">Cost</label>
+              <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="costPrice" class="calc-input locked" value="89.00" readonly>
+              </div>
+            </div>
+            <div class="calc-input-group">
+              <label class="calc-label">Fees</label>
+              <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="fees" class="calc-input" value="10.00" oninput="calculateProfit()">
+              </div>
+            </div>
+          </div>
+          <div class="calc-results">
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <span class="result-label">Net Profit / Unit</span>
+              <span class="result-val" id="netProfit">+$30.00</span>
+              <span class="roi-badge" id="roiBadge">ROI: 33.7%</span>
+            </div>
+            <i class="ph-duotone ph-coins" style="font-size:38px;color:var(--success-text);opacity:.3"></i>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label"><i class="ph ph-toolbox"></i> Research Tools</div>
+          <div class="tools-row">
+            <a href="#" class="tool-chip"><i class="ph-bold ph-chart-line-up"></i> Keepa</a>
+            <a href="#" class="tool-chip"><i class="ph-bold ph-amazon-logo"></i> Amazon</a>
+            <a href="#" class="tool-chip"><i class="ph-bold ph-google-logo"></i> Google</a>
+            <a href="#" class="tool-chip"><i class="ph-bold ph-placeholder"></i> eBay</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label"><i class="ph ph-barcode"></i> Identifiers</div>
+          <div class="ids-col">
+            <div class="id-row">
+              <div class="id-left">
+                <div class="id-k">SKU</div>
+                <div class="id-v">RZ01-03050100</div>
+              </div>
+              <button class="copy-btn" onclick="copyText('RZ01-03050100', this)"><i class="ph ph-copy"></i></button>
+            </div>
+            <div class="id-row">
+              <div class="id-left">
+                <div class="id-k">ASIN</div>
+                <div class="id-v">B08565C5BB</div>
+              </div>
+              <button class="copy-btn" onclick="copyText('B08565C5BB', this)"><i class="ph ph-copy"></i></button>
+            </div>
+            <div class="id-row">
+              <div class="id-left">
+                <div class="id-k">UPC</div>
+                <div class="id-v">0810091280019</div>
+              </div>
+              <button class="copy-btn" onclick="copyText('0810091280019', this)"><i class="ph ph-copy"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-k">Condition</span>
+            <span class="spec-v" style="color:var(--success)">Brand New</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-k">Brand</span>
+            <span class="spec-v">Razer</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-k">Category</span>
+            <span class="spec-v">Electronics</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-k">Sales Rank</span>
+            <span class="spec-v" style="color:var(--primary)">#142</span>
+          </div>
+        </div>
+
+        <div class="tabs-section">
+          <div class="tabs-nav">
+            <div class="tab-link active" onclick="setTab(0)">Description</div>
+            <div class="tab-link" onclick="setTab(1)">Manifest</div>
+          </div>
+          <div class="tab-content active" id="tab-0">
+            <p><strong>Wholesale-friendly summary:</strong> Fast moving electronics SKU with strong resale comps and clear profit margin potential.</p>
+            <ul style="padding-left:18px;margin-top:8px;font-weight:700;color:var(--text-main)">
+              <li>20K DPI Focus+ Optical Sensor</li>
+              <li>74g Lightweight Design</li>
+              <li>70 Hours Battery Life</li>
+              <li>Chroma RGB Lighting</li>
+            </ul>
+          </div>
+          <div class="tab-content" id="tab-1">
+            <p style="font-weight:700">Manifest ID: #884920.</p>
+            <p style="margin-top:6px">Pallet forwarding available. Ships from: <strong>NV, USA</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card buy-box">
+        
+        <div class="promo-box">
+          <span class="promo-discount">-60%</span>
+          <div class="promo-title">
+            <i class="ph-fill ph-gift"></i>
+            <span>New Customer Offer</span>
+          </div>
+          <p>One-time discount on shipping & fees for your first order up to $1,000.</p>
+        </div>
+
+        <div class="price-display">
+          <div class="price-label">
+            <span>Wholesale Price</span>
+            <span style="color:var(--success);font-weight:900">Save 31%</span>
+          </div>
+          <div class="price-row">
+            <span class="big-price">$89.00</span>
+            <span class="unit-price">/ unit</span>
+          </div>
+          <span class="msrp-strike">MSRP: $129.99</span>
+        </div>
+
+        <div class="stock-meter">
+          <div class="stock-top">
+            <span>Stock Status</span>
+            <span style="color:var(--success)">132 Available</span>
+          </div>
+          <div class="stock-bar"><div class="stock-fill"></div></div>
+          <div class="moq-note">MOQ: 100 Units</div>
+        </div>
+
+        <div class="action-row">
+          <div class="qty-control">
+            <button onclick="updateQty(-1)">-</button>
+            <input type="text" id="qtyInput" value="100" inputmode="numeric">
+            <button onclick="updateQty(1)">+</button>
+          </div>
+          <button class="btn-primary" onclick="triggerGate()">
+            <i class="ph-bold ph-shopping-cart"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="secondary-actions">
+          <button class="btn-sec" onclick="triggerGate()"><i class="ph-bold ph-handshake"></i> Negotiate</button>
+          <button class="btn-sec" onclick="triggerGate()"><i class="ph-bold ph-eye"></i> Watch</button>
+        </div>
+
+        <div class="guest-gate" id="gateMsg">
+          <i class="ph-fill ph-lock-key" style="font-size:20px;color:var(--primary);margin-bottom:6px"></i>
+          <div style="margin-bottom:8px">Please <a href="#">Sign In</a> or <a href="#">Register</a> to access wholesale pricing actions.</div>
+          <div class="auth-buttons">
+            <a class="btn-auth login" href="#"><i class="ph ph-sign-in"></i> Sign In</a>
+            <a class="btn-auth reg" href="#"><i class="ph ph-user-plus"></i> Register</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mobile-bar">
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <span style="font-size:10px;color:var(--text-muted);text-transform:uppercase;font-weight:900">Est. Profit</span>
+      <span style="font-size:15px;font-weight:900;color:var(--success-text)" id="mobileProfit">$30.00/unit</span>
+    </div>
+    <button class="btn-primary" style="width:auto;padding:0 20px;height:40px" onclick="triggerGate()">
+      Add to Cart - $89
+    </button>
+  </div>
+
+  <script>
+    function swapImg(el){
+      const main = document.getElementById('mainImg');
+      main.style.opacity = 0;
+      setTimeout(() => { main.src = el.querySelector('img').src; main.style.opacity = 1; }, 120);
+      document.querySelectorAll('.thumb-btn').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function copyText(text, btn){
+      navigator.clipboard.writeText(text);
+      const icon = btn.querySelector('i');
+      const originalClass = icon.className;
+      icon.className = "ph-bold ph-check";
+      btn.style.borderColor = 'var(--success)';
+      btn.style.color = 'var(--success)';
+      setTimeout(() => {
+        icon.className = originalClass;
+        btn.removeAttribute('style');
+      }, 1000);
+    }
+
+    function calculateProfit(){
+      const sellPrice = parseFloat(document.getElementById('sellPrice').value) || 0;
+      const cost = parseFloat(document.getElementById('costPrice').value) || 0;
+      const fees = parseFloat(document.getElementById('fees').value) || 0;
+
+      const profit = sellPrice - cost - fees;
+      const roi = cost > 0 ? (profit / cost) * 100 : 0;
+
+      const profitEl = document.getElementById('netProfit');
+      const roiEl = document.getElementById('roiBadge');
+      const mobileProfit = document.getElementById('mobileProfit');
+
+      const sign = profit >= 0 ? "+" : "-";
+      const profitFormatted = `${Math.abs(profit).toFixed(2)}`;
+
+      profitEl.textContent = sign + profitFormatted;
+      roiEl.textContent = `ROI: ${roi.toFixed(1)}%`;
+      mobileProfit.textContent = profitFormatted + "/unit";
+
+      if(profit >= 20) {
+        profitEl.style.color = "var(--success-text)";
+      } else if (profit > 0) {
+        profitEl.style.color = "#d97706";
+      } else {
+        profitEl.style.color = "var(--danger)";
+      }
+    }
+
+    function updateQty(delta){
+      const input = document.getElementById('qtyInput');
+      const moq = 100;
+      let val = parseInt(input.value, 10);
+      if(isNaN(val)) val = moq;
+      val += delta;
+      if(val < moq) val = moq;
+      input.value = val;
+    }
+
+    function triggerGate(){
+      const gate = document.getElementById('gateMsg');
+      gate.style.display = "block";
+      gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      gate.animate([
+        { transform: 'scale(0.95)', opacity: 0.5 },
+        { transform: 'scale(1)', opacity: 1 }
+      ], { duration: 200 });
+    }
+
+    function setTab(idx){
+      const contents = document.querySelectorAll('.tab-content');
+      const links = document.querySelectorAll('.tab-link');
+      contents.forEach((c,i)=> c.classList.toggle('active', i===idx));
+      links.forEach((l,i)=> l.classList.toggle('active', i===idx));
+    }
+
+    calculateProfit();
+  </script>
+</body>
+</html>
