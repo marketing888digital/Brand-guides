@@ -9,19 +9,26 @@
 
   <style>
     :root{
-      --primary:#3B82F6;
+      /* BRAND COLORS */
+      --primary:#3B82F6;         /* Bright Blue: CTAs, Links */
       --primary-dark:#1e40af;
       --primary-light:#eff6ff;
-      --danger:#dc2626;
+      
+      --danger:#dc2626;          /* Bright Red: Urgency, Sales */
       --danger-bg:#fef2f2;
+      
       --success:#10b981;
       --success-bg:#ecfdf5;
       --success-text:#047857;
-      --bg-body:#f8fafc;
-      --bg-card:#ffffff;
-      --text-main:#334155;
-      --text-sec:#4A5568;
+      
+      --text-main:#334155;       /* Dark Desaturated Blue: Main Text */
+      --text-sec:#4A5568;        /* Dark Grayish Blue: Secondary Info */
       --text-muted:#94a3b8;
+      
+      --bg-highlight:#f1f5f9;    /* Light Grayish Blue: Background Sections */
+      --bg-body:#f8fafc;         /* Light Grayish Blue: Main Page */
+      --bg-card:#ffffff;
+      
       --border:#e2e8f0;
       --radius:12px;
       --shadow-sm:0 1px 2px rgba(0,0,0,.05);
@@ -42,43 +49,53 @@
     button{font-family:inherit;cursor:pointer}
     a{text-decoration:none;color:inherit}
 
-    /* --- TOP BAR FOMO --- */
+    /* --- UPDATED TOP BAR (Data-Focused, Not Aggressive) --- */
     .deal-type-banner{
-      background:linear-gradient(135deg, var(--danger) 0%, #b91c1c 100%);
-      color:#fff;
-      padding:14px 20px;
-      border-radius:var(--radius);
-      margin-bottom:20px;
-      display:flex;
-      align-items:center;
-      justify-content:flex-start; 
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; 
       gap: 24px; 
-      flex-wrap: wrap; /* Allows wrapping on small screens */
-      box-shadow:0 8px 20px rgba(220,38,38,0.25);
+      flex-wrap: wrap; 
+      box-shadow: var(--shadow-sm);
     }
     .deal-stat {
         display:flex;
         align-items:center;
-        gap: 10px;
+        gap: 8px;
     }
     .deal-stat .icon-box {
-      background:rgba(255,255,255,0.2);
+      background: var(--bg-highlight);
+      color: var(--text-sec);
       width: 28px; height: 28px;
       display: flex; align-items: center; justify-content: center;
-      border-radius:6px;
-      backdrop-filter:blur(4px);
+      border-radius: 6px;
     }
     .deal-stat .icon-box i { font-size: 16px; }
     .deal-stat .stat-text{
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:0.3px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sec);
+      letter-spacing: -0.01em;
+    }
+
+    /* Urgency Modifier for "Added to Cart" */
+    .deal-stat.urgent .icon-box {
+        background: var(--danger-bg);
+        color: var(--danger);
+    }
+    .deal-stat.urgent .stat-text {
+        color: var(--danger); /* Bright Red for Urgency */
     }
 
     .breadcrumb{
       font-size:12px;color:var(--text-sec);
       display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
     .breadcrumb a{color:var(--text-sec);transition:.2s}
     .breadcrumb a:hover{color:var(--primary)}
@@ -88,32 +105,35 @@
     .product-header{margin-bottom:20px}
     .title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
     .product-title{
-      font-size:24px;font-weight:900;line-height:1.2;letter-spacing:-.02em;color:var(--text-main);
+      font-size:28px; /* Increased slightly for hierarchy */
+      font-weight:900;
+      line-height:1.2;
+      letter-spacing:-.02em;
+      color:var(--text-main);
     }
     
-    /* --- UNIFIED PILLS --- */
+    /* --- UNIFIED PILLS (Brand Guide: "Neutral for secondary info") --- */
     .quick-tags{
       display:flex;
       gap:8px;
-      margin-top:10px;
+      margin-top:12px;
       flex-wrap:wrap;
     }
     .quick-tag{
       display:inline-flex;
       align-items:center;
       gap:6px;
-      padding:5px 12px;
+      padding:6px 12px;
       border-radius:6px;
       font-size:11px;
       font-weight:800;
       text-transform:uppercase;
       letter-spacing:0.3px;
-      /* Unified Color Scheme */
-      background: #f1f5f9;
-      color: #475569;
-      border: 1px solid #cbd5e1;
+      background: var(--bg-highlight);
+      color: var(--text-sec);
+      border: 1px solid var(--border);
     }
-    .quick-tag i { color: #64748b; font-size: 14px; }
+    .quick-tag i { color: var(--text-sec); font-size: 14px; }
 
     .product-grid{
       display:grid;
@@ -148,12 +168,12 @@
     .thumb-btn:hover,.thumb-btn.active{border-color:var(--primary);opacity:1;box-shadow:0 0 0 3px rgba(59,130,246,.10)}
     .thumb-btn img{width:100%;height:100%;object-fit:contain}
 
-    /* --- NEW MIDDLE TOP SPECS ROW --- */
+    /* --- TOP SPECS ROW --- */
     .top-specs-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 12px;
-      margin-bottom: 0px; /* Spacing handled by info-stack gap */
+      margin-bottom: 0px; 
     }
     .top-spec-card {
       background: #fff;
@@ -270,12 +290,11 @@
       position:sticky;top:20px;
       padding:18px;
       display:flex;flex-direction:column;gap:14px;
-      border-top:4px solid var(--danger);
+      border-top:4px solid var(--danger); /* Bright Red border for Urgency */
       background:#fff;
       border:1px solid var(--border);
     }
 
-    /* --- RESTORED PROMO BOX --- */
     .promo-box{
       background:var(--danger-bg);
       border:2px solid var(--danger);
@@ -315,7 +334,6 @@
       font-size:14px;
       box-shadow:0 4px 12px rgba(220,38,38,0.3);
     }
-    /* -------------------------- */
 
     .price-display{display:flex;flex-direction:column;gap:2px}
     .price-label{font-size:12px;color:var(--text-sec);font-weight:800;display:flex;justify-content:space-between}
@@ -341,6 +359,7 @@
       width:40px;border:none;text-align:center;font-weight:900;font-size:14px;color:var(--text-main);
       outline:none;background:transparent;
     }
+    /* Bright Blue for CTA (Brand Guide) */
     .btn-primary{
       background:var(--primary);color:#fff;border:none;border-radius:10px;
       font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;
@@ -401,9 +420,15 @@
       .gallery-wrapper,.buy-box{position:static;width:100%}
       .mobile-bar{display:flex}
       .calc-grid{grid-template-columns:1fr 1fr}
-      .ids-col{grid-template-columns: 1fr;} 
+      
+      /* Identifiers: 2 columns on mobile */
+      .ids-col{
+        grid-template-columns: 1fr 1fr !important;
+      } 
+      .id-v { font-size: 10px; }
+      
       .deal-type-banner{gap:12px}
-      .top-specs-row{grid-template-columns: 1fr 1fr;} /* 2 cols on mobile */
+      .top-specs-row{grid-template-columns: 1fr 1fr;} 
     }
   </style>
 </head>
@@ -411,26 +436,6 @@
 <body>
   <div class="container">
     
-    <!-- UPDATED: Top Banner with 4 Stats -->
-    <div class="deal-type-banner">
-      <div class="deal-stat">
-        <div class="icon-box"><i class="ph-fill ph-bell"></i></div>
-        <div class="stat-text">15 Watchers</div>
-      </div>
-      <div class="deal-stat">
-        <div class="icon-box"><i class="ph-fill ph-handshake"></i></div>
-        <div class="stat-text">2 buyers started negotiations</div>
-      </div>
-      <div class="deal-stat">
-        <div class="icon-box"><i class="ph-fill ph-eye"></i></div>
-        <div class="stat-text">1,402 Views</div>
-      </div>
-      <div class="deal-stat">
-        <div class="icon-box"><i class="ph-fill ph-basket"></i></div>
-        <div class="stat-text">8 Added to Cart</div>
-      </div>
-    </div>
-
     <div class="breadcrumb">
       <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
       <a href="#">Computers & Hardware</a> <i class="ph-bold ph-caret-right"></i>
@@ -438,16 +443,37 @@
       <span>Razer Viper Ultimate</span>
     </div>
 
+    <!-- UPDATED: Clean, Data-Focused Stats Bar -->
+    <div class="deal-type-banner">
+      <div class="deal-stat">
+        <div class="icon-box"><i class="ph-fill ph-eye"></i></div>
+        <div class="stat-text">1,402 Views</div>
+      </div>
+      <div class="deal-stat">
+        <div class="icon-box"><i class="ph-fill ph-bell"></i></div>
+        <div class="stat-text">15 Watchers</div>
+      </div>
+      <div class="deal-stat">
+        <div class="icon-box"><i class="ph-fill ph-handshake"></i></div>
+        <div class="stat-text">2 Negotiations</div>
+      </div>
+      <!-- ADDED URGENCY CLASS FOR RED HIGHLIGHT -->
+      <div class="deal-stat urgent">
+        <div class="icon-box"><i class="ph-fill ph-basket"></i></div>
+        <div class="stat-text">8 Added to Cart</div>
+      </div>
+    </div>
+
     <div class="product-header">
       <div class="title-row">
         <div>
           <h1 class="product-title">Razer Viper Ultimate Hyperspeed Lightest Wireless Gaming Mouse & RGB Charging Dock</h1>
           
-          <!-- UNIFIED ONE COLOR TAGS -->
           <div class="quick-tags">
             <div class="quick-tag"><i class="ph-fill ph-trend-up"></i> Trending</div>
             <div class="quick-tag"><i class="ph-fill ph-package"></i> Restock</div>
             <div class="quick-tag"><i class="ph-fill ph-sparkle"></i> New Arrival</div>
+            <div class="quick-tag"><i class="ph-fill ph-tag"></i> $5 Store</div>
           </div>
         </div>
       </div>
@@ -461,16 +487,15 @@
         </div>
 
         <div class="thumbs-row">
-          <div class="thumb-btn active" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/61Op0s0sX+L._AC_SL1500_.jpg" alt=""></div>
+          <div class="thumb-btn active" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/61M2OwtouxL._UL_300_SS300_.jpg" alt=""></div>
           <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/71VU5sVbjML._UL_300_SS300_.jpg" alt=""></div>
-          <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/619BkvYWQ6L._AC_SL1500_.jpg" alt=""></div>
+          <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/71NZPNpFQQL.jpg" alt=""></div>
           <div class="thumb-btn" onclick="swapImg(this)"><img src="https://m.media-amazon.com/images/I/6157EeRHinL._UL_300_SS300_.jpg" alt=""></div>
         </div>
       </div>
 
       <div class="info-stack">
         
-        <!-- MOVED SPECS: Middle Top -->
         <div class="top-specs-row">
           <div class="top-spec-card">
             <div class="ts-k">Condition</div>
@@ -482,7 +507,7 @@
           </div>
           <div class="top-spec-card">
             <div class="ts-k">Category</div>
-            <div class="ts-v">Electronics</div>
+            <div class="ts-v">Peripherals</div>
           </div>
         </div>
 
@@ -581,7 +606,6 @@
 
       <div class="card buy-box">
         
-        <!-- RESTORED PROMO BOX -->
         <div class="promo-box">
           <span class="promo-discount">-60%</span>
           <div class="promo-title">
