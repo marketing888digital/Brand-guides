@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dearfoams Velour Clog - Wholesale Deal</title>
+    <title>Dearfoams Velour Clog - AAA Wholesale Page</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -64,7 +64,6 @@
         .stat-item.active-cart { color: var(--danger); }
         .stat-item.active-cart i { color: var(--danger); }
         
-        /* Tooltip */
         .stat-item::before {
             content: attr(data-tooltip);
             position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
@@ -88,8 +87,9 @@
             margin-top: 2px; display: inline-block;
         }
 
-        /* Identifiers */
+        /* --- HYBRID IDENTIFIERS (RESTORED) --- */
         .ids-strip { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+        
         .id-badge {
             position: relative; display: inline-flex; align-items: center; gap: 6px;
             font-size: 11px; color: #64748b; background: #ffffff;
@@ -97,6 +97,31 @@
             cursor: pointer; transition: all 0.2s ease; user-select: none;
         }
         .id-badge:hover { border-color: #2563eb; color: #2563eb; background: #f0f9ff; z-index: 10; }
+
+        /* The +2 Count Indicator */
+        .more-count {
+            background: #e2e8f0; color: #475569; font-weight: 700;
+            padding: 1px 5px; border-radius: 99px; font-size: 9px; margin-left: 2px;
+        }
+
+        /* The Dropdown Menu */
+        .more-dropdown {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 4px;
+            background: #fff; border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 4px; min-width: 180px; padding: 4px; z-index: 50; flex-direction: column; gap: 2px;
+        }
+        
+        /* Show dropdown on hover */
+        .id-badge:hover .more-dropdown { display: flex; }
+
+        /* Dropdown Items */
+        .drop-item { 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 6px 8px; font-size: 11px; color: #334155; border-radius: 4px;
+        }
+        .drop-item:hover { background: #f1f5f9; color: #2563eb; }
+        .drop-label { font-weight: 700; color: #94a3b8; font-size: 9px; text-transform: uppercase; margin-right: 8px;}
+
 
         /* --- LAYOUT --- */
         .grid-layout { display: grid; grid-template-columns: 360px 1fr 340px; gap: 20px; align-items: start; }
@@ -305,10 +330,24 @@
                 <h1 class="product-title" id="prodTitle">Dearfoams Women's Velour Clog Slipper, Leopard, Large, Memory Foam Insole, Indoor/Outdoor Rubber Sole</h1>
                 <span class="title-toggle" onclick="toggleTitle()">Show Full Title</span>
             </div>
+            
+            <!-- HYBRID IDENTIFIERS (RESTORED) -->
             <div class="ids-strip">
                 <div class="id-badge" onclick="copy(this, '888 B07VRDYKHW US')"><i class="ph ph-copy"></i> SKU: 888 B07VRDYKHW US</div>
                 <div class="id-badge" onclick="copy(this, 'B07VRDYKHW')"><i class="ph ph-copy"></i> ASIN: B07VRDYKHW</div>
-                <div class="id-badge" onclick="copy(this, '091217209966')"><i class="ph ph-copy"></i> UPC: 091217209966</div>
+                
+                <!-- DROPDOWN BADGE -->
+                <div class="id-badge has-dropdown">
+                    <i class="ph ph-barcode"></i> <span>UPC: 091217...</span> <span class="more-count">+2</span>
+                    <div class="more-dropdown">
+                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '091217209966')">
+                            <span><span class="drop-label">UPC</span> 091217209966</span> <i class="ph ph-copy"></i>
+                        </div>
+                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '00091217209966')">
+                            <span><span class="drop-label">GTIN</span> 00091217209966</span> <i class="ph ph-copy"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -355,7 +394,7 @@
                     <div class="card-header">
                         <span><i class="ph-bold ph-chart-bar"></i> Market Data</span>
                     </div>
-                    <!-- Row 1: Amazon Data -->
+                    <!-- Row 1 -->
                     <div class="market-grid">
                         <div class="m-item">
                             <span>Amazon Buy Box</span>
@@ -370,7 +409,7 @@
                             <span style="color:var(--text-main)">4 Offers</span>
                         </div>
                     </div>
-                    <!-- Row 2: MSRP Separated -->
+                    <!-- Row 2 -->
                     <div class="msrp-row">
                         <span style="font-size:11px; font-weight:600; color:var(--text-sec)">Est. Retail Price (MSRP)</span>
                         <span style="font-size:16px; font-weight:800; color:var(--text-main)">$36.00</span>
