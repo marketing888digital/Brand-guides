@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Dearfoams Velour Clog - Wholesale Deal</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#3B82F6; --primary-dark:#1e40af; --primary-light:#eff6ff;
+      --danger:#dc2626; --danger-bg:#fef2f2;
+      --success:#10b981; --success-bg:#ecfdf5; --success-text:#047857;
+      --text-main:#0f172a; --text-sec:#475569; --text-muted:#94a3b8;
+      --bg-body:#f8fafc; --bg-card:#ffffff; --border:#e2e8f0;
+      --radius:12px; --shadow:0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg-body);font-family:'Inter',sans-serif;color:var(--text-main);font-size:13px;padding-bottom:80px;}
+    .container{max-width:1380px;margin:0 auto;padding:12px 18px;}
+    a{text-decoration:none;color:inherit}
+    
+    /* --- 1. TOP CONTROL PANEL --- */
+    .top-metrics-bar {
+        display: flex; justify-content: flex-end; gap: 24px; padding: 12px 0;
+        border-bottom: 1px solid var(--border); margin-bottom: 20px;
+    }
+    .metric-icon {
+        position: relative; cursor: help; color: var(--text-sec);
+        display: flex; align-items: center; gap: 6px;
+        transition: color 0.2s;
+    }
+    .metric-icon i { font-size: 20px; }
+    .metric-icon span { font-weight: 700; font-size: 14px; }
+    
+    /* Tooltip */
+    .metric-icon::after {
+        content: attr(data-tooltip);
+        position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+        background: #1e293b; color: #fff; padding: 6px 10px; border-radius: 6px;
+        font-size: 11px; font-weight: 600; white-space: nowrap; opacity: 0; pointer-events: none;
+        transition: 0.2s; margin-bottom: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .metric-icon:hover::after { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+    .metric-icon.urgent { color: var(--danger); }
+
+    /* --- BREADCRUMB & PILLS --- */
+    .nav-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .breadcrumb { color: var(--text-muted); font-size: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; }
+    .breadcrumb span { color: var(--text-main); font-weight: 700; }
+    
+    .pills { display: flex; gap: 8px; }
+    .pill {
+        padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 700;
+        border: 1px solid var(--border); background: #fff; color: var(--text-sec);
+        display: flex; align-items: center; gap: 4px; transition: 0.2s;
+    }
+    .pill:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+
+    /* --- LAYOUT GRID --- */
+    .grid { display: grid; grid-template-columns: 350px 1fr 320px; gap: 24px; align-items: start; }
+    
+    /* --- COL 1: GALLERY --- */
+    .gallery-card { background: #fff; padding: 16px; border-radius: var(--radius); border: 1px solid var(--border); }
+    .main-img { width: 100%; aspect-ratio: 1; object-fit: contain; margin-bottom: 12px; padding: 10px; }
+    .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .thumb { 
+        aspect-ratio: 1; border: 1px solid var(--border); border-radius: 8px; 
+        padding: 4px; cursor: pointer; transition: 0.2s; 
+    }
+    .thumb:hover, .thumb.active { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+    .thumb img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* --- COL 2: DATA & CALCULATOR --- */
+    .info-header h1 { font-size: 22px; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+    .meta-row { display: flex; gap: 16px; font-size: 12px; color: var(--text-sec); margin-bottom: 20px; flex-wrap: wrap; }
+    
+    /* Specs Chips */
+    .specs-chips { display: flex; gap: 8px; margin-bottom: 20px; }
+    .spec-chip { 
+        background: #f1f5f9; padding: 6px 10px; border-radius: 6px; font-size: 12px; 
+        color: var(--text-sec); border: 1px solid var(--border);
+    }
+    .spec-chip strong { color: var(--text-main); }
+
+    /* Market Intel Card */
+    .intel-card { background: var(--bg-body); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 20px; }
+    .intel-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
+    .intel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .intel-item span:first-child { display: block; font-size: 11px; color: var(--text-sec); font-weight: 600; }
+    .intel-item span:last-child { display: block; font-size: 15px; font-weight: 800; color: var(--text-main); }
+    
+    /* Profit Simulator */
+    .calc-card { background: linear-gradient(180deg, #fff 0%, #f1f5f9 100%); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .calc-title { font-size: 13px; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 6px; margin-bottom: 16px; justify-content: space-between; }
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .c-input label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+    .c-input input { 
+        width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border); 
+        font-weight: 700; color: var(--text-main); font-family: inherit;
+    }
+    .profit-result { 
+        background: var(--success-bg); border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px; 
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .net-profit { font-size: 24px; font-weight: 900; color: var(--success-text); }
+    .roi-tag { background: #fff; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; color: var(--success-text); }
+
+    /* --- COL 3: BUY BOX --- */
+    .buy-box { position: sticky; top: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; overflow: hidden; box-shadow: var(--shadow); }
+    .deal-badge { 
+        background: linear-gradient(90deg, #3b82f6, #2563eb); color: white; /* Blue for Standard Deal */
+        text-align: center; padding: 8px; font-weight: 800; font-size: 13px; letter-spacing: 0.5px;
+        display: flex; justify-content: center; align-items: center; gap: 6px;
+    }
+    
+    .price-section { padding: 20px; text-align: center; border-bottom: 1px dashed var(--border); }
+    .ref-prices { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .strike { text-decoration: line-through; }
+    
+    .hero-price { font-size: 48px; font-weight: 900; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
+    .price-sub { font-size: 12px; font-weight: 600; color: var(--success-text); margin-top: 4px; }
+    
+    /* Shipping Line */
+    .shipping-line { font-size: 11px; color: var(--text-sec); background: var(--bg-body); padding: 4px 8px; border-radius: 4px; display: inline-block; margin-top: 8px; font-weight: 600; }
+
+    .stock-section { padding: 16px; background: var(--bg-body); }
+    .moq-row { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+    .progress-bg { height: 6px; background: #cbd5e1; border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--success); width: 100%; }
+    
+    .actions { padding: 16px; display: grid; gap: 10px; }
+    .btn-add { 
+        width: 100%; background: var(--primary); color: white; border: none; padding: 14px; 
+        border-radius: 8px; font-weight: 800; font-size: 16px; display: flex; justify-content: center; gap: 8px;
+        cursor: pointer; transition: 0.2s;
+    }
+    .btn-add:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-neg {
+        width: 100%; background: white; color: var(--text-sec); border: 2px solid var(--border); 
+        padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer;
+    }
+
+    /* --- MOBILE BAR --- */
+    .mobile-bar {
+        display: none; position: fixed; bottom: 0; left: 0; right: 0; 
+        background: white; border-top: 1px solid var(--border); padding: 12px 16px;
+        z-index: 100; align-items: center; justify-content: space-between;
+        box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+    }
+    
+    @media (max-width: 1024px) {
+        .grid { grid-template-columns: 1fr; }
+        .gallery-card { display: flex; gap: 12px; }
+        .buy-box { margin-top: 20px; }
+    }
+    @media (max-width: 640px) {
+        .mobile-bar { display: flex; }
+        .gallery-card { flex-direction: column; }
+        body { padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 1. COMPACT TOP BAR -->
+    <div class="top-metrics-bar">
+        <div class="metric-icon" data-tooltip="Total Views">
+            <i class="ph-bold ph-eye"></i> <span>542</span>
+        </div>
+        <div class="metric-icon" data-tooltip="Active Watchers">
+            <i class="ph-bold ph-bell"></i> <span>3</span>
+        </div>
+        <div class="metric-icon urgent" data-tooltip="High Stock Velocity">
+            <i class="ph-fill ph-trend-up"></i> <span>High Demand</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION PILLS -->
+    <div class="nav-row">
+        <div class="breadcrumb">
+            Shoes <i class="ph-bold ph-caret-right"></i> 
+            Sandals & Slippers <i class="ph-bold ph-caret-right"></i> 
+            <span>Dearfoams</span>
+        </div>
+        <div class="pills">
+            <a href="#" class="pill"><i class="ph-bold ph-amazon-logo"></i> Fulfilled by Amazon</a>
+            <a href="#" class="pill"><i class="ph-bold ph-stack"></i> 3 Variations Available</a>
+            <a href="#" class="pill"><i class="ph-bold ph-tag"></i> Closeout</a>
+        </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid">
+        
+        <!-- COL 1: IMAGES -->
+        <div class="gallery-card">
+            <!-- Used generic Dearfoams Leopard image URL -->
+            <img src="https://m.media-amazon.com/images/I/81xXyOjoHJL._AC_UY1000_.jpg" class="main-img">
+            <div class="thumbs">
+                <div class="thumb active"><img src="https://m.media-amazon.com/images/I/81xXyOjoHJL._AC_UY1000_.jpg"></div>
+                <!-- Generic placeholders for other angles -->
+                <div class="thumb"><img src="https://m.media-amazon.com/images/I/81p-D-C43aL._AC_UY1000_.jpg"></div>
+                <div class="thumb"><img src="https://m.media-amazon.com/images/I/91tK-X-wFmL._AC_UY1000_.jpg"></div>
+                <div class="thumb"><img src="https://m.media-amazon.com/images/I/81+2+1+yRBL._AC_UY1000_.jpg"></div>
+            </div>
+        </div>
+
+        <!-- COL 2: INFO -->
+        <div>
+            <div class="info-header">
+                <h1>Dearfoams Women's Velour Clog Slipper, Leopard, Large</h1>
+            </div>
+            
+            <div class="specs-chips">
+                <div class="spec-chip">Brand: <strong>Dearfoams</strong></div>
+                <div class="spec-chip">Size: <strong>9-10 (Large)</strong></div>
+                <div class="spec-chip">Condition: <strong style="color:var(--success-text)">New (FBA)</strong></div>
+            </div>
+
+            <div class="meta-row">
+                <span>SKU: 888-B07VRDYKHW</span>
+                <span>•</span>
+                <span>ASIN: B07VRDYKHW</span>
+                <span>•</span>
+                <span>UPC: 091217209966</span>
+            </div>
+
+            <!-- ZONE 1: MARKET INTELLIGENCE -->
+            <div class="intel-card">
+                <div class="intel-header">
+                    <i class="ph-bold ph-chart-bar"></i> Market Data
+                </div>
+                <div class="intel-grid">
+                    <div class="intel-item">
+                        <span>Amazon Buy Box</span>
+                        <!-- Actual Amazon Price from your data -->
+                        <span style="color:var(--text-main)">$13.37</span>
+                    </div>
+                    <div class="intel-item">
+                        <span>Sales Rank</span>
+                        <span style="color:var(--primary)">#105 (Shoes)</span>
+                    </div>
+                    <div class="intel-item">
+                        <span>MSRP</span>
+                        <!-- The Value Proposition -->
+                        <span style="color:var(--text-sec); text-decoration:line-through">$36.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZONE 2: PROFIT SIMULATOR -->
+            <div class="calc-card">
+                <div class="calc-title">
+                    <span><i class="ph-fill ph-calculator"></i> Profit Simulator</span>
+                    <span style="font-size:10px; color:var(--text-muted); font-weight:500">*Values estimated</span>
+                </div>
+                <div class="calc-inputs">
+                    <div class="c-input">
+                        <label>Target Resale ($)</label>
+                        <!-- Defaulting to realistic resale price ($24.99) instead of low Az price -->
+                        <input type="number" id="sellPrice" value="24.99" oninput="calculate()">
+                    </div>
+                    <div class="c-input">
+                        <label>Total Cost ($)</label>
+                        <!-- $10 Cost + $1 Ship -->
+                        <input type="number" id="costPrice" value="11.00" readonly style="background:#f1f5f9; color:var(--text-muted)">
+                    </div>
+                    <div class="c-input">
+                        <label>Est. Fees ($)</label>
+                        <!-- Est 15% + Ship -->
+                        <input type="number" id="fees" value="7.50" oninput="calculate()">
+                    </div>
+                </div>
+                <div class="profit-result">
+                    <div>
+                        <div style="font-size:11px; font-weight:700; opacity:0.8">ESTIMATED NET PROFIT</div>
+                        <div class="net-profit" id="netProfit">+$6.49 <span style="font-size:14px; font-weight:600">/unit</span></div>
+                    </div>
+                    <div class="roi-tag" id="roiBadge">59% ROI</div>
+                </div>
+            </div>
+            
+            <div style="margin-top:10px; font-size:11px; color:var(--text-muted); line-height:1.5">
+                <i class="ph-fill ph-info"></i> <strong>Pro Tip:</strong> Amazon price ($13.37) is currently suppressed. High margin opportunity for eBay, Poshmark, or Retail (MSRP $36.00).
+            </div>
+        </div>
+
+        <!-- COL 3: BUY BOX -->
+        <div class="buy-box">
+            <div class="deal-badge">
+                <i class="ph-fill ph-package"></i> VOLUME DEAL
+            </div>
+            
+            <div class="price-section">
+                <div class="ref-prices">
+                    <span class="strike">MSRP: $36.00</span>
+                    <span>Amazon: $13.37</span>
+                </div>
+                
+                <div class="hero-price">$10.00</div>
+                <div class="price-sub">WHOLESALE PRICE</div>
+                
+                <div class="shipping-line">
+                    <i class="ph-bold ph-truck"></i> +$1.00 FBA Shipping
+                </div>
+            </div>
+
+            <div class="stock-section">
+                <div class="moq-row">
+                    <span>MOQ Requirement: 100</span>
+                    <span style="color:var(--success-text)">4,097 Available</span>
+                </div>
+                <!-- Stock Bar Calculation: 4097 is massive compared to 100, full green bar -->
+                <div class="progress-bg">
+                    <div class="progress-fill" style="width:100%"></div>
+                </div>
+                <div style="text-align:right; font-size:10px; margin-top:4px; color:var(--text-muted); font-weight:700">MASSIVE STOCK AVAILABLE</div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-add"><i class="ph-bold ph-shopping-cart"></i> Add to Cart</button>
+                <button class="btn-neg"><i class="ph-bold ph-handshake"></i> Negotiate</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MOBILE STICKY FOOTER -->
+<div class="mobile-bar">
+    <div>
+        <div style="font-size:10px; font-weight:800; color:var(--text-muted)">WHOLESALE PRICE</div>
+        <div style="font-size:18px; font-weight:900; color:var(--text-main)">$10.00 <span style="font-size:12px; color:var(--text-muted); font-weight:500">/unit</span></div>
+    </div>
+    <button style="background:var(--primary); color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:700">
+        Add
+    </button>
+</div>
+
+<script>
+    function calculate() {
+        const sell = parseFloat(document.getElementById('sellPrice').value) || 0;
+        const cost = parseFloat(document.getElementById('costPrice').value) || 0;
+        const fees = parseFloat(document.getElementById('fees').value) || 0;
+        
+        const profit = sell - cost - fees;
+        const roi = cost > 0 ? (profit / cost) * 100 : 0;
+        
+        const profitEl = document.getElementById('netProfit');
+        const roiEl = document.getElementById('roiBadge');
+        
+        profitEl.innerHTML = (profit >= 0 ? '+' : '') + '$' + profit.toFixed(2) + ' <span style="font-size:14px; font-weight:600">/unit</span>';
+        roiEl.innerText = roi.toFixed(0) + '% ROI';
+        
+        if (profit < 0) {
+            profitEl.style.color = "var(--danger)";
+            roiEl.style.color = "var(--danger)";
+        } else {
+            profitEl.style.color = "var(--success-text)";
+            roiEl.style.color = "var(--success-text)";
+        }
+    }
+</script>
+
+</body>
+</html>
