@@ -1,370 +1,607 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Dearfoams Velour Clog - Wholesale Deal</title>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dearfoams Velour Clog - AAA Wholesale Page</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --primary:#3B82F6; --primary-dark:#1e40af; --primary-light:#eff6ff;
-      --danger:#dc2626; --danger-bg:#fef2f2;
-      --success:#10b981; --success-bg:#ecfdf5; --success-text:#047857;
-      --text-main:#0f172a; --text-sec:#475569; --text-muted:#94a3b8;
-      --bg-body:#f8fafc; --bg-card:#ffffff; --border:#e2e8f0;
-      --radius:12px; --shadow:0 4px 6px -1px rgba(0,0,0,0.1);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg-body);font-family:'Inter',sans-serif;color:var(--text-main);font-size:13px;padding-bottom:80px;}
-    .container{max-width:1380px;margin:0 auto;padding:12px 18px;}
-    a{text-decoration:none;color:inherit}
-    
-    /* --- 1. TOP CONTROL PANEL --- */
-    .top-metrics-bar {
-        display: flex; justify-content: flex-end; gap: 24px; padding: 12px 0;
-        border-bottom: 1px solid var(--border); margin-bottom: 20px;
-    }
-    .metric-icon {
-        position: relative; cursor: help; color: var(--text-sec);
-        display: flex; align-items: center; gap: 6px;
-        transition: color 0.2s;
-    }
-    .metric-icon i { font-size: 20px; }
-    .metric-icon span { font-weight: 700; font-size: 14px; }
-    
-    /* Tooltip */
-    .metric-icon::after {
-        content: attr(data-tooltip);
-        position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-        background: #1e293b; color: #fff; padding: 6px 10px; border-radius: 6px;
-        font-size: 11px; font-weight: 600; white-space: nowrap; opacity: 0; pointer-events: none;
-        transition: 0.2s; margin-bottom: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .metric-icon:hover::after { opacity: 1; transform: translateX(-50%) translateY(-4px); }
-    .metric-icon.urgent { color: var(--danger); }
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --surface: #ffffff;
+            --background: #f8fafc;
+            --text-main: #0f172a;
+            --text-sec: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --success: #16a34a; 
+            --warning: #d97706;
+            --danger: #dc2626;  
+            --radius: 8px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
 
-    /* --- BREADCRUMB & PILLS --- */
-    .nav-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
-    .breadcrumb { color: var(--text-muted); font-size: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; }
-    .breadcrumb span { color: var(--text-main); font-weight: 700; }
-    
-    .pills { display: flex; gap: 8px; }
-    .pill {
-        padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 700;
-        border: 1px solid var(--border); background: #fff; color: var(--text-sec);
-        display: flex; align-items: center; gap: 4px; transition: 0.2s;
-    }
-    .pill:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--background); color: var(--text-main); font-size: 14px; line-height: 1.5; padding-bottom: 80px; }
+        .container { max-width: 1320px; margin: 0 auto; padding: 24px 20px; }
+        a { text-decoration: none; color: inherit; transition: 0.2s; cursor: pointer; }
+        button { cursor: pointer; font-family: inherit; }
 
-    /* --- LAYOUT GRID --- */
-    .grid { display: grid; grid-template-columns: 350px 1fr 320px; gap: 24px; align-items: start; }
-    
-    /* --- COL 1: GALLERY --- */
-    .gallery-card { background: #fff; padding: 16px; border-radius: var(--radius); border: 1px solid var(--border); }
-    .main-img { width: 100%; aspect-ratio: 1; object-fit: contain; margin-bottom: 12px; padding: 10px; }
-    .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .thumb { 
-        aspect-ratio: 1; border: 1px solid var(--border); border-radius: 8px; 
-        padding: 4px; cursor: pointer; transition: 0.2s; 
-    }
-    .thumb:hover, .thumb.active { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
-    .thumb img { width: 100%; height: 100%; object-fit: contain; }
+        /* --- 1. TOP METRICS BAR --- */
+        .top-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 24px; background: var(--surface); padding: 12px 24px; 
+            border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);
+            flex-wrap: wrap; gap: 15px;
+        }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; color: var(--text-sec); font-size: 12px; font-weight: 500; }
+        .breadcrumb span { color: var(--text-main); font-weight: 700; }
 
-    /* --- COL 2: DATA & CALCULATOR --- */
-    .info-header h1 { font-size: 22px; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
-    .meta-row { display: flex; gap: 16px; font-size: 12px; color: var(--text-sec); margin-bottom: 20px; flex-wrap: wrap; }
-    
-    /* Specs Chips */
-    .specs-chips { display: flex; gap: 8px; margin-bottom: 20px; }
-    .spec-chip { 
-        background: #f1f5f9; padding: 6px 10px; border-radius: 6px; font-size: 12px; 
-        color: var(--text-sec); border: 1px solid var(--border);
-    }
-    .spec-chip strong { color: var(--text-main); }
+        .metrics-row { display: flex; gap: 24px; align-items: center; }
+        .metric-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-sec); }
+        .metric-item i { font-size: 18px; color: var(--text-muted); }
+        .metric-item strong { color: var(--text-main); }
+        .metric-item.active-cart { color: var(--danger); }
+        .metric-item.active-cart i { color: var(--danger); }
 
-    /* Market Intel Card */
-    .intel-card { background: var(--bg-body); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 20px; }
-    .intel-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
-    .intel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .intel-item span:first-child { display: block; font-size: 11px; color: var(--text-sec); font-weight: 600; }
-    .intel-item span:last-child { display: block; font-size: 15px; font-weight: 800; color: var(--text-main); }
-    
-    /* Profit Simulator */
-    .calc-card { background: linear-gradient(180deg, #fff 0%, #f1f5f9 100%); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
-    .calc-title { font-size: 13px; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 6px; margin-bottom: 16px; justify-content: space-between; }
-    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    .c-input label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
-    .c-input input { 
-        width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border); 
-        font-weight: 700; color: var(--text-main); font-family: inherit;
-    }
-    .profit-result { 
-        background: var(--success-bg); border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px; 
-        display: flex; justify-content: space-between; align-items: center;
-    }
-    .net-profit { font-size: 24px; font-weight: 900; color: var(--success-text); }
-    .roi-tag { background: #fff; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; color: var(--success-text); }
+        /* --- 2. HEADER SECTION --- */
+        .header-section { margin-bottom: 24px; }
+        .category-pills { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+        .pill { 
+            font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; 
+            text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid var(--border);
+            background: var(--surface); color: var(--text-sec); display: flex; align-items: center; gap: 6px;
+        }
+        .pill:hover { border-color: var(--primary); color: var(--primary); }
 
-    /* --- COL 3: BUY BOX --- */
-    .buy-box { position: sticky; top: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; overflow: hidden; box-shadow: var(--shadow); }
-    .deal-badge { 
-        background: linear-gradient(90deg, #3b82f6, #2563eb); color: white; /* Blue for Standard Deal */
-        text-align: center; padding: 8px; font-weight: 800; font-size: 13px; letter-spacing: 0.5px;
-        display: flex; justify-content: center; align-items: center; gap: 6px;
-    }
-    
-    .price-section { padding: 20px; text-align: center; border-bottom: 1px dashed var(--border); }
-    .ref-prices { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
-    .strike { text-decoration: line-through; }
-    
-    .hero-price { font-size: 48px; font-weight: 900; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
-    .price-sub { font-size: 12px; font-weight: 600; color: var(--success-text); margin-top: 4px; }
-    
-    /* Shipping Line */
-    .shipping-line { font-size: 11px; color: var(--text-sec); background: var(--bg-body); padding: 4px 8px; border-radius: 4px; display: inline-block; margin-top: 8px; font-weight: 600; }
+        /* Title Logic */
+        .title-wrapper { position: relative; padding-right: 20px; }
+        .product-title { 
+            font-size: 26px; font-weight: 800; line-height: 1.3; color: var(--text-main); 
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; /* CUTS TEXT IN HALF */
+            transition: all 0.3s ease;
+        }
+        .product-title.expanded { -webkit-line-clamp: unset; }
+        .title-toggle { 
+            font-size: 12px; font-weight: 600; color: var(--primary); cursor: pointer; 
+            margin-top: 4px; display: inline-block;
+        }
+        .title-toggle:hover { text-decoration: underline; }
 
-    .stock-section { padding: 16px; background: var(--bg-body); }
-    .moq-row { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; margin-bottom: 4px; }
-    .progress-bg { height: 6px; background: #cbd5e1; border-radius: 99px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--success); width: 100%; }
-    
-    .actions { padding: 16px; display: grid; gap: 10px; }
-    .btn-add { 
-        width: 100%; background: var(--primary); color: white; border: none; padding: 14px; 
-        border-radius: 8px; font-weight: 800; font-size: 16px; display: flex; justify-content: center; gap: 8px;
-        cursor: pointer; transition: 0.2s;
-    }
-    .btn-add:hover { background: var(--primary-dark); transform: translateY(-1px); }
-    .btn-neg {
-        width: 100%; background: white; color: var(--text-sec); border: 2px solid var(--border); 
-        padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer;
-    }
+        /* --- 3. IDENTIFIERS (HYBRID BADGES) CSS --- */
+        .ids-strip { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+        .id-badge {
+            position: relative; display: inline-flex; align-items: center; gap: 6px;
+            font-size: 11px; color: #64748b; background: #ffffff;
+            border: 1px dashed #e2e8f0; padding: 4px 10px; border-radius: 4px;
+            cursor: pointer; transition: all 0.2s ease; user-select: none;
+        }
+        .id-badge:hover { border-color: #2563eb; color: #2563eb; background: #f0f9ff; z-index: 10; }
+        
+        /* Dropdown Logic */
+        .more-dropdown {
+            display: none; position: absolute; top: 100%; right: 0; margin-top: 4px;
+            background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 6px; min-width: 180px; padding: 4px; z-index: 50; flex-direction: column;
+        }
+        .id-badge.has-dropdown:hover .more-dropdown { display: flex; }
+        
+        .drop-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px; font-size: 11px; color: #334155; border-radius: 4px;
+        }
+        .drop-item:hover { background: #f1f5f9; color: #2563eb; }
+        .drop-label { font-weight: 700; color: #94a3b8; font-size: 9px; text-transform: uppercase; margin-right: 8px;}
 
-    /* --- MOBILE BAR --- */
-    .mobile-bar {
-        display: none; position: fixed; bottom: 0; left: 0; right: 0; 
-        background: white; border-top: 1px solid var(--border); padding: 12px 16px;
-        z-index: 100; align-items: center; justify-content: space-between;
-        box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
-    }
-    
-    @media (max-width: 1024px) {
-        .grid { grid-template-columns: 1fr; }
-        .gallery-card { display: flex; gap: 12px; }
-        .buy-box { margin-top: 20px; }
-    }
-    @media (max-width: 640px) {
-        .mobile-bar { display: flex; }
-        .gallery-card { flex-direction: column; }
-        body { padding-bottom: 80px; }
-    }
-  </style>
+
+        /* --- 4. GRID LAYOUT --- */
+        .grid-layout { display: grid; grid-template-columns: 380px 1fr 350px; gap: 28px; align-items: start; }
+
+        /* COL 1: GALLERY */
+        .gallery-card { background: var(--surface); padding: 16px; border-radius: var(--radius); border: 1px solid var(--border); }
+        .main-img-wrap { 
+            width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; 
+            margin-bottom: 12px; position: relative; padding: 10px;
+        }
+        .main-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .thumb { 
+            aspect-ratio: 1; border: 1px solid var(--border); border-radius: 6px; 
+            padding: 4px; cursor: pointer; transition: 0.2s; opacity: 0.8;
+        }
+        .thumb:hover, .thumb.active { border-color: var(--primary); opacity: 1; }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* COL 2: INFO, DATA, TOOLS */
+        .info-col { display: flex; flex-direction: column; gap: 24px; }
+
+        /* Specs Row (Clickable) */
+        .specs-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .spec-tag { 
+            background: white; border: 1px solid var(--border); padding: 8px 14px; 
+            border-radius: 6px; font-size: 12px; color: var(--text-sec); font-weight: 500;
+            display: inline-block; cursor: pointer;
+        }
+        .spec-tag:hover { border-color: var(--primary); color: var(--primary); }
+        .spec-tag b { color: var(--text-main); font-weight: 700; margin-left: 4px; }
+
+        /* Variations Selector */
+        .var-section { background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); }
+        .var-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; color: var(--text-sec); text-transform: uppercase; }
+        .size-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+        .size-opt { 
+            border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; 
+            font-size: 13px; font-weight: 600; cursor: pointer; background: white; color: var(--text-main);
+        }
+        .size-opt:hover { border-color: var(--text-sec); }
+        .size-opt.active { border-color: var(--primary); background: #eff6ff; color: var(--primary); }
+
+        /* Market Data Card */
+        .data-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+        .card-header { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .m-item span:first-child { display: block; font-size: 11px; color: var(--text-sec); font-weight: 600; margin-bottom: 4px; }
+        .m-item span:last-child { display: block; font-size: 16px; font-weight: 800; color: var(--text-main); }
+
+        .tools-row { display: flex; gap: 8px; margin-top: 10px; pt: 16px; border-top: 1px dashed var(--border); flex-wrap: wrap; }
+        .tool-btn { 
+            font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px; 
+            background: var(--background); color: var(--text-sec); border: 1px solid var(--border);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .tool-btn:hover { background: white; border-color: var(--primary); color: var(--primary); }
+
+        /* Profit Simulator (White Style) */
+        .profit-card { 
+            background: var(--surface); border: 1px solid var(--border); 
+            border-radius: var(--radius); padding: 20px; 
+        }
+        .profit-card h3 { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .calc-flex { display: flex; gap: 16px; align-items: flex-end; }
+        .calc-group { flex: 1; }
+        .calc-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-sec); margin-bottom: 6px; }
+        .calc-input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-weight: 700; color: var(--text-main); }
+        .profit-output { 
+            background: var(--background); padding: 9px 16px; border-radius: 6px; border: 1px solid var(--border);
+            text-align: right; min-width: 130px;
+        }
+        .profit-val { font-size: 18px; font-weight: 900; color: var(--success); display: block; }
+        .roi-val { font-size: 11px; font-weight: 700; color: var(--success); }
+
+        /* Raw Content */
+        .raw-content { font-size: 14px; color: var(--text-sec); line-height: 1.6; }
+        .raw-content h4, .raw-content strong { color: var(--text-main); font-weight: 700; }
+        .raw-content ul { padding-left: 20px; margin: 10px 0; }
+        .raw-content li { margin-bottom: 6px; }
+        .raw-content p { margin-bottom: 10px; }
+
+        /* COL 3: BUY BOX */
+        .buy-box { 
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); 
+            padding: 0; position: sticky; top: 20px; box-shadow: var(--shadow); overflow: hidden;
+        }
+        
+        .promo-header { 
+            background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; 
+            padding: 12px; font-size: 13px; font-weight: 800; 
+            letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .promo-timer { font-family: monospace; background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+
+        .buy-content { padding: 24px; }
+
+        /* Price Stack (Regular vs Sale) */
+        .price-stack { margin-bottom: 20px; text-align: center; }
+        .regular-price { font-size: 14px; color: var(--text-sec); text-decoration: line-through; margin-bottom: 4px; display: block; }
+        .sale-price { font-size: 42px; font-weight: 900; color: var(--danger); line-height: 1; letter-spacing: -1px; }
+        .deal-tag { font-size: 13px; font-weight: 700; color: var(--danger); background: #fef2f2; padding: 2px 8px; border-radius: 4px; margin-top: 8px; display: inline-block;}
+        
+        /* Logistics Box */
+        .logistics-box { 
+            background: var(--background); border: 1px solid var(--border); border-radius: 8px; 
+            padding: 12px; margin-top: 20px;
+        }
+        .logistics-toggle { 
+            display: flex; background: white; border: 1px solid var(--border); border-radius: 6px; padding: 2px;
+            margin-bottom: 10px;
+        }
+        .l-opt { flex: 1; text-align: center; padding: 6px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 4px; color: var(--text-sec); }
+        .l-opt.active { background: var(--text-main); color: white; }
+
+        .total-cost-row { 
+            border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 8px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        /* Stock */
+        .stock-area { margin-bottom: 20px; margin-top: 20px; }
+        .stock-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 5px; }
+        .stock-track { height: 8px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+        .stock-fill { height: 100%; background: var(--success); width: 100%; }
+
+        /* Actions */
+        .primary-actions { display: grid; gap: 10px; }
+        .btn-add { 
+            background: var(--primary); color: white; border: none; padding: 16px; 
+            border-radius: 6px; font-weight: 700; font-size: 16px; display: flex; justify-content: center; align-items: center; gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-add:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+        .sec-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .btn-sec { 
+            background: white; border: 1px solid var(--border); padding: 10px; 
+            border-radius: 6px; font-weight: 600; font-size: 13px; color: var(--text-sec);
+            display: flex; justify-content: center; align-items: center; gap: 6px;
+        }
+        .btn-sec:hover { border-color: var(--text-sec); color: var(--text-main); }
+        
+        .btn-watch { color: var(--text-sec); }
+        .btn-watch i { color: #94a3b8; font-size: 16px; transition: 0.2s; }
+        .btn-watch.active { border-color: var(--danger); color: var(--danger); background: #fef2f2; }
+        .btn-watch.active i { color: var(--danger); font-weight: bold; }
+
+        /* Mobile Sticky */
+        .mobile-stick {
+            display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; 
+            padding: 12px 20px; border-top: 1px solid var(--border); z-index: 100;
+            justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 1024px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .buy-box { margin-top: 20px; }
+        }
+        @media (max-width: 600px) {
+            .top-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .metrics-row { width: 100%; justify-content: space-between; }
+            .mobile-stick { display: flex; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <!-- 1. COMPACT TOP BAR -->
-    <div class="top-metrics-bar">
-        <div class="metric-icon" data-tooltip="Total Views">
-            <i class="ph-bold ph-eye"></i> <span>542</span>
-        </div>
-        <div class="metric-icon" data-tooltip="Active Watchers">
-            <i class="ph-bold ph-bell"></i> <span>3</span>
-        </div>
-        <div class="metric-icon urgent" data-tooltip="High Stock Velocity">
-            <i class="ph-fill ph-trend-up"></i> <span>High Demand</span>
-        </div>
-    </div>
+    <div class="container">
 
-    <!-- NAVIGATION PILLS -->
-    <div class="nav-row">
-        <div class="breadcrumb">
-            Shoes <i class="ph-bold ph-caret-right"></i> 
-            Sandals & Slippers <i class="ph-bold ph-caret-right"></i> 
-            <span>Dearfoams</span>
-        </div>
-        <div class="pills">
-            <a href="#" class="pill"><i class="ph-bold ph-amazon-logo"></i> Fulfilled by Amazon</a>
-            <a href="#" class="pill"><i class="ph-bold ph-stack"></i> 3 Variations Available</a>
-            <a href="#" class="pill"><i class="ph-bold ph-tag"></i> Closeout</a>
-        </div>
-    </div>
+        <!-- 1. TOP BAR -->
+        <div class="top-bar">
+            <div class="breadcrumb">
+                <a href="#">Shoes</a> <i class="ph-bold ph-caret-right"></i>
+                <a href="#">Sandals & Slippers</a> <i class="ph-bold ph-caret-right"></i>
+                <span>Dearfoams</span>
+            </div>
 
-    <!-- MAIN GRID -->
-    <div class="grid">
-        
-        <!-- COL 1: IMAGES -->
-        <div class="gallery-card">
-            <!-- Used generic Dearfoams Leopard image URL -->
-            <img src="https://m.media-amazon.com/images/I/81xXyOjoHJL._AC_UY1000_.jpg" class="main-img">
-            <div class="thumbs">
-                <div class="thumb active"><img src="https://m.media-amazon.com/images/I/81xXyOjoHJL._AC_UY1000_.jpg"></div>
-                <!-- Generic placeholders for other angles -->
-                <div class="thumb"><img src="https://m.media-amazon.com/images/I/81p-D-C43aL._AC_UY1000_.jpg"></div>
-                <div class="thumb"><img src="https://m.media-amazon.com/images/I/91tK-X-wFmL._AC_UY1000_.jpg"></div>
-                <div class="thumb"><img src="https://m.media-amazon.com/images/I/81+2+1+yRBL._AC_UY1000_.jpg"></div>
+            <div class="metrics-row">
+                <div class="metric-item">
+                    <i class="ph-fill ph-eye"></i> <span><strong>1,842</strong> Views</span>
+                </div>
+                <div class="metric-item">
+                    <i class="ph-fill ph-heart"></i> <span><strong>42</strong> Watchers</span>
+                </div>
+                <div class="metric-item">
+                    <i class="ph-fill ph-handshake"></i> <span><strong>5</strong> Negotiations</span>
+                </div>
+                <div class="metric-item active-cart">
+                    <i class="ph-fill ph-shopping-cart"></i> <span>in <strong>12</strong> carts</span>
+                </div>
             </div>
         </div>
 
-        <!-- COL 2: INFO -->
+        <!-- 2. HEADER -->
+        <div class="header-section">
+            <div class="category-pills">
+                <a href="#" class="pill"><i class="ph-bold ph-trend-up"></i> Trending</a>
+                <a href="#" class="pill"><i class="ph-bold ph-arrows-clockwise"></i> Restock</a>
+                <a href="#" class="pill"><i class="ph-bold ph-tag"></i> $5 Store</a>
+                <a href="#" class="pill"><i class="ph-bold ph-package"></i> Fulfilled by Amazon</a>
+            </div>
+            
+            <div class="title-wrapper">
+                <h1 class="product-title" id="prodTitle">Dearfoams Women's Velour Clog Slipper, Leopard, Large, Memory Foam Insole, Indoor/Outdoor Rubber Sole - High Demand Winter SKU</h1>
+                <span class="title-toggle" onclick="toggleTitle()">Show Full Title</span>
+            </div>
+            
+            <!-- HYBRID IDENTIFIERS (SKU, ASIN, +2) -->
+            <div class="ids-strip">
+                <div class="id-badge" onclick="copy(this, '888 B07VRDYKHW US')"><i class="ph ph-copy"></i> SKU: 888 B07VRDYKHW US</div>
+                <div class="id-badge" onclick="copy(this, 'B07VRDYKHW')"><i class="ph ph-copy"></i> ASIN: B07VRDYKHW</div>
+                
+                <!-- Dropdown Badge -->
+                <div class="id-badge has-dropdown">
+                    <i class="ph ph-barcode"></i> <span>UPC: 027045...</span> <span class="more-count">+2</span>
+                    <div class="more-dropdown">
+                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '027045728980')">
+                            <span><span class="drop-label">UPC</span> 027045728980</span> <i class="ph ph-copy"></i>
+                        </div>
+                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '694501115792')">
+                            <span><span class="drop-label">UPC</span> 694501115792</span> <i class="ph ph-copy"></i>
+                        </div>
+                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '00027045728980')">
+                            <span><span class="drop-label">GTIN</span> 00027045728980</span> <i class="ph ph-copy"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-layout">
+            
+            <!-- COL 1: GALLERY -->
+            <div class="gallery-card">
+                <div class="main-img-wrap">
+                    <img id="mainImg" src="https://m.media-amazon.com/images/I/81xXyOjoHJL._AC_UY1000_.jpg" alt="Product Image">
+                </div>
+                <div class="thumbs">
+                    <div class="thumb active" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81xXyOjoHJL._AC_UY1000_.jpg"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81p-D-C43aL._AC_UY1000_.jpg"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/91tK-X-wFmL._AC_UY1000_.jpg"></div>
+                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81+2+1+yRBL._AC_UY1000_.jpg"></div>
+                </div>
+            </div>
+
+            <!-- COL 2: INFO -->
+            <div class="info-col">
+                
+                <!-- CLICKABLE SPECS -->
+                <div class="specs-row">
+                    <a href="#" class="spec-tag">Category: <b>Sandals & Slippers</b></a>
+                    <a href="#" class="spec-tag">Brand: <b>Dearfoams</b></a>
+                    <a href="#" class="spec-tag">Condition: <b style="color:var(--success)">New (FBA)</b></a>
+                    <a href="#" class="spec-tag">Size: <b>Large (9-10)</b></a>
+                </div>
+
+                <!-- VARIATIONS SELECTOR -->
+                <div class="var-section">
+                    <div class="var-title">Select Size Variation:</div>
+                    <div class="size-grid">
+                        <div class="size-opt">Small (5-6)</div>
+                        <div class="size-opt">Medium (7-8)</div>
+                        <div class="size-opt active">Large (9-10)</div>
+                        <div class="size-opt">X-Large (11-12)</div>
+                    </div>
+                </div>
+
+                <!-- MARKET INTELLIGENCE -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <span><i class="ph-bold ph-chart-bar"></i> Market Intelligence</span>
+                        <span style="font-size:10px; color:var(--primary); cursor:pointer">Refresh</span>
+                    </div>
+                    <div class="market-grid">
+                        <div class="m-item">
+                            <span>Amazon Buy Box</span>
+                            <span style="color:var(--warning)">$13.37</span>
+                        </div>
+                        <div class="m-item">
+                            <span>Sales Rank</span>
+                            <span style="color:var(--success)">#105</span>
+                        </div>
+                        <div class="m-item">
+                            <span>MSRP</span>
+                            <span style="color:var(--text-main)">$36.00</span>
+                        </div>
+                    </div>
+                    <div class="tools-row">
+                        <button class="tool-btn"><i class="ph-bold ph-graph"></i> Keepa</button>
+                        <button class="tool-btn"><i class="ph-bold ph-google-logo"></i> Google</button>
+                        <button class="tool-btn"><i class="ph-bold ph-tag"></i> eBay</button>
+                    </div>
+                </div>
+
+                <!-- PROFIT SIMULATOR -->
+                <div class="profit-card">
+                    <h3><i class="ph-fill ph-calculator"></i> Profit Estimator</h3>
+                    <div class="calc-flex">
+                        <div class="calc-group">
+                            <label>Target Resale ($)</label>
+                            <input type="number" class="calc-input" id="resale" value="36.00" oninput="calc()">
+                        </div>
+                        <div class="calc-group">
+                            <label>Landed Cost ($)</label>
+                            <input type="number" class="calc-input" id="cost" value="11.00" readonly style="background:#f1f5f9; color:var(--text-sec)">
+                        </div>
+                        <div class="profit-output">
+                            <span class="profit-val" id="profit">+$25.00</span>
+                            <span class="roi-val" id="roi">227% ROI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RAW DESCRIPTION -->
+                <div class="raw-content">
+                    <h4 style="margin-bottom:12px; font-size:16px;">Additional Details</h4>
+                    <p><strong>CLASSIC MEETS MODERN:</strong> Dearfoams Microwool Clog with Molded Footbed features a breathable microwool upper with a faux sherpa lined molded footbed for optimum comfort.</p>
+                    <p><strong>MEMORY FOAM INSOLE:</strong> Each clog is fitted with a multi-density cushioned insole.</p>
+                    <p><strong>RUBBER OUTSOLE:</strong> Indoor/outdoor outsole, molded thermoplastic rubber for durability.</p>
+                </div>
+
+            </div>
+
+            <!-- COL 3: BUY BOX -->
+            <div class="buy-box">
+                <div class="promo-header">
+                    <span><i class="ph-fill ph-fire"></i> FIRST ORDER DEAL</span>
+                    <span class="promo-timer" id="countdown">04h : 12m : 22s</span>
+                </div>
+
+                <div class="buy-content">
+                    
+                    <!-- NEW PRICING LOGIC: Regular vs Sale -->
+                    <div class="price-stack">
+                        <span class="regular-price">Regular Price: $12.50</span>
+                        <div class="sale-price">$10.00</div>
+                        <div class="deal-tag">20% OFF</div>
+
+                        <!-- Logistics Toggle: FBA Item, NJ Location -->
+                        <div class="logistics-box">
+                            <div class="logistics-toggle">
+                                <div class="l-opt active" id="optShip" onclick="setLogistics('ship')">Shipping</div>
+                                <div class="l-opt" id="optPickup" onclick="setLogistics('pickup')">Pickup (NJ)</div>
+                            </div>
+                            
+                            <div class="logistics-row">
+                                <span id="shipLabel">Shipping (FBA Freight)</span>
+                                <span id="shipCost">+$1.00</span>
+                            </div>
+                            
+                            <div class="total-cost-row">
+                                <strong style="color:var(--text-sec)">Landed Cost</strong>
+                                <strong style="color:var(--text-main); font-size:16px;" id="totalCost">$11.00 /unit</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock -->
+                    <div class="stock-area">
+                        <div class="stock-label">
+                            <span>MOQ: 100</span>
+                            <span style="color:var(--success)">4,097 Available</span>
+                        </div>
+                        <div class="stock-track">
+                            <div class="stock-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="primary-actions">
+                        <button class="btn-add">
+                            <i class="ph-bold ph-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="sec-actions">
+                        <button class="btn-sec">
+                            <i class="ph-bold ph-handshake"></i> Negotiate
+                        </button>
+                        <button class="btn-sec btn-watch" onclick="toggleWatch(this)">
+                            <i class="ph ph-heart"></i> Watch
+                        </button>
+                    </div>
+
+                    <div style="margin-top:16px; text-align:center; opacity:0.6">
+                        <i class="ph-fill ph-lock-key"></i> Secure Checkout
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mobile Sticky Footer -->
+    <div class="mobile-stick">
         <div>
-            <div class="info-header">
-                <h1>Dearfoams Women's Velour Clog Slipper, Leopard, Large</h1>
-            </div>
-            
-            <div class="specs-chips">
-                <div class="spec-chip">Brand: <strong>Dearfoams</strong></div>
-                <div class="spec-chip">Size: <strong>9-10 (Large)</strong></div>
-                <div class="spec-chip">Condition: <strong style="color:var(--success-text)">New (FBA)</strong></div>
-            </div>
-
-            <div class="meta-row">
-                <span>SKU: 888-B07VRDYKHW</span>
-                <span>•</span>
-                <span>ASIN: B07VRDYKHW</span>
-                <span>•</span>
-                <span>UPC: 091217209966</span>
-            </div>
-
-            <!-- ZONE 1: MARKET INTELLIGENCE -->
-            <div class="intel-card">
-                <div class="intel-header">
-                    <i class="ph-bold ph-chart-bar"></i> Market Data
-                </div>
-                <div class="intel-grid">
-                    <div class="intel-item">
-                        <span>Amazon Buy Box</span>
-                        <!-- Actual Amazon Price from your data -->
-                        <span style="color:var(--text-main)">$13.37</span>
-                    </div>
-                    <div class="intel-item">
-                        <span>Sales Rank</span>
-                        <span style="color:var(--primary)">#105 (Shoes)</span>
-                    </div>
-                    <div class="intel-item">
-                        <span>MSRP</span>
-                        <!-- The Value Proposition -->
-                        <span style="color:var(--text-sec); text-decoration:line-through">$36.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ZONE 2: PROFIT SIMULATOR -->
-            <div class="calc-card">
-                <div class="calc-title">
-                    <span><i class="ph-fill ph-calculator"></i> Profit Simulator</span>
-                    <span style="font-size:10px; color:var(--text-muted); font-weight:500">*Values estimated</span>
-                </div>
-                <div class="calc-inputs">
-                    <div class="c-input">
-                        <label>Target Resale ($)</label>
-                        <!-- Defaulting to realistic resale price ($24.99) instead of low Az price -->
-                        <input type="number" id="sellPrice" value="24.99" oninput="calculate()">
-                    </div>
-                    <div class="c-input">
-                        <label>Total Cost ($)</label>
-                        <!-- $10 Cost + $1 Ship -->
-                        <input type="number" id="costPrice" value="11.00" readonly style="background:#f1f5f9; color:var(--text-muted)">
-                    </div>
-                    <div class="c-input">
-                        <label>Est. Fees ($)</label>
-                        <!-- Est 15% + Ship -->
-                        <input type="number" id="fees" value="7.50" oninput="calculate()">
-                    </div>
-                </div>
-                <div class="profit-result">
-                    <div>
-                        <div style="font-size:11px; font-weight:700; opacity:0.8">ESTIMATED NET PROFIT</div>
-                        <div class="net-profit" id="netProfit">+$6.49 <span style="font-size:14px; font-weight:600">/unit</span></div>
-                    </div>
-                    <div class="roi-tag" id="roiBadge">59% ROI</div>
-                </div>
-            </div>
-            
-            <div style="margin-top:10px; font-size:11px; color:var(--text-muted); line-height:1.5">
-                <i class="ph-fill ph-info"></i> <strong>Pro Tip:</strong> Amazon price ($13.37) is currently suppressed. High margin opportunity for eBay, Poshmark, or Retail (MSRP $36.00).
-            </div>
+            <div style="font-size:10px; font-weight:700; color:var(--text-sec);">LANDED COST</div>
+            <div style="font-size:16px; font-weight:900;">$11.00 <span style="font-size:12px; font-weight:500;">/unit</span></div>
         </div>
-
-        <!-- COL 3: BUY BOX -->
-        <div class="buy-box">
-            <div class="deal-badge">
-                <i class="ph-fill ph-package"></i> VOLUME DEAL
-            </div>
-            
-            <div class="price-section">
-                <div class="ref-prices">
-                    <span class="strike">MSRP: $36.00</span>
-                    <span>Amazon: $13.37</span>
-                </div>
-                
-                <div class="hero-price">$10.00</div>
-                <div class="price-sub">WHOLESALE PRICE</div>
-                
-                <div class="shipping-line">
-                    <i class="ph-bold ph-truck"></i> +$1.00 FBA Shipping
-                </div>
-            </div>
-
-            <div class="stock-section">
-                <div class="moq-row">
-                    <span>MOQ Requirement: 100</span>
-                    <span style="color:var(--success-text)">4,097 Available</span>
-                </div>
-                <!-- Stock Bar Calculation: 4097 is massive compared to 100, full green bar -->
-                <div class="progress-bg">
-                    <div class="progress-fill" style="width:100%"></div>
-                </div>
-                <div style="text-align:right; font-size:10px; margin-top:4px; color:var(--text-muted); font-weight:700">MASSIVE STOCK AVAILABLE</div>
-            </div>
-
-            <div class="actions">
-                <button class="btn-add"><i class="ph-bold ph-shopping-cart"></i> Add to Cart</button>
-                <button class="btn-neg"><i class="ph-bold ph-handshake"></i> Negotiate</button>
-            </div>
-        </div>
-
+        <button style="background:var(--primary); color:white; border:none; padding:10px 24px; border-radius:6px; font-weight:700;">Add to Cart</button>
     </div>
-</div>
 
-<!-- MOBILE STICKY FOOTER -->
-<div class="mobile-bar">
-    <div>
-        <div style="font-size:10px; font-weight:800; color:var(--text-muted)">WHOLESALE PRICE</div>
-        <div style="font-size:18px; font-weight:900; color:var(--text-main)">$10.00 <span style="font-size:12px; color:var(--text-muted); font-weight:500">/unit</span></div>
-    </div>
-    <button style="background:var(--primary); color:white; border:none; padding:8px 24px; border-radius:6px; font-weight:700">
-        Add
-    </button>
-</div>
-
-<script>
-    function calculate() {
-        const sell = parseFloat(document.getElementById('sellPrice').value) || 0;
-        const cost = parseFloat(document.getElementById('costPrice').value) || 0;
-        const fees = parseFloat(document.getElementById('fees').value) || 0;
-        
-        const profit = sell - cost - fees;
-        const roi = cost > 0 ? (profit / cost) * 100 : 0;
-        
-        const profitEl = document.getElementById('netProfit');
-        const roiEl = document.getElementById('roiBadge');
-        
-        profitEl.innerHTML = (profit >= 0 ? '+' : '') + '$' + profit.toFixed(2) + ' <span style="font-size:14px; font-weight:600">/unit</span>';
-        roiEl.innerText = roi.toFixed(0) + '% ROI';
-        
-        if (profit < 0) {
-            profitEl.style.color = "var(--danger)";
-            roiEl.style.color = "var(--danger)";
-        } else {
-            profitEl.style.color = "var(--success-text)";
-            roiEl.style.color = "var(--success-text)";
+    <script>
+        function toggleTitle() {
+            const title = document.getElementById('prodTitle');
+            const btn = document.querySelector('.title-toggle');
+            title.classList.toggle('expanded');
+            btn.textContent = title.classList.contains('expanded') ? 'Show Less' : 'Show Full Title';
         }
-    }
-</script>
 
+        function swap(el) {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('mainImg').src = el.querySelector('img').src;
+        }
+
+        function toggleWatch(btn) {
+            btn.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if (btn.classList.contains('active')) {
+                icon.classList.remove('ph');
+                icon.classList.add('ph-fill');
+            } else {
+                icon.classList.remove('ph-fill');
+                icon.classList.add('ph');
+            }
+        }
+
+        // COPY FUNCTION WITH DROPDOWN SUPPORT
+        function copy(el, text) {
+            navigator.clipboard.writeText(text);
+            
+            // Find icon within specific clicked element
+            let icon = el.querySelector('i');
+            if(icon && icon.classList.contains('ph-copy')) {
+                let originalClass = icon.className;
+                icon.className = "ph-bold ph-check";
+                icon.style.color = "#16a34a"; // Green
+                
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    icon.style.color = "";
+                }, 1500);
+            }
+        }
+
+        let currentCost = 11.00;
+        function setLogistics(mode) {
+            const shipOpt = document.getElementById('optShip');
+            const pickOpt = document.getElementById('optPickup');
+            const costLabel = document.getElementById('shipCost');
+            const totalLabel = document.getElementById('totalCost');
+            const inputCost = document.getElementById('cost');
+
+            if (mode === 'ship') {
+                shipOpt.classList.add('active');
+                pickOpt.classList.remove('active');
+                costLabel.textContent = "+$1.00";
+                totalLabel.textContent = "$11.00 /unit";
+                currentCost = 11.00;
+                inputCost.value = 11.00;
+            } else {
+                pickOpt.classList.add('active');
+                shipOpt.classList.remove('active');
+                costLabel.textContent = "FREE (NJ)";
+                totalLabel.textContent = "$10.00 /unit";
+                currentCost = 10.00;
+                inputCost.value = 10.00;
+            }
+            calc();
+        }
+
+        function calc() {
+            const resale = parseFloat(document.getElementById('resale').value) || 0;
+            const profit = resale - currentCost;
+            const roi = (profit / currentCost) * 100;
+            const profitEl = document.getElementById('profit');
+            const roiEl = document.getElementById('roi');
+
+            profitEl.textContent = (profit >= 0 ? "+" : "") + "$" + profit.toFixed(2);
+            roiEl.textContent = roi.toFixed(0) + "% ROI";
+            
+            profitEl.style.color = profit < 0 ? "var(--danger)" : "var(--success)";
+            roiEl.style.color = profit < 0 ? "var(--danger)" : "var(--success)";
+        }
+
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = hours + "h : " + minutes + "m : " + seconds + "s";
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+
+        window.onload = function () {
+            let timeInSecs = (4 * 60 * 60) + (12 * 60) + 22;
+            startTimer(timeInSecs, document.getElementById("countdown"));
+        };
+    </script>
 </body>
 </html>
