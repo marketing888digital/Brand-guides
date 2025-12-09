@@ -281,7 +281,31 @@
             padding: 10px 20px; border-top: 1px solid var(--border); z-index: 100;
             justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
         }
-
+        /* --- DISCLAIMER STYLES --- */
+        .disclaimer-box {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border);
+            font-size: 10px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .disc-item { 
+            display: flex; 
+            gap: 6px; 
+            align-items: flex-start; 
+        }
+        
+        .disc-item i { 
+            flex-shrink: 0; 
+            font-size: 12px; 
+            margin-top: 1px; 
+            color: var(--text-sec);
+        }
         @media (max-width: 1024px) {
             .grid-layout { grid-template-columns: 1fr; }
             .buy-box { margin-top: 20px; }
@@ -354,17 +378,43 @@
         <div class="grid-layout">
             
             <!-- COL 1: GALLERY -->
-            <div class="gallery-card">
-                <div class="main-img-wrap">
-                    <img id="mainImg" src="https://m.media-amazon.com/images/I/81knEgrEXfL._UL_300_SS300_.jpg" alt="Product Image">
-                </div>
-                <div class="thumbs">
-                    <div class="thumb active" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81knEgrEXfL._UL_300_SS300_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81XH7mcMIyL._UL_300_SS300_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/819h0IRK0ML._UL_300_SS300_.jpg"></div>
-                    <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71QoWxRvQ4L._UL_300_SS300_.jpg"></div>
-                </div>
-            </div>
+<!-- COL 1: GALLERY -->
+<div class="gallery-card">
+    <div class="main-img-wrap">
+        <img id="mainImg" src="https://m.media-amazon.com/images/I/81knEgrEXfL._UL_300_SS300_.jpg" alt="Product Image">
+    </div>
+    <div class="thumbs">
+        <div class="thumb active" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81knEgrEXfL._UL_300_SS300_.jpg"></div>
+        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/81XH7mcMIyL._UL_300_SS300_.jpg"></div>
+        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/819h0IRK0ML._UL_300_SS300_.jpg"></div>
+        <div class="thumb" onclick="swap(this)"><img src="https://m.media-amazon.com/images/I/71QoWxRvQ4L._UL_300_SS300_.jpg"></div>
+    </div>
+
+    <!-- NEW DISCLAIMER SECTION -->
+    <div class="disclaimer-box">
+        <div class="disc-item">
+            <i class="ph-bold ph-warning-circle"></i>
+            <span><strong>Note:</strong> The displayed images and UPC may not be correct for all items in our inventory.</span>
+        </div>
+        <div class="disc-item">
+            <i class="ph-bold ph-info"></i>
+            <span>*Estimated Buy Box price of Dearfoams Velour Clog. Actual price may vary. Az prices are subject to change without prior notice due to regular price updates from Az and its vendors. We make every effort to update the prices regularly. However, please note that we cannot confirm the accuracy of this information and the product details.</span>
+        </div>
+    </div>
+</div>
+
+    <!-- NEW DISCLAIMER SECTION -->
+    <div class="disclaimer-box">
+        <div class="disc-item">
+            <i class="ph-bold ph-warning-circle"></i>
+            <span><strong>Note:</strong> The displayed images and UPC may not be correct for all items in our inventory.</span>
+        </div>
+        <div class="disc-item">
+            <i class="ph-bold ph-info"></i>
+            <span>*Estimated Buy Box price of Dearfoams Velour Clog. Actual price may vary. Az prices are subject to change without prior notice due to regular price updates from Az and its vendors. We make every effort to update the prices regularly. However, please note that we cannot confirm the accuracy of this information and the product details.</span>
+        </div>
+    </div>
+</div>
 
             <!-- COL 2: INFO -->
             <div class="info-col">
