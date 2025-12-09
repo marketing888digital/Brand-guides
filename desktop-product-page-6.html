@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dearfoams Velour Clog - AAA Wholesale Page</title>
+    <title>Dearfoams Velour Clog - Wholesale Deal</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -16,239 +16,244 @@
             --text-main: #0f172a;
             --text-sec: #64748b;
             --text-muted: #94a3b8;
-            --border: #e2e8f0;
+            --border: #cbd5e1;
             --success: #16a34a; 
             --warning: #d97706;
             --danger: #dc2626;  
-            --radius: 8px;
-            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+            --radius: 4px;
+            --shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--background); color: var(--text-main); font-size: 14px; line-height: 1.5; padding-bottom: 80px; }
-        .container { max-width: 1320px; margin: 0 auto; padding: 24px 20px; }
+        body { font-family: 'Inter', sans-serif; background: var(--background); color: var(--text-main); font-size: 13px; line-height: 1.5; padding-bottom: 80px; }
+        .container { max-width: 1320px; margin: 0 auto; padding: 20px; }
         a { text-decoration: none; color: inherit; transition: 0.2s; cursor: pointer; }
         button { cursor: pointer; font-family: inherit; }
 
-        /* --- 1. TOP METRICS BAR --- */
-        .top-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            margin-bottom: 24px; background: var(--surface); padding: 12px 24px; 
-            border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);
-            flex-wrap: wrap; gap: 15px;
+        /* --- 1. BREADCRUMBS --- */
+        .breadcrumb-row { 
+            width: 100%; margin-bottom: 12px; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
         }
-        .breadcrumb { display: flex; align-items: center; gap: 8px; color: var(--text-sec); font-size: 12px; font-weight: 500; }
+        .breadcrumb { display: inline-flex; align-items: center; gap: 6px; color: var(--text-sec); font-size: 11px; font-weight: 500; }
         .breadcrumb span { color: var(--text-main); font-weight: 700; }
+        .breadcrumb i { font-size: 10px; color: var(--text-muted); }
 
-        .metrics-row { display: flex; gap: 24px; align-items: center; }
-        .metric-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-sec); }
-        .metric-item i { font-size: 18px; color: var(--text-muted); }
-        .metric-item strong { color: var(--text-main); }
-        .metric-item.active-cart { color: var(--danger); }
-        .metric-item.active-cart i { color: var(--danger); }
-
-        /* --- 2. HEADER SECTION --- */
-        .header-section { margin-bottom: 24px; }
-        .category-pills { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-        .pill { 
-            font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; 
-            text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid var(--border);
-            background: var(--surface); color: var(--text-sec); display: flex; align-items: center; gap: 6px;
+        /* --- 2. CONTROL BAR --- */
+        .control-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--surface); padding: 8px 16px;
+            border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);
+            margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
         }
-        .pill:hover { border-color: var(--primary); color: var(--primary); }
+        .bar-left { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .pill { 
+            font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 99px; 
+            text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid var(--border);
+            background: #f1f5f9; color: var(--text-sec); display: flex; align-items: center; gap: 4px;
+        }
+        .pill:hover { border-color: var(--primary); color: var(--primary); background: white; }
 
-        /* Title Logic */
-        .title-wrapper { position: relative; padding-right: 20px; }
+        .bar-right { display: flex; gap: 20px; align-items: center; }
+        .stat-item { 
+            position: relative; display: flex; align-items: center; gap: 5px; 
+            font-size: 12px; font-weight: 700; color: var(--text-sec); cursor: help;
+        }
+        .stat-item i { font-size: 18px; color: var(--text-muted); }
+        .stat-item strong { color: var(--text-main); }
+        .stat-item.active-cart { color: var(--danger); }
+        .stat-item.active-cart i { color: var(--danger); }
+        
+        /* Tooltip */
+        .stat-item::before {
+            content: attr(data-tooltip);
+            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+            background: #1e293b; color: white; padding: 4px 8px; border-radius: 4px;
+            font-size: 10px; white-space: nowrap; opacity: 0; pointer-events: none;
+            transition: 0.2s; margin-bottom: 6px; z-index: 20;
+        }
+        .stat-item:hover::before { opacity: 1; transform: translateX(-50%) translateY(-2px); }
+
+        /* --- 3. TITLE --- */
+        .title-section { margin-bottom: 24px; }
+        .title-wrapper { position: relative; padding-right: 20px; margin-bottom: 8px; }
         .product-title { 
-            font-size: 26px; font-weight: 800; line-height: 1.3; color: var(--text-main); 
-            display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; /* CUTS TEXT IN HALF */
+            font-size: 24px; font-weight: 800; line-height: 1.3; color: var(--text-main); 
+            display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
             transition: all 0.3s ease;
         }
-        .product-title.expanded { -webkit-line-clamp: 2; }
+        .product-title.expanded { -webkit-line-clamp: unset; }
         .title-toggle { 
-            font-size: 12px; font-weight: 600; color: var(--primary); cursor: pointer; 
-            margin-top: 4px; display: inline-block;
+            font-size: 11px; font-weight: 600; color: var(--primary); cursor: pointer; 
+            margin-top: 2px; display: inline-block;
         }
-        .title-toggle:hover { text-decoration: underline; }
 
-        /* --- 3. IDENTIFIERS (HYBRID BADGES) CSS --- */
-        .ids-strip { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+        /* Identifiers */
+        .ids-strip { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
         .id-badge {
             position: relative; display: inline-flex; align-items: center; gap: 6px;
             font-size: 11px; color: #64748b; background: #ffffff;
-            border: 1px dashed #e2e8f0; padding: 4px 10px; border-radius: 4px;
+            border: 1px dashed #cbd5e1; padding: 3px 8px; border-radius: 4px;
             cursor: pointer; transition: all 0.2s ease; user-select: none;
         }
         .id-badge:hover { border-color: #2563eb; color: #2563eb; background: #f0f9ff; z-index: 10; }
-        
-        /* Dropdown Logic */
-        .more-dropdown {
-            display: none; position: absolute; top: 100%; right: 0; margin-top: 4px;
-            background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border-radius: 6px; min-width: 180px; padding: 4px; z-index: 50; flex-direction: column;
-        }
-        .id-badge.has-dropdown:hover .more-dropdown { display: flex; }
-        
-        .drop-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 8px; font-size: 11px; color: #334155; border-radius: 4px;
-        }
-        .drop-item:hover { background: #f1f5f9; color: #2563eb; }
-        .drop-label { font-weight: 700; color: #94a3b8; font-size: 9px; text-transform: uppercase; margin-right: 8px;}
 
-
-        /* --- 4. GRID LAYOUT --- */
-        .grid-layout { display: grid; grid-template-columns: 380px 1fr 350px; gap: 28px; align-items: start; }
+        /* --- LAYOUT --- */
+        .grid-layout { display: grid; grid-template-columns: 360px 1fr 340px; gap: 20px; align-items: start; }
 
         /* COL 1: GALLERY */
-        .gallery-card { background: var(--surface); padding: 16px; border-radius: var(--radius); border: 1px solid var(--border); }
+        .gallery-card { background: var(--surface); padding: 12px; border-radius: var(--radius); border: 1px solid var(--border); }
         .main-img-wrap { 
             width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; 
-            margin-bottom: 12px; position: relative; padding: 10px;
+            margin-bottom: 10px; position: relative; padding: 5px;
         }
         .main-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
         .thumb { 
-            aspect-ratio: 1; border: 1px solid var(--border); border-radius: 6px; 
-            padding: 4px; cursor: pointer; transition: 0.2s; opacity: 0.8;
+            aspect-ratio: 1; border: 1px solid var(--border); border-radius: 4px; 
+            padding: 2px; cursor: pointer; transition: 0.2s; opacity: 0.8;
         }
         .thumb:hover, .thumb.active { border-color: var(--primary); opacity: 1; }
         .thumb img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* COL 2: INFO, DATA, TOOLS */
-        .info-col { display: flex; flex-direction: column; gap: 24px; }
+        /* COL 2: INFO */
+        .info-col { display: flex; flex-direction: column; gap: 16px; }
 
-        /* Specs Row (Clickable) */
-        .specs-row { display: flex; gap: 12px; flex-wrap: wrap; }
-        .spec-tag { 
-            background: white; border: 1px solid var(--border); padding: 8px 14px; 
-            border-radius: 6px; font-size: 12px; color: var(--text-sec); font-weight: 500;
-            display: inline-block; cursor: pointer;
+        .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .spec-box { 
+            border: 1px solid var(--border); padding: 8px 12px; border-radius: var(--radius); 
+            background: white; font-size: 12px; display: flex; flex-direction: column; gap: 2px;
+            cursor: pointer; transition: 0.1s;
         }
-        .spec-tag:hover { border-color: var(--primary); color: var(--primary); }
-        .spec-tag b { color: var(--text-main); font-weight: 700; margin-left: 4px; }
+        .spec-box:hover { border-color: var(--primary); }
+        .spec-k { font-size: 10px; font-weight: 700; color: var(--text-sec); text-transform: uppercase; }
+        .spec-v { font-weight: 700; color: var(--text-main); }
 
-        /* Variations Selector */
+        /* Market Data */
+        .data-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+        .card-header { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; }
+        
+        .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+        .m-item span:first-child { display: block; font-size: 10px; color: var(--text-sec); font-weight: 600; margin-bottom: 2px; }
+        .m-item span:last-child { display: block; font-size: 15px; font-weight: 800; color: var(--text-main); }
+        
+        .msrp-row { 
+            border-top: 1px solid #f1f5f9; padding-top: 12px; margin-bottom: 12px;
+            display: flex; justify-content: space-between; align-items: center; 
+        }
+
+        .tools-row { display: flex; gap: 6px; padding-top: 12px; border-top: 1px dashed var(--border); flex-wrap: wrap; }
+        .tool-btn { 
+            font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 4px; 
+            background: var(--background); color: var(--text-sec); border: 1px solid var(--border);
+            display: flex; align-items: center; gap: 4px;
+        }
+        .tool-btn:hover { background: white; border-color: var(--primary); color: var(--primary); }
+
+        /* Profit Sim */
+        .profit-card { 
+            background: var(--surface); border: 1px solid var(--border); 
+            border-radius: var(--radius); padding: 16px; 
+        }
+        .profit-card h3 { font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .calc-flex { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
+        .calc-group label { display: block; font-size: 10px; font-weight: 700; color: var(--text-sec); margin-bottom: 4px; }
+        .calc-input { 
+            width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; 
+            font-weight: 700; color: var(--text-main); font-family: inherit; font-size: 13px;
+            background: white; 
+        }
+        .profit-output { 
+            background: var(--background); padding: 6px 12px; border-radius: 4px; border: 1px solid var(--border);
+            text-align: right; min-width: 110px;
+        }
+        .profit-val { font-size: 16px; font-weight: 900; color: var(--success); display: block; }
+        .roi-val { font-size: 10px; font-weight: 700; color: var(--success); }
+
+        /* Variations */
         .var-section { background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); }
-        .var-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; color: var(--text-sec); text-transform: uppercase; }
-        .size-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+        .var-title { font-size: 11px; font-weight: 700; margin-bottom: 8px; color: var(--text-sec); text-transform: uppercase; }
+        .size-grid { display: flex; gap: 8px; flex-wrap: wrap; }
         .size-opt { 
-            border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; 
-            font-size: 13px; font-weight: 600; cursor: pointer; background: white; color: var(--text-main);
+            border: 1px solid var(--border); padding: 6px 14px; border-radius: 4px; 
+            font-size: 12px; font-weight: 600; cursor: pointer; background: white; color: var(--text-main);
         }
         .size-opt:hover { border-color: var(--text-sec); }
         .size-opt.active { border-color: var(--primary); background: #eff6ff; color: var(--primary); }
 
-        /* Market Data Card */
-        .data-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-        .card-header { font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
-        
-        .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
-        .m-item span:first-child { display: block; font-size: 11px; color: var(--text-sec); font-weight: 600; margin-bottom: 4px; }
-        .m-item span:last-child { display: block; font-size: 16px; font-weight: 800; color: var(--text-main); }
-
-        .tools-row { display: flex; gap: 8px; margin-top: 10px; pt: 16px; border-top: 1px dashed var(--border); flex-wrap: wrap; }
-        .tool-btn { 
-            font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px; 
-            background: var(--background); color: var(--text-sec); border: 1px solid var(--border);
-            display: flex; align-items: center; gap: 6px;
-        }
-        .tool-btn:hover { background: white; border-color: var(--primary); color: var(--primary); }
-
-        /* Profit Simulator (White Style) */
-        .profit-card { 
-            background: var(--surface); border: 1px solid var(--border); 
-            border-radius: var(--radius); padding: 20px; 
-        }
-        .profit-card h3 { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-        .calc-flex { display: flex; gap: 16px; align-items: flex-end; }
-        .calc-group { flex: 1; }
-        .calc-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-sec); margin-bottom: 6px; }
-        .calc-input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-weight: 700; color: var(--text-main); }
-        .profit-output { 
-            background: var(--background); padding: 9px 16px; border-radius: 6px; border: 1px solid var(--border);
-            text-align: right; min-width: 130px;
-        }
-        .profit-val { font-size: 18px; font-weight: 900; color: var(--success); display: block; }
-        .roi-val { font-size: 11px; font-weight: 700; color: var(--success); }
-
-        /* Raw Content */
-        .raw-content { font-size: 14px; color: var(--text-sec); line-height: 1.6; }
-        .raw-content h4, .raw-content strong { color: var(--text-main); font-weight: 700; }
-        .raw-content ul { padding-left: 20px; margin: 10px 0; }
-        .raw-content li { margin-bottom: 6px; }
-        .raw-content p { margin-bottom: 10px; }
+        /* Content */
+        .raw-content { font-size: 13px; color: var(--text-sec); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 16px; }
+        .raw-content strong { color: var(--text-main); font-weight: 700; }
+        .raw-content p { margin-bottom: 8px; }
 
         /* COL 3: BUY BOX */
         .buy-box { 
             background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); 
             padding: 0; position: sticky; top: 20px; box-shadow: var(--shadow); overflow: hidden;
         }
-        
         .promo-header { 
             background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; 
-            padding: 12px; font-size: 13px; font-weight: 800; 
+            padding: 10px 16px; font-size: 12px; font-weight: 800; 
             letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center;
         }
-        .promo-timer { font-family: monospace; background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .promo-timer { font-family: monospace; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-size: 11px; }
 
-        .buy-content { padding: 24px; }
+        .buy-content { padding: 20px; }
 
-        /* Price Stack (Regular vs Sale) */
-        .price-stack { margin-bottom: 20px; text-align: center; }
-        .regular-price { font-size: 14px; color: var(--text-sec); text-decoration: line-through; margin-bottom: 4px; display: block; }
-        .sale-price { font-size: 42px; font-weight: 900; color: var(--danger); line-height: 1; letter-spacing: -1px; }
-        .deal-tag { font-size: 13px; font-weight: 700; color: var(--danger); background: #fef2f2; padding: 2px 8px; border-radius: 4px; margin-top: 8px; display: inline-block;}
-        
-        /* Logistics Box */
-        .logistics-box { 
-            background: var(--background); border: 1px solid var(--border); border-radius: 8px; 
-            padding: 12px; margin-top: 20px;
+        .price-stack { margin-bottom: 16px; text-align: center; }
+        .regular-price { font-size: 13px; color: var(--text-sec); text-decoration: line-through; margin-bottom: 2px; display: block; }
+        .sale-price { font-size: 38px; font-weight: 900; color: var(--danger); line-height: 1; letter-spacing: -1px; }
+        .deal-tag { font-size: 11px; font-weight: 700; color: var(--danger); background: #fef2f2; padding: 2px 6px; border-radius: 4px; margin-top: 6px; display: inline-block;}
+
+        /* Static Logistics Labels */
+        .logistics-info {
+            background: #f1f5f9; padding: 10px; border-radius: 4px; margin-bottom: 16px; border: 1px solid var(--border);
         }
-        .logistics-toggle { 
-            display: flex; background: white; border: 1px solid var(--border); border-radius: 6px; padding: 2px;
-            margin-bottom: 10px;
-        }
-        .l-opt { flex: 1; text-align: center; padding: 6px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 4px; color: var(--text-sec); }
-        .l-opt.active { background: var(--text-main); color: white; }
+        .log-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px; }
+        .log-label { font-weight: 600; color: var(--text-sec); }
+        .log-val { font-weight: 800; color: var(--text-main); }
+        .log-val.success { color: var(--success); }
 
-        .total-cost-row { 
-            border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 8px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        /* Stock */
-        .stock-area { margin-bottom: 20px; margin-top: 20px; }
-        .stock-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 5px; }
-        .stock-track { height: 8px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+        .stock-area { margin-bottom: 20px; }
+        .stock-label { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+        .stock-track { height: 6px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
         .stock-fill { height: 100%; background: var(--success); width: 100%; }
 
-        /* Actions */
-        .primary-actions { display: grid; gap: 10px; }
+        /* Quantity Selector */
+        .qty-wrapper {
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 10px; border: 1px solid var(--border); border-radius: 4px; padding: 4px;
+        }
+        .qty-btn { 
+            width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+            font-size: 16px; color: var(--text-sec); background: transparent; border: none; font-weight: bold;
+        }
+        .qty-btn:hover { color: var(--primary); background: #f1f5f9; border-radius: 2px; }
+        .qty-input { 
+            width: 60px; text-align: center; border: none; font-weight: 800; color: var(--text-main); font-size: 14px; outline: none; background: transparent;
+        }
+
+        .primary-actions { display: grid; gap: 8px; }
         .btn-add { 
-            background: var(--primary); color: white; border: none; padding: 16px; 
-            border-radius: 6px; font-weight: 700; font-size: 16px; display: flex; justify-content: center; align-items: center; gap: 8px;
-            transition: 0.2s;
+            background: var(--primary); color: white; border: none; padding: 14px; 
+            border-radius: 4px; font-weight: 700; font-size: 15px; display: flex; justify-content: center; align-items: center; gap: 8px;
+            transition: 0.2s; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
         }
         .btn-add:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
-        .sec-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .sec-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
         .btn-sec { 
-            background: white; border: 1px solid var(--border); padding: 10px; 
-            border-radius: 6px; font-weight: 600; font-size: 13px; color: var(--text-sec);
+            background: white; border: 1px solid var(--border); padding: 8px; 
+            border-radius: 4px; font-weight: 600; font-size: 12px; color: var(--text-sec);
             display: flex; justify-content: center; align-items: center; gap: 6px;
         }
         .btn-sec:hover { border-color: var(--text-sec); color: var(--text-main); }
-        
         .btn-watch { color: var(--text-sec); }
-        .btn-watch i { color: #94a3b8; font-size: 16px; transition: 0.2s; }
         .btn-watch.active { border-color: var(--danger); color: var(--danger); background: #fef2f2; }
-        .btn-watch.active i { color: var(--danger); font-weight: bold; }
 
-        /* Mobile Sticky */
         .mobile-stick {
             display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; 
-            padding: 12px 20px; border-top: 1px solid var(--border); z-index: 100;
+            padding: 10px 20px; border-top: 1px solid var(--border); z-index: 100;
             justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
         }
 
@@ -257,8 +262,8 @@
             .buy-box { margin-top: 20px; }
         }
         @media (max-width: 600px) {
-            .top-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .metrics-row { width: 100%; justify-content: space-between; }
+            .control-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .bar-left, .bar-right { width: 100%; justify-content: space-between; }
             .mobile-stick { display: flex; }
         }
     </style>
@@ -267,64 +272,43 @@
 
     <div class="container">
 
-        <!-- 1. TOP BAR -->
-        <div class="top-bar">
+        <!-- 1. BREADCRUMBS -->
+        <div class="breadcrumb-row">
             <div class="breadcrumb">
+                <a href="#">Home</a> <i class="ph-bold ph-caret-right"></i>
+                <a href="#">Items</a> <i class="ph-bold ph-caret-right"></i>
                 <a href="#">Shoes</a> <i class="ph-bold ph-caret-right"></i>
                 <a href="#">Sandals & Slippers</a> <i class="ph-bold ph-caret-right"></i>
-                <span>Dearfoams</span>
-            </div>
-
-            <div class="metrics-row">
-                <div class="metric-item">
-                    <i class="ph-fill ph-eye"></i> <span><strong>1,842</strong> Views</span>
-                </div>
-                <div class="metric-item">
-                    <i class="ph-fill ph-heart"></i> <span><strong>42</strong> Watchers</span>
-                </div>
-                <div class="metric-item">
-                    <i class="ph-fill ph-handshake"></i> <span><strong>5</strong> Negotiations</span>
-                </div>
-                <div class="metric-item active-cart">
-                    <i class="ph-fill ph-shopping-cart"></i> <span>in <strong>12</strong> carts</span>
-                </div>
+                <span>Dearfoams Women's Velour Clog Slipper</span>
             </div>
         </div>
 
-        <!-- 2. HEADER -->
-        <div class="header-section">
-            <div class="category-pills">
+        <!-- 2. CONTROL BAR -->
+        <div class="control-bar">
+            <div class="bar-left">
                 <a href="#" class="pill"><i class="ph-bold ph-trend-up"></i> Trending</a>
                 <a href="#" class="pill"><i class="ph-bold ph-arrows-clockwise"></i> Restock</a>
                 <a href="#" class="pill"><i class="ph-bold ph-tag"></i> $5 Store</a>
-                <a href="#" class="pill"><i class="ph-bold ph-package"></i> Fulfilled by Amazon</a>
+                <a href="#" class="pill"><i class="ph-bold ph-amazon-logo"></i> FBA Ready</a>
             </div>
-            
+            <div class="bar-right">
+                <div class="stat-item" data-tooltip="Total Views"><i class="ph-fill ph-eye"></i> <strong>1,842</strong></div>
+                <div class="stat-item" data-tooltip="Active Watchers"><i class="ph-fill ph-heart"></i> <strong>42</strong></div>
+                <div class="stat-item" data-tooltip="Open Negotiations"><i class="ph-fill ph-handshake"></i> <strong>5</strong></div>
+                <div class="stat-item active-cart" data-tooltip="Currently in Carts"><i class="ph-fill ph-shopping-cart"></i> <strong>12</strong></div>
+            </div>
+        </div>
+
+        <!-- 3. TITLE -->
+        <div class="title-section">
             <div class="title-wrapper">
-                <h1 class="product-title" id="prodTitle">Dearfoams Women's Velour Clog Slipper, Leopard, Large, Memory Foam Insole, Indoor/Outdoor Rubber Sole - High Demand Winter SKU</h1>
+                <h1 class="product-title" id="prodTitle">Dearfoams Women's Velour Clog Slipper, Leopard, Large, Memory Foam Insole, Indoor/Outdoor Rubber Sole</h1>
                 <span class="title-toggle" onclick="toggleTitle()">Show Full Title</span>
             </div>
-            
-            <!-- HYBRID IDENTIFIERS (SKU, ASIN, +2) -->
             <div class="ids-strip">
                 <div class="id-badge" onclick="copy(this, '888 B07VRDYKHW US')"><i class="ph ph-copy"></i> SKU: 888 B07VRDYKHW US</div>
                 <div class="id-badge" onclick="copy(this, 'B07VRDYKHW')"><i class="ph ph-copy"></i> ASIN: B07VRDYKHW</div>
-                
-                <!-- Dropdown Badge -->
-                <div class="id-badge has-dropdown">
-                    <i class="ph ph-barcode"></i> <span>UPC: 027045...</span> <span class="more-count">+2</span>
-                    <div class="more-dropdown">
-                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '027045728980')">
-                            <span><span class="drop-label">UPC</span> 027045728980</span> <i class="ph ph-copy"></i>
-                        </div>
-                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '694501115792')">
-                            <span><span class="drop-label">UPC</span> 694501115792</span> <i class="ph ph-copy"></i>
-                        </div>
-                        <div class="drop-item" onclick="event.stopPropagation(); copy(this, '00027045728980')">
-                            <span><span class="drop-label">GTIN</span> 00027045728980</span> <i class="ph ph-copy"></i>
-                        </div>
-                    </div>
-                </div>
+                <div class="id-badge" onclick="copy(this, '091217209966')"><i class="ph ph-copy"></i> UPC: 091217209966</div>
             </div>
         </div>
 
@@ -346,31 +330,32 @@
             <!-- COL 2: INFO -->
             <div class="info-col">
                 
-                <!-- CLICKABLE SPECS -->
-                <div class="specs-row">
-                    <a href="#" class="spec-tag">Category: <b>Sandals & Slippers</b></a>
-                    <a href="#" class="spec-tag">Brand: <b>Dearfoams</b></a>
-                    <a href="#" class="spec-tag">Condition: <b style="color:var(--success)">New (FBA)</b></a>
-                    <a href="#" class="spec-tag">Size: <b>Large (9-10)</b></a>
-                </div>
-
-                <!-- VARIATIONS SELECTOR -->
-                <div class="var-section">
-                    <div class="var-title">Select Size Variation:</div>
-                    <div class="size-grid">
-                        <div class="size-opt">Small (5-6)</div>
-                        <div class="size-opt">Medium (7-8)</div>
-                        <div class="size-opt active">Large (9-10)</div>
-                        <div class="size-opt">X-Large (11-12)</div>
+                <!-- Specs -->
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <span class="spec-k">Category</span>
+                        <span class="spec-v">Sandals & Slippers</span>
+                    </div>
+                    <div class="spec-box">
+                        <span class="spec-k">Brand</span>
+                        <span class="spec-v">Dearfoams</span>
+                    </div>
+                    <div class="spec-box">
+                        <span class="spec-k">Condition</span>
+                        <span class="spec-v" style="color:var(--success)">Fulfilled by Amazon</span>
+                    </div>
+                    <div class="spec-box">
+                        <span class="spec-k">Size</span>
+                        <span class="spec-v">Large (9-10)</span>
                     </div>
                 </div>
 
-                <!-- MARKET INTELLIGENCE -->
+                <!-- Market Data -->
                 <div class="data-card">
                     <div class="card-header">
-                        <span><i class="ph-bold ph-chart-bar"></i> Market Intelligence</span>
-                        <span style="font-size:10px; color:var(--primary); cursor:pointer">Refresh</span>
+                        <span><i class="ph-bold ph-chart-bar"></i> Market Data</span>
                     </div>
+                    <!-- Row 1: Amazon Data -->
                     <div class="market-grid">
                         <div class="m-item">
                             <span>Amazon Buy Box</span>
@@ -381,18 +366,25 @@
                             <span style="color:var(--success)">#105</span>
                         </div>
                         <div class="m-item">
-                            <span>MSRP</span>
-                            <span style="color:var(--text-main)">$36.00</span>
+                            <span>Offers</span>
+                            <span style="color:var(--text-main)">4 Offers</span>
                         </div>
                     </div>
+                    <!-- Row 2: MSRP Separated -->
+                    <div class="msrp-row">
+                        <span style="font-size:11px; font-weight:600; color:var(--text-sec)">Est. Retail Price (MSRP)</span>
+                        <span style="font-size:16px; font-weight:800; color:var(--text-main)">$36.00</span>
+                    </div>
+
                     <div class="tools-row">
                         <button class="tool-btn"><i class="ph-bold ph-graph"></i> Keepa</button>
                         <button class="tool-btn"><i class="ph-bold ph-google-logo"></i> Google</button>
+                        <button class="tool-btn"><i class="ph-bold ph-image"></i> Google Images</button>
                         <button class="tool-btn"><i class="ph-bold ph-tag"></i> eBay</button>
                     </div>
                 </div>
 
-                <!-- PROFIT SIMULATOR -->
+                <!-- Profit Simulator -->
                 <div class="profit-card">
                     <h3><i class="ph-fill ph-calculator"></i> Profit Estimator</h3>
                     <div class="calc-flex">
@@ -402,7 +394,7 @@
                         </div>
                         <div class="calc-group">
                             <label>Landed Cost ($)</label>
-                            <input type="number" class="calc-input" id="cost" value="11.00" readonly style="background:#f1f5f9; color:var(--text-sec)">
+                            <input type="number" class="calc-input" id="cost" value="11.00" oninput="calc()">
                         </div>
                         <div class="profit-output">
                             <span class="profit-val" id="profit">+$25.00</span>
@@ -411,12 +403,24 @@
                     </div>
                 </div>
 
-                <!-- RAW DESCRIPTION -->
+                <!-- Variations -->
+                <div class="var-section">
+                    <div class="var-title">Select Size Variation:</div>
+                    <div class="size-grid">
+                        <div class="size-opt">Small (5-6)</div>
+                        <div class="size-opt">Medium (7-8)</div>
+                        <div class="size-opt active">Large (9-10)</div>
+                        <div class="size-opt">X-Large (11-12)</div>
+                    </div>
+                </div>
+
+                <!-- Details -->
                 <div class="raw-content">
-                    <h4 style="margin-bottom:12px; font-size:16px;">Additional Details</h4>
+                    <h4 style="margin-bottom:12px; font-size:14px;">Additional Details</h4>
                     <p><strong>CLASSIC MEETS MODERN:</strong> Dearfoams Microwool Clog with Molded Footbed features a breathable microwool upper with a faux sherpa lined molded footbed for optimum comfort.</p>
                     <p><strong>MEMORY FOAM INSOLE:</strong> Each clog is fitted with a multi-density cushioned insole.</p>
                     <p><strong>RUBBER OUTSOLE:</strong> Indoor/outdoor outsole, molded thermoplastic rubber for durability.</p>
+                    <p>Material: Rubber</p>
                 </div>
 
             </div>
@@ -430,32 +434,24 @@
 
                 <div class="buy-content">
                     
-                    <!-- NEW PRICING LOGIC: Regular vs Sale -->
                     <div class="price-stack">
                         <span class="regular-price">Regular Price: $12.50</span>
                         <div class="sale-price">$10.00</div>
                         <div class="deal-tag">20% OFF</div>
+                    </div>
 
-                        <!-- Logistics Toggle: FBA Item, NJ Location -->
-                        <div class="logistics-box">
-                            <div class="logistics-toggle">
-                                <div class="l-opt active" id="optShip" onclick="setLogistics('ship')">Shipping</div>
-                                <div class="l-opt" id="optPickup" onclick="setLogistics('pickup')">Pickup (NJ)</div>
-                            </div>
-                            
-                            <div class="logistics-row">
-                                <span id="shipLabel">Shipping (FBA Freight)</span>
-                                <span id="shipCost">+$1.00</span>
-                            </div>
-                            
-                            <div class="total-cost-row">
-                                <strong style="color:var(--text-sec)">Landed Cost</strong>
-                                <strong style="color:var(--text-main); font-size:16px;" id="totalCost">$11.00 /unit</strong>
-                            </div>
+                    <!-- Static Logistics Info -->
+                    <div class="logistics-info">
+                        <div class="log-row">
+                            <span class="log-label">Condition:</span>
+                            <span class="log-val success"><i class="ph-fill ph-check-circle"></i> Fulfilled by Amazon</span>
+                        </div>
+                        <div class="log-row">
+                            <span class="log-label">Shipping:</span>
+                            <span class="log-val">$1.00 / unit</span>
                         </div>
                     </div>
 
-                    <!-- Stock -->
                     <div class="stock-area">
                         <div class="stock-label">
                             <span>MOQ: 100</span>
@@ -466,7 +462,13 @@
                         </div>
                     </div>
 
-                    <!-- Actions -->
+                    <!-- Quantity + Actions -->
+                    <div class="qty-wrapper">
+                        <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                        <input type="number" class="qty-input" id="qtyInput" value="100">
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+
                     <div class="primary-actions">
                         <button class="btn-add">
                             <i class="ph-bold ph-shopping-cart"></i> Add to Cart
@@ -482,7 +484,7 @@
                         </button>
                     </div>
 
-                    <div style="margin-top:16px; text-align:center; opacity:0.6">
+                    <div style="margin-top:12px; text-align:center; opacity:0.6; font-size:10px;">
                         <i class="ph-fill ph-lock-key"></i> Secure Checkout
                     </div>
                 </div>
@@ -497,7 +499,7 @@
             <div style="font-size:10px; font-weight:700; color:var(--text-sec);">LANDED COST</div>
             <div style="font-size:16px; font-weight:900;">$11.00 <span style="font-size:12px; font-weight:500;">/unit</span></div>
         </div>
-        <button style="background:var(--primary); color:white; border:none; padding:10px 24px; border-radius:6px; font-weight:700;">Add to Cart</button>
+        <button style="background:var(--primary); color:white; border:none; padding:10px 24px; border-radius:4px; font-weight:700;">Add to Cart</button>
     </div>
 
     <script>
@@ -526,17 +528,13 @@
             }
         }
 
-        // COPY FUNCTION WITH DROPDOWN SUPPORT
         function copy(el, text) {
             navigator.clipboard.writeText(text);
-            
-            // Find icon within specific clicked element
             let icon = el.querySelector('i');
             if(icon && icon.classList.contains('ph-copy')) {
                 let originalClass = icon.className;
                 icon.className = "ph-bold ph-check";
-                icon.style.color = "#16a34a"; // Green
-                
+                icon.style.color = "#16a34a";
                 setTimeout(() => {
                     icon.className = originalClass;
                     icon.style.color = "";
@@ -544,36 +542,21 @@
             }
         }
 
-        let currentCost = 11.00;
-        function setLogistics(mode) {
-            const shipOpt = document.getElementById('optShip');
-            const pickOpt = document.getElementById('optPickup');
-            const costLabel = document.getElementById('shipCost');
-            const totalLabel = document.getElementById('totalCost');
-            const inputCost = document.getElementById('cost');
-
-            if (mode === 'ship') {
-                shipOpt.classList.add('active');
-                pickOpt.classList.remove('active');
-                costLabel.textContent = "+$1.00";
-                totalLabel.textContent = "$11.00 /unit";
-                currentCost = 11.00;
-                inputCost.value = 11.00;
-            } else {
-                pickOpt.classList.add('active');
-                shipOpt.classList.remove('active');
-                costLabel.textContent = "FREE (NJ)";
-                totalLabel.textContent = "$10.00 /unit";
-                currentCost = 10.00;
-                inputCost.value = 10.00;
-            }
-            calc();
+        function updateQty(delta) {
+            const input = document.getElementById('qtyInput');
+            let val = parseInt(input.value) || 100;
+            let newVal = val + delta;
+            if(newVal < 100) newVal = 100; // MOQ floor
+            input.value = newVal;
         }
 
         function calc() {
             const resale = parseFloat(document.getElementById('resale').value) || 0;
-            const profit = resale - currentCost;
-            const roi = (profit / currentCost) * 100;
+            const cost = parseFloat(document.getElementById('cost').value) || 0;
+            
+            const profit = resale - cost;
+            const roi = cost > 0 ? (profit / cost) * 100 : 0;
+
             const profitEl = document.getElementById('profit');
             const roiEl = document.getElementById('roi');
 
