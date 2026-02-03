@@ -863,24 +863,24 @@
   }
 </style>
 
-<!-- DESIGN 4 — FINAL (Roboto only, Design 3 animation, clean hierarchy) -->
+<!-- DESIGN 4 — REVERTED (keeps your original button + sizing) 
+     Fix: Roboto only + readable typography
+     Background animation: SAME as Design 3 (subtle sweep) -->
 
 <style>
-  .auction-bar-v4{
+  .auction-bar-v4{ 
     display:block;
     width:100%;
-    background:#3B82F6;
-    color:#ffffff;
+    background:#3B82F6; /* Bright Action Blue */
+    color:#fff;
     position:relative;
     overflow:hidden;
-    border-bottom:1px solid rgba(255,255,255,0.18);
-    box-shadow:0 6px 18px rgba(51,65,85,0.18);
 
-    /* ONE FONT FAMILY ONLY */
+    /* ROBOTO ONLY */
     font-family: Roboto;
   }
 
-  /* Same subtle sweep as Design 3 */
+  /* Design 3-style subtle sweep (replaces the “big shine” you disliked) */
   .auction-bar-v4::before{
     content:"";
     position:absolute;
@@ -888,14 +888,13 @@
     background:linear-gradient(
       90deg,
       rgba(220,38,38,0.18),
-      rgba(59,130,246,0),
+      rgba(59,130,246,0.00),
       rgba(220,38,38,0.18)
     );
     transform:translateX(-40%);
     animation:auctionSweep-v4 5.5s ease-in-out infinite;
     pointer-events:none;
   }
-
   @keyframes auctionSweep-v4{
     0%{transform:translateX(-45%);opacity:0.22}
     50%{transform:translateX(10%);opacity:0.34}
@@ -911,11 +910,11 @@
   .auction-bar-inner-v4{
     max-width:1400px;
     margin:0 auto;
-    padding:10px 18px;
+    padding:14px 24px; /* REVERT: original */
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:16px;
+    gap:20px;
     position:relative;
     z-index:1;
   }
@@ -923,120 +922,123 @@
   .auction-left-v4{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:16px;
     min-width:0;
   }
 
-  /* Accent via uppercase + weight only */
+  /* Badge: original sizing, readable */
   .auction-live-v4{
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:6px 10px;
-    border-radius:999px;
-    background:rgba(51,65,85,0.35);
-    border:1px solid rgba(255,255,255,0.22);
+    padding:8px 12px;
+    border-radius:4px; /* REVERT: rectangular */
+    background:rgba(0,0,0,0.20);
+    border:1px solid rgba(255,255,255,0.20);
     font-weight:900;
-    font-size:12px;
-    letter-spacing:0.9px;
+    font-size:13px;
+    letter-spacing:1px;
     text-transform:uppercase;
     white-space:nowrap;
+    line-height:1; /* readability + vertical centering */
   }
 
   .auction-dot-v4{
-    width:8px;
-    height:8px;
+    width:10px;
+    height:10px;
     border-radius:50%;
-    background:#DC2626;
-    box-shadow:0 0 10px rgba(220,38,38,0.9);
-    animation:auctionPulse-v4 1.4s ease-in-out infinite;
+    background:#EF4444; 
+    box-shadow:0 0 8px #EF4444;
+    animation:pulse-v4 1.5s infinite;
   }
-
-  @keyframes auctionPulse-v4{
+  @keyframes pulse-v4{
     0%{transform:scale(1);opacity:1}
-    50%{transform:scale(0.78);opacity:0.55}
+    50%{transform:scale(0.8);opacity:0.6}
     100%{transform:scale(1);opacity:1}
   }
 
-  /* ONE base text size */
   .auction-copy-v4{
     display:flex;
-    align-items:baseline;
-    gap:10px;
-    font-size:14px;
+    align-items:center;
+    gap:12px;
+    text-transform:uppercase; /* accent via caps */
+    letter-spacing:0.5px;
+    min-width:0;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+
+    /* readability */
+    line-height:1.15;
   }
 
   .auction-headline-v4{
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:0.4px;
+    font-weight:800;
+    font-size:18px; /* REVERT: original */
+    color:#ffffff;
   }
 
-  .auction-sub-v4{
-    font-weight:700;
-    opacity:0.95;
-  }
-
-  /* Same font size, accent via weight only */
+  /* Timer: keep original size, make it readable */
   .auction-time-v4{
     display:inline-flex;
     align-items:center;
-    padding:3px 8px;
-    border-radius:6px;
-    background:rgba(241,245,249,0.18);
-    border:1px solid rgba(255,255,255,0.18);
+    padding:4px 10px;
+    border-radius:4px;
+    background:rgba(0,0,0,0.15);
+    font-family: Roboto;          /* ROBOTO ONLY (no monospace) */
     font-weight:900;
-    font-size:14px;
-    letter-spacing:0.3px;
+    font-size:18px;               /* REVERT: original */
+    letter-spacing:1px;           /* improves numeric readability */
+    color:#fff;
+    line-height:1;
   }
 
   .auction-right-v4{
-    display:inline-flex;
+    display:flex;
     align-items:center;
-    white-space:nowrap;
+    flex-shrink:0;
   }
 
+  /* Button: REVERTED exactly (rectangular, bold, no shadow) */
   .auction-cta-v4{
     display:inline-flex;
     align-items:center;
-    gap:10px;
-    padding:8px 16px;
-    border-radius:999px;
+    gap:12px;
+    padding:12px 28px;     /* REVERT: original */
+    border-radius:4px;     /* REVERT: rectangular */
     background:#ffffff;
-    color:#334155;
+    color:#3B82F6;
     font-weight:900;
-    font-size:13px;
-    letter-spacing:0.6px;
+    font-size:15px;        /* REVERT: original */
+    letter-spacing:1px;
     text-transform:uppercase;
-    box-shadow:0 6px 14px rgba(0,0,0,0.12);
-    transition:transform 160ms ease, box-shadow 160ms ease, color 160ms ease;
+    transition:background-color 0.2s ease;
+    border:none;
+    line-height:1;         /* crisp */
+  }
+
+  .auction-bar-v4 a:hover .auction-cta-v4{
+    background-color:#f8fafc;
   }
 
   .auction-arrow-v4{
     font-weight:900;
-    transition:transform 160ms ease;
-  }
-
-  .auction-bar-v4 a:hover .auction-cta-v4{
-    transform:translateY(-1px);
-    box-shadow:0 10px 22px rgba(0,0,0,0.16);
-    color:#DC2626;
+    transition:transform 0.2s ease;
   }
 
   .auction-bar-v4 a:hover .auction-arrow-v4{
-    transform:translateX(3px);
+    transform:translateX(4px);
   }
 
-  @media (max-width:600px){
+  @media (max-width:900px){
     .auction-bar-inner-v4{
       flex-direction:column;
-      gap:10px;
-      padding:12px;
+      text-align:center;
+      padding:16px;
     }
     .auction-copy-v4{
+      flex-direction:column;
+      gap:8px;
       white-space:normal;
     }
   }
@@ -1045,7 +1047,6 @@
 <div class="auction-bar-v4">
   <a href="#">
     <div class="auction-bar-inner-v4">
-
       <div class="auction-left-v4">
         <span class="auction-live-v4">
           <span class="auction-dot-v4"></span>
@@ -1053,8 +1054,7 @@
         </span>
 
         <div class="auction-copy-v4">
-          <span class="auction-headline-v4">$1 Bids</span>
-          <span class="auction-sub-v4">Starts at</span>
+          <span class="auction-headline-v4">Bids from $1 - Starts at</span>
           <span class="auction-time-v4">13:05:00</span>
         </div>
       </div>
@@ -1064,7 +1064,6 @@
           Join &amp; Bid <span class="auction-arrow-v4">→</span>
         </span>
       </div>
-
     </div>
   </a>
 </div>
