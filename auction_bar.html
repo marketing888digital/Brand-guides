@@ -704,31 +704,190 @@
   }
 </style>
 
+<!-- STYLE BLOCK FOR DESIGN 4 (Flat & Bold B2B) -->
+<style>
+  .auction-bar-v4 { 
+      display: block;
+      width: 100%;
+      background: #3B82F6; /* Bright Action Blue */
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  /* VISIBLE SHINE ANIMATION */
+  .auction-bar-v4::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.2), 
+      transparent
+    );
+    animation: shineSweep-v4 4s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shineSweep-v4 {
+    0% { left: -150%; }
+    50% { left: 150%; }
+    100% { left: 150%; }
+  }
+
+  .auction-bar-v4 a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  .auction-bar-inner-v4 {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .auction-left-v4 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* RECTANGULAR BADGE */
+  .auction-live-v4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px; /* Matches Button Shape */
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .auction-dot-v4 {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #EF4444; 
+    box-shadow: 0 0 8px #EF4444;
+    animation: pulse-v4 1.5s infinite;
+  }
+
+  @keyframes pulse-v4 {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .auction-copy-v4 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase; /* ALL CAPS */
+    letter-spacing: 0.5px;
+  }
+
+  .auction-headline-v4 {
+    font-weight: 800;
+    font-size: 18px; /* Bigger Font */
+    color: #ffffff;
+  }
+
+  /* RECTANGULAR TIMER */
+  .auction-time-v4 {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.15);
+    font-family: ui-monospace, monospace;
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .auction-right-v4 {
+    display: flex;
+    align-items: center;
+  }
+
+  /* BUTTON: RECTANGULAR, BOLD, NO SHADOW */
+  .auction-cta-v4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    border-radius: 4px; /* Matches Design 2 */
+    background: #ffffff;
+    color: #3B82F6;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+    border: none;
+  }
+
+  .auction-bar-v4 a:hover .auction-cta-v4 {
+    background-color: #f8fafc;
+  }
+
+  .auction-arrow-v4 {
+    font-weight: 900;
+    transition: transform 0.2s ease;
+  }
+
+  .auction-bar-v4 a:hover .auction-arrow-v4 {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 900px) {
+    .auction-bar-inner-v4 { flex-direction: column; text-align: center; padding: 16px; }
+    .auction-copy-v4 { flex-direction: column; gap: 8px; }
+  }
+</style>
+
 <!-- HTML FOR DESIGN 4 -->
-<div class="auction-bar-v4" role="region" aria-label="Live auction announcement">
-    <a href="#">
-      <div class="auction-bar-inner-v4">
-        <div class="auction-left-v4">
-          <span class="auction-live-v4">
-            <span class="auction-dot-v4" aria-hidden="true"></span>
-            LIVE AUCTION
-          </span>
-  
-          <div class="auction-copy-v4">
-            <span class="auction-headline-v4">Bids from $1 - </span>
-            <span class="auction-headline-v4">
-              Starts at <span class="auction-time-v4">13:05:00</span>
-            </span>
-          </div>
-        </div>
-  
-        <div class="auction-right-v4">
-          <span class="auction-cta-v4">
-            Join & Bid <span class="auction-arrow-v4" aria-hidden="true">→</span>
-          </span>
+<div class="auction-bar-v4">
+  <a href="#">
+    <div class="auction-bar-inner-v4">
+      
+      <div class="auction-left-v4">
+        <span class="auction-live-v4">
+          <span class="auction-dot-v4"></span>
+          Live Auction
+        </span>
+
+        <div class="auction-copy-v4">
+          <span class="auction-headline-v4">Bids from $1 — Starts at</span>
+          <span class="auction-time-v4">13:05:00</span>
         </div>
       </div>
-    </a>
+
+      <div class="auction-right-v4">
+        <span class="auction-cta-v4">
+          Join & Bid <span class="auction-arrow-v4">→</span>
+        </span>
+      </div>
+
+    </div>
+  </a>
 </div>
 </body>
 </html>
