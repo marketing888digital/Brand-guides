@@ -1081,7 +1081,27 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
   }
 
-  /* Background animation removed as requested */
+/* DESIGN 5 — add the same subtle sweep animation as Design 4 */
+.auction-bar-v5::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(220,38,38,0.18),
+    rgba(59,130,246,0.00),
+    rgba(220,38,38,0.18)
+  );
+  transform:translateX(-40%);
+  animation:auctionSweep-v5 5.5s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes auctionSweep-v5{
+  0%{transform:translateX(-45%);opacity:0.22}
+  50%{transform:translateX(10%);opacity:0.34}
+  100%{transform:translateX(65%);opacity:0.22}
+}
 
   .auction-bar-v5 a {
     color: inherit;
@@ -1194,7 +1214,6 @@
     transition: background-color 0.2s ease;
     border: none;
     line-height: 1;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 
   .auction-bar-v5 a:hover .auction-cta-v5 {
