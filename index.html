@@ -3,52 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Marketing Documentation</title>
+  <title>Marketing & Brand Documentation</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Roboto',sans-serif;line-height:1.6;color:#333;background:#f5f5f5;padding:40px 20px}
-    .container{max-width:800px;margin:0 auto;background:#fff;padding:40px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-    h1{font-size:32px;font-weight:700;margin-bottom:16px;color:#1a1a1a}
-    .subtitle{font-size:18px;color:#666;margin-bottom:40px}
-    .doc-list{display:flex;flex-direction:column;gap:16px}
-    .doc-button{display:block;width:100%;padding:20px 24px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;text-decoration:none;color:#333;font-size:16px;font-weight:500;transition:all .3s ease;cursor:pointer}
-    .doc-button:hover{border-color:#0D8082;background:#f8fffe;transform:translateY(-2px);box-shadow:0 4px 12px rgba(13,128,130,.15)}
-    .doc-title{font-weight:700;color:#1a1a1a;margin-bottom:4px}
-    .doc-description{font-size:14px;color:#666}
+    .container{max-width:900px;margin:0 auto;background:#fff;padding:40px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    h1{font-size:32px;font-weight:700;margin-bottom:8px;color:#1a1a1a}
+    .subtitle{font-size:18px;color:#666;margin-bottom:32px;border-bottom:2px solid #eee;padding-bottom:16px}
+    
+    h2{font-size:20px;margin:24px 0 16px;color:#0D8082;text-transform:uppercase;letter-spacing:1px;font-weight:700}
+    
+    .doc-list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .doc-button{display:flex;flex-direction:column;padding:16px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;text-decoration:none;color:#333;transition:all .2s ease}
+    .doc-button:hover{border-color:#0D8082;background:#f8fffe;transform:translateY(-2px);box-shadow:0 4px 12px rgba(13,128,130,.1)}
+    
+    .doc-title{font-weight:700;color:#1a1a1a;margin-bottom:4px;font-size:15px}
+    .doc-description{font-size:13px;color:#666;line-height:1.4}
+    
     .footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #e2e8f0;font-size:14px;color:#888}
-    @media (max-width:768px){.container{padding:24px;margin:0 10px} h1{font-size:24px} .doc-button{padding:16px 20px}}
+    
+    @media (max-width:768px){
+      .container{padding:20px}
+      .doc-list{grid-template-columns:1fr}
+      h1{font-size:24px}
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Marketing Documentation</h1>
-    <p class="subtitle">Visuals, charts, and organic strategies overview</p>
+    <p class="subtitle">Central repository for visuals, traffic strategies, and UI components</p>
 
+    <!-- Analytics & Strategy -->
+    <h2>Analytics & Strategy</h2>
     <div class="doc-list">
+      <a href="eurolots-lang-traffic.html" class="doc-button">
+        <div class="doc-title">Eurolots Language Traffic</div>
+        <div class="doc-description">Traffic analysis and performance by language region.</div>
+      </a>
       <a href="eurolots-languages-organic.html" class="doc-button">
-        <div class="doc-title">eurolots-languages-organic.html</div>
-        <div class="doc-description">Organic strategy and multilingual documentation for Eurolots</div>
+        <div class="doc-title">Eurolots Organic Strategy</div>
+        <div class="doc-description">Multilingual organic growth and SEO documentation.</div>
       </a>
+      <a href="sota-content-generation.html" class="doc-button">
+        <div class="doc-title">SOTA Content Generation</div>
+        <div class="doc-description">State-of-the-art content automation and strategy.</div>
+      </a>
+    </div>
 
+    <!-- UI Components & Mockups -->
+    <h2>UI & Product Design</h2>
+    <div class="doc-list">
+      <a href="auction_bar.html" class="doc-button">
+        <div class="doc-title">Auction Bar</div>
+        <div class="doc-description">Interactive auction status and bidding interface component.</div>
+      </a>
+      <a href="888lots-career-mockup.html" class="doc-button">
+        <div class="doc-title">888Lots Careers</div>
+        <div class="doc-description">Mockup for the recruitment and careers landing page.</div>
+      </a>
+      <a href="chart.html" class="doc-button">
+        <div class="doc-title">Data Visualizations</div>
+        <div class="doc-description">Interactive charts and data presentation modules.</div>
+      </a>
       <a href="menu.html" class="doc-button">
-        <div class="doc-title">menu.html</div>
-        <div class="doc-description">Navigation menu and structure documentation</div>
+        <div class="doc-title">Navigation Menu</div>
+        <div class="doc-description">Global navigation structure and mobile menu behavior.</div>
       </a>
+    </div>
 
+    <!-- Product Page Iterations -->
+    <h2>Product Page Templates</h2>
+    <div class="doc-list">
+      <a href="desktop-product-page.html" class="doc-button"><div class="doc-title">Product Page V1</div></a>
+      <a href="desktop-product-page-2.html" class="doc-button"><div class="doc-title">Product Page V2</div></a>
+      <a href="desktop-product-page-3.html" class="doc-button"><div class="doc-title">Product Page V3</div></a>
+      <a href="desktop-product-page-4.html" class="doc-button"><div class="doc-title">Product Page V4</div></a>
+      <a href="desktop-product-page-5.html" class="doc-button"><div class="doc-title">Product Page V5</div></a>
+      <a href="desktop-product-page-6.html" class="doc-button"><div class="doc-title">Product Page V6</div></a>
+      <a href="desktop-product-page-7.html" class="doc-button"><div class="doc-title">Product Page V7 (Latest)</div></a>
+    </div>
+
+    <!-- Guides & Misc -->
+    <h2>Guides & Presentations</h2>
+    <div class="doc-list">
       <a href="visuals-guide.html" class="doc-button">
-        <div class="doc-title">visuals-guide.html</div>
-        <div class="doc-description">Visual guidelines and media standards</div>
+        <div class="doc-title">Visuals Guide</div>
+        <div class="doc-description">Media standards, imagery, and brand style rules.</div>
+      </a>
+      <a href="architecture_presentation.html" class="doc-button">
+        <div class="doc-title">Architecture Presentation</div>
+        <div class="doc-description">Structural overview of marketing systems.</div>
+      </a>
+      <a href="miami.html" class="doc-button">
+        <div class="doc-title">Miami Project</div>
+        <div class="doc-description">Specific documentation for the Miami campaign/branch.</div>
+      </a>
+      <a href="html_article.html" class="doc-button">
+        <div class="doc-title">HTML Article Template</div>
+        <div class="doc-description">Standardized layout for blog posts and articles.</div>
       </a>
     </div>
 
     <div class="footer">
-      Last updated: <span id="lastUpdated"></span> | Version 3.0
+      Last updated: <span id="lastUpdated"></span> | Version 4.0
     </div>
   </div>
 
   <script>
-    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString();
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
   </script>
 </body>
 </html>
