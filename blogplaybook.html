@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>888LOTS.COM Content Automation Playbook</title>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #334155;
+            --accent-color: #2563eb;
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        p, li {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        code {
+            font-family: "Consolas", "Monaco", monospace;
+            background-color: #f1f5f9;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #ef4444;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        .prompt-block {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .prompt-block pre {
+            background-color: transparent;
+            color: var(--text-main);
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+
+        .footer-summary {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>888LOTS.COM<br>Content Automation Playbook</h1>
+    <div class="subtitle">What to write &middot; Which metrics to use &middot; How to automate it</div>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-value">4</span>
+            <span class="stat-label">Article Types</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Auto Articles</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">0</span>
+            <span class="stat-label">Human Writing</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">Weekly</span>
+            <span class="stat-label">Data Refresh</span>
+        </div>
+    </div>
+
+    <h2>1. Strategic Context</h2>
+    <p>Closo.co reached ~130K monthly organic traffic in under 6 months publishing 50+ reseller articles. Every single article is generic — zero live data, zero inventory proof, zero real margin numbers. They manufacture authority from nothing.</p>
+    <p>888lots has the inverse problem. Real GSC traffic. Real inventory. Real margins. Real seasonality from years of order history. Almost no content converting that data into organic search presence. The gap is purely execution.</p>
+    <p><strong>Core thesis:</strong> Closo writes about the market. 888lots IS the market. Every article this pipeline produces can contain data Closo structurally cannot replicate — live GSC signals, actual BSR-ranked products, real margin percentages, order-level seasonality. That is the moat.</p>
+
+    <h3>The Closo Formula — Decoded</h3>
+    <p>50 articles. Three title formulas used across all content. All end in the current year for SERP freshness. Tone: 'Honest / Brutal / Reality Check' — signals E-E-A-T trust to Google. Topics are 100% educational, zero proprietary data.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Closo Formula</th>
+                <th>Their Approach</th>
+                <th>888lots Counter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>The [Honest/Brutal] Reseller's [Guide/Blueprint]: [Topic] in 2026</td>
+                <td>Generic educational — manufactured authority</td>
+                <td>Same formula + real platform data in every section</td>
+            </tr>
+            <tr>
+                <td>The Reseller's Reality Check: [Platform] in 2026</td>
+                <td>Competitor reviews driving Closo signups</td>
+                <td>Inventory data articles driving 888lots orders</td>
+            </tr>
+            <tr>
+                <td>2 articles targeting '888 Lots' and '888lots' by name</td>
+                <td>Capturing branded search, converting to Closo</td>
+                <td>Must own brand keywords — currently undefended</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>What 888lots Has That No Competitor Can Replicate</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Data Asset</th>
+                <th>Source Column</th>
+                <th>What It Enables in Articles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Live GSC traffic signals</td>
+                <td><code>gsc_clicks_current</code> / <code>gsc_impressions_current</code></td>
+                <td>Cite exact monthly clicks — not estimates. Proof of real demand.</td>
+            </tr>
+            <tr>
+                <td>12-month seasonality scores</td>
+                <td><code>month_scores</code> (JSONB), <code>buyer_insight</code></td>
+                <td>Write 'December demand is 4.1x annual average' — impossible to fake.</td>
+            </tr>
+            <tr>
+                <td>Real profit margins</td>
+                <td><code>avg_profit_margin</code>, <code>avg_net_profit</code></td>
+                <td>Publish actual margin ranges resellers will earn.</td>
+            </tr>
+            <tr>
+                <td>BSR-ranked top products</td>
+                <td><code>top_products_bsr</code> (JSONB)</td>
+                <td>Name specific products with live Amazon rank — zero-opinion proof.</td>
+            </tr>
+            <tr>
+                <td>Order velocity & YoY trends</td>
+                <td><code>orders_yoy_change</code>, <code>revenue_trend</code></td>
+                <td>Market direction with real numbers, not opinions.</td>
+            </tr>
+            <tr>
+                <td>Bundle patterns</td>
+                <td><code>bought_with_categories</code>, <code>bundle_opportunities</code></td>
+                <td>What buyers actually pair — not guesswork.</td>
+            </tr>
+            <tr>
+                <td>Lifecycle signal per page</td>
+                <td><code>lifecycle_signal</code>, <code>momentum</code></td>
+                <td>Frame each article correctly: growing / clearance / peak.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2. The Data Source — n8n_canonical_pages</h2>
+    <p>Every automated article pulls from a single Supabase table: <code>n8n_canonical_pages</code>. Updated weekly by existing N8N workflows. One row per platform page — category or brand — across all five platforms. Single source of truth for all content generation.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Column</th>
+                <th>Type</th>
+                <th>Used For in Articles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>safe_b2b_keywords</td><td>JSONB[]</td><td>[0] = H1 target keyword. Always present before generating.</td></tr>
+            <tr><td>important_keywords</td><td>text</td><td>Secondary keyword list. Injected into body copy naturally.</td></tr>
+            <tr><td>gsc_impressions_current</td><td>integer</td><td>Search volume proxy. Quality gate for Category Guide (>= 500).</td></tr>
+            <tr><td>gsc_clicks_current / _difference</td><td>integer</td><td>Cite real monthly clicks. Difference = Weekly Pulse ranking signal.</td></tr>
+            <tr><td>gsc_position_current</td><td>numeric</td><td>Current SERP rank — article can frame the improvement opportunity.</td></tr>
+            <tr><td>month_scores</td><td>JSONB</td><td>12 months of demand scores. Powers Seasonal Alert trigger + content.</td></tr>
+            <tr><td>seasonality_confidence</td><td>text</td><td>Quality gate for Seasonal Alert. Only fire on medium or high.</td></tr>
+            <tr><td>buyer_insight</td><td>text</td><td>Pre-written insight sentence. Inject verbatim into Seasonality section.</td></tr>
+            <tr><td>avg_profit_margin</td><td>numeric</td><td>Margin % — core differentiator. Every article includes real margin.</td></tr>
+            <tr><td>avg_net_profit</td><td>numeric</td><td>Dollar profit per unit — converts margin % into concrete money.</td></tr>
+            <tr><td>top_products_bsr</td><td>JSONB</td><td>Array {name, bsr, price, margin}. Name real products with BSR rank.</td></tr>
+            <tr><td>typical_product_keywords</td><td>text</td><td>Product vocabulary — natural keyword density in body copy.</td></tr>
+            <tr><td>on_stock</td><td>integer</td><td>Brand Spotlight gate: on_stock >= 3 to trigger article generation.</td></tr>
+            <tr><td>units_moved_week</td><td>integer</td><td>Velocity proof point: 'X units moved last week'.</td></tr>
+            <tr><td>orders_yoy_change</td><td>numeric</td><td>Year-over-year signal. Growing vs declining article framing.</td></tr>
+            <tr><td>revenue_trend</td><td>text</td><td>Pre-classified label (Top 10 Performer, Declining, etc).</td></tr>
+            <tr><td>lifecycle_signal</td><td>text</td><td>growing / clearance / declining / peak — sets article tone.</td></tr>
+            <tr><td>momentum</td><td>text</td><td>Accelerating / Decelerating / Stable — one-word market direction.</td></tr>
+            <tr><td>forecast_next_month</td><td>integer</td><td>Forward-looking hook: 'Forecast: +N orders next month'.</td></tr>
+            <tr><td>stock_urgency</td><td>text</td><td>critical / low / healthy / overstocked — shapes CTA tone.</td></tr>
+            <tr><td>bought_with_categories</td><td>JSONB</td><td>What buyers actually pair. Powers bundle section.</td></tr>
+            <tr><td>whale_customers</td><td>integer</td><td>Count of high-value B2B buyers — authority signal.</td></tr>
+            <tr><td>page_type</td><td>text</td><td>'category' or 'brand' — routes to correct article type.</td></tr>
+            <tr><td>platform</td><td>text</td><td>888lots / miamilots / britdeals — determines WP target site.</td></tr>
+            <tr><td>slug, url, title</td><td>text</td><td>WP slug, canonical link for CTA, display name for H1.</td></tr>
+        </tbody>
+    </table>
+    <p><strong>Platform inventory:</strong> 5,920 total rows. 888lots: 100 categories + 1,403 brands. miamilots: 100 categories + 1,403 brands (477 currently in stock — highest brand availability). Priority: 888lots first, miamilots second.</p>
+
+    <h2>3. The Four Article Types</h2>
+    <p>Every article belongs to one of four types. Each has a fixed trigger, SQL query, LLM prompt structure, and quality gate. No article publishes without passing its gate. No article requires human writing.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Trigger</th>
+                <th>Volume</th>
+                <th>Track</th>
+                <th>Quality Gate</th>
+                <th>Output</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Category Sourcing Guide</td>
+                <td>Batch + annual refresh</td>
+                <td>100/platform × 5</td>
+                <td>Full auto</td>
+                <td>impressions >= 500 OR keywords exists</td>
+                <td>WP Draft</td>
+            </tr>
+            <tr>
+                <td>Brand Spotlight</td>
+                <td>on_stock 0→+ webhook</td>
+                <td>~50/mo variable</td>
+                <td>Full auto</td>
+                <td>on_stock >= 3, margin > 0, BSR data exists</td>
+                <td>WP Draft</td>
+            </tr>
+            <tr>
+                <td>Weekly Market Pulse</td>
+                <td>Monday 06:00 cron</td>
+                <td>1/week/platform</td>
+                <td>Full auto</td>
+                <td>Min 3 GSC movers OR 3 velocity rows</td>
+                <td>WP Draft</td>
+            </tr>
+            <tr>
+                <td>Seasonal Alert</td>
+                <td>Daily cron, fires 3–4 wks ahead</td>
+                <td>~6–8/yr/platform</td>
+                <td>Semi-auto</td>
+                <td>confidence = medium or high only</td>
+                <td>Draft + editor</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Type 1 — Category Sourcing Guide</h3>
+    <p><strong>What it is:</strong> One evergreen article per category per platform. The SEO workhorse. Targets resellers searching '[category] wholesale' or '[category] liquidation'. Contains real GSC data, real margins, real seasonality — structurally impossible for Closo to replicate.</p>
+    
+    <p><strong>Title Formula:</strong><br>
+    <em>"[Category] Wholesale Liquidation: [Data Hook] — 888lots Sourcing Guide [Year]"</em></p>
+
+    <p><strong>Real examples from current canonical data:</strong></p>
+    <ul>
+        <li>Shoes Wholesale Liquidation: 19,162 Monthly Impressions, Position 6.8 — 888lots Guide 2026</li>
+        <li>Sneakers Wholesale: July Peak Season Confirmed by Order Data — 888lots Sourcing Guide 2026</li>
+        <li>Fragrances Wholesale: December Demand 4.1x Annual Average — 888lots Sourcing Guide 2026</li>
+        <li>Handbags & Luggage Wholesale: Top 10% Revenue Performer — 888lots Sourcing Guide 2026</li>
+    </ul>
+
+<pre><code>SELECT id, slug, title, platform, url,
+  safe_b2b_keywords, important_keywords,
+  gsc_clicks_current, gsc_impressions_current, gsc_position_current,
+  gsc_clicks_difference,
+  avg_profit_margin, avg_net_profit,
+  top_products_bsr, typical_product_keywords,
+  month_scores, seasonality_confidence, buyer_insight,
+  orders_yoy_change, revenue_trend, lifecycle_signal, momentum,
+  forecast_next_month, stock_urgency, on_stock,
+  bought_with_categories, bundle_opportunities,
+  whale_customers, last_data_update
+FROM n8n_canonical_pages
+WHERE platform = '888lots'
+  AND page_type = 'category'
+  AND slug != 'unsorted'
+  AND (gsc_impressions_current >= 500 OR safe_b2b_keywords IS NOT NULL)
+ORDER BY gsc_impressions_current DESC NULLS LAST;</code></pre>
+
+    <h4>Article Structure</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Section</th>
+                <th>Data Injected</th>
+                <th>Words</th>
+                <th>Auto?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>H1</td><td>[Category] Wholesale:[Data Hook]</td><td>safe_b2b_keywords[0] + gsc_impressions or margin</td><td>Title</td><td>YES</td></tr>
+            <tr><td>Intro</td><td>Why resellers search this now</td><td>gsc_clicks_current, gsc_impressions_current, orders_yoy_change</td><td>80–100w</td><td>YES</td></tr>
+            <tr><td>H2: The Market</td><td>Category trajectory</td><td>revenue_trend, lifecycle_signal, momentum, orders_yoy_change</td><td>150–200w</td><td>YES</td></tr>
+            <tr><td>H2: When to Source</td><td>Seasonal buying window</td><td>month_scores peak months + buyer_insight verbatim</td><td>150–200w</td><td>YES</td></tr>
+            <tr><td>H2: What's Moving</td><td>Real products + proof</td><td>top_products_bsr names + BSR ranks</td><td>150–180w</td><td>YES</td></tr>
+            <tr><td>H2: Profit Math</td><td>Margins resellers will earn</td><td>avg_profit_margin %, avg_net_profit $</td><td>120–150w</td><td>YES</td></tr>
+            <tr><td>H2: Bundle Strategy</td><td>What to pair with</td><td>bought_with_categories, bundle_opportunities</td><td>100–130w</td><td>YES</td></tr>
+            <tr><td>CTA</td><td>Source at 888lots</td><td>url + stock_urgency tone</td><td>40–60w</td><td>YES</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td></td><td><strong>790–1,020 words</strong></td><td><strong>FULL AUTO</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h4>Priority Run Order — 888lots Categories</h4>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Category</th><th>Impressions</th><th>Clicks</th><th>Position</th><th>YoY</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Clothing, Fashion & Accessories</td><td>21,122</td><td>231</td><td>3.72</td><td>Flat</td><td>NOW</td></tr>
+            <tr><td>2</td><td>Cell Phones</td><td>16,595</td><td>199</td><td>12.94</td><td>–84.6%</td><td>NOW</td></tr>
+            <tr><td>3</td><td>Shoes</td><td>19,162</td><td>566</td><td>6.81</td><td>Flat</td><td>NOW</td></tr>
+            <tr><td>4</td><td>Handbags & Luggage</td><td>12,498</td><td>247</td><td>12.09</td><td>Declining</td><td>NOW</td></tr>
+            <tr><td>5</td><td>Sneakers</td><td>12,072</td><td>407</td><td>6.83</td><td>–96% YoY</td><td>NOW</td></tr>
+            <tr><td>6</td><td>Laptops</td><td>12,139</td><td>197</td><td>14.21</td><td>–92.6%</td><td>Week 1</td></tr>
+            <tr><td>7</td><td>Computers & Hardware</td><td>10,625</td><td>216</td><td>14.19</td><td>Flat</td><td>Week 1</td></tr>
+            <tr><td>8</td><td>Beauty Products</td><td>10,120</td><td>385</td><td>14.43</td><td>–87.5%</td><td>Week 1</td></tr>
+            <tr><td>9</td><td>Fragrances</td><td>9,383</td><td>453</td><td>13.45</td><td>+40% YoY</td><td>Week 1</td></tr>
+            <tr><td>10</td><td>Video Games & Consoles</td><td>5,569</td><td>246</td><td>12.10</td><td>Flat</td><td>Week 2</td></tr>
+        </tbody>
+    </table>
+    <p><em>Out-of-stock categories:</em> Categories like Shoes (566 clicks, 0 stock) still get SEO articles. Article targets resellers searching NOW — includes 'notify when restocked' CTA + links to related in-stock categories. Captures demand while inventory is zero.</p>
+
+    <h3>Type 2 — Brand Spotlight</h3>
+    <p><strong>What it is:</strong> One article per brand, fires when on_stock transitions from 0 to positive. Targets '[Brand] wholesale' searches — highest commercial intent of all four types. These convert browsers into buyers.</p>
+    
+    <p><strong>Title Formula:</strong><br>
+    <em>"[Brand] Wholesale at 888lots: [Margin]% Margins, [N] SKUs In Stock — Reseller Guide [Year]"</em></p>
+
+    <p><strong>Examples from miamilots current in-stock brands (477 brands):</strong></p>
+    <ul>
+        <li>Nintendo Wholesale at 888lots: 877 Units/Week Velocity — Reseller Sourcing Guide 2026</li>
+        <li>Brother Wholesale: 55.2% Margins on Toner & Printers — 888lots Brand Guide 2026</li>
+        <li>Logitech Wholesale at 888lots: Live Inventory, Real Margin Data — Guide 2026</li>
+    </ul>
+
+<pre><code>SELECT id, slug, title, platform, url,
+  on_stock, total_stock, last_week_load,
+  avg_profit_margin, avg_net_profit,
+  top_products_bsr, typical_product_keywords,
+  safe_b2b_keywords, units_moved_week,
+  lifecycle_signal, stock_urgency,
+  bought_with_categories, bundle_opportunities,
+  month_scores, buyer_insight, last_data_update
+FROM n8n_canonical_pages
+WHERE page_type = 'brand'
+  AND on_stock >= 3
+  AND avg_profit_margin > 0
+  AND top_products_bsr IS NOT NULL
+  AND slug != 'unsorted'
+ORDER BY (on_stock + COALESCE(units_moved_week,0)) DESC NULLS LAST;</code></pre>
+
+    <h4>Trigger Logic</h4>
+    <ul>
+        <li>Supabase webhook fires on UPDATE to <code>n8n_canonical_pages</code> WHERE page_type = 'brand'</li>
+        <li>N8N IF check: new on_stock > 0 AND old on_stock = 0 &rarr; generate new article</li>
+        <li>Existing article &lt; 30 days old &rarr; PATCH WP post with fresh data, no new post</li>
+        <li>Brand goes out of stock &rarr; PATCH existing post: add 'currently unavailable' CTA</li>
+        <li>Existing article >= 30 days + brand restocked &rarr; regenerate fresh article</li>
+    </ul>
+
+    <h4>Article Structure</h4>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Section</th><th>Data Injected</th><th>Words</th><th>Auto?</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>H1</td><td>[Brand] Wholesale: [Hook]</td><td>safe_b2b_keywords[0] + on_stock + margin</td><td>Title</td><td>YES</td></tr>
+            <tr><td>Intro</td><td>Why this brand sells</td><td>units_moved_week + lifecycle_signal</td><td>80–100w</td><td>YES</td></tr>
+            <tr><td>H2: In Stock Now</td><td>Specific products available</td><td>top_products_bsr: name + BSR + price + margin</td><td>180–220w</td><td>YES</td></tr>
+            <tr><td>H2: Profit Math</td><td>Real margins for this brand</td><td>avg_profit_margin % + avg_net_profit $</td><td>120–150w</td><td>YES</td></tr>
+            <tr><td>H2: Where to Flip</td><td>Platform + bundle advice</td><td>typical_product_keywords + bought_with_categories</td><td>100–130w</td><td>YES</td></tr>
+            <tr><td>CTA</td><td>Buy now</td><td>url + on_stock count + stock_urgency</td><td>40–60w</td><td>YES</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td></td><td><strong>520–660 words</strong></td><td><strong>FULL AUTO</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h3>Type 3 — Weekly Market Pulse</h3>
+    <p><strong>What it is:</strong> One article per week per platform using live GSC and inventory data from the past 7 days. The only content type Closo cannot produce — it requires live platform data. Runs every Monday.</p>
+    
+    <p><strong>Title Formula:</strong><br>
+    <em>"888lots Market Pulse — Week of [Date]: [Top Signal from Data]"</em></p>
+
+    <p>Auto-selects signal from biggest data movement that week:</p>
+    <ul>
+        <li>888lots Market Pulse — Week of March 10: Sneakers +56 GSC Clicks, Fragrances Surge</li>
+        <li>888lots Market Pulse — Week of March 17: 5 New Brands In Stock, Clothing Trending Up</li>
+    </ul>
+
+<pre><code>-- Part 1: Biggest GSC movers this week
+SELECT slug, title, page_type, gsc_clicks_difference,
+  gsc_clicks_current, gsc_impressions_current, gsc_position_current,
+  safe_b2b_keywords, lifecycle_signal, on_stock
+FROM n8n_canonical_pages
+WHERE platform = '888lots' AND gsc_clicks_difference > 0
+ORDER BY gsc_clicks_difference DESC LIMIT 5;
+
+-- Part 2: Highest inventory velocity
+SELECT slug, title, page_type, units_moved_week,
+  on_stock, avg_profit_margin, orders_wow_change, top_products_bsr
+FROM n8n_canonical_pages
+WHERE platform = '888lots' AND units_moved_week > 50
+ORDER BY units_moved_week DESC LIMIT 5;
+
+-- Part 3: Brands freshly restocked
+SELECT slug, title, on_stock, avg_profit_margin,
+  top_products_bsr, last_week_load
+FROM n8n_canonical_pages
+WHERE platform = '888lots' AND page_type = 'brand'
+  AND on_stock > 0 AND last_week_load > 0
+ORDER BY last_week_load DESC LIMIT 5;</code></pre>
+
+    <p><strong>Quality Gate + Article Structure</strong><br>
+    Gate: >= 3 rows from Part 1 OR >= 3 rows from Part 2. If not met — skip week, log to <code>n8n_blog_articles</code>. Never publish a thin Pulse. One week of bad data is worse than no article.</p>
+
+    <table>
+        <thead>
+            <tr><th>#</th><th>Section</th><th>Data Injected</th><th>Words</th><th>Auto?</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>H1</td><td>Pulse: Week of [Date] — [Signal]</td><td>week_date + top mover name</td><td>Title</td><td>YES</td></tr>
+            <tr><td>H2: Search Surges</td><td>What gained traction this week</td><td>Part 1: title + clicks_diff + impressions per row</td><td>200–250w</td><td>YES</td></tr>
+            <tr><td>H2: Fast-Moving Inventory</td><td>What's clearing shelves</td><td>Part 2: title + units_moved + margin + top product</td><td>200–250w</td><td>YES</td></tr>
+            <tr><td>H2: New Stock Alert</td><td>Brands freshly in stock</td><td>Part 3: title + on_stock + margin + top product</td><td>150–200w</td><td>YES</td></tr>
+            <tr><td>CTA</td><td>Browse live inventory</td><td>Platform URL</td><td>40w</td><td>YES</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td></td><td><strong>590–740 words</strong></td><td><strong>FULL AUTO</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h3>Type 4 — Seasonal Alert</h3>
+    <p><strong>What it is:</strong> Fires 3–4 weeks before a category's peak demand month — based on month_scores derived from actual order history. Only triggers when seasonality_confidence is medium or high. Gives resellers the lead time they need.</p>
+    
+    <p><strong>Title Formula:</strong><br>
+    <em>"[Category] Season Starts [Month]: Why Smart Resellers Are Sourcing Now — 888lots Data"</em></p>
+
+    <p><strong>Real examples that trigger from current canonical data:</strong></p>
+    <ul>
+        <li>Fragrance Season Starts December: 4.1x Demand Spike Confirmed — Source Now at 888lots (fires October)</li>
+        <li>Sneakers Peak Window: July is Your Best Month — 888lots Order Data (fires May/June)</li>
+        <li>Handbags Peak: May–June Confirmed by 3-Year Order History — Start Sourcing March (fires March)</li>
+    </ul>
+
+<pre><code>SELECT id, slug, title, platform,
+  month_scores, seasonality_confidence, buyer_insight,
+  avg_profit_margin, forecast_next_month,
+  safe_b2b_keywords, gsc_impressions_current,
+  on_stock, stock_urgency, url, last_data_update
+FROM n8n_canonical_pages
+WHERE page_type = 'category'
+  AND seasonality_confidence IN ('medium', 'high')
+  AND month_scores IS NOT NULL
+  AND (month_scores-&gt;&gt;to_char(NOW() + INTERVAL '5 weeks', 'Mon'))::int
+    &gt; (month_scores-&gt;&gt;to_char(NOW(), 'Mon'))::int * 1.25
+  AND id NOT IN (
+    SELECT canonical_page_id FROM n8n_blog_articles
+    WHERE article_type = 'seasonal_alert'
+    AND generated_at &gt; NOW() - INTERVAL '10 months'
+  );</code></pre>
+
+    <h4>Article Structure</h4>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Section</th><th>Data Injected</th><th>Words</th><th>Auto?</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>H1</td><td>[Category] Season Opens [Month]</td><td>safe_b2b_keywords[0] + peak month from month_scores</td><td>Title</td><td>YES</td></tr>
+            <tr><td>H2: The Data</td><td>Seasonal signal evidence</td><td>month_scores peak vs trough + buyer_insight verbatim</td><td>150–180w</td><td>YES</td></tr>
+            <tr><td>H2: The Window</td><td>Why timing matters now</td><td>forecast_next_month + stock_urgency + lead time logic</td><td>120–150w</td><td>YES</td></tr>
+            <tr><td>H2: What to Buy</td><td>Products to prioritise</td><td>top_products_bsr + avg_profit_margin</td><td>150–180w</td><td>YES</td></tr>
+            <tr><td>CTA</td><td>Source before peak hits</td><td>url + on_stock + stock_urgency</td><td>40–60w</td><td>YES</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td></td><td><strong>460–570 words</strong></td><td><strong>Semi-auto*</strong></td></tr>
+        </tbody>
+    </table>
+    <p><em>*Semi-auto: article generates fully automated. Editor reviews before publish (5 min). Seasonal timing claims carry stakes — one human check per article.</em></p>
+
+
+    <h2>4. Infrastructure — n8n_blog_articles Table</h2>
+    <p>All four workflows write to this single table. It is the system memory — without it, workflows regenerate duplicates, WordPress accumulates redundant drafts, and reporting is impossible. Create this before building any workflow.</p>
+
+<pre><code>CREATE TABLE n8n_blog_articles (
+  id                    SERIAL PRIMARY KEY,
+  canonical_page_id     INT REFERENCES n8n_canonical_pages(id),
+  platform              TEXT NOT NULL,
+  article_type          TEXT NOT NULL,
+    -- 'category_guide' | 'brand_spotlight' | 'weekly_pulse' | 'seasonal_alert'
+  title                 TEXT,
+  primary_keyword       TEXT,
+  html_body             TEXT,
+  word_count            INT,
+  wp_post_id            INT,
+  wp_status             TEXT DEFAULT 'draft',
+    -- 'draft' | 'publish' | 'update_queued' | 'skipped'
+  quality_gate_passed   BOOLEAN DEFAULT FALSE,
+  generated_at          TIMESTAMPTZ DEFAULT NOW(),
+  published_at          TIMESTAMPTZ,
+  gsc_clicks_at_publish INT,
+  impressions_at_publish INT,
+  data_snapshot         JSONB,
+    -- full canonical row frozen at generation time — audit trail
+  error_log             TEXT,
+  refresh_after         DATE
+    -- NULL for pulse/spotlight. NOW()+1yr for category guides.
+);
+
+CREATE INDEX idx_blog_canonical  ON n8n_blog_articles(canonical_page_id);
+CREATE INDEX idx_blog_type_plat  ON n8n_blog_articles(article_type, platform);
+CREATE INDEX idx_blog_wp         ON n8n_blog_articles(wp_post_id);
+CREATE INDEX idx_blog_refresh    ON n8n_blog_articles(refresh_after)
+  WHERE refresh_after IS NOT NULL;</code></pre>
+
+    <p><strong>Deduplication Check — Every Workflow Runs This First</strong></p>
+<pre><code>SELECT id, wp_post_id, generated_at, quality_gate_passed
+FROM n8n_blog_articles
+WHERE canonical_page_id = {{canonical_id}}
+  AND article_type = '{{article_type}}'
+  AND (refresh_after IS NULL OR refresh_after &gt; NOW())
+LIMIT 1;
+
+-- Row exists + refresh_after &gt; NOW()  &rarr;  SKIP
+-- Row exists + refresh_after &lt;= NOW() &rarr;  REGENERATE, PATCH existing WP post
+-- No row found                        &rarr;  GENERATE fresh, INSERT new WP post</code></pre>
+
+    <h2>5. LLM Prompt Architecture</h2>
+    <p>All four article types share one system prompt. The user prompt changes per type. System prompt defines tone, formatting rules, and forbidden language — calibrated for 888lots B2B reseller audience.</p>
+
+    <div class="prompt-block">
+        <strong>Shared System Prompt</strong>
+<pre>SYSTEM: 
+You write B2B wholesale liquidation blog articles for 888lots.com, a top-3 US
+liquidation marketplace. Audience: professional resellers and small businesses
+sourcing inventory to flip on eBay, Amazon, Whatnot, and Poshmark.
+
+RULES: 
+1. Every claim must trace to data in the prompt. Never invent statistics.
+2. Tone: direct, profit-focused, zero fluff. Resellers scan fast — lead with the number.
+3. Never use: unique, leverage, utilize, seamless, robust, cutting-edge.
+4. Use &lt;strong&gt; tags on all numbers, percentages, product names, dollar amounts.
+5. Output clean HTML only. No markdown. No preamble. No post-article explanations.
+6. Internal links: use anchor tags exactly as provided. Max 3 per article.
+7. Close every article: &lt;em&gt;Data snapshot as of [date] — metrics update weekly.&lt;/em&gt;</pre>
+    </div>
+
+    <div class="prompt-block">
+        <strong>User Prompt — Category Sourcing Guide</strong>
+<pre>Write a Category Sourcing Guide for:  {{title}} on {{platform}}
+
+PRIMARY KEYWORD:  {{safe_b2b_keywords[0]}}
+SECONDARY:  {{important_keywords}}
+SEARCH DEMAND:  {{gsc_impressions_current}} impressions | {{gsc_clicks_current}} clicks | pos {{gsc_position_current}}
+MARKET:  {{lifecycle_signal}} | {{momentum}} | YoY orders {{orders_yoy_change}}% | {{revenue_trend}}
+SEASONALITY:  {{buyer_insight}} | confidence: {{seasonality_confidence}} | scores: {{month_scores}}
+PRODUCTS:  {{top_products_bsr}} | vocab: {{typical_product_keywords}}
+MARGINS:  avg {{avg_profit_margin}}% | avg net ${{avg_net_profit}}/unit
+BUNDLES:  {{bought_with_categories}} | {{bundle_opportunities}}
+INVENTORY:  on_stock={{on_stock}} | urgency={{stock_urgency}} | forecast={{forecast_next_month}} next month
+URL:  {{url}} | DATA DATE: {{last_data_update}}
+
+STRUCTURE (HTML): 
+&lt;h1&gt; primary keyword + one data point (impressions OR margin OR YoY)
+&lt;p&gt; intro 80-100w — lead with search demand number
+&lt;h2&gt; The Market in [Year] — lifecycle + momentum + orders_yoy_change (150-200w)
+&lt;h2&gt; When to Source — peak months from month_scores + buyer_insight verbatim (150-200w)
+&lt;h2&gt; What's Moving — top_products_bsr with BSR ranks (150-180w)
+&lt;h2&gt; Profit Math — avg_profit_margin % + avg_net_profit per unit (120-150w)
+&lt;h2&gt; Bundle Strategy — bought_with_categories (100-130w)
+&lt;p&gt; CTA 40-60w — link to {{url}}, tone matched to stock_urgency</pre>
+    </div>
+
+    <div class="prompt-block">
+        <strong>User Prompt — Brand Spotlight</strong>
+<pre>Write a Brand Spotlight for:  {{title}} on {{platform}}
+
+PRIMARY KEYWORD:  {{safe_b2b_keywords[0]}}
+IN STOCK:  {{on_stock}} SKUs | {{total_stock}} units | urgency={{stock_urgency}}
+TOP PRODUCTS:  {{top_products_bsr}}  &larr; inject each with name, BSR rank, price, margin
+MARGINS:  {{avg_profit_margin}}% avg | ${{avg_net_profit}} avg net/unit
+VELOCITY:  {{units_moved_week}} units/week | {{lifecycle_signal}}
+PAIRS WITH:  {{bought_with_categories}} | {{bundle_opportunities}}
+URL:  {{url}} | DATA DATE: {{last_data_update}}
+
+STRUCTURE (HTML): 
+&lt;h1&gt; [Brand] Wholesale at 888lots: [Margin]% Margins, [N] SKUs Live
+&lt;p&gt; intro 80-100w — units_moved_week + lifecycle_signal
+&lt;h2&gt; What's In Stock Now — list top_products_bsr items with BSR + price + margin (180-220w)
+&lt;h2&gt; The Profit Math — avg_profit_margin % and avg_net_profit per unit (120-150w)
+&lt;h2&gt; Where to Flip It — platforms + keywords + bought_with (100-130w)
+&lt;p&gt; CTA 40-60w — link to {{url}}, include on_stock count + urgency</pre>
+    </div>
+
+    <div class="prompt-block">
+        <strong>User Prompt — Weekly Market Pulse</strong>
+<pre>Write the Weekly Market Pulse for  {{platform}} — week of {{week_date}}.
+
+GSC MOVERS (top 5 by clicks_difference): 
+{{GSC_MOVERS_JSON}} — each has: title, gsc_clicks_difference, gsc_clicks_current, impressions, position
+
+VELOCITY LEADERS (top 5 by units_moved_week): 
+{{VELOCITY_JSON}} — each has: title, units_moved_week, avg_profit_margin, top_products_bsr[0]
+
+NEW BRANDS IN STOCK (top 5 by last_week_load): 
+{{NEW_BRANDS_JSON}} — each has: title, on_stock, avg_profit_margin, top_products_bsr[0]
+
+STRUCTURE (HTML): 
+&lt;h1&gt; 888lots Market Pulse — Week of {{week_date}}: [top signal from data]
+&lt;h2&gt; Search Surges — each GSC mover: what gained clicks + sourcing implication (200-250w)
+&lt;h2&gt; Fast-Moving Inventory — each velocity leader: units + margin + top product (200-250w)
+&lt;h2&gt; New Stock Alert — each new brand: on_stock count + margin (150-200w)
+&lt;p&gt; CTA — browse all live inventory at 888lots.com (40w)</pre>
+    </div>
+
+    <div class="prompt-block">
+        <strong>User Prompt — Seasonal Alert</strong>
+<pre>Write a Seasonal Alert for:  {{title}} on {{platform}}
+
+PRIMARY KEYWORD:  {{safe_b2b_keywords[0]}}
+PEAK MONTH:  {{peak_month}} (score: {{peak_score}} vs current {{current_score}} — {{multiplier}}x)
+SEASONALITY:  {{buyer_insight}} | confidence: {{seasonality_confidence}}
+ALL MONTH SCORES:  {{month_scores}}
+FORECAST:  {{forecast_next_month}} orders forecast next month
+PRODUCTS:  {{top_products_bsr}}
+MARGINS:  {{avg_profit_margin}}% avg margin
+INVENTORY:  on_stock={{on_stock}} | urgency={{stock_urgency}}
+URL:  {{url}} | DATA DATE: {{last_data_update}}
+
+STRUCTURE (HTML): 
+&lt;h1&gt; [Category] Season Starts [peak_month]: [multiplier]x Demand — Source Now at 888lots
+&lt;h2&gt; The Data — month_scores evidence: peak vs trough months + buyer_insight verbatim (150-180w)
+&lt;h2&gt; The Window — why buying 3-4 weeks early matters + forecast_next_month (120-150w)
+&lt;h2&gt; What to Buy — top_products_bsr with names + BSR + margin (150-180w)
+&lt;p&gt; CTA 40-60w — urgency tone matched to stock_urgency + link to {{url}}</pre>
+    </div>
+
+    <h2>6. N8N Workflow Maps</h2>
+    <p>Four independent workflows. Each self-contained — no cross-dependencies. All write to <code>n8n_blog_articles</code> and WordPress REST API. All failures log to <code>n8n_blog_articles.error_log</code>.</p>
+
+    <h3>Shared WordPress Post Schema</h3>
+    <table>
+        <thead>
+            <tr><th>WP Field</th><th>Source</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>title</td><td>Extract text of &lt;h1&gt; from LLM output</td><td>Strip &lt;h1&gt; tags. Use as WP post title.</td></tr>
+            <tr><td>content</td><td>Full LLM HTML output</td><td>Remove &lt;h1&gt; — WP uses title field separately.</td></tr>
+            <tr><td>status</td><td>'draft' always</td><td>Human reviews and publishes manually.</td></tr>
+            <tr><td>categories</td><td>article_type &rarr; WP category_id map</td><td>Store lookup in N8N environment variables.</td></tr>
+            <tr><td>tags</td><td>slug + platform + article_type</td><td>Auto-create via WP REST if tag doesn't exist.</td></tr>
+            <tr><td>meta: yoast_title</td><td>primary_keyword + ' | 888lots'</td><td>Injected via Yoast REST field.</td></tr>
+            <tr><td>meta: yoast_description</td><td>First 155 chars of &lt;p&gt; intro</td><td>Auto-extracted from LLM HTML.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>WF-01 — Category Sourcing Guide</h3>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Node Type</th><th>Action</th><th>Output</th><th>On Error</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Schedule / Manual</td><td>Trigger: manual for initial batch. Weekly cron for refresh check.</td><td>Execution starts</td><td>—</td></tr>
+            <tr><td>2</td><td>Supabase HTTP</td><td>Run Category Guide SQL. Returns categories ordered by impressions DESC.</td><td>categories[]</td><td>Log + stop</td></tr>
+            <tr><td>3</td><td>Code (JS)</td><td>Filter out rows already in n8n_blog_articles with refresh_after > NOW().</td><td>Filtered rows</td><td>—</td></tr>
+            <tr><td>4</td><td>SplitInBatches</td><td>Process 5 categories per batch. Rate-limit protection.</td><td>Batch of 5</td><td>—</td></tr>
+            <tr><td>5</td><td>Code (JS)</td><td>Quality gate. Build prompt string. Inject all {{variables}} from row.</td><td>prompt + pass/fail</td><td>Log fail</td></tr>
+            <tr><td>6</td><td>HTTP — Anthropic</td><td>POST claude-sonnet-4-6. System + user prompt. max_tokens: 2500.</td><td>Raw API response</td><td>Retry ×2</td></tr>
+            <tr><td>7</td><td>Code (JS)</td><td>Extract content[0].text. Clean artifacts. Extract &lt;h1&gt; for title. Extract &lt;p&gt; for meta.</td><td>html, title, meta</td><td>Log fail</td></tr>
+            <tr><td>8</td><td>HTTP — WordPress</td><td>POST /wp/v2/posts: title, content, status=draft, categories, tags, meta.</td><td>wp_post_id</td><td>Retry ×1</td></tr>
+            <tr><td>9</td><td>Supabase INSERT</td><td>Write to n8n_blog_articles. Include data_snapshot of source row.</td><td>Row saved</td><td>Log fail</td></tr>
+            <tr><td>10</td><td>Wait</td><td>30 seconds between batches.</td><td>—</td><td>—</td></tr>
+            <tr><td>11</td><td>Loop</td><td>Return to node 4 for next batch until all categories processed.</td><td>—</td><td>—</td></tr>
+        </tbody>
+    </table>
+
+    <h3>WF-02 — Brand Spotlight</h3>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Node Type</th><th>Action</th><th>Output</th><th>On Error</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Supabase Webhook</td><td>Fires on UPDATE to n8n_canonical_pages WHERE page_type = 'brand'.</td><td>brand row</td><td>—</td></tr>
+            <tr><td>2</td><td>IF</td><td>new on_stock > 0? YES &rarr; continue. NO &rarr; check for out-of-stock update.</td><td>Route</td><td>—</td></tr>
+            <tr><td>3</td><td>Supabase Query</td><td>Check n8n_blog_articles: existing article within 30 days?</td><td>exists T/F</td><td>—</td></tr>
+            <tr><td>4</td><td>IF</td><td>&lt; 30 days old &rarr; PATCH WP post. >= 30 days or none &rarr; generate new.</td><td>Route</td><td>—</td></tr>
+            <tr><td>5</td><td>Code (JS)</td><td>Quality gate: on_stock >= 3, margin > 0, BSR data exists. Build prompt.</td><td>prompt + pass/fail</td><td>Log fail</td></tr>
+            <tr><td>6</td><td>HTTP — Anthropic</td><td>POST claude-sonnet-4-6. max_tokens: 2000.</td><td>Raw response</td><td>Retry ×2</td></tr>
+            <tr><td>7</td><td>Code (JS)</td><td>Extract html_body, WP title, meta description.</td><td>Clean HTML</td><td>Log fail</td></tr>
+            <tr><td>8</td><td>HTTP — WordPress</td><td>POST new draft OR PATCH existing post (use wp_post_id from n8n_blog_articles).</td><td>wp_post_id</td><td>Retry ×1</td></tr>
+            <tr><td>9</td><td>Supabase UPSERT</td><td>Write or update n8n_blog_articles row.</td><td>Row saved</td><td>Log fail</td></tr>
+        </tbody>
+    </table>
+
+    <h3>WF-03 — Weekly Market Pulse</h3>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Node Type</th><th>Action</th><th>Output</th><th>On Error</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Schedule</td><td>Monday 06:00 UTC per platform.</td><td>Execution starts</td><td>—</td></tr>
+            <tr><td>2</td><td>Supabase HTTP</td><td>Run all 3 Pulse SQL queries in parallel.</td><td>3 arrays</td><td>Log + skip week</td></tr>
+            <tr><td>3</td><td>Code (JS)</td><td>Quality gate: >= 3 GSC movers OR >= 3 velocity rows. Merge into single JSON block.</td><td>Merged JSON + pass/fail</td><td>Skip week</td></tr>
+            <tr><td>4</td><td>Code (JS)</td><td>Build prompt. Inject week_date + merged JSON. Auto-select top signal for H1.</td><td>prompt string</td><td>Log fail</td></tr>
+            <tr><td>5</td><td>HTTP — Anthropic</td><td>POST claude-sonnet-4-6. max_tokens: 2200.</td><td>Raw response</td><td>Retry ×2</td></tr>
+            <tr><td>6</td><td>Code (JS)</td><td>Extract html_body, title, meta.</td><td>Clean HTML</td><td>Log fail</td></tr>
+            <tr><td>7</td><td>HTTP — WordPress</td><td>POST draft. Category: 'market-pulse'.</td><td>wp_post_id</td><td>Retry ×1</td></tr>
+            <tr><td>8</td><td>Supabase INSERT</td><td>Write to n8n_blog_articles. refresh_after = NULL.</td><td>Row saved</td><td>Log fail</td></tr>
+        </tbody>
+    </table>
+
+    <h3>WF-04 — Seasonal Alert</h3>
+    <table>
+        <thead>
+            <tr><th>#</th><th>Node Type</th><th>Action</th><th>Output</th><th>On Error</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Schedule</td><td>Daily 08:00 UTC.</td><td>Execution starts</td><td>—</td></tr>
+            <tr><td>2</td><td>Supabase HTTP</td><td>Run Seasonal Alert SQL. Returns qualifying categories.</td><td>rows or empty</td><td>—</td></tr>
+            <tr><td>3</td><td>IF</td><td>0 rows? Stop. Rows found? Continue.</td><td>Route</td><td>—</td></tr>
+            <tr><td>4</td><td>Code (JS)</td><td>Per row: identify peak month, compute multiplier, build prompt.</td><td>prompts[]</td><td>Log fail</td></tr>
+            <tr><td>5</td><td>HTTP — Anthropic</td><td>POST claude-sonnet-4-6. max_tokens: 1800.</td><td>Raw response</td><td>Retry ×2</td></tr>
+            <tr><td>6</td><td>Code (JS)</td><td>Extract html_body, title, meta.</td><td>Clean HTML</td><td>Log fail</td></tr>
+            <tr><td>7</td><td>HTTP — WordPress</td><td>POST draft. Category: 'seasonal-alert'. Tag: peak month.</td><td>wp_post_id</td><td>Retry ×1</td></tr>
+            <tr><td>8</td><td>Supabase INSERT</td><td>Write to n8n_blog_articles.</td><td>Row saved</td><td>Log fail</td></tr>
+            <tr><td>9</td><td>Email / Slack</td><td>Notify editor: 'Seasonal article ready — [Category] peaks in [Month]'. Include WP draft link.</td><td>Notification</td><td>—</td></tr>
+        </tbody>
+    </table>
+
+    <h2>7. Build Sequence</h2>
+    <p><strong>Principle:</strong> Build in order of value × complexity. Category Guides deliver the most SEO value and use the simplest trigger (manual batch). Prove the pipeline end-to-end on them first before adding webhook and cron complexity.</p>
+
+    <h3>Week 1 — Foundation</h3>
+    <ol>
+        <li><strong>Step:</strong> Create <code>n8n_blog_articles</code> table in Supabase with all columns and indexes.</li>
+        <li>Set up WordPress Application Password. Store as N8N credential 'wp_888lots'.</li>
+        <li>Test WP REST API manually: POST one draft, confirm category IDs and tag creation work.</li>
+        <li>Build WF-01 nodes 1–9 in order. Do not skip error logging node.</li>
+        <li>Run WF-01 on top 5 categories by <code>gsc_impressions_current</code>. Review 5 WP drafts.</li>
+        <li>Check quality: does each article cite real data? Does word count hit target? Is HTML clean?</li>
+        <li>Adjust system prompt if tone or structure is off. Re-run. Approve batch.</li>
+    </ol>
+
+    <h3>Week 2 — Scale Category Guides + Brand Spotlight</h3>
+    <ol start="8">
+        <li><strong>Step:</strong> Run WF-01 on all 100 888lots categories. Expect ~85 to pass quality gate.</li>
+        <li>Editor spot-checks 10% (8–10 articles). Flag any structural issues.</li>
+        <li>Build WF-02 webhook trigger. Test: manually update <code>on_stock</code> for 1 brand, confirm workflow fires.</li>
+        <li>Run WF-02 on all currently in-stock brands (888lots: 56, miamilots: 477).</li>
+        <li>Review 10 Brand Spotlight drafts. Approve batch.</li>
+    </ol>
+
+    <h3>Week 3 — Weekly Pulse + Seasonal Alert</h3>
+    <ol start="13">
+        <li><strong>Step:</strong> Build WF-03 Weekly Pulse. Test with current week's live data.</li>
+        <li>Verify quality gate correctly blocks thin weeks (manually zero rows in test environment).</li>
+        <li>Build WF-04 Seasonal Alert. Test trigger logic with mock <code>month_scores</code>.</li>
+        <li>Run WF-04 — identify which categories currently qualify. Review outputs.</li>
+        <li>Set Monday 06:00 UTC cron for WF-03 across all 5 platforms.</li>
+        <li>Set daily 08:00 UTC cron for WF-04 across all 5 platforms.</li>
+    </ol>
+
+    <h3>Month 2+ — Steady State</h3>
+    <ul>
+        <li><strong>WF-01:</strong> monthly refresh pass — regenerate articles where <code>refresh_after &lt;= NOW()</code></li>
+        <li><strong>WF-02:</strong> continuous fire as brands come into stock — zero manual intervention</li>
+        <li><strong>WF-03:</strong> fires every Monday — editor reviews Tuesday morning — publishes same day</li>
+        <li><strong>WF-04:</strong> fires on seasonal triggers — editor reviews within 48 hours</li>
+        <li><strong>Expand to miamilots:</strong> re-run WF-01 batch (Spanish prompt variant for LATAM audience)</li>
+        <li><strong>Expand to britdeals:</strong> re-run on britdeals categories (UK English + GBP pricing)</li>
+    </ul>
+
+    <h2>8. Monthly Output & KPIs</h2>
+    
+    <table>
+        <thead>
+            <tr><th>Article Type</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 6</th><th>Year 1</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Category Guides — 888lots</td><td>100</td><td>0</td><td>0</td><td>Refresh</td><td>100</td></tr>
+            <tr><td>Category Guides — all platforms</td><td>0</td><td>400</td><td>0</td><td>Refresh</td><td>500</td></tr>
+            <tr><td>Brand Spotlights (continuous)</td><td>56</td><td>~40</td><td>~40</td><td>~40/mo</td><td>500+</td></tr>
+            <tr><td>Weekly Market Pulse</td><td>4</td><td>4</td><td>4</td><td>4</td><td>52/platform</td></tr>
+            <tr><td>Seasonal Alerts</td><td>2–3</td><td>2–3</td><td>2–3</td><td>variable</td><td>~30/platform</td></tr>
+            <tr><td><strong>TOTAL — 888lots only</strong></td><td><strong>162</strong></td><td><strong>46+</strong></td><td><strong>46+</strong></td><td><strong>44+/mo</strong></td><td><strong>700+ articles</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h3>KPI Targets</h3>
+    <table>
+        <thead>
+            <tr><th>KPI</th><th>Month 3</th><th>Month 6</th><th>Month 12</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Blog organic sessions (GSC)</td><td>Baseline +20%</td><td>+80%</td><td>+300%</td></tr>
+            <tr><td>Avg position — top 10 category targets</td><td>18–22</td><td>12–15</td><td>8–12</td></tr>
+            <tr><td>Brand Spotlight &rarr; order conversion</td><td>Tracking only</td><td>1–2%</td><td>3–5%</td></tr>
+            <tr><td>Weekly Pulse avg clicks per issue</td><td>50–100</td><td>150–300</td><td>400+</td></tr>
+            <tr><td>Pipeline error rate</td><td>&lt; 5%</td><td>&lt; 2%</td><td>&lt; 1%</td></tr>
+            <tr><td>Editor time per month</td><td>8–12 hr</td><td>6–8 hr</td><td>4–6 hr</td></tr>
+            <tr><td>Total articles live (888lots)</td><td>160+</td><td>200+</td><td>700+</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>vs Closo benchmark:</strong> Closo reached ~130K monthly visits with ~400 generic articles in 6 months. 888lots reaches similar volume faster — data-backed articles satisfy search intent more completely, rank faster, and hold position longer because they are genuinely more useful than anything a competitor with no inventory data can produce.</p>
+
+    <div class="footer-summary">
+        888LOTS.COM — Content Automation Playbook<br>
+        <span style="font-weight: normal; color: var(--text-muted);">4 article types &middot; 1 data source &middot; 0 human writing<br>
+        n8n_canonical_pages &rarr; LLM &rarr; WordPress REST API &rarr; n8n_blog_articles</span>
+    </div>
+
+</div>
+
+</body>
+</html>
